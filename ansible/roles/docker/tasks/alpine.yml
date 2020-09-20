@@ -1,3 +1,13 @@
 - name: Install Docker
   apk:
     name: docker
+
+- name: Install Docker Compose
+  apk:
+    name: docker-compose
+
+- name: Enable & start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
