@@ -1,0 +1,3 @@
+- name: Install Docker
+  apk:
+    name: docker

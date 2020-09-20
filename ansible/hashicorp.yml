@@ -2,5 +2,5 @@
   remote_user: root
   roles:
     - alpine
-    # - docker
+    - docker
     # - hashicorp

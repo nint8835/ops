@@ -4,6 +4,17 @@
     regexp: '#(http://.*/v[\d\.]+/community)'
     replace: '\1'
 
-- name: Update apk cache
+- name: Update apk packages and cache
   apk:
+    upgrade: yes
     update_cache: yes
+
+- name: Install XCP-ng Guest tools
+  apk:
+    name: xe-guest-utilities
+
+- name: Enable & start xe-guest-utilities service
+  service:
+    name: xe-guest-utilities
+    state: started
+    enabled: yes
