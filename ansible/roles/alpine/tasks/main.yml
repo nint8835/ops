@@ -18,3 +18,7 @@
     name: xe-guest-utilities
     state: started
     enabled: yes
+
+- name: Install unzip
+  apk:
+    name: unzip

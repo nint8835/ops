@@ -3,4 +3,4 @@
   roles:
     - alpine
     - docker
-    # - hashicorp
+    - hashicorp

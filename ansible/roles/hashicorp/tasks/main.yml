@@ -1,0 +1,7 @@
+- name: Check if Nomad is already installed
+  stat:
+    path: /usr/local/bin/nomad
+  register: nomad_stat
+
+- include_tasks: install_nomad.yml
+  when: not nomad_stat.stat.exists
