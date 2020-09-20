@@ -1,0 +1,4 @@
+# Ansible inventories - maybe temporary?
+ansible/inventories
+# Ansible playbook failed host lists
+ansible/*.retry

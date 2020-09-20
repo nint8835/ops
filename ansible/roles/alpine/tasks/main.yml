@@ -1,0 +1,9 @@
+- name: Enable community repo
+  replace:
+    path: /etc/apk/repositories
+    regexp: '#(http://.*/v[\d\.]+/community)'
+    replace: '\1'
+
+- name: Update apk cache
+  apk:
+    update_cache: yes
