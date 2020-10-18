@@ -18,6 +18,19 @@
   notify:
     - Restart Consul
 
+- name: Create Consul service definitions
+  template:
+    src: "{{ item }}"
+    dest: "/etc/consul.d/{{ item | basename }}"
+    owner: consul
+    group: consul
+    mode: '0640'
+  become: yes
+  with_fileglob:
+    - ../templates/services/*.hcl
+  notify:
+    - Restart Consul
+
 - name: Create Consul data directory
   file:
     path: /opt/consul
