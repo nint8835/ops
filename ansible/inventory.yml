@@ -15,3 +15,6 @@ all:
       - 192.168.2.37
     consul_datacenter_name: hera
     consul_domain_name: "bootleg.technology."
+    unbound_permitted_cidr_blocks:
+      - 192.168.2.0/24
+      - 172.17.0.1/16

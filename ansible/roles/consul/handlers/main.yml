@@ -3,3 +3,11 @@
     name: consul
     state: restarted
   become: yes
+  when: not consul_skip_restart
+
+- name: Restart Unbound
+  systemd:
+    name: unbound
+    state: restarted
+  become: yes
+  when: not unbound_skip_restart

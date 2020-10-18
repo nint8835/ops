@@ -1,3 +1,5 @@
 release_codename: buster
 consul_datacenter_name: dc1
 consul_domain_name: consul.
+unbound_permitted_cidr_blocks:
+  - 172.17.0.1/16

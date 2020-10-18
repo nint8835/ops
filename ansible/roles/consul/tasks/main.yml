@@ -27,3 +27,8 @@
     state: started
     enabled: yes
   become: yes
+  register: consul_start
+
+- name: Skip restarting Consul
+  set_fact:
+    consul_skip_restart: "{{ consul_start.changed | bool }}"
