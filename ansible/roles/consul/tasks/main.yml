@@ -6,6 +6,18 @@
 - include_tasks: server.yml
   when: "consul_role == 'server'"
 
+- name: Write agent config
+  template:
+    src: "{{ role_path }}/templates/agent_config.hcl"
+    dest: /etc/consul.d/agent.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  become: yes
+  when: "consul_role == 'agent'"
+  notify:
+    - Restart Consul
+
 - name: Create Consul data directory
   file:
     path: /opt/consul

@@ -10,6 +10,9 @@ Usage of these playbooks & roles assumes you have already completed the followin
   * `apt-get install sudo`
   * `usermod -aG sudo debian`
 * Passwordless sudo is enabled
+  * `visudo`
   * Update the `ALL` in the `%sudo` line to `NOPASSWD:ALL`
 * XCP-ng Tools are installed
   * https://xcp-ng.org/docs/guests.html#supported-linux-distributions
+* `python-apt` is installed
+  * `apt-get install python-apt`

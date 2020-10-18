@@ -6,6 +6,23 @@
 - include_tasks: server.yml
   when: "nomad_role == 'server'"
 
+- name: Write common config
+  template:
+    src: "{{ role_path }}/templates/nomad.hcl"
+    dest: /etc/nomad.d/nomad.hcl
+  become: yes
+  notify:
+    - Restart Nomad
+
+- name: Write agent config
+  template:
+    src: "{{ role_path }}/templates/agent_config.hcl"
+    dest: /etc/nomad.d/agent.hcl
+  become: yes
+  when: "nomad_role == 'agent'"
+  notify:
+    - Restart Nomad
+
 - name: Create Nomad data directory
   file:
     path: /opt/nomad
