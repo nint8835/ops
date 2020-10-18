@@ -1,0 +1,8 @@
+- name: Write server config
+  template:
+    src: "{{ role_path }}/templates/server_config.hcl"
+    dest: /etc/consul.d/server.hcl
+    owner: consul
+    group: consul
+    mode: '0640'
+  become: yes

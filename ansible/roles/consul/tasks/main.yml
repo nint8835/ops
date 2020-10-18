@@ -1,0 +1,29 @@
+- package_facts:
+
+- name: Create Consul data directory
+  file:
+    path: /opt/consul
+    state: directory
+    owner: consul
+    group: consul
+    mode: '0755'
+  become: yes
+
+- name: Create Consul service
+  copy:
+    src: "{{ role_path }}/files/consul.service"
+    dest: /usr/lib/systemd/system/consul.service
+  become: yes
+
+- include_tasks: install.yml
+  when: "'consul' not in packages"
+
+- include_tasks: server.yml
+  when: "consul_role == 'server'"
+
+- name: Start & enable Consul
+  systemd:
+    name: consul
+    state: started
+    enabled: yes
+  become: yes
