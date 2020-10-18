@@ -1,6 +1,11 @@
+- hosts: agents
+  roles:
+    - name: geerlingguy.docker
+      become: yes
+
 - hosts: all
   roles:
-    - consul
+    - name: consul
     - role: oefenweb.dns
       become: yes
-    - nomad
+    - name: nomad

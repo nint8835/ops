@@ -1,2 +1,5 @@
 - src: oefenweb.dns
   version: v1.1.29
+
+- src: geerlingguy.docker
+  version: 2.9.0
