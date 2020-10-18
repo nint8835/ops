@@ -6,3 +6,5 @@
     group: consul
     mode: '0640'
   become: yes
+  notify:
+    - Restart Consul

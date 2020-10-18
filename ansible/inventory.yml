@@ -7,9 +7,11 @@ all:
         192.168.2.37:
       vars:
         consul_role: server
-        consul_servers:
-          - 192.168.2.35
-          - 192.168.2.36
-          - 192.168.2.37
   vars:
     ansible_user: debian
+    consul_servers:
+      - 192.168.2.35
+      - 192.168.2.36
+      - 192.168.2.37
+    consul_datacenter_name: hera
+    consul_domain_name: "bootleg.technology."

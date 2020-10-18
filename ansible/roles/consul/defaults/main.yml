@@ -1,1 +1,3 @@
 release_codename: buster
+consul_datacenter_name: dc1
+consul_domain_name: consul.
