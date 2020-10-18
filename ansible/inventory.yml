@@ -8,6 +8,8 @@ all:
       vars:
         consul_role: server
         nomad_role: server
+        dns_nameservers:
+          - 127.0.0.1
   vars:
     ansible_user: debian
     consul_servers:

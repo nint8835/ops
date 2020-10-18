@@ -1,4 +1,6 @@
 - hosts: all
   roles:
     - consul
+    - role: oefenweb.dns
+      become: yes
     - nomad
