@@ -7,6 +7,7 @@ all:
         192.168.2.37:
       vars:
         consul_role: server
+        nomad_role: server
   vars:
     ansible_user: debian
     consul_servers:
@@ -14,6 +15,7 @@ all:
       - 192.168.2.36
       - 192.168.2.37
     consul_datacenter_name: hera
+    nomad_datacenter_name: hera
     consul_domain_name: "bootleg.technology."
     unbound_permitted_cidr_blocks:
       - 192.168.2.0/24

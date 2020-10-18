@@ -20,3 +20,7 @@ retry_join = [
 {% endif %}
 {% endfor %}
 ]
+
+connect {
+  enabled = true
+}
