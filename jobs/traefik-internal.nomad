@@ -2,6 +2,11 @@ job "traefik-internal" {
   datacenters = ["hera"]
   type        = "service"
 
+  constraint {
+    attribute = "${node.class}"
+    value = "worker"
+  }
+
   group "traefik" {
     network {
       port "http" {

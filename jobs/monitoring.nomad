@@ -1,8 +1,13 @@
-job "stats" {
+job "monitoring" {
   datacenters = ["hera"]
   type = "service"
 
-  group "monitoring" {
+  group "stats" {
+    constraint {
+      attribute = "${node.class}"
+      value = "worker"
+    }
+
     network {
       port "prometheus_ui" {
         to = 9090
@@ -11,7 +16,6 @@ job "stats" {
 
     service {
       name = "prometheus"
-      // tags = ["urlprefix-/"]
       port = "prometheus_ui"
 
       check {
@@ -77,6 +81,49 @@ scrape_configs:
     params:
       format: ['prometheus']
 EOF
+      }
+    }
+  }
+
+  group "alerting" {
+    count = 2
+    spread {
+      attribute = "${node.class}"
+    }
+    
+    network {
+      port "alert_daemon" {
+        # TODO: Get dynamic ports working with consul-alerts
+        static = 9000
+      }
+    }
+
+    task "consul-alerts" {
+      driver = "docker"
+
+      config {
+        image = "acaleph/consul-alerts:latest"
+        ports = ["alert_daemon"]
+        args = [
+          "start",
+          "--consul-dc=hera",
+          "--consul-addr=${NOMAD_IP_alert_daemon}:8500",
+          "--watch-events",
+          "--watch-checks"
+        ]
+      }
+    }
+
+    service {
+      name = "consul-alerts"
+      port = "alert_daemon"
+
+      check {
+        name     = "consul-alerts Daemon Alive"
+        type     = "http"
+        path     = "/v1/info"
+        interval = "10s"
+        timeout  = "2s"
       }
     }
   }
