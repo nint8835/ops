@@ -1,11 +1,11 @@
 job "monitoring" {
   datacenters = ["hera"]
-  type = "service"
+  type        = "service"
 
   group "stats" {
     constraint {
       attribute = "${node.class}"
-      value = "worker"
+      value     = "worker"
     }
 
     network {
@@ -35,14 +35,14 @@ job "monitoring" {
         ports = ["prometheus_ui"]
 
         volumes = [
-          "local/prometheus.yml:/etc/prometheus/prometheus.yml"
+          "local/prometheus.yml:/etc/prometheus/prometheus.yml",
         ]
       }
 
       template {
         change_mode = "noop"
         destination = "local/prometheus.yml"
-        
+
         data = <<EOF
 ---
 global:
@@ -87,6 +87,7 @@ EOF
 
   group "alerting" {
     count = 2
+
     spread {
       attribute = "${node.class}"
     }
@@ -101,16 +102,17 @@ EOF
       driver = "docker"
 
       config {
-        image = "acaleph/consul-alerts:latest"
-        ports = ["alert_daemon"]
+        image      = "acaleph/consul-alerts:latest"
+        ports      = ["alert_daemon"]
         entrypoint = ["/bin/consul-alerts"]
+
         args = [
           "start",
           "--consul-dc=hera",
           "--consul-addr=${NOMAD_IP_alert_daemon}:8500",
           "--alert-addr=0.0.0.0:${NOMAD_PORT_alert_daemon}",
           "--watch-events",
-          "--watch-checks"
+          "--watch-checks",
         ]
       }
     }

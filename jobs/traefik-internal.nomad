@@ -4,7 +4,7 @@ job "traefik-internal" {
 
   constraint {
     attribute = "${node.class}"
-    value = "worker"
+    value     = "worker"
   }
 
   group "traefik" {
@@ -18,8 +18,8 @@ job "traefik-internal" {
       driver = "docker"
 
       config {
-        image = "traefik:v2.2"
-        ports = ["http"]
+        image        = "traefik:v2.2"
+        ports        = ["http"]
         network_mode = "host"
 
         volumes = [
@@ -48,8 +48,8 @@ EOF
 
         destination = "local/traefik.toml"
       }
-
     }
+
     service {
       name = "traefik-internal"
       port = "http"
@@ -69,8 +69,8 @@ EOF
       tags = [
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.api.rule=Host(`traefik.internal.bootleg.technology`)",
-        "traefik_internal.http.routers.api.service=api@internal"
-      ] 
+        "traefik_internal.http.routers.api.service=api@internal",
+      ]
     }
   }
 }
