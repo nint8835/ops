@@ -90,11 +90,10 @@ EOF
     spread {
       attribute = "${node.class}"
     }
-    
+
     network {
       port "alert_daemon" {
-        # TODO: Get dynamic ports working with consul-alerts
-        static = 9000
+        to = 9000
       }
     }
 
@@ -104,10 +103,12 @@ EOF
       config {
         image = "acaleph/consul-alerts:latest"
         ports = ["alert_daemon"]
+        entrypoint = ["/bin/consul-alerts"]
         args = [
           "start",
           "--consul-dc=hera",
           "--consul-addr=${NOMAD_IP_alert_daemon}:8500",
+          "--alert-addr=0.0.0.0:${NOMAD_PORT_alert_daemon}",
           "--watch-events",
           "--watch-checks"
         ]
@@ -119,7 +120,7 @@ EOF
       port = "alert_daemon"
 
       check {
-        name     = "consul-alerts Daemon Alive"
+        name     = "Alert Daemon Alive"
         type     = "http"
         path     = "/v1/info"
         interval = "10s"

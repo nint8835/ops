@@ -55,7 +55,7 @@ EOF
       port = "http"
 
       check {
-        name     = "alive"
+        name     = "Traefik Reachable"
         type     = "tcp"
         port     = "http"
         interval = "10s"
