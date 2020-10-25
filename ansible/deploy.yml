@@ -5,6 +5,7 @@
 
 - hosts: all
   roles:
+    - name: cloudalchemy.node-exporter
     - name: consul
     - role: oefenweb.dns
       become: yes

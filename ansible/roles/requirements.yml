@@ -3,3 +3,6 @@
 
 - src: geerlingguy.docker
   version: 2.9.0
+
+- src: cloudalchemy.node-exporter
+  version: 0.22.0

@@ -80,6 +80,13 @@ scrape_configs:
     metrics_path: /v1/agent/metrics
     params:
       format: ['prometheus']
+  - job_name: 'node-exporter'
+    consul_sd_configs:
+    - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
+      services: ['node-exporter']
+
+    scrape_interval: 5s
+    metrics_path: /metrics
 EOF
       }
     }
