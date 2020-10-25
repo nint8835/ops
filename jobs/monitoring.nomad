@@ -14,6 +14,10 @@ job "monitoring" {
       }
     }
 
+    ephemeral_disk {
+      migrate = true
+    }
+
     service {
       name = "prometheus"
       port = "prometheus_ui"
