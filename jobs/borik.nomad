@@ -8,7 +8,7 @@ job "borik" {
   }
 
   group "borik" {
-    task "traefik" {
+    task "borik" {
       driver = "docker"
 
       config {
