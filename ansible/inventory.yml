@@ -2,9 +2,9 @@ all:
   children:
     controllers:
       hosts:
-        192.168.2.35:
-        192.168.2.36:
-        192.168.2.37:
+        192.168.1.6:
+        192.168.1.252:
+        192.168.1.183:
       vars:
         consul_role: server
         nomad_role: server
@@ -12,24 +12,24 @@ all:
           - 127.0.0.1
     agents:
       hosts:
-        192.168.2.39:
+        192.168.1.129:
       vars:
         consul_role: agent
         nomad_role: agent
         dns_nameservers:
-          - 192.168.2.35
-          - 192.168.2.36
-          - 192.168.2.37
+          - 192.168.1.6
+          - 192.168.1.252
+          - 192.168.1.183
   vars:
     ansible_user: debian
     consul_servers:
-      - 192.168.2.35
-      - 192.168.2.36
-      - 192.168.2.37
+      - 192.168.1.6
+      - 192.168.1.252
+      - 192.168.1.183
     consul_datacenter_name: hera
     nomad_datacenter_name: hera
     consul_domain_name: "bootleg.technology."
     unbound_permitted_cidr_blocks:
-      - 192.168.2.0/24
+      - 192.168.1.0/24
       - 172.17.0.1/16
-    internal_tools_ip: 192.168.2.39
+    internal_tools_ip: 192.168.1.129
