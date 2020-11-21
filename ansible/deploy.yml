@@ -10,3 +10,7 @@
     - role: oefenweb.dns
       become: yes
     - name: nomad
+
+- hosts: controllers
+  roles:
+    - name: vault

@@ -1,0 +1,6 @@
+- name: Restart Vault
+  systemd:
+    name: vault
+    state: restarted
+  become: yes
+  when: not vault_skip_restart
