@@ -2,3 +2,8 @@
 ansible/inventories
 # Ansible playbook failed host lists
 ansible/*.retry
+
+# Terraform data
+.terraform
+# Terraform variables
+*.tfvars
