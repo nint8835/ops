@@ -25,6 +25,8 @@ job "borik" {
       template {
         data = <<EOF
 BORIK_TOKEN="{{ key "borik/discord_token" }}"
+BORIK_STORAGE_TYPE=consul
+BORIK_CONSUL_ADDRESS=http://consul.internal.bootleg.technology
 EOF
 
         destination = "secrets/borik.env"
