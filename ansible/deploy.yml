@@ -1,16 +1,17 @@
 - hosts: agents
   roles:
-    - name: geerlingguy.docker
+    - role: geerlingguy.docker
       become: yes
 
 - hosts: all
   roles:
-    - name: cloudalchemy.node-exporter
-    - name: consul
+    - role: artis3n.tailscale
+    - role: cloudalchemy.node-exporter
+    - role: consul
     - role: oefenweb.dns
       become: yes
-    - name: nomad
+    - role: nomad
 
 - hosts: controllers
   roles:
-    - name: vault
+    - role: vault

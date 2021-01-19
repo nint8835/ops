@@ -6,3 +6,6 @@
 
 - src: cloudalchemy.node-exporter
   version: 0.22.0
+
+- src: artis3n.tailscale
+  version: v1.8.0
