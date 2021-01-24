@@ -8,7 +8,7 @@ all:
       vars:
         consul_role: server
         nomad_role: server
-      dns_nameservers:
+        dns_nameservers:
           - 127.0.0.1
     agents:
       hosts:

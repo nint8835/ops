@@ -18,7 +18,7 @@ job "borik" {
       driver = "docker"
 
       config {
-        image             = "ghcr.io/saturn-sh/borik:latest"
+        image             = "ghcr.io/fogo-sh/borik:latest"
         memory_hard_limit = 2048
       }
 
