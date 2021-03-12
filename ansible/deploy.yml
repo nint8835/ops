@@ -11,6 +11,18 @@
     - role: oefenweb.dns
       become: yes
     - role: nomad
+  post_tasks:
+    - name: Fix DHCP config to stop overwriting nameservers
+      lineinfile:
+        regexp: '^#(.*)supersede domain-name-servers (.*);$'
+        backrefs: true
+        line: '\1supersede domain-name-servers \2;'
+        dest: /etc/dhcp/dhclient.conf
+        state: present
+      become: yes
+    - name: Run dhclient to apply updated settings
+      command: dhclient
+      become: yes
 
 - hosts: controllers
   roles:
