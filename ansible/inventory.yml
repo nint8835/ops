@@ -48,4 +48,4 @@ all:
         rule: supersede
       domain-search:
         rule: supersede
-    tailscale_args: --accept-dns false
+    tailscale_args: --accept-dns false --accept-routes
