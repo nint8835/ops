@@ -1,7 +1,7 @@
 client {
     enabled = true
     node_class = "worker"
-    network_interface = "eth0"
+    network_interface = "tailscale0"
 
     options = {
         "user.blacklist" = "root"

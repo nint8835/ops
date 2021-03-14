@@ -17,15 +17,15 @@ all:
         consul_role: agent
         nomad_role: agent
         dns_nameservers:
-          - 192.168.1.6
-          - 192.168.1.252
-          - 192.168.1.183
+          - 100.71.98.21
+          - 100.73.241.83
+          - 100.125.202.69
   vars:
     ansible_user: debian
     consul_servers:
-      - 192.168.1.6
-      - 192.168.1.252
-      - 192.168.1.183
+      - 100.71.98.21
+      - 100.73.241.83
+      - 100.125.202.69
     consul_datacenter_name: hera
     nomad_datacenter_name: hera
     consul_domain_name: "bootleg.technology."
@@ -33,7 +33,7 @@ all:
       - 192.168.1.0/24
       - 172.17.0.1/16
       - 100.0.0.0/8
-    internal_tools_ip: 192.168.1.129
+    internal_tools_ip: 100.99.237.85
     tailscale_auth_key: !vault |
       $ANSIBLE_VAULT;1.1;AES256
       39373865323664306566353164333162393762316138346365663732383961663936396366333437
@@ -48,3 +48,4 @@ all:
         rule: supersede
       domain-search:
         rule: supersede
+    tailscale_args: --accept-dns false
