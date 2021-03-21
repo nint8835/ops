@@ -6,6 +6,8 @@
 - hosts: all
   roles:
     - role: artis3n.tailscale
+    - role: storage
+      become: yes
     - role: cloudalchemy.node-exporter
     - role: consul
     - role: oefenweb.dns

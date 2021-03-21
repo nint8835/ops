@@ -49,3 +49,5 @@ all:
       domain-search:
         rule: supersede
     tailscale_args: --accept-dns false --accept-routes
+    nas_ip_address: 192.168.1.106
+    nas_src_path: /mnt/Storage/iocage/cluster
