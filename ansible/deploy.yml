@@ -5,13 +5,13 @@
 
 - hosts: all
   roles:
+    - role: oefenweb.dns
+      become: yes
     - role: artis3n.tailscale
     - role: storage
       become: yes
     - role: cloudalchemy.node-exporter
     - role: consul
-    - role: oefenweb.dns
-      become: yes
     - role: nomad
   post_tasks:
     - name: Fix DHCP config to stop overwriting nameservers

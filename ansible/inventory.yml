@@ -10,6 +10,7 @@ all:
         nomad_role: server
         dns_nameservers:
           - 127.0.0.1
+        tailscale_args: --accept-dns false --accept-routes
     agents:
       hosts:
         192.168.1.129:
@@ -17,9 +18,9 @@ all:
         consul_role: agent
         nomad_role: agent
         dns_nameservers:
-          - 100.71.98.21
-          - 100.73.241.83
-          - 100.125.202.69
+          - 8.8.8.8
+          - 8.8.4.4
+        tailscale_args: --accept-dns true --accept-routes
   vars:
     ansible_user: debian
     consul_servers:
@@ -48,6 +49,5 @@ all:
         rule: supersede
       domain-search:
         rule: supersede
-    tailscale_args: --accept-dns false --accept-routes
     nas_ip_address: 192.168.1.106
     nas_src_path: /mnt/Storage/iocage/cluster
