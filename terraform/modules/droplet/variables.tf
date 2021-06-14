@@ -1,0 +1,38 @@
+variable "name" {
+  description = "The droplet name."
+  type        = string
+}
+
+variable "memory" {
+  description = "The amount of memory required for this droplet, measured in MB."
+  type        = number
+}
+
+variable "vcpus" {
+  description = "The number of vCPUs required for this droplet."
+  type        = number
+}
+
+variable "ssh_key_ids" {
+  description = "IDs of SSH keys that will be permitted to connect. Leave blank to add all keys in the account."
+  type        = list(string)
+  default     = []
+}
+
+variable "region" {
+  description = "The region to launch this droplet in."
+  default     = "tor1"
+  type        = string
+}
+
+variable "distribution" {
+  description = "Distribution to use for the droplet."
+  type        = string
+  default     = "Debian"
+}
+
+variable "distribution_version" {
+  description = "Version of the Distribution to use for the droplet."
+  type        = string
+  default     = "10 x64"
+}
