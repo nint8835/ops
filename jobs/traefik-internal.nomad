@@ -7,6 +7,11 @@ job "traefik-internal" {
     value     = "worker"
   }
 
+  constraint {
+    attribute = "${meta.is_cloud}"
+    value     = "False"
+  }
+
   group "traefik" {
     network {
       port "http" {
