@@ -11,5 +11,8 @@ client {
     options = {
         "user.blacklist" = "root"
     }
+    meta = {
+        "is_cloud" = "{{ is_cloud | default(false) }}"
+    }
 }
 

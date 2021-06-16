@@ -10,7 +10,7 @@
     - role: artis3n.tailscale
     - role: storage
       become: yes
-    - role: cloudalchemy.node-exporter
+    - role: cloudalchemy.node_exporter
     - role: consul
     - role: nomad
   post_tasks:
@@ -29,3 +29,11 @@
 - hosts: controllers
   roles:
     - role: vault
+
+- hosts: all
+  serial: 1
+  tasks:
+    - systemd:
+        name: tailscaled
+        state: restarted
+      become: yes
