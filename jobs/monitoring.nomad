@@ -8,14 +8,15 @@ job "monitoring" {
       value     = "worker"
     }
 
+    constraint {
+      attribute = "${meta.is_cloud}"
+      value = "False"
+    }
+
     network {
       port "prometheus_ui" {
         to = 9090
       }
-    }
-
-    ephemeral_disk {
-      migrate = true
     }
 
     service {
@@ -29,6 +30,11 @@ job "monitoring" {
         interval = "10s"
         timeout  = "2s"
       }
+
+      tags = [
+        "traefik_internal.enable=true",
+        "traefik_internal.http.routers.prometheus.rule=Host(`prometheus.internal.bootleg.technology`)",
+      ]
     }
 
     task "prometheus" {
@@ -38,8 +44,18 @@ job "monitoring" {
         image = "prom/prometheus:latest"
         ports = ["prometheus_ui"]
 
+        args = [
+          "--storage.tsdb.retention.time=90d",
+          # Stock Prometheus args, provided to allow adding custom args
+          "--config.file=/etc/prometheus/prometheus.yml",
+          "--storage.tsdb.path=/prometheus",
+          "--web.console.libraries=/usr/share/prometheus/console_libraries",
+          "--web.console.templates=/usr/share/prometheus/consoles"
+        ]
+
         volumes = [
           "local/prometheus.yml:/etc/prometheus/prometheus.yml",
+          "/mnt/shared/prometheus:/prometheus"
         ]
       }
 

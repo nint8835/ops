@@ -7,6 +7,13 @@ job "gramfelbot" {
     value     = "worker"
   }
 
+  # Not sure what kind of network connectivity Elixir / OTP opens up.
+  # Keeping internal-only until I can either figure that out or lock down the ports on the bastion host.
+  constraint {
+    attribute = "${meta.is_cloud}"
+    value = "False"
+  }
+
   group "gramfelbot" {
     restart {
       delay    = "1s"
