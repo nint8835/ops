@@ -23,7 +23,7 @@ job "traefik-internal" {
       driver = "docker"
 
       config {
-        image        = "traefik:v2.2"
+        image        = "traefik:v2.4"
         ports        = ["http"]
         network_mode = "host"
 
