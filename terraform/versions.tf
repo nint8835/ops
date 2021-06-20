@@ -9,5 +9,9 @@ terraform {
       source  = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
+    http = {
+      source = "hashicorp/http"
+      version = "~> 2.1.0"
+    }
   }
 }

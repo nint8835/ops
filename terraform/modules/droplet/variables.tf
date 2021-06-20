@@ -36,3 +36,17 @@ variable "distribution_version" {
   type        = string
   default     = "10 x64"
 }
+
+variable "ingress_rules" {
+  description = "Inbound traffic from the public internet that should be permitted. Leave blank to permit all traffic."
+  type = list(
+    object(
+      {
+        protocol         = string,
+        port_range       = string,
+        source_addresses = list(string)
+      }
+    )
+  )
+  default = []
+}
