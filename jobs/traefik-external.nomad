@@ -52,13 +52,17 @@ job "traefik-external" {
     address = ":443"
 
 [api]
-    dashboard = true
+  dashboard = true
 
 [certificateResolvers.letsencrypt.acme]
   email = "riley@rileyflynn.me"
 
   [certificatesResolvers.letsencrypt.acme.httpChallenge]
     entryPoint = "http"
+
+[metrics]
+  [metrics.prometheus]
+    manualRouting = true
 
 [providers.consulCatalog]
     prefix           = "traefik_external"
@@ -99,6 +103,22 @@ EOF
         "traefik_external.http.middlewares.dashboard-ipwhitelist.ipwhitelist.sourcerange=100.0.0.0/8",
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.traefik-external-dashboard.rule=Host(`traefik-external.internal.bootleg.technology`)",
+      ]
+    }
+
+    service {
+      name = "traefik-external-metrics"
+      port = "https"
+
+      tags = [
+        "traefik_external.enable=true",
+        "traefik_external.http.routers.traefik-external-metrics.rule=Host(`traefik-external-metrics.internal.bootleg.technology`)",
+        "traefik_external.http.routers.traefik-external-metrics.service=prometheus@internal",
+        "traefik_external.http.routers.traefik-external-metrics.entrypoints=websecure",
+        "traefik_external.http.routers.traefik-external-metrics.middlewares=traefik-external-metrics-ipwhitelist",
+        "traefik_external.http.middlewares.traefik-external-metrics-ipwhitelist.ipwhitelist.sourcerange=100.0.0.0/8",
+        "traefik_internal.enable=true",
+        "traefik_internal.http.routers.traefik-external-metrics.rule=Host(`traefik-external-metrics.internal.bootleg.technology`)",
       ]
     }
   }

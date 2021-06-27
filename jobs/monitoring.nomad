@@ -84,6 +84,7 @@ scrape_configs:
     metrics_path: /v1/metrics
     params:
       format: ['prometheus']
+
   - job_name: 'consul'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
@@ -100,6 +101,7 @@ scrape_configs:
     metrics_path: /v1/agent/metrics
     params:
       format: ['prometheus']
+
   - job_name: 'node-exporter'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
@@ -107,6 +109,17 @@ scrape_configs:
 
     scrape_interval: 5s
     metrics_path: /metrics
+  
+  - job_name: 'traefik-internal'
+    static_configs:
+      - targets:
+        - traefik-metrics.internal.bootleg.technology
+  
+  - job_name: 'traefik-external'
+    static_configs:
+      - targets:
+        - traefik-external-metrics.internal.bootleg.technology
+  
 EOF
       }
     }

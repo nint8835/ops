@@ -35,20 +35,24 @@ job "traefik-internal" {
       template {
         data = <<EOF
 [entryPoints]
-    [entryPoints.http]
+  [entryPoints.http]
     address = ":80"
 
 [api]
-    dashboard = true
+  dashboard = true
+
+[metrics]
+  [metrics.prometheus]
+    manualRouting = true
 
 # Enable Consul Catalog configuration backend.
 [providers.consulCatalog]
-    prefix           = "traefik_internal"
-    exposedByDefault = false
+  prefix           = "traefik_internal"
+  exposedByDefault = false
 
-    [providers.consulCatalog.endpoint]
-      address = "127.0.0.1:8500"
-      scheme  = "http"
+  [providers.consulCatalog.endpoint]
+    address = "127.0.0.1:8500"
+    scheme  = "http"
 EOF
 
         destination = "local/traefik.toml"
@@ -75,6 +79,16 @@ EOF
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.api.rule=Host(`traefik.internal.bootleg.technology`)",
         "traefik_internal.http.routers.api.service=api@internal",
+      ]
+    }
+
+    service {
+      name = "traefik-internal-metrics"
+
+      tags = [
+        "traefik_internal.enable=true",
+        "traefik_internal.http.routers.traefik-internal-metrics.rule=Host(`traefik-metrics.internal.bootleg.technology`)",
+        "traefik_internal.http.routers.traefik-internal-metrics.service=prometheus@internal",
       ]
     }
   }
