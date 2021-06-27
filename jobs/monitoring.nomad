@@ -17,6 +17,9 @@ job "monitoring" {
       port "prometheus_ui" {
         to = 9090
       }
+      port "consul_exporter" {
+        to = 9107
+      }
     }
 
     service {
@@ -35,6 +38,19 @@ job "monitoring" {
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.prometheus.rule=Host(`prometheus.internal.bootleg.technology`)",
       ]
+    }
+
+    service {
+      name = "consul-exporter"
+      port = "consul_exporter"
+
+      check {
+        name = "consul-exporter HTTP Check"
+        type = "http"
+        path = "/metrics"
+        interval = "10s"
+        timeout = "2s"
+      }
     }
 
     task "prometheus" {
@@ -80,7 +96,6 @@ scrape_configs:
       regex: '(.*)http(.*)'
       action: keep
 
-    scrape_interval: 5s
     metrics_path: /v1/metrics
     params:
       format: ['prometheus']
@@ -97,17 +112,20 @@ scrape_configs:
       target_label:  '__address__'
       replacement:   '${1}:8500'
 
-    scrape_interval: 5s
     metrics_path: /v1/agent/metrics
     params:
       format: ['prometheus']
+  
+  - job_name: 'consul-exporter'
+    consul_sd_configs:
+    - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
+      services: ['consul-exporter']
 
   - job_name: 'node-exporter'
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
       services: ['node-exporter']
 
-    scrape_interval: 5s
     metrics_path: /metrics
   
   - job_name: 'traefik-internal'
@@ -121,6 +139,68 @@ scrape_configs:
         - traefik-external-metrics.internal.bootleg.technology
   
 EOF
+      }
+    }
+
+    task "consul_exporter" {
+      driver = "docker"
+
+      config {
+        image = "prom/consul-exporter:latest"
+        ports = ["consul_exporter"]
+
+        args = [
+          "--consul.server=consul.service.bootleg.technology:8500"
+        ]
+      }
+    }
+  }
+
+  group "visualization" {
+    constraint {
+      attribute = "${node.class}"
+      value     = "worker"
+    }
+
+    constraint {
+      attribute = "${meta.is_cloud}"
+      value = "False"
+    }
+
+    network {
+      port "grafana_ui" {
+        to = 3000
+      }
+    }
+
+    service {
+      name = "grafana"
+      port = "grafana_ui"
+
+      check {
+        name     = "Grafana HTTP Check"
+        type     = "http"
+        path     = "/api/health"
+        interval = "10s"
+        timeout  = "2s"
+      }
+
+      tags = [
+        "traefik_internal.enable=true",
+        "traefik_internal.http.routers.grafana.rule=Host(`dashboard.internal.bootleg.technology`)",
+      ]
+    }
+
+    task "grafana" {
+      driver = "docker"
+
+      config {
+        image = "grafana/grafana:latest"
+        ports = ["grafana_ui"]
+
+        volumes = [
+          "/mnt/shared/grafana:/var/lib/grafana"
+        ]
       }
     }
   }
