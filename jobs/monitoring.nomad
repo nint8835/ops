@@ -176,7 +176,7 @@ EOF
       }
 
       resources {
-        memory = 15
+        memory = 50
       }
     }
 
@@ -189,7 +189,7 @@ EOF
       }
 
       resources {
-        memory = 25
+        memory = 50
       }
 
       template {
