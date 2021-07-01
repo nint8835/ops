@@ -20,6 +20,9 @@ job "monitoring" {
       port "consul_exporter" {
         to = 9107
       }
+      port "unpoller" {
+        to = 9130
+      }
     }
 
     service {
@@ -46,6 +49,19 @@ job "monitoring" {
 
       check {
         name = "consul-exporter HTTP Check"
+        type = "http"
+        path = "/metrics"
+        interval = "10s"
+        timeout = "2s"
+      }
+    }
+
+    service {
+      name = "unpoller"
+      port = "unpoller"
+
+      check {
+        name = "unpoller HTTP Check"
         type = "http"
         path = "/metrics"
         interval = "10s"
@@ -120,6 +136,11 @@ scrape_configs:
     consul_sd_configs:
     - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
       services: ['consul-exporter']
+  
+  - job_name: 'unpoller'
+    consul_sd_configs:
+    - server: '{{ env "NOMAD_IP_prometheus_ui" }}:8500'
+      services: ['unpoller']
 
   - job_name: 'node-exporter'
     consul_sd_configs:
@@ -152,6 +173,35 @@ EOF
         args = [
           "--consul.server=consul.service.bootleg.technology:8500"
         ]
+      }
+
+      resources {
+        memory = 15
+      }
+    }
+
+    task "unpoller" {
+      driver = "docker"
+
+      config {
+        image = "golift/unifi-poller"
+        ports = ["unpoller"]
+      }
+
+      resources {
+        memory = 25
+      }
+
+      template {
+        data = <<EOF
+UP_UNIFI_DEFAULT_USER="{{ key "unpoller/username" }}"
+UP_UNIFI_DEFAULT_PASS="{{ key "unpoller/password" }}"
+UP_UNIFI_DEFAULT_URL="https://192.168.1.1"
+
+EOF
+
+        destination = "secrets/unpoller.env"
+        env         = true
       }
     }
   }
