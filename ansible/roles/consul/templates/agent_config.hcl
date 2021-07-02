@@ -1,6 +1,6 @@
 {% raw %}
 bind_addr = "{{ GetInterfaceIP \"tailscale0\" }}"
-client_addr = "127.0.0.1 {{ GetInterfaceIP \"eth0\" }} { GetInterfaceIP \"tailscale0\" }}"
+client_addr = "127.0.0.1 {{ GetInterfaceIP \"eth0\" }} {{ GetInterfaceIP \"tailscale0\" }}"
 {% endraw %}
 
 datacenter = "{{ consul_datacenter_name }}"

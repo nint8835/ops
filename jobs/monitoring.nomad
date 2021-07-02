@@ -40,6 +40,12 @@ job "monitoring" {
       tags = [
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.prometheus.rule=Host(`prometheus.internal.bootleg.technology`)",
+        "embassy.enable=true",
+        "embassy.title=Prometheus",
+        "embassy.url=http://prometheus.internal.bootleg.technology",
+        "embassy.icon_url=https://simpleicons.org/icons/prometheus.svg",
+        "embassy.description=Metrics aggregation & querying",
+        "embassy.group=Monitoring"
       ]
     }
 
@@ -238,6 +244,12 @@ EOF
       tags = [
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.grafana.rule=Host(`dashboard.internal.bootleg.technology`)",
+        "embassy.enable=true",
+        "embassy.title=Grafana",
+        "embassy.url=http://dashboard.internal.bootleg.technology",
+        "embassy.icon_url=https://simpleicons.org/icons/grafana.svg",
+        "embassy.description=Metrics, analytics, & dashboards",
+        "embassy.group=Monitoring"
       ]
     }
 

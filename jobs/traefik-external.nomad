@@ -103,6 +103,12 @@ EOF
         "traefik_external.http.middlewares.dashboard-ipwhitelist.ipwhitelist.sourcerange=100.0.0.0/8",
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.traefik-external-dashboard.rule=Host(`traefik-external.internal.bootleg.technology`)",
+        "embassy.enable=true",
+        "embassy.title=Traefik (External)",
+        "embassy.url=http://traefik-external.internal.bootleg.technology",
+        "embassy.icon_url=https://symbols.getvecta.com/stencil_98/35_traefik-icon.290dcd6a8f.svg",
+        "embassy.description=Public HTTP request routing",
+        "embassy.group=Networking"
       ]
     }
 

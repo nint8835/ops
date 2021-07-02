@@ -79,6 +79,12 @@ EOF
         "traefik_internal.enable=true",
         "traefik_internal.http.routers.api.rule=Host(`traefik.internal.bootleg.technology`)",
         "traefik_internal.http.routers.api.service=api@internal",
+        "embassy.enable=true",
+        "embassy.title=Traefik (Internal)",
+        "embassy.url=http://traefik.internal.bootleg.technology",
+        "embassy.icon_url=https://symbols.getvecta.com/stencil_98/35_traefik-icon.290dcd6a8f.svg",
+        "embassy.description=In-cluster HTTP request routing",
+        "embassy.group=Networking"
       ]
     }
 
