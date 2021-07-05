@@ -43,6 +43,10 @@ job "embassy" {
       env {
         EMBASSY_CONSUL_ENDPOINT = "consul.service.bootleg.technology:8500"
       }
+
+      resources {
+        memory = 25
+      }
     }
   }
 }
