@@ -11,12 +11,14 @@
     - role: storage
       become: yes
     - role: cloudalchemy.node_exporter
+    - role: patrickjahns.promtail
+      # become: yes
     - role: consul
     - role: nomad
   post_tasks:
     - name: Fix DHCP config to stop overwriting nameservers
       lineinfile:
-        regexp: '^#(.*)supersede domain-name-servers (.*);$'
+        regexp: "^#(.*)supersede domain-name-servers (.*);$"
         backrefs: true
         line: '\1supersede domain-name-servers \2;'
         dest: /etc/dhcp/dhclient.conf
@@ -24,6 +26,19 @@
       become: yes
     - name: Run dhclient to apply updated settings
       command: dhclient
+      become: yes
+    - name: Install acl
+      apt:
+        name: acl
+        state: present
+      become: yes
+    - name: Configure Docker ACL
+      command: setfacl -R -m u:promtail:rwx /var/lib/docker/containers
+      become: yes
+    - name: Restart promtail
+      systemd:
+        name: promtail
+        state: restarted
       become: yes
 
 - hosts: controllers

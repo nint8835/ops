@@ -9,3 +9,6 @@
 
 - src: artis3n.tailscale
   version: v1.12.1
+
+- src: patrickjahns.promtail
+  version: 1.11.0

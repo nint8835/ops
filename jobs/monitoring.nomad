@@ -17,6 +17,9 @@ job "monitoring" {
       port "prometheus_ui" {
         to = 9090
       }
+      port "loki" {
+        to = 3100
+      }
       port "consul_exporter" {
         to = 9107
       }
@@ -72,6 +75,36 @@ job "monitoring" {
         path = "/metrics"
         interval = "10s"
         timeout = "2s"
+      }
+    }
+
+    service {
+      name = "loki"
+      port = "loki"
+
+      check {
+        type = "http"
+        path = "/ready"
+        interval = "10s"
+        timeout = "2s"
+      }
+
+      tags = [
+        "traefik_internal.enable=true",
+        "traefik_internal.http.routers.loki.rule=Host(`loki.internal.bootleg.technology`)",
+      ]
+    }
+
+    task "loki" {
+      driver = "docker"
+
+      config {
+        image = "grafana/loki:latest"
+        ports = ["loki"]
+
+        volumes = [
+          "/mnt/shared/loki:/loki"
+        ]
       }
     }
 
