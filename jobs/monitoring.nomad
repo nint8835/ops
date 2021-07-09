@@ -10,19 +10,22 @@ job "monitoring" {
 
     constraint {
       attribute = "${meta.is_cloud}"
-      value = "False"
+      value     = "False"
     }
 
     network {
       port "prometheus_ui" {
         to = 9090
       }
+
       port "loki" {
         to = 3100
       }
+
       port "consul_exporter" {
         to = 9107
       }
+
       port "unpoller" {
         to = 9130
       }
@@ -48,7 +51,7 @@ job "monitoring" {
         "embassy.url=http://prometheus.internal.bootleg.technology",
         "embassy.icon_url=https://simpleicons.org/icons/prometheus.svg",
         "embassy.description=Metrics aggregation & querying",
-        "embassy.group=Monitoring"
+        "embassy.group=Monitoring",
       ]
     }
 
@@ -57,11 +60,11 @@ job "monitoring" {
       port = "consul_exporter"
 
       check {
-        name = "consul-exporter HTTP Check"
-        type = "http"
-        path = "/metrics"
+        name     = "consul-exporter HTTP Check"
+        type     = "http"
+        path     = "/metrics"
         interval = "10s"
-        timeout = "2s"
+        timeout  = "2s"
       }
     }
 
@@ -70,11 +73,11 @@ job "monitoring" {
       port = "unpoller"
 
       check {
-        name = "unpoller HTTP Check"
-        type = "http"
-        path = "/metrics"
+        name     = "unpoller HTTP Check"
+        type     = "http"
+        path     = "/metrics"
         interval = "10s"
-        timeout = "2s"
+        timeout  = "2s"
       }
     }
 
@@ -83,10 +86,10 @@ job "monitoring" {
       port = "loki"
 
       check {
-        type = "http"
-        path = "/ready"
+        type     = "http"
+        path     = "/ready"
         interval = "10s"
-        timeout = "2s"
+        timeout  = "2s"
       }
 
       tags = [
@@ -103,7 +106,7 @@ job "monitoring" {
         ports = ["loki"]
 
         volumes = [
-          "/mnt/shared/loki:/loki"
+          "/mnt/shared/loki:/loki",
         ]
       }
     }
@@ -117,16 +120,17 @@ job "monitoring" {
 
         args = [
           "--storage.tsdb.retention.time=90d",
+
           # Stock Prometheus args, provided to allow adding custom args
           "--config.file=/etc/prometheus/prometheus.yml",
           "--storage.tsdb.path=/prometheus",
           "--web.console.libraries=/usr/share/prometheus/console_libraries",
-          "--web.console.templates=/usr/share/prometheus/consoles"
+          "--web.console.templates=/usr/share/prometheus/consoles",
         ]
 
         volumes = [
           "local/prometheus.yml:/etc/prometheus/prometheus.yml",
-          "/mnt/shared/prometheus:/prometheus"
+          "/mnt/shared/prometheus:/prometheus",
         ]
       }
 
@@ -210,7 +214,7 @@ EOF
         ports = ["consul_exporter"]
 
         args = [
-          "--consul.server=consul.service.bootleg.technology:8500"
+          "--consul.server=consul.service.bootleg.technology:8500",
         ]
       }
 
@@ -253,7 +257,7 @@ EOF
 
     constraint {
       attribute = "${meta.is_cloud}"
-      value = "False"
+      value     = "False"
     }
 
     network {
@@ -282,7 +286,7 @@ EOF
         "embassy.url=http://dashboard.internal.bootleg.technology",
         "embassy.icon_url=https://simpleicons.org/icons/grafana.svg",
         "embassy.description=Metrics, analytics, & dashboards",
-        "embassy.group=Monitoring"
+        "embassy.group=Monitoring",
       ]
     }
 
@@ -294,7 +298,7 @@ EOF
         ports = ["grafana_ui"]
 
         volumes = [
-          "/mnt/shared/grafana:/var/lib/grafana"
+          "/mnt/shared/grafana:/var/lib/grafana",
         ]
       }
     }

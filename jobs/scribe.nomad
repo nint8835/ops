@@ -18,9 +18,10 @@ job "scribe" {
       driver = "docker"
 
       config {
-        image             = "ghcr.io/nint8835/scribe:latest"
+        image = "ghcr.io/nint8835/scribe:latest"
+
         volumes = [
-           "/mnt/shared/scribe:/scribe"
+          "/mnt/shared/scribe:/scribe",
         ]
       }
 

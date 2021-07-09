@@ -84,7 +84,7 @@ EOF
         "embassy.url=http://traefik.internal.bootleg.technology",
         "embassy.icon_url=https://symbols.getvecta.com/stencil_98/35_traefik-icon.290dcd6a8f.svg",
         "embassy.description=In-cluster HTTP request routing",
-        "embassy.group=Networking"
+        "embassy.group=Networking",
       ]
     }
 

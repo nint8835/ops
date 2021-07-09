@@ -11,7 +11,7 @@ job "gramfelbot" {
   # Keeping internal-only until I can either figure that out or lock down the ports on the bastion host.
   constraint {
     attribute = "${meta.is_cloud}"
-    value = "False"
+    value     = "False"
   }
 
   group "gramfelbot" {

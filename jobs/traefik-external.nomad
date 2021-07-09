@@ -17,6 +17,7 @@ job "traefik-external" {
       port "http" {
         static = 80
       }
+
       port "https" {
         static = 443
       }
@@ -32,7 +33,7 @@ job "traefik-external" {
 
         volumes = [
           "local/traefik.toml:/etc/traefik/traefik.toml",
-          "/opt/letsencrypt/acme.json:/acme.json"
+          "/opt/letsencrypt/acme.json:/acme.json",
         ]
       }
 
@@ -108,7 +109,7 @@ EOF
         "embassy.url=http://traefik-external.internal.bootleg.technology",
         "embassy.icon_url=https://symbols.getvecta.com/stencil_98/35_traefik-icon.290dcd6a8f.svg",
         "embassy.description=Public HTTP request routing",
-        "embassy.group=Networking"
+        "embassy.group=Networking",
       ]
     }
 
