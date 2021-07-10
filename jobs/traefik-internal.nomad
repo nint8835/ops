@@ -32,6 +32,10 @@ job "traefik-internal" {
         ]
       }
 
+      resources {
+        memory = 50
+      }
+
       template {
         data = <<EOF
 [entryPoints]

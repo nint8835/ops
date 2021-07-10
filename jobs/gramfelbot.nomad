@@ -29,6 +29,10 @@ job "gramfelbot" {
         memory_hard_limit = 2048
       }
 
+      resources {
+        memory = 100
+      }
+
       template {
         data = <<EOF
 GRAMFELBOT_TOKEN="{{ key "gramfelbot/discord_token" }}"

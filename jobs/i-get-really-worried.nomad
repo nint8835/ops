@@ -1,4 +1,4 @@
-job "borik" {
+job "i-get-really-worried" {
   datacenters = ["hera"]
   type        = "service"
 
@@ -12,29 +12,27 @@ job "borik" {
     value     = "False"
   }
 
-  group "borik" {
+  group "i-get-really-worried" {
     restart {
       delay    = "1s"
       interval = "10s"
       mode     = "delay"
     }
 
-    task "borik" {
+    task "i-get-really-worried" {
       driver = "docker"
 
       config {
-        image             = "ghcr.io/fogo-sh/borik:latest"
+        image             = "ghcr.io/nint8835/i-get-really-worried:latest"
         memory_hard_limit = 2048
       }
 
       template {
         data = <<EOF
-BORIK_TOKEN="{{ key "borik/discord_token" }}"
-BORIK_STORAGE_TYPE=consul
-BORIK_CONSUL_ADDRESS=http://consul.internal.bootleg.technology
+IGRW_TOKEN="{{ key "i-get-really-worried/discord_token" }}"
 EOF
 
-        destination = "secrets/borik.env"
+        destination = "secrets/i-get-really-worried.env"
         env         = true
       }
     }

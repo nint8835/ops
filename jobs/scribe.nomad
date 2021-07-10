@@ -7,6 +7,11 @@ job "scribe" {
     value     = "worker"
   }
 
+  constraint {
+    attribute = "${meta.is_cloud}"
+    value     = "False"
+  }
+
   group "scribe" {
     restart {
       delay    = "1s"
@@ -23,6 +28,10 @@ job "scribe" {
         volumes = [
           "/mnt/shared/scribe:/scribe",
         ]
+      }
+
+      resources {
+        memory = 50
       }
 
       template {
