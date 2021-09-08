@@ -63,6 +63,7 @@ job "grackdb" {
 
       template {
         data = <<EOF
+GRACKDB_JWT_SIGNING_SECRET={{ key "grackdb/jwt_signing_secret" }}
 GRACKDB_GITHUB_CLIENT_ID={{ key "grackdb/github_client_id" }}
 GRACKDB_GITHUB_CLIENT_SECRET={{ key "grackdb/github_client_secret" }}
 GRACKDB_DISCORD_CLIENT_ID={{ key "grackdb/discord_client_id" }}
