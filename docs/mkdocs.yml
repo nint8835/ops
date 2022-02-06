@@ -33,8 +33,6 @@ markdown_extensions:
   - tables
 plugins:
   - search
-  - git-revision-date-localized:
-      type: timeago
 extra:
   social:
     - icon: material/twitter
