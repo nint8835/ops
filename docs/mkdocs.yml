@@ -40,3 +40,10 @@ extra:
     - icon: material/github
       link: https://github.com/nint8835
 copyright: Copyright &copy; 2022 Riley Flynn
+
+nav:
+  - index.md
+  - Guides:
+    - Cluster Maintenance:
+      - guides/cluster-maintenance/cluster-setup.md
+      - guides/cluster-maintenance/adding-a-node.md
