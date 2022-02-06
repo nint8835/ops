@@ -6,7 +6,7 @@
     - Name: `k8s-agent-XX` (where `XX` is the next number in the series)
     - OS:
         - Use CD/DVD disc image file (iso)
-        - ISO image: k30s installation iso
+        - ISO image: k3OS installation iso
         - Guest OS: Linux 5.x - 2.6 kernel
     - Hard disk size: 60 GiB
     - Cores: 2
