@@ -1,12 +1,3 @@
-module "vault_base" {
-  source = "./modules/vault_base"
-
-  github_organization = "bootleg-technology"
-  github_users = {
-    "nint8835" = ["security_admin", "kv_admin"]
-  }
-}
-
 data "http" "ip_resp" {
   url = "https://ipv4.icanhazip.com"
 }

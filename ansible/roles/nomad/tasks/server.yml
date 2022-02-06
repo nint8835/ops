@@ -1,7 +1,0 @@
-- name: Write server config
-  template:
-    src: "{{ role_path }}/templates/server_config.hcl"
-    dest: /etc/nomad.d/server.hcl
-  become: yes
-  notify:
-    - Restart Nomad

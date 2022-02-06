@@ -1,6 +1,0 @@
-- name: Restart Nomad
-  systemd:
-    name: nomad
-    state: restarted
-  become: yes
-  when: not nomad_skip_restart
