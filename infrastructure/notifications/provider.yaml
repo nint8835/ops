@@ -6,5 +6,6 @@ metadata:
 spec:
   type: discord
   username: "The Nitfrastructure™ - Flux"
+  channel: "552874056282669072"
   secretRef:
     name: discord-webhook
