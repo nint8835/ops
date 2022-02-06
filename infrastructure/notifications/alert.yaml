@@ -17,3 +17,6 @@ spec:
     - kind: HelmRelease
       name: '*'
       namespace: longhorn-system
+    - kind: HelmRelease
+      name: '*'
+      namespace: kubernetes-kubernetes-dashboard
