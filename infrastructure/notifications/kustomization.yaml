@@ -4,4 +4,4 @@ namespace: flux-system
 resources:
   - provider.yaml
   - alert.yaml
-  - testing.yaml
+#  - testing.yaml
