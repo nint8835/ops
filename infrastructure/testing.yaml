@@ -4,4 +4,4 @@ metadata:
   name: testing
   namespace: default
 data:
-  testing: true
+  testing: "test"
