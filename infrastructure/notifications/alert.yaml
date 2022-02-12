@@ -19,4 +19,4 @@ spec:
       namespace: longhorn-system
     - kind: HelmRelease
       name: '*'
-      namespace: kubernetes-kubernetes-dashboard
+      namespace: kubernetes-dashboard
