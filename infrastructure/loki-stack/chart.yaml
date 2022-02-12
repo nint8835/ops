@@ -16,3 +16,22 @@ spec:
   values:
     grafana:
       enabled: true
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        size: 1Gi
+    prometheus:
+      enabled: true
+      alertmanager:
+        persistentVolume:
+          storageClass: longhorn
+          size: 1Gi
+      server:
+        persistentVolume:
+          storageClass: longhorn
+          size: 5Gi
+    loki:
+      persistence:
+        enabled: true
+        storageClassName: longhorn
+        size: 5Gi
