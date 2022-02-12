@@ -14,3 +14,4 @@
       --path=./cluster \
       --personal
   ```
+- Following the [docs](https://fluxcd.io/docs/guides/mozilla-sops), add a GPG key for SOPS
