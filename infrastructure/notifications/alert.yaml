@@ -20,3 +20,6 @@ spec:
     - kind: HelmRelease
       name: '*'
       namespace: kubernetes-dashboard
+    - kind: HelmRelease
+      name: '*'
+      namespace: loki-stack
