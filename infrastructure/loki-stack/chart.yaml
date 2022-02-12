@@ -33,5 +33,6 @@ spec:
     loki:
       persistence:
         enabled: true
+        existingClaim: false
         storageClassName: longhorn
         size: 5Gi
