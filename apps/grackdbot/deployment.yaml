@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: grackdbot
-          image: ghcr.io/fogo-sh/grackdbot:main-66c0d609-1647130886
+          image: ghcr.io/fogo-sh/grackdbot:main-66c0d609-1647130886 # {"$imagepolicy": "flux-system:grackdbot"}
           imagePullPolicy: IfNotPresent
           env:
             - name: grackdbot_token
