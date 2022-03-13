@@ -4,3 +4,4 @@ resources:
   - longhorn-system.yaml
   - loki-stack.yaml
   - kubernetes-dashboard.yaml
+  - grackdb.yaml
