@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grackdbot
+  namespace: grackdb
+  labels:
+    app: grackdbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grackdbot
+  template:
+    metadata:
+      labels:
+        app: grackdbot
+    spec:
+      containers:
+        - name: grackdbot
+          image: ghcr.io/fogo-sh/grackdbot:main-66c0d609-1647130886
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: grackdbot_token
+              valueFrom:
+                secretKeyRef:
+                  name: grackdbot-token
+                  key: token
