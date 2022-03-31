@@ -14,12 +14,3 @@ spec:
       name: '*'
     - kind: HelmRelease
       name: '*'
-    - kind: HelmRelease
-      name: '*'
-      namespace: longhorn-system
-    - kind: HelmRelease
-      name: '*'
-      namespace: kubernetes-dashboard
-    - kind: HelmRelease
-      name: '*'
-      namespace: loki-stack
