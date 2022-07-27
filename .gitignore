@@ -9,3 +9,5 @@
 
 .python-version
 .idea/
+
+*.pkrvars.hcl
