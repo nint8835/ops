@@ -5,8 +5,8 @@ source "proxmox" "ubuntu_2204" {
   token                    = var.proxmox_token
   node                     = var.proxmox_node
 
-  template_name        = var.template_name
-  template_description = var.template_description
+  template_name        = "ubuntu-2204"
+  template_description = "Ubuntu 22.04 Server"
 
   ssh_username = "ubuntu"
   ssh_password = "ubuntu"
@@ -49,9 +49,9 @@ source "proxmox" "ubuntu_2204" {
   scsi_controller = "virtio-scsi-single"
   disks {
     disk_size         = "8G"
-    format            = var.proxmox_storage_format
-    storage_pool      = var.proxmox_storage_pool
-    storage_pool_type = var.proxmox_storage_pool_type
+    format            = "raw"
+    storage_pool      = "local-lvm"
+    storage_pool_type = "lvm-thin"
     type              = "scsi"
   }
 
@@ -59,6 +59,10 @@ source "proxmox" "ubuntu_2204" {
     bridge = "vmbr0"
     model  = "virtio"
   }
+
+  #  Attach cloud-init drive to the resulting template
+  cloud_init              = true
+  cloud_init_storage_pool = "local:iso"
 }
 
 build {

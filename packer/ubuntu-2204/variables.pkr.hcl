@@ -17,16 +17,6 @@ variable "proxmox_token" {
   type = string
 }
 
-variable "template_description" {
-  type    = string
-  default = "Test template"
-}
-
-variable "template_name" {
-  type    = string
-  default = "Test"
-}
-
 variable "proxmox_iso_pool" {
   type    = string
   default = "mnemosyne-isos:iso"
@@ -35,19 +25,4 @@ variable "proxmox_iso_pool" {
 variable "iso_name" {
   type    = string
   default = "ubuntu-22.04-live-server-amd64.iso"
-}
-
-variable "proxmox_storage_format" {
-  type    = string
-  default = "raw"
-}
-
-variable "proxmox_storage_pool" {
-  type    = string
-  default = "local-lvm"
-}
-
-variable "proxmox_storage_pool_type" {
-  type    = string
-  default = "lvm-thin"
 }
