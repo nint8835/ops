@@ -1,5 +1,5 @@
 resource "netbox_prefix" "bell" {
-  prefix        = "192.168.0.0/24"
+  prefix        = "192.168.2.0/24"
   status        = "active"
   description   = "Bell Home Hub network"
   mark_utilized = true
