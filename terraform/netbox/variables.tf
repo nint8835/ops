@@ -7,5 +7,4 @@ variable "netbox_url" {
 variable "netbox_token" {
   description = "API token for NetBox"
   type        = string
-  default     = "0123456789abcdef0123456789abcdef01234567" # netbox-docker default credentials
 }
