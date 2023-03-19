@@ -11,3 +11,17 @@ resource "netbox_prefix" "current" {
   description   = "Current home network"
   mark_utilized = true
 }
+
+resource "netbox_prefix" "home" {
+  prefix      = "10.0.0.0/8"
+  status      = "active"
+  description = "Home network"
+}
+
+resource "netbox_prefix" "devices" {
+  prefix        = "10.0.0.0/16"
+  status        = "active"
+  description   = "Devices"
+  mark_utilized = true
+  vlan_id       = netbox_vlan.devices.id
+}
