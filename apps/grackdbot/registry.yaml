@@ -1,8 +1,0 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: grackdbot
-  namespace: flux-system
-spec:
-  image: ghcr.io/fogo-sh/grackdbot
-  interval: 1m0s
