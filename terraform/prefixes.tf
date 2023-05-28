@@ -17,3 +17,9 @@ resource "netbox_prefix" "home" {
   status      = "active"
   description = "Home network"
 }
+
+resource "netbox_prefix" "kubernetes_nodes" {
+  prefix      = "10.8.1.0/24"
+  status      = "active"
+  description = "Kubernetes nodes"
+}

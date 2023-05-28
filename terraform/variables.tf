@@ -8,3 +8,9 @@ variable "netbox_token" {
   description = "API token for NetBox"
   type        = string
 }
+
+variable "cluster_name" {
+  description = "Name for the Talos cluster"
+  type        = string
+  default     = "hera"
+}
