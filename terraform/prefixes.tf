@@ -37,3 +37,10 @@ resource "netbox_prefix" "cluster_internal_services" {
   description   = "Kubernetes cluster internal - services"
   mark_utilized = true
 }
+
+resource "netbox_prefix" "cluster_load_balancers" {
+  prefix        = "10.8.240.0/20"
+  status        = "active"
+  description   = "Kubernetes cluster load balancers"
+  mark_utilized = true
+}
