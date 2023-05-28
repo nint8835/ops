@@ -20,3 +20,18 @@ variable "lb_ip_range" {
   type        = string
   default     = "10.8.240.0/20"
 }
+
+variable "tailscale_api_key" {
+  description = "Tailscale API key"
+  type        = string
+}
+
+variable "tailscale_tailnet_name" {
+  description = "Name of the Tailscale tailnet to use"
+  type        = string
+}
+
+variable "tailscale_ts_domain" {
+  description = ".ts.net domain corresponding with the tailnet to use"
+  type        = string
+}

@@ -19,3 +19,8 @@ provider "helm" {
     client_key             = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
   }
 }
+
+provider "tailscale" {
+  api_key = var.tailscale_api_key
+  tailnet = var.tailscale_tailnet_name
+}
