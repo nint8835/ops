@@ -1,3 +1,23 @@
+resource "netbox_rir" "rfc_1918" {
+  name = "RFC 1918"
+  slug = "rfc_1918"
+}
+
+resource "netbox_aggregate" "ten_dot" {
+  prefix = "10.0.0.0/8"
+  rir_id = netbox_rir.rfc_1918.id
+}
+
+resource "netbox_aggregate" "one_seven_two" {
+  prefix = "172.16.0.0/12"
+  rir_id = netbox_rir.rfc_1918.id
+}
+
+resource "netbox_aggregate" "one_nine_two" {
+  prefix = "192.168.0.0/16"
+  rir_id = netbox_rir.rfc_1918.id
+}
+
 resource "netbox_prefix" "bell" {
   prefix        = "192.168.2.0/24"
   status        = "active"
@@ -43,4 +63,21 @@ resource "netbox_prefix" "cluster_load_balancers" {
   status        = "active"
   description   = "Kubernetes cluster load balancers"
   mark_utilized = true
+}
+
+module "devices_vlan" {
+  source = "./modules/networking/vlan"
+
+  name          = "Devices"
+  tag           = 2
+  cidr_block    = "10.0.0.0/16"
+  mark_utilized = true
+}
+
+module "kubernetes_vlan" {
+  source = "./modules/networking/vlan"
+
+  name       = "Kubernetes"
+  tag        = 8
+  cidr_block = "10.8.0.0/16"
 }
