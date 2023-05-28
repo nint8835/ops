@@ -23,3 +23,17 @@ resource "netbox_prefix" "kubernetes_nodes" {
   status      = "active"
   description = "Kubernetes nodes"
 }
+
+resource "netbox_prefix" "cluster_internal_pods" {
+  prefix        = "10.244.0.0/16"
+  status        = "reserved"
+  description   = "Kubernetes cluster internal - pods"
+  mark_utilized = true
+}
+
+resource "netbox_prefix" "cluster_internal_services" {
+  prefix        = "10.96.0.0/12"
+  status        = "reserved"
+  description   = "Kubernetes cluster internal - services"
+  mark_utilized = true
+}
