@@ -25,3 +25,10 @@ resource "netbox_prefix" "devices" {
   mark_utilized = true
   vlan_id       = netbox_vlan.devices.id
 }
+
+resource "netbox_prefix" "kubernetes" {
+  prefix      = "10.8.0.0/16"
+  status      = "active"
+  description = "Kubernetes resources"
+  vlan_id     = netbox_vlan.kubernetes.id
+}
