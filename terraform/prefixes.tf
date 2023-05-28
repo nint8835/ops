@@ -39,7 +39,7 @@ resource "netbox_prefix" "cluster_internal_services" {
 }
 
 resource "netbox_prefix" "cluster_load_balancers" {
-  prefix        = "10.8.240.0/20"
+  prefix        = var.lb_ip_range
   status        = "active"
   description   = "Kubernetes cluster load balancers"
   mark_utilized = true
