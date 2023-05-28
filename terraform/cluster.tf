@@ -1,6 +1,8 @@
 locals {
   control_plane_nodes = {
-    k8s-control-plane-1 = "10.8.1.1"
+    k8s-control-plane-1 = "10.8.1.1",
+    k8s-control-plane-2 = "10.8.1.2",
+    k8s-control-plane-3 = "10.8.1.3",
   }
 }
 
