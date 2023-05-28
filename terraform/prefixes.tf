@@ -17,18 +17,3 @@ resource "netbox_prefix" "home" {
   status      = "active"
   description = "Home network"
 }
-
-resource "netbox_prefix" "devices" {
-  prefix        = "10.0.0.0/16"
-  status        = "active"
-  description   = "Devices"
-  mark_utilized = true
-  vlan_id       = netbox_vlan.devices.id
-}
-
-resource "netbox_prefix" "kubernetes" {
-  prefix      = "10.8.0.0/16"
-  status      = "active"
-  description = "Kubernetes resources"
-  vlan_id     = netbox_vlan.kubernetes.id
-}
