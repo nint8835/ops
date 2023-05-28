@@ -1,6 +1,6 @@
-# netbox
+# terraform
 
-Configuration for [NetBox](https://netbox.dev/).
+Terraform configuration for my home kubernetes cluster & associated resources.
 
 ## Usage
 

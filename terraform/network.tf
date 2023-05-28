@@ -38,10 +38,16 @@ resource "netbox_prefix" "home" {
   description = "Home network"
 }
 
-resource "netbox_prefix" "kubernetes_nodes" {
+resource "netbox_prefix" "kubernetes_control_plane" {
   prefix      = "10.8.1.0/24"
   status      = "active"
-  description = "Kubernetes nodes"
+  description = "Kubernetes nodes - control plane"
+}
+
+resource "netbox_prefix" "kubernetes_workers" {
+  prefix      = "10.8.2.0/24"
+  status      = "active"
+  description = "Kubernetes nodes - workers"
 }
 
 resource "netbox_prefix" "cluster_internal_pods" {

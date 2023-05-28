@@ -4,6 +4,11 @@ locals {
     k8s-control-plane-2 = "10.8.1.2",
     k8s-control-plane-3 = "10.8.1.3",
   }
+  worker_nodes = {
+    k8s-worker-1 = "10.8.2.1",
+    k8s-worker-2 = "10.8.2.2",
+    k8s-worker-3 = "10.8.2.3",
+  }
 }
 
 resource "talos_machine_secrets" "secrets" {}
@@ -15,6 +20,19 @@ module "control_plane_node" {
   name                 = each.key
   ip                   = each.value
   role                 = "controlplane"
+  cluster_name         = var.cluster_name
+  cluster_endpoint     = "https://${local.control_plane_nodes.k8s-control-plane-1}:6443"
+  machine_secrets      = talos_machine_secrets.secrets.machine_secrets
+  client_configuration = talos_machine_secrets.secrets.client_configuration
+}
+
+module "worker_node" {
+  source   = "./modules/node"
+  for_each = local.worker_nodes
+
+  name                 = each.key
+  ip                   = each.value
+  role                 = "worker"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://${local.control_plane_nodes.k8s-control-plane-1}:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
