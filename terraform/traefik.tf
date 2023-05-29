@@ -16,4 +16,9 @@ resource "helm_release" "traefik" {
     name  = "ingressRoute.dashboard.entryPoints[0]"
     value = "traefik"
   }
+
+  set {
+    name  = "logs.access.enabled"
+    value = true
+  }
 }
