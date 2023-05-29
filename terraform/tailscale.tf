@@ -12,6 +12,14 @@ resource "tailscale_tailnet_key" "k8s" {
   tags          = ["tag:k8s"]
 }
 
+resource "tailscale_tailnet_key" "droplet" {
+  reusable      = true
+  ephemeral     = true
+  preauthorized = true
+  expiry        = 90 * 24 * 60 * 60
+  tags          = ["tag:droplet"]
+}
+
 resource "kubernetes_secret" "tailscale_auth" {
   metadata {
     name      = "tailscale-auth"

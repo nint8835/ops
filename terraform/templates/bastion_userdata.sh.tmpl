@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# Set up DigitalOcean Droplet console & metrics agents
+wget -qO- https://repos-droplet.digitalocean.com/install.sh | bash
+curl -sSL https://repos.insights.digitalocean.com/install.sh | bash
+
+# Install & start Tailscale
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.tailscale-keyring.list | tee /etc/apt/sources.list.d/tailscale.list
+apt-get update
+apt-get install -y tailscale
+
+tailscale up -authkey "${tailscale_token}" --accept-routes
+
+# Install & set up Caddy
+mkdir /opt/caddy
+pushd /opt/caddy
+
+wget "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fmholt%2Fcaddy-l4" -O caddy
+chmod +x ./caddy
+
+groupadd --system caddy
+useradd --system \
+    --gid caddy \
+    --create-home \
+    --home-dir /var/lib/caddy \
+    --shell /usr/sbin/nologin \
+    --comment "Caddy web server" \
+    caddy
+
+cat <<EOT >> caddy.json
+{
+  "apps": {
+    "layer4": {
+      "servers": {
+        "traefik-http": {
+          "listen": ["0.0.0.0:80"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "proxy",
+                  "upstreams": [
+                    {"dial": ["10.8.240.0:80"]}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "traefik-https": {
+          "listen": ["0.0.0.0:443"],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "proxy",
+                  "upstreams": [
+                    {"dial": ["10.8.240.0:443"]}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+EOT
+
+chown -R caddy:caddy .
+
+cat <<EOT >> /etc/systemd/system/caddy.service
+[Unit]
+Description=Caddy
+Documentation=https://caddyserver.com/docs/
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+Type=notify
+User=caddy
+Group=caddy
+ExecStart=/opt/caddy/caddy run --environ --config /opt/caddy/caddy.json
+ExecReload=/opt/caddy/caddy reload --config /opt/caddy/caddy.json --force
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+EOT
+
+popd
+systemctl daemon-reload
+systemctl enable --now caddy

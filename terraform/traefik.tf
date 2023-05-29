@@ -11,9 +11,9 @@ resource "helm_release" "traefik" {
   chart     = "traefik"
   namespace = kubernetes_namespace.traefik.id
 
-  # TODO: Secure & route this better
+  # TODO: Make this accessible again
   set {
     name  = "ingressRoute.dashboard.entryPoints[0]"
-    value = "web"
+    value = "traefik"
   }
 }
