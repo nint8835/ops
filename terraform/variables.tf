@@ -40,3 +40,8 @@ variable "tailscale_ts_domain" {
   description = ".ts.net domain corresponding with the tailnet to use"
   type        = string
 }
+
+variable "cloudflare_api_token" {
+  description = "Cloudflare API token"
+  type        = string
+}

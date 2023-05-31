@@ -28,3 +28,7 @@ provider "tailscale" {
 provider "digitalocean" {
   token = var.digitalocean_token
 }
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
