@@ -15,8 +15,6 @@ data "http" "ip_resp" {
   url = "https://ipv4.icanhazip.com"
 }
 
-# TODO: non-hardcoded service list
-# TODO: static IP?
 module "bastion_host" {
   source = "./modules/droplet"
 
@@ -49,6 +47,7 @@ module "bastion_host" {
     }
   )
 
+  use_static_ip = true
   ingress_rules = [
     {
       protocol         = "tcp"

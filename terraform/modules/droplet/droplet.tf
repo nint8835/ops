@@ -46,3 +46,10 @@ resource "digitalocean_droplet" "droplet" {
   ssh_keys  = local.ssh_key_ids
   user_data = var.userdata != "" ? var.userdata : null
 }
+
+resource "digitalocean_reserved_ip" "ip" {
+  count = var.use_static_ip ? 1 : 0
+
+  region     = var.region
+  droplet_id = digitalocean_droplet.droplet.id
+}

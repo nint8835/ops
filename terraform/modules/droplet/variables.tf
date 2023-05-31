@@ -56,3 +56,9 @@ variable "userdata" {
   type        = string
   default     = ""
 }
+
+variable "use_static_ip" {
+  description = "Whether to use a static IP address for the droplet."
+  type        = bool
+  default     = false
+}
