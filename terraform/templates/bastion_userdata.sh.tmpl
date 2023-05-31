@@ -29,44 +29,7 @@ useradd --system \
     caddy
 
 cat <<EOT >> caddy.json
-{
-  "apps": {
-    "layer4": {
-      "servers": {
-        "traefik-http": {
-          "listen": ["0.0.0.0:80"],
-          "routes": [
-            {
-              "handle": [
-                {
-                  "handler": "proxy",
-                  "upstreams": [
-                    {"dial": ["10.8.240.0:80"]}
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        "traefik-https": {
-          "listen": ["0.0.0.0:443"],
-          "routes": [
-            {
-              "handle": [
-                {
-                  "handler": "proxy",
-                  "upstreams": [
-                    {"dial": ["10.8.240.0:443"]}
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  }
-}
+${caddy_config}
 EOT
 
 chown -R caddy:caddy .
