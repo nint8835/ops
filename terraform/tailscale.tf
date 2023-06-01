@@ -31,12 +31,12 @@ resource "kubernetes_secret" "tailscale_auth" {
   }
 }
 
-module "service_router" {
+module "cluster_router" {
   source = "./modules/networking/subnet_router"
 
-  router_name        = "k8s-service-router"
+  router_name        = "k8s-cluster-router"
   namespace          = kubernetes_namespace.tailscale.id
   ts_auth_key_secret = kubernetes_secret.tailscale_auth.metadata[0].name
   ts_subdomain       = var.tailscale_ts_domain
-  routes             = [var.lb_ip_range]
+  routes             = ["10.8.0.0/16"]
 }
