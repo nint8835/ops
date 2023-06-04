@@ -67,7 +67,8 @@ resource "kubernetes_ingress_v1" "test_service" {
     namespace = "default"
 
     annotations = {
-      "cert-manager.io/cluster-issuer" = "letsencrypt-staging"
+      "cert-manager.io/cluster-issuer"                   = "letsencrypt-staging"
+      "traefik.ingress.kubernetes.io/router.middlewares" = "traefik-https-redirect@kubernetescrd"
     }
   }
 

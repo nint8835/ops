@@ -21,4 +21,28 @@ resource "helm_release" "traefik" {
     name  = "logs.access.enabled"
     value = true
   }
+
+  set {
+    name  = "providers.kubernetesCRD.allowCrossNamespace"
+    value = true
+  }
+}
+
+resource "kubernetes_manifest" "traefik_https_redirect" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "Middleware"
+
+    metadata = {
+      name      = "https-redirect"
+      namespace = kubernetes_namespace.traefik.id
+    }
+
+    spec = {
+      redirectScheme = {
+        scheme    = "https"
+        permanent = true
+      }
+    }
+  }
 }
