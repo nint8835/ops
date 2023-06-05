@@ -1,6 +1,9 @@
 resource "kubernetes_namespace" "lgtm" {
   metadata {
     name = "lgtm"
+    labels = {
+      "pod-security.kubernetes.io/enforce" = "privileged"
+    }
   }
 }
 
@@ -62,4 +65,45 @@ resource "helm_release" "grafana" {
     name  = "initChownData.enabled"
     value = false
   }
+}
+
+resource "helm_release" "loki" {
+  repository = "https://grafana.github.io/helm-charts"
+
+  name      = "loki"
+  chart     = "loki"
+  namespace = kubernetes_namespace.lgtm.id
+
+  set {
+    name  = "singleBinary.replicas"
+    value = 1
+  }
+
+  set {
+    name  = "singleBinary.persistence.storageClass"
+    value = "nfs-client"
+  }
+
+  set {
+    name  = "loki.commonConfig.replication_factor"
+    value = 1
+  }
+
+  set {
+    name  = "loki.storage.type"
+    value = "filesystem"
+  }
+
+  set {
+    name  = "loki.auth_enabled"
+    value = false
+  }
+}
+
+resource "helm_release" "promtail" {
+  repository = "https://grafana.github.io/helm-charts"
+
+  name      = "promtail"
+  chart     = "promtail"
+  namespace = kubernetes_namespace.lgtm.id
 }
