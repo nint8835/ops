@@ -21,6 +21,8 @@ module "bastion_host" {
   name   = "bastion"
   vcpus  = 1
   memory = 1024
+  # TODO: Upgrade to Debian 12
+  distribution_version = "11 x64"
 
   userdata = templatefile(
     "${path.module}/templates/bastion_userdata.sh.tmpl",

@@ -34,7 +34,7 @@ variable "distribution" {
 variable "distribution_version" {
   description = "Version of the Distribution to use for the droplet."
   type        = string
-  default     = "11 x64"
+  default     = "12 x64"
 }
 
 variable "ingress_rules" {
