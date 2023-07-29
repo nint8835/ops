@@ -11,7 +11,3 @@ output "talosconfig" {
 output "bastion_ip" {
   value = module.bastion_host.public_ip
 }
-
-output "cheesetown_proxy_ip" {
-  value = module.cheesetown_proxy.public_ip
-}
