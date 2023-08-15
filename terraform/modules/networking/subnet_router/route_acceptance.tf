@@ -1,11 +1,12 @@
-data "tailscale_device" "router" {
+data "tailscale_devices" "router" {
   depends_on = [kubernetes_pod.router]
 
-  name     = "${var.router_name}.${var.ts_subdomain}"
-  wait_for = "60s"
+  name_prefix = var.router_name
 }
 
 resource "tailscale_device_subnet_routes" "service_router" {
-  device_id = data.tailscale_device.router.id
+  for_each = toset([for device in data.tailscale_devices.router.devices : device.id])
+
+  device_id = each.key
   routes    = var.routes
 }
