@@ -21,7 +21,7 @@ module "control_plane_node" {
   ip                   = each.value
   role                 = "controlplane"
   cluster_name         = var.cluster_name
-  cluster_endpoint     = "https://${local.control_plane_nodes.k8s-control-plane-1}:6443"
+  cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
 }
@@ -34,7 +34,7 @@ module "worker_node" {
   ip                   = each.value
   role                 = "worker"
   cluster_name         = var.cluster_name
-  cluster_endpoint     = "https://${local.control_plane_nodes.k8s-control-plane-1}:6443"
+  cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
 }
@@ -52,6 +52,15 @@ data "talos_client_configuration" "config" {
   cluster_name         = var.cluster_name
   client_configuration = talos_machine_secrets.secrets.client_configuration
   endpoints            = [for k, v in local.control_plane_nodes : v]
+}
+
+resource "cloudflare_record" "cluster" {
+  for_each = local.control_plane_nodes
+
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "cluster.ops"
+  value   = each.value
+  type    = "A"
 }
 
 data "talos_cluster_kubeconfig" "config" {
