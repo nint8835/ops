@@ -55,3 +55,8 @@ variable "github_app_installation_id" {
   description = "GitHub App Installation ID"
   type        = string
 }
+
+variable "age_secret_key" {
+  description = "Secret key to use for Age encryption"
+  type        = string
+}

@@ -20,3 +20,16 @@ resource "flux_bootstrap_git" "bootstrap" {
     "image-automation-controller",
   ]
 }
+
+resource "kubernetes_secret" "sops_age" {
+  depends_on = [flux_bootstrap_git.bootstrap]
+
+  metadata {
+    name      = "sops-age"
+    namespace = "flux-system"
+  }
+
+  data = {
+    "age.agekey" = var.age_secret_key
+  }
+}
