@@ -19,6 +19,8 @@ resource "flux_bootstrap_git" "bootstrap" {
     "image-reflector-controller",
     "image-automation-controller",
   ]
+
+  kustomization_override = file("${path.module}/files/flux-kustomization.yaml")
 }
 
 resource "kubernetes_secret" "sops_age" {
