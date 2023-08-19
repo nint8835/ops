@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: testing-secret
+    namespace: default
+type: Opaque
+data:
+    top-secret-string: ENC[AES256_GCM,data:XVg1Yz2Tm8b70amYUPYiWZboYC07wqlTAnvBMdCb3XA5NvTMkaq+rAsbDl5d5M7o7vsH3jIXij5j0DL5cLjDEG5BMsiZ/KVum3PAg6E=,iv:C2NRGymDI1FywOUcPHfFvvwR6Em0V04crAtCLPP6WMg=,tag:Qsw+lDrPXyz16yD2AsWOrQ==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1rmn09vuxjzh9wmx4hj8zz72ckgaa3psdzsaglj3all5k7gp5wqpsvvtmz7
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBDbUNZYkZJUVZaZThXUy9S
+            QitRY2VJOGxsdTI3ZmxMbU01NHA3bElFWWhnCjYzRUhjVkhJdFl0NGR5VWY4MWlo
+            eVR5OUZ6VW1WMk5SeXd5RW4zZGZwVTAKLS0tIFBGUnFrTXB3LzBKSGhoTUV5dnpO
+            ZGRjdDVlSUc1d3ZSd3k1dnVhMUl4bUEK9FQASPjXiy+yXaTfYSHTqehJohZHy/es
+            AHggBARxfRTz5ZMWyBST2N9UWDf4qYpMnap4zbPWkG5eiTkQfYCiyw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-08-19T18:33:11Z"
+    mac: ENC[AES256_GCM,data:EUq51c82dPVEITlCVaFGMRyHc5TmmUZ4rn4/gmLPpa0HT9XiuvK9Jjn2cYCYZXQmuRW1GxrsYCU8+fwian/bhvSzHb1YBIpyYS2Eg4sjDpVUvUf0nzgJ8f3EkPx0BI9my3YXQLOjiCM9cQDkhJF6YsKsWvBBzrB5dOsPmR72Vww=,iv:XUHnmz25J9zfopD+gBKrfTevk3JUboRfWJ4I/RHaQjM=,tag:w982MCbTwBGC5LaKAb3KLQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
