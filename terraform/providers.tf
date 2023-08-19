@@ -41,3 +41,20 @@ provider "github" {
     pem_file        = file("github.pem")
   }
 }
+
+provider "flux" {
+  kubernetes = {
+    host                   = data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
+    cluster_ca_certificate = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
+    client_certificate     = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
+    client_key             = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
+  }
+
+  git = {
+    url = "ssh://git@github.com/nint8835/ops.git"
+    ssh = {
+      username    = "git"
+      private_key = tls_private_key.flux.private_key_pem
+    }
+  }
+}

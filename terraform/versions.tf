@@ -36,5 +36,13 @@ terraform {
       source  = "integrations/github"
       version = "5.33.0"
     }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "4.0.4"
+    }
+    flux = {
+      source  = "fluxcd/flux"
+      version = "1.0.1"
+    }
   }
 }
