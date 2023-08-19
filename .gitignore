@@ -11,3 +11,5 @@ terraform.tfstate*
 
 .python-version
 .idea/
+
+github.pem
