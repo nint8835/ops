@@ -65,6 +65,11 @@ resource "helm_release" "grafana" {
     name  = "initChownData.enabled"
     value = false
   }
+
+  set {
+    name  = "grafana\\.ini.server.root_url"
+    value = "https://grafana.ops.bootleg.technology"
+  }
 }
 
 
