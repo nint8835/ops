@@ -128,3 +128,21 @@ resource "helm_release" "promtail" {
   chart     = "promtail"
   namespace = kubernetes_namespace.lgtm.id
 }
+
+resource "helm_release" "prometheus" {
+  repository = "https://prometheus-community.github.io/helm-charts"
+
+  name      = "prometheus"
+  chart     = "prometheus"
+  namespace = kubernetes_namespace.lgtm.id
+
+  set {
+    name  = "server.persistentVolume.storageClass"
+    value = "nfs-client"
+  }
+
+  set {
+    name  = "alertmanager.persistence.storageClass"
+    value = "nfs-client"
+  }
+}
