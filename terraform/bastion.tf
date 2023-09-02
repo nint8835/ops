@@ -68,3 +68,10 @@ module "bastion_host" {
     }
   ]
 }
+
+resource "cloudflare_record" "bastion" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "ingress"
+  value   = module.bastion_host.public_ip
+  type    = "A"
+}
