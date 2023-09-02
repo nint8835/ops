@@ -4,7 +4,7 @@ metadata:
   name: pkg-fogo-sh
   namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 1h0m0s
   sourceRef:
     kind: GitRepository
     name: pkg-fogo-sh
