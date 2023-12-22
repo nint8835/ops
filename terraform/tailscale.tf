@@ -38,5 +38,5 @@ module "cluster_router" {
   namespace          = kubernetes_namespace.tailscale.id
   ts_auth_key_secret = kubernetes_secret.tailscale_auth.metadata[0].name
   ts_subdomain       = var.tailscale_ts_domain
-  routes             = ["10.8.0.0/16"]
+  routes             = ["10.0.0.0/8", "192.168.1.0/24"]
 }

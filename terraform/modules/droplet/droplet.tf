@@ -45,6 +45,11 @@ resource "digitalocean_droplet" "droplet" {
   size      = data.digitalocean_sizes.droplet_sizes.sizes[0].slug
   ssh_keys  = local.ssh_key_ids
   user_data = var.userdata != "" ? var.userdata : null
+
+  lifecycle {
+    # TODO: remove once the caddy install works properly
+    ignore_changes = [user_data]
+  }
 }
 
 resource "digitalocean_reserved_ip" "ip" {
