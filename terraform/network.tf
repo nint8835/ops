@@ -87,3 +87,19 @@ module "kubernetes_vlan" {
   tag        = 8
   cidr_block = "10.8.0.0/16"
 }
+
+module "virtualization_vlan" {
+  source = "./modules/networking/vlan"
+
+  name       = "Virtualization"
+  tag        = 6
+  cidr_block = "10.6.0.0/16"
+}
+
+# TODO: Migrate Proxmox hosts into this CIDR block
+resource "netbox_prefix" "proxmox_hosts" {
+  prefix        = "10.6.0.0/24"
+  status        = "reserved"
+  description   = "Proxmox hosts"
+  mark_utilized = false
+}
