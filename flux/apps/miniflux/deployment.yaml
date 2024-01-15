@@ -27,6 +27,8 @@ spec:
                   key: uri
             - name: RUN_MIGRATIONS
               value: "1"
+            - name: BASE_URL
+              value: https://miniflux.bootleg.technology
 
           # Uncomment the below lines to create the initial user
           # envFrom:
