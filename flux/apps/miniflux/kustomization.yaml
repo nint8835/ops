@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - postgres.yaml
   - admin_creds.yaml
+  - deployment.yaml
