@@ -28,9 +28,10 @@ spec:
             - name: RUN_MIGRATIONS
               value: "1"
 
-          envFrom:
-            - secretRef:
-                name: admin-user
+          # Uncomment the below lines to create the initial user
+          # envFrom:
+          #   - secretRef:
+          #       name: admin-user
 
           ports:
             - name: http
