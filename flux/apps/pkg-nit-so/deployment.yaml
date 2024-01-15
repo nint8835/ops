@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: dieppe
+
+spec:
+  selector:
+    matchLabels:
+      app: dieppe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dieppe
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: config
+
+      containers:
+        - name: dieppe
+          image: ghcr.io/nint8835/dieppe:latest
+          imagePullPolicy: Always
+
+          volumeMounts:
+            - mountPath: /config
+              name: config
+
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
