@@ -22,3 +22,6 @@ spec:
                 secretKeyRef:
                   name: discord-token
                   key: token
+          resources:
+            limits:
+              cpu: 500m
