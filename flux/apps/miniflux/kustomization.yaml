@@ -7,3 +7,5 @@ resources:
   - postgres.yaml
   - admin_creds.yaml
   - deployment.yaml
+  - service.yaml
+  - ingress.yaml

@@ -12,3 +12,10 @@ resource "cloudflare_record" "pkg_nit_so" {
   value   = module.bastion_host.public_ip
   type    = "A"
 }
+
+resource "cloudflare_record" "miniflux" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "miniflux"
+  value   = module.bastion_host.public_ip
+  type    = "A"
+}

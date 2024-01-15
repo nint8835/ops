@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dieppe
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+
+spec:
+  tls:
+    - hosts:
+        - miniflux.bootleg.technology
+      secretName: miniflux-bootleg-technology
+  rules:
+    - host: miniflux.bootleg.technology
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: miniflux
+                port:
+                  name: http
