@@ -9,6 +9,3 @@ spec:
   storage:
     size: 1Gi
     storageClass: nfs-client
-
-  postgresUID: 1024
-  postgresGID: 100
