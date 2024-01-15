@@ -5,3 +5,4 @@ namespace: miniflux
 resources:
   - namespace.yaml
   - postgres.yaml
+  - admin_creds.yaml

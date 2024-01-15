@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+    ADMIN_PASSWORD: ENC[AES256_GCM,data:BEORhEAOQjubD0OI4eEhcn9ZdtQ1ow9iuVqimF91DvsC2ymg,iv:MNa8oYrHGY6U2oEfQd8mtb8VYq5lMmLQ/3s07a0Hsmc=,tag:VzcwueECJoSVmiZvsRbp5Q==,type:str]
+    ADMIN_USERNAME: ENC[AES256_GCM,data:75tYIcacNz+zKRNb,iv:7ZlOfpPODdcnYys0jQY9CRXQriG9nW6CJHWq1c0eJIk=,tag:kT67kdLoVkiCz48aV7zCNg==,type:str]
+    CREATE_ADMIN: ENC[AES256_GCM,data:TZmDNA==,iv:8iEPIhlMQbQoDObkm6qUMJenGMb4cVBAVe0zZ5Vz15M=,tag:+Lp3VWZutBqSw9meZUoJHw==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: admin-user
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1rmn09vuxjzh9wmx4hj8zz72ckgaa3psdzsaglj3all5k7gp5wqpsvvtmz7
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBvTm5hcmwzT2gvVXIra2tE
+            TUsrWWtwT1dqTkdFdlJkT3IxOGt3Zlhud2dRCmg3Q2tCV3pyS20xa1c4d1RicDdF
+            QzBrV25ycFhKRnlTY0U0dUsrWGNDd2MKLS0tIFF6cVplMG90SlRuMjVSQ0oxblYy
+            NUxJbkFzUVgwVWFSSmdFY0E3d3FiMDAK2TjKNmIVPxdyFbpwhHsdVCWMuA5g26H4
+            YHodWCDO5X9g6ygiuJd8ASP1DmfSw37Lx7Cbe4pa/4QxEOrDF13CDg==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-01-15T22:33:15Z"
+    mac: ENC[AES256_GCM,data:0gCabCYUvqVkekwg9QUwXPwf92rceLFSbG3ZuL+CvHFVpfgqmwJre4lV6PR7rSfLDwVSuTm3X4oNKjUtGkXvcprsKejOMHU7L0xoCDLmZ1esXLfq4dYYWC6buixYA2VzYD/SH6imXu9ZAre/wAHS6jcW0EV5Jyd/pjml3Gj6N3o=,iv:YlsdGHNmqlsp5xQ4QRekGODITN8rrf3eHiNSalup9yE=,tag:IuzUznwhJWgmikxm784ZPQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
