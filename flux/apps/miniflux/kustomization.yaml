@@ -4,3 +4,4 @@ namespace: miniflux
 
 resources:
   - namespace.yaml
+  - postgres.yaml
