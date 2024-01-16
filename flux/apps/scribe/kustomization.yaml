@@ -4,6 +4,7 @@ namespace: scribe
 
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
 
 secretGenerator:
   - name: discord-token
