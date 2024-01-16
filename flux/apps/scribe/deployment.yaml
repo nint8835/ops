@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: scribe
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: scribe
+
+  template:
+    metadata:
+      labels:
+        app: scribe
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: borik
+          image: ghcr.io/nint8835/scribe:latest
+          imagePullPolicy: Always
+
+          env:
+            - name: SCRIBE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: discord-token
+                  key: token
+            - name: SCRIBE_DB_PATH
+              value: /data/quotes.sqlite
+
+          volumeMounts:
+            - mountPath: /data
+              name: database
