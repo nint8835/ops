@@ -9,4 +9,4 @@ spec:
 
   storage:
     size: 1Gi
-    storageClass: nfs-client
+    storageClass: nfs-csi
