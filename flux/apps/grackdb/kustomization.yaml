@@ -4,3 +4,4 @@ namespace: grackdb
 
 resources:
   - namespace.yaml
+  - secrets.yaml
