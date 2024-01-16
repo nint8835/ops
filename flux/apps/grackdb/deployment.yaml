@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: grackdb
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: grackdb
+
+  template:
+    metadata:
+      labels:
+        app: grackdb
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: grackdb
+          image: ghcr.io/fogo-sh/grackdb:latest
+          imagePullPolicy: Always
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: GRACKDB_
+
+          env:
+            - name: GRACKDB_DISCORD_CALLBACK_URL
+              value: https://grackdb.fogo.sh/oauth/discord/callback
+            - name: GRACKDB_DB_CONNECTION_STRING
+              value: file:/data/grack.db?_foreign_keys=on
+
+          volumeMounts:
+            - mountPath: /data
+              name: database
+
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
