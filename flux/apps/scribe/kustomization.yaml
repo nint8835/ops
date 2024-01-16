@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: scribe
+
+resources:
+  - namespace.yaml
+
+secretGenerator:
+  - name: discord-token
+    files:
+      - token=token.encrypted
