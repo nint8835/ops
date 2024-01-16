@@ -33,9 +33,9 @@ spec:
               value: "0"
 
           # Uncomment the below lines to create the initial user
-          # envFrom:
-          #   - secretRef:
-          #       name: admin-user
+          envFrom:
+            - secretRef:
+                name: admin-user
 
           ports:
             - name: http
