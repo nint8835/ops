@@ -5,3 +5,4 @@ namespace: grackdb
 resources:
   - namespace.yaml
   - secrets.yaml
+  - persistent_volume_claim.yaml
