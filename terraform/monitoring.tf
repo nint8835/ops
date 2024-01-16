@@ -28,7 +28,7 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "persistence.storageClassName"
-    value = "nfs-client"
+    value = "nfs-csi"
   }
 
   set {
@@ -62,11 +62,6 @@ resource "helm_release" "grafana" {
   }
 
   set {
-    name  = "initChownData.enabled"
-    value = false
-  }
-
-  set {
     name  = "grafana\\.ini.server.root_url"
     value = "https://grafana.ops.bootleg.technology"
   }
@@ -87,7 +82,7 @@ resource "helm_release" "loki" {
 
   set {
     name  = "singleBinary.persistence.storageClass"
-    value = "nfs-client"
+    value = "nfs-csi"
   }
 
   set {
@@ -143,11 +138,11 @@ resource "helm_release" "prometheus" {
 
   set {
     name  = "server.persistentVolume.storageClass"
-    value = "nfs-client"
+    value = "nfs-csi"
   }
 
   set {
     name  = "alertmanager.persistence.storageClass"
-    value = "nfs-client"
+    value = "nfs-csi"
   }
 }
