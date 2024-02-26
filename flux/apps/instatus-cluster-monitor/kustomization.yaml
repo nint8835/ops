@@ -4,6 +4,7 @@ namespace: instatus-cluster-monitor
 
 resources:
   - namespace.yaml
+  - daemonset.yaml
 
 secretGenerator:
   - name: shared-secret
