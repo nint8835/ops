@@ -19,8 +19,11 @@ spec:
     spec:
       containers:
         - name: agent
-          image: ghcr.io/nint8835/instatus-cluster-monitor-agent:latest
+          image: ghcr.io/nint8835/instatus-cluster-monitor:latest
           imagePullPolicy: Always
+          args:
+            - agent
+            - run
 
           env:
             - name: INSTATUS_MONITOR_HOST_IDENTIFIER
