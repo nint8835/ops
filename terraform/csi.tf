@@ -3,6 +3,7 @@ resource "helm_release" "csi_nfs" {
 
   name      = "csi-driver-nfs"
   chart     = "csi-driver-nfs"
+  version   = "v4.6.0"
   namespace = "kube-system"
 }
 
