@@ -9,6 +9,7 @@ resource "helm_release" "traefik" {
 
   name      = "traefik"
   chart     = "traefik"
+  version   = "27.0.0"
   namespace = kubernetes_namespace.traefik.id
 
   # TODO: Make this accessible again
