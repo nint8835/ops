@@ -5,12 +5,12 @@ resource "kubernetes_namespace" "traefik" {
 }
 
 resource "helm_release" "traefik" {
-  repository = "https://traefik.github.io/charts"
-
   name      = "traefik"
-  chart     = "traefik"
-  version   = "27.0.0"
   namespace = kubernetes_namespace.traefik.id
+
+  repository = "https://traefik.github.io/charts"
+  chart      = "traefik"
+  version    = "27.0.0"
 
   # TODO: Make this accessible again
   set {

@@ -15,12 +15,12 @@ resource "cloudflare_record" "grafana" {
 }
 
 resource "helm_release" "grafana" {
-  repository = "https://grafana.github.io/helm-charts"
-
   name      = "grafana"
-  chart     = "grafana"
-  version   = "7.3.7"
   namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://grafana.github.io/helm-charts"
+  chart      = "grafana"
+  version    = "7.3.7"
 
   set {
     name  = "persistence.enabled"
@@ -70,12 +70,12 @@ resource "helm_release" "grafana" {
 
 
 resource "helm_release" "loki" {
-  repository = "https://grafana.github.io/helm-charts"
-
   name      = "loki"
-  chart     = "loki"
-  version   = "5.47.2"
   namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://grafana.github.io/helm-charts"
+  chart      = "loki"
+  version    = "5.47.2"
 
   set {
     name  = "singleBinary.replicas"
@@ -124,21 +124,21 @@ resource "helm_release" "loki" {
 }
 
 resource "helm_release" "promtail" {
-  repository = "https://grafana.github.io/helm-charts"
-
   name      = "promtail"
-  chart     = "promtail"
-  version   = "6.15.5"
   namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://grafana.github.io/helm-charts"
+  chart      = "promtail"
+  version    = "6.15.5"
 }
 
 resource "helm_release" "prometheus" {
-  repository = "https://prometheus-community.github.io/helm-charts"
-
   name      = "prometheus"
-  chart     = "prometheus"
-  version   = "25.19.0"
   namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "prometheus"
+  version    = "25.19.0"
 
   set {
     name  = "server.persistentVolume.storageClass"

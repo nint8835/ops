@@ -5,12 +5,12 @@ resource "kubernetes_namespace" "cert_manager" {
 }
 
 resource "helm_release" "cert_manager" {
-  repository = "https://charts.jetstack.io"
-
-  chart     = "cert-manager"
-  version   = "v1.14.4"
   name      = "cert-manager"
   namespace = kubernetes_namespace.cert_manager.id
+
+  repository = "https://charts.jetstack.io"
+  chart      = "cert-manager"
+  version    = "v1.14.4"
 
   set {
     name  = "installCRDs"
