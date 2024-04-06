@@ -19,6 +19,7 @@ resource "helm_release" "grafana" {
 
   name      = "grafana"
   chart     = "grafana"
+  version   = "7.3.7"
   namespace = kubernetes_namespace.lgtm.id
 
   set {
@@ -73,6 +74,7 @@ resource "helm_release" "loki" {
 
   name      = "loki"
   chart     = "loki"
+  version   = "5.47.2"
   namespace = kubernetes_namespace.lgtm.id
 
   set {
@@ -126,6 +128,7 @@ resource "helm_release" "promtail" {
 
   name      = "promtail"
   chart     = "promtail"
+  version   = "6.15.5"
   namespace = kubernetes_namespace.lgtm.id
 }
 
@@ -134,6 +137,7 @@ resource "helm_release" "prometheus" {
 
   name      = "prometheus"
   chart     = "prometheus"
+  version   = "25.19.0"
   namespace = kubernetes_namespace.lgtm.id
 
   set {
