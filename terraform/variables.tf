@@ -1,14 +1,3 @@
-variable "netbox_url" {
-  description = "URL to the NetBox instance to use"
-  type        = string
-  default     = "http://localhost:8000"
-}
-
-variable "netbox_token" {
-  description = "API token for NetBox"
-  type        = string
-}
-
 variable "digitalocean_token" {
   type        = string
   description = "Token to use to authenticate with DigitalOcean."

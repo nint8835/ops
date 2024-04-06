@@ -1,9 +1,3 @@
-provider "netbox" {
-  server_url         = var.netbox_url
-  api_token          = var.netbox_token
-  skip_version_check = true
-}
-
 provider "kubernetes" {
   host                   = data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
   cluster_ca_certificate = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
