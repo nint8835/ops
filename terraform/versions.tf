@@ -2,43 +2,44 @@ terraform {
   required_providers {
     talos = {
       source  = "siderolabs/talos"
+      # Must upgrade Talos Linux before upgrading the provider
       version = "0.2.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.20.0"
+      version = "2.27.0"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "2.9.0"
+      version = "2.13.0"
     }
     tailscale = {
       source  = "tailscale/tailscale"
-      version = "0.13.7"
+      version = "0.15.0"
     }
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.28.1"
+      version = "2.36.0"
     }
     http = {
       source  = "hashicorp/http"
-      version = "3.3.0"
+      version = "3.4.2"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.7.1"
+      version = "4.29.0"
     }
     github = {
       source  = "integrations/github"
-      version = "5.33.0"
+      version = "6.2.1"
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "4.0.4"
+      version = "4.0.5"
     }
     flux = {
       source  = "fluxcd/flux"
-      version = "1.0.1"
+      version = "1.2.3"
     }
   }
 }
