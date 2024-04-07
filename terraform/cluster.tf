@@ -68,5 +68,4 @@ data "talos_cluster_kubeconfig" "config" {
 
   client_configuration = talos_machine_secrets.secrets.client_configuration
   node                 = local.control_plane_nodes.k8s-control-plane-1
-  wait                 = true
 }

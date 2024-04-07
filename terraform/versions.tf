@@ -2,8 +2,7 @@ terraform {
   required_providers {
     talos = {
       source  = "siderolabs/talos"
-      # Must upgrade Talos Linux before upgrading the provider
-      version = "0.2.0"
+      version = "0.4.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
