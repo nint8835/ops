@@ -19,6 +19,9 @@ spec:
           persistentVolumeClaim:
             claimName: database
 
+      securityContext:
+        fsGroup: 65532
+
       containers:
         - name: shopkeeper
           image: ghcr.io/nint8835/shopkeeper:latest
