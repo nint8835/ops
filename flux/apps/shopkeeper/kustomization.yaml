@@ -5,6 +5,7 @@ namespace: shopkeeper
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
+  - deployment.yaml
 
 secretGenerator:
   - name: config

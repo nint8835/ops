@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopkeeper
+
+spec:
+  selector:
+    matchLabels:
+      app: shopkeeper
+
+  template:
+    metadata:
+      labels:
+        app: shopkeeper
+
+    spec:
+      containers: []
+
+      initContainers:
+        - name: upgrade-db
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          command: ["upgrade"]
+          envFrom:
+            - secretRef:
+                name: config
+              prefix: SHOPKEEPER_
+
+        - name: sync-commands
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          command: [ "sync" ]
+          envFrom:
+            - secretRef:
+                name: config
+              prefix: SHOPKEEPER_
+      
