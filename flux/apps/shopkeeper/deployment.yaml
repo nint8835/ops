@@ -14,22 +14,42 @@ spec:
         app: shopkeeper
 
     spec:
-      containers: []
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: shopkeeper
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          args: [ "start" ]
+
+          envFrom:
+            - secretRef:
+                name: config
+              prefix: SHOPKEEPER_
+          volumeMounts:
+            - mountPath: /data
+              name: database
 
       initContainers:
         - name: upgrade-db
           image: ghcr.io/nint8835/shopkeeper:latest
           imagePullPolicy: Always
-          command: ["upgrade"]
+          args: [ "upgrade" ]
           envFrom:
             - secretRef:
                 name: config
               prefix: SHOPKEEPER_
+          volumeMounts:
+            - mountPath: /data
+              name: database
 
         - name: sync-commands
           image: ghcr.io/nint8835/shopkeeper:latest
           imagePullPolicy: Always
-          command: [ "sync" ]
+          args: [ "sync" ]
           envFrom:
             - secretRef:
                 name: config
