@@ -5,3 +5,10 @@ namespace: shopkeeper
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
+
+secretGenerator:
+  - name: config
+    literals:
+      - DB_PATH=/data/shopkeeper.sqlite
+      - GUILD_ID=497544520695808000
+      - CHANNEL_ID=1228107663720845343
