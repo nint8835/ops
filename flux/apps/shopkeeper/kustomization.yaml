@@ -4,3 +4,4 @@ namespace: shopkeeper
 
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
