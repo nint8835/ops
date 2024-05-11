@@ -13,5 +13,6 @@ secretGenerator:
       - DB_PATH=/data/shopkeeper.sqlite
       - GUILD_ID=497544520695808000
       - CHANNEL_ID=1228107663720845343
+      - OWNER_ID=106162668032802816
     files:
       - TOKEN=token.encrypted
