@@ -1,14 +1,13 @@
 {
     "Hostname": "proxmox-proxy",
     "Update": {
-        "Hostname": "192.168.64.2",
-        "HTTPPassword": "TB1Du5AagV7lMVxOXXwk"
+        "Hostname": "192.168.64.2"
     },
     "Packages": [
         "github.com/gokrazy/serial-busybox",
         "github.com/gokrazy/breakglass",
-        "github.com/caddyserver/caddy/v2/cmd/caddy",
-        "github.com/gokrazy/mkfs"
+        "github.com/gokrazy/mkfs",
+        "github.com/caddyserver/caddy/v2/cmd/caddy"
     ],
     "PackageConfig": {
         "github.com/caddyserver/caddy/v2/cmd/caddy": {
@@ -26,7 +25,7 @@
                 "-authorized_keys=/etc/breakglass.authorized_keys"
             ],
             "ExtraFilePaths": {
-                "/etc/breakglass.authorized_keys": "/Users/nint8835/Development/ops/gokrazy/proxmox-proxy/breakglass.authorized_keys"
+                "/etc/breakglass.authorized_keys": "breakglass.authorized_keys"
             }
         },
         "github.com/gokrazy/gokrazy/cmd/randomd": {
