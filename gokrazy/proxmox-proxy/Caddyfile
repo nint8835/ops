@@ -1,13 +1,13 @@
 {
-    http_port 8080
+	http_port 8080
 }
 
 192.168.64.2:8080 {
 	reverse_proxy * {
-	    dynamic a {
-	        name hosts.bootleg.technology
-	        port 8006
-	    }
+		dynamic a {
+			name hosts.bootleg.technology
+			port 8006
+		}
 
 		lb_policy ip_hash
 		lb_try_duration 1s
