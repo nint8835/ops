@@ -1,0 +1,42 @@
+{
+    "Hostname": "proxmox-proxy",
+    "Update": {
+        "Hostname": "192.168.64.2",
+        "HTTPPassword": "TB1Du5AagV7lMVxOXXwk"
+    },
+    "Packages": [
+        "github.com/gokrazy/serial-busybox",
+        "github.com/gokrazy/breakglass",
+        "github.com/caddyserver/caddy/v2/cmd/caddy",
+        "github.com/gokrazy/mkfs"
+    ],
+    "PackageConfig": {
+        "github.com/caddyserver/caddy/v2/cmd/caddy": {
+            "CommandLineFlags": [
+                "run",
+                "--config",
+                "/etc/caddy/Caddyfile"
+            ],
+            "ExtraFilePaths": {
+                "/etc/caddy/Caddyfile": "Caddyfile"
+            }
+        },
+        "github.com/gokrazy/breakglass": {
+            "CommandLineFlags": [
+                "-authorized_keys=/etc/breakglass.authorized_keys"
+            ],
+            "ExtraFilePaths": {
+                "/etc/breakglass.authorized_keys": "/Users/nint8835/Development/ops/gokrazy/proxmox-proxy/breakglass.authorized_keys"
+            }
+        },
+        "github.com/gokrazy/gokrazy/cmd/randomd": {
+            "ExtraFileContents": {
+                "/etc/machine-id": "e73fa9856299428897994d773d0512c0\n"
+            }
+        }
+    },
+    "SerialConsole": "ttyS0,115200",
+    "KernelPackage": "github.com/rtr7/kernel",
+    "FirmwarePackage": "github.com/rtr7/kernel",
+    "InternalCompatibilityFlags": {}
+}

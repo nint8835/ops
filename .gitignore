@@ -13,3 +13,7 @@ terraform.tfstate*
 .idea/
 
 github.pem
+
+# gokrazy build files
+gokrazy/**/*.img
+gokrazy/**/builddir
