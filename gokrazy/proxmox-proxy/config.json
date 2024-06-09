@@ -7,7 +7,9 @@
         "github.com/gokrazy/serial-busybox",
         "github.com/gokrazy/breakglass",
         "github.com/gokrazy/mkfs",
-        "github.com/caddyserver/caddy/v2/cmd/caddy"
+        "github.com/caddyserver/caddy/v2/cmd/caddy",
+        "tailscale.com/cmd/tailscaled",
+        "tailscale.com/cmd/tailscale"
     ],
     "PackageConfig": {
         "github.com/caddyserver/caddy/v2/cmd/caddy": {
@@ -32,6 +34,11 @@
             "ExtraFileContents": {
                 "/etc/machine-id": "e73fa9856299428897994d773d0512c0\n"
             }
+        },
+        "tailscale.com/cmd/tailscale": {
+            "CommandLineFlags": [
+                "up"
+            ]
         }
     },
     "SerialConsole": "ttyS0,115200",
