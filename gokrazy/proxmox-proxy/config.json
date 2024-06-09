@@ -1,8 +1,5 @@
 {
     "Hostname": "proxmox-proxy",
-    "Update": {
-        "Hostname": "192.168.64.2"
-    },
     "Packages": [
         "github.com/gokrazy/serial-busybox",
         "github.com/gokrazy/breakglass",
@@ -41,8 +38,8 @@
             ]
         }
     },
-    "SerialConsole": "ttyS0,115200",
-    "KernelPackage": "github.com/rtr7/kernel",
-    "FirmwarePackage": "github.com/rtr7/kernel",
+    "SerialConsole": "disabled",
+    "KernelPackage": "github.com/gokrazy-community/kernel-rpi-os-32/dist",
+    "FirmwarePackage": "github.com/gokrazy-community/firmware-rpi/dist",
     "InternalCompatibilityFlags": {}
 }
