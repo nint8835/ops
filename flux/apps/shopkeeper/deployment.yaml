@@ -30,11 +30,29 @@ spec:
 
           envFrom:
             - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
                 name: config
               prefix: SHOPKEEPER_
           volumeMounts:
             - mountPath: /data
               name: database
+
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
 
       initContainers:
         - name: upgrade-db
@@ -43,6 +61,9 @@ spec:
           args: [ "upgrade" ]
           envFrom:
             - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
                 name: config
               prefix: SHOPKEEPER_
           volumeMounts:
@@ -55,6 +76,9 @@ spec:
           args: [ "sync" ]
           envFrom:
             - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
                 name: config
               prefix: SHOPKEEPER_
       
