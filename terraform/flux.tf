@@ -14,7 +14,7 @@ resource "flux_bootstrap_git" "bootstrap" {
   depends_on = [github_repository_deploy_key.flux]
 
   path    = "flux"
-  version = "v2.2.3"
+  version = "v2.3.0"
   components_extra = [
     "image-reflector-controller",
     "image-automation-controller",
