@@ -20,7 +20,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "7.3.7"
+  version    = "8.1.1"
 
   set {
     name  = "persistence.enabled"
@@ -129,7 +129,7 @@ resource "helm_release" "promtail" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "promtail"
-  version    = "6.15.5"
+  version    = "6.16.2"
 }
 
 resource "helm_release" "prometheus" {
@@ -138,7 +138,7 @@ resource "helm_release" "prometheus" {
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus"
-  version    = "25.19.0"
+  version    = "25.22.0"
 
   set {
     name  = "server.persistentVolume.storageClass"
