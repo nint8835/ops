@@ -6,31 +6,31 @@ terraform {
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.27.0"
+      version = "2.31.0"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "2.13.0"
+      version = "2.14.0"
     }
     tailscale = {
       source  = "tailscale/tailscale"
-      version = "0.15.0"
+      version = "0.16.1"
     }
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.36.0"
+      version = "2.39.2"
     }
     http = {
       source  = "hashicorp/http"
-      version = "3.4.2"
+      version = "3.4.3"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "4.29.0"
+      version = "4.36.0"
     }
     github = {
       source  = "integrations/github"
-      version = "6.2.1"
+      version = "6.2.2"
     }
     tls = {
       source  = "hashicorp/tls"
@@ -38,7 +38,7 @@ terraform {
     }
     flux = {
       source  = "fluxcd/flux"
-      version = "1.2.3"
+      version = "1.3.0"
     }
   }
 }
