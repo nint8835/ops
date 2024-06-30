@@ -10,7 +10,7 @@ resource "helm_release" "traefik" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "27.0.0"
+  version    = "28.3.0"
 
   # TODO: Make this accessible again
   set {
