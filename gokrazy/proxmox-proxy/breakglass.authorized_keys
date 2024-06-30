@@ -1,0 +1,5 @@
+# This authorized_keys(5) file allows access from keys on Athena.localdomain
+
+# /Users/nint8835/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAa0q1Nxr1QXZq7HnQa9wWva7HZqYIYC95vqQZXbM/xe nint8835@Athena.localdomain
+

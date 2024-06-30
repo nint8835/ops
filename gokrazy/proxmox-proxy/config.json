@@ -1,0 +1,53 @@
+{
+    "Hostname": "proxmox-proxy",
+    "Update": {
+        "HTTPPort": "1080"
+    },
+    "Packages": [
+        "github.com/gokrazy/serial-busybox",
+        "github.com/gokrazy/breakglass",
+        "github.com/gokrazy/mkfs",
+        "github.com/caddyserver/caddy/v2/cmd/caddy",
+        "tailscale.com/cmd/tailscaled",
+        "tailscale.com/cmd/tailscale"
+    ],
+    "PackageConfig": {
+        "github.com/caddyserver/caddy/v2/cmd/caddy": {
+            "CommandLineFlags": [
+                "run",
+                "--config",
+                "/etc/caddy/Caddyfile"
+            ],
+            "ExtraFilePaths": {
+                "/etc/caddy/Caddyfile": "Caddyfile"
+            }
+        },
+        "github.com/gokrazy/breakglass": {
+            "CommandLineFlags": [
+                "-authorized_keys=/etc/breakglass.authorized_keys"
+            ],
+            "ExtraFilePaths": {
+                "/etc/breakglass.authorized_keys": "breakglass.authorized_keys"
+            }
+        },
+        "github.com/gokrazy/gokrazy/cmd/randomd": {
+            "ExtraFileContents": {
+                "/etc/machine-id": "e73fa9856299428897994d773d0512c0\n"
+            }
+        },
+        "tailscale.com/cmd/tailscale": {
+            "CommandLineFlags": [
+                "up"
+            ]
+        },
+        "tailscale.com/cmd/tailscaled": {
+            "CommandLineFlags": [
+                "--tun=userspace-networking"
+            ]
+        }
+    },
+    "SerialConsole": "disabled",
+    "KernelPackage": "github.com/gokrazy-community/kernel-rpi-os-32/dist",
+    "FirmwarePackage": "github.com/gokrazy-community/firmware-rpi/dist",
+    "InternalCompatibilityFlags": {}
+}
