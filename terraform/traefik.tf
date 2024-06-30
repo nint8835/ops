@@ -12,10 +12,9 @@ resource "helm_release" "traefik" {
   chart      = "traefik"
   version    = "28.3.0"
 
-  # TODO: Make this accessible again
   set {
-    name  = "ingressRoute.dashboard.entryPoints[0]"
-    value = "traefik"
+    name  = "ingressRoute.dashboard.enabled"
+    value = false
   }
 
   set {
@@ -44,6 +43,77 @@ resource "kubernetes_manifest" "traefik_https_redirect" {
         scheme    = "https"
         permanent = true
       }
+    }
+  }
+}
+
+resource "kubernetes_secret" "traefik_dashboard_auth" {
+  metadata {
+    name      = "traefik-dashboard-auth"
+    namespace = kubernetes_namespace.traefik.id
+  }
+
+  data = {
+    users = var.traefik_basic_auth_entry
+  }
+}
+
+resource "kubernetes_manifest" "traefik_dashboard_auth" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "Middleware"
+
+    metadata = {
+      name      = "traefik-dashboard-auth"
+      namespace = kubernetes_namespace.traefik.id
+    }
+
+    spec = {
+      basicAuth = {
+        secret = kubernetes_secret.traefik_dashboard_auth.metadata[0].name
+      }
+    }
+  }
+}
+
+resource "cloudflare_record" "traefik_dashboard" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "traefik.ops"
+  value   = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}
+
+resource "kubernetes_manifest" "traefik_dashboard" {
+  manifest = {
+    apiVersion = "traefik.io/v1alpha1"
+    kind       = "IngressRoute"
+
+    metadata = {
+      name      = "traefik-dashboard"
+      namespace = kubernetes_namespace.traefik.id
+    }
+
+    spec = {
+      routes = [
+        {
+          kind  = "Rule"
+          match = "Host(`traefik.ops.bootleg.technology`)"
+
+          middlewares = [
+            {
+              name      = kubernetes_manifest.traefik_dashboard_auth.manifest.metadata.name
+              namespace = kubernetes_manifest.traefik_dashboard_auth.manifest.metadata.namespace
+            },
+          ]
+
+          services = [
+            {
+              kind = "TraefikService"
+              name = "api@internal"
+            },
+          ]
+        },
+      ]
     }
   }
 }

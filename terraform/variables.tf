@@ -49,3 +49,8 @@ variable "age_secret_key" {
   description = "Secret key to use for Age encryption"
   type        = string
 }
+
+variable "traefik_basic_auth_entry" {
+  description = "Output of htpasswd for the credentials to use for the Traefik dashboard"
+  type        = string
+}
