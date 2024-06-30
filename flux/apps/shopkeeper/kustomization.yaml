@@ -5,15 +5,8 @@ namespace: shopkeeper
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
+  - config.yaml
+  - secrets.yaml
   - deployment.yaml
-
-secretGenerator:
-  - name: config
-    literals:
-      - DB_PATH=/data/shopkeeper.sqlite
-      - GUILD_ID=497544520695808000
-      - CHANNEL_ID=1228107663720845343
-      - EVENTS_CHANNEL_ID=1248011327465590784
-      - OWNER_ID=106162668032802816
-    files:
-      - TOKEN=token.encrypted
+  - service.yaml
+  - ingress.yaml

@@ -19,3 +19,10 @@ resource "cloudflare_record" "miniflux" {
   value   = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "shopkeeper" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "shopkeeper"
+  value   = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}

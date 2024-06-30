@@ -16,7 +16,7 @@ resource "helm_release" "metallb" {
 
   repository = "https://metallb.github.io/metallb"
   chart      = "metallb"
-  version    = "0.14.4"
+  version    = "0.14.5"
 }
 
 resource "kubernetes_manifest" "metallb_ip_pool" {
