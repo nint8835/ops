@@ -1,5 +1,8 @@
 {
     "Hostname": "proxmox-proxy",
+    "Update": {
+        "HTTPPort": "1080"
+    },
     "Packages": [
         "github.com/gokrazy/serial-busybox",
         "github.com/gokrazy/breakglass",
@@ -35,6 +38,11 @@
         "tailscale.com/cmd/tailscale": {
             "CommandLineFlags": [
                 "up"
+            ]
+        },
+        "tailscale.com/cmd/tailscaled": {
+            "CommandLineFlags": [
+                "--tun=userspace-networking"
             ]
         }
     },

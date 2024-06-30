@@ -1,9 +1,4 @@
-{
-	http_port 8080
-	https_port 8081
-}
-
-192.168.64.2:8081 {
+192.168.1.181:443 {
 	reverse_proxy * {
 		dynamic a {
 			name hosts.bootleg.technology
