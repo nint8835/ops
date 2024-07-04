@@ -3,10 +3,6 @@ kind: Kustomization
 namespace: flux-system
 
 resources:
+  - webhook.yaml
   - provider.yaml
   - alert.yaml
-
-secretGenerator:
-  - name: discord-webhook
-    files:
-      - address=webhook.encrypted
