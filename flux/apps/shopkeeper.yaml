@@ -9,7 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: 'flux/apps/shopkeeper'
-  prune: false
+  prune: true
   decryption:
     provider: sops
     secretRef:
