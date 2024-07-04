@@ -4,6 +4,7 @@ namespace: flux-system
 
 resources:
   - provider.yaml
+  - alert.yaml
 
 secretGenerator:
   - name: discord-webhook
