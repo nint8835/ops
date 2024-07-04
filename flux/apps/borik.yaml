@@ -9,7 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   path: 'flux/apps/borik'
-  prune: true
+  prune: false
   decryption:
     provider: sops
     secretRef:

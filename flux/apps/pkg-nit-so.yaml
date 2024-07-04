@@ -9,4 +9,4 @@ spec:
     kind: GitRepository
     name: flux-system
   path: 'flux/apps/pkg-nit-so'
-  prune: true
+  prune: false

@@ -8,4 +8,4 @@ spec:
   sourceRef:
     kind: GitRepository
     name: pkg-fogo-sh
-  prune: true
+  prune: false
