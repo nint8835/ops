@@ -7,3 +7,7 @@ fetch-talosconfig:
 	tofu output --raw talosconfig > ~/.talos/config
 
 fetch-configs: fetch-kubeconfig fetch-talosconfig
+
+lint:
+	tflint --config $$(pwd)/.tflint.hcl --recursive --fix
+	tofu validate

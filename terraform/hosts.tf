@@ -16,10 +16,9 @@ module "proxmox_hosts" {
 
   source = "./modules/networking/proxmox_host"
 
-  name      = each.key
-  ip        = each.value
-  zone_id   = data.cloudflare_zone.bootleg_technology.zone_id
-  zone_name = data.cloudflare_zone.bootleg_technology.name
+  name    = each.key
+  ip      = each.value
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
 }
 
 resource "cloudflare_record" "proxmox_proxy_internal" {

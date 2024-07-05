@@ -19,7 +19,3 @@ variable "zone_id" {
   type        = string
 }
 
-variable "zone_name" {
-  description = "Zone name to use for this host's DNS record"
-  type        = string
-}

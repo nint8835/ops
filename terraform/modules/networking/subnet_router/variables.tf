@@ -1,7 +1,3 @@
-variable "ts_subdomain" {
-  description = "Subdomain of .ts.net corresponding with the active tailnet"
-  type        = string
-}
 
 variable "namespace" {
   description = "Kubernetes namespace to run in"
