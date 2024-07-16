@@ -42,3 +42,6 @@ spec:
             httpGet:
               path: /
               port: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
