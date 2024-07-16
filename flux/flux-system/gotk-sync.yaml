@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: fix-podsecurity-warnings
+    branch: main
   secretRef:
     name: flux-system
   url: ssh://git@github.com/nint8835/ops.git
