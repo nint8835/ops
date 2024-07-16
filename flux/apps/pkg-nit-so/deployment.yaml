@@ -48,6 +48,9 @@ spec:
             capabilities:
               drop:
                 - ALL
-            # runAsNonRoot: true
+              add:
+                - NET_BIND_SERVICE
+            # TODO: Make true once the container image runs as non-root
+            runAsNonRoot: false
             seccompProfile:
               type: RuntimeDefault
