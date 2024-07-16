@@ -8,11 +8,13 @@ spec:
   selector:
     matchLabels:
       app: miniflux
+
   replicas: 1
   template:
     metadata:
       labels:
         app: miniflux
+
     spec:
       containers:
         - name: miniflux
@@ -51,3 +53,12 @@ spec:
             httpGet:
               path: /
               port: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault

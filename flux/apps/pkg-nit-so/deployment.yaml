@@ -30,7 +30,7 @@ spec:
 
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8000
               protocol: TCP
 
           livenessProbe:
@@ -42,3 +42,12 @@ spec:
             httpGet:
               path: /
               port: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault

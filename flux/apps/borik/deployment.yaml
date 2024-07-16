@@ -1,27 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: borik
+
 spec:
   selector:
     matchLabels:
       app: borik
+
   replicas: 1
   template:
     metadata:
       labels:
         app: borik
+
     spec:
       containers:
         - name: borik
           image: ghcr.io/fogo-sh/borik:latest
           imagePullPolicy: Always
+
           env:
             - name: BORIK_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: discord-token
                   key: token
+
           resources:
             limits:
               cpu: 500m
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            # TODO: Make true once the container image runs as non-root
+            runAsNonRoot: false
+            seccompProfile:
+              type: RuntimeDefault
