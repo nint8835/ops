@@ -30,7 +30,7 @@ spec:
 
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8000
               protocol: TCP
 
           livenessProbe:
@@ -48,9 +48,6 @@ spec:
             capabilities:
               drop:
                 - ALL
-              add:
-                - NET_BIND_SERVICE
-            # TODO: Make true once the container image runs as non-root
-            runAsNonRoot: false
+            runAsNonRoot: true
             seccompProfile:
               type: RuntimeDefault
