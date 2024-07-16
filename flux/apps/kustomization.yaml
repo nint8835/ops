@@ -5,6 +5,7 @@ resources:
   - borik.yaml
   - grackdb.yaml
   - miniflux.yaml
+  - pkg-fogo-sh
   - pkg-nit-so.yaml
   - scribe.yaml
   - shopkeeper.yaml
