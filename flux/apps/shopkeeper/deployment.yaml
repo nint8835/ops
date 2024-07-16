@@ -21,6 +21,9 @@ spec:
 
       securityContext:
         fsGroup: 65532
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
 
       containers:
         - name: shopkeeper
@@ -54,6 +57,12 @@ spec:
               path: /
               port: http
 
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
       initContainers:
         - name: upgrade-db
           image: ghcr.io/nint8835/shopkeeper:latest
@@ -69,6 +78,11 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: database
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
 
         - name: sync-commands
           image: ghcr.io/nint8835/shopkeeper:latest
@@ -81,4 +95,8 @@ spec:
             - configMapRef:
                 name: config
               prefix: SHOPKEEPER_
-      
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL

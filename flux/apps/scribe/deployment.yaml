@@ -39,3 +39,13 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: database
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            # TODO: Make true once the container image runs as non-root
+            runAsNonRoot: false
+            seccompProfile:
+              type: RuntimeDefault
