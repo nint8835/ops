@@ -1,0 +1,9 @@
+- name: Update hosts
+  hosts: proxmox_hosts
+  serial: 1
+
+  tasks:
+    - name: Update packages
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: dist
