@@ -173,21 +173,38 @@ resource "helm_release" "promtail" {
   version    = "6.16.2"
 }
 
-resource "helm_release" "prometheus" {
-  name      = "prometheus"
+resource "helm_release" "prometheus_operator" {
+  name      = "prometheus-operator"
   namespace = kubernetes_namespace.lgtm.id
 
   repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "prometheus"
-  version    = "25.22.0"
+  chart      = "kube-prometheus-stack"
+  version    = "62.3.0"
+
+  values = [
+    yamlencode({
+      prometheus = {
+        prometheusSpec = {
+          storageSpec = {
+            volumeClaimTemplate = {
+              spec = {
+                storageClassName = "nfs-csi"
+                accessModes      = ["ReadWriteOnce"]
+                resources = {
+                  requests = {
+                    storage = "1Gi"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }),
+  ]
 
   set {
-    name  = "server.persistentVolume.storageClass"
-    value = "nfs-csi"
-  }
-
-  set {
-    name  = "alertmanager.persistence.storageClass"
-    value = "nfs-csi"
+    name  = "grafana.enabled"
+    value = false
   }
 }
