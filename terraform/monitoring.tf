@@ -75,7 +75,29 @@ resource "helm_release" "loki" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "loki"
-  version    = "5.47.2"
+  version    = "6.10.0"
+
+  values = [
+    <<EOF
+loki:
+  commonConfig:
+    replication_factor: 1
+  schemaConfig:
+    configs:
+      - from: 2024-04-01
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+EOF
+  ]
+
+  set {
+    name  = "deploymentMode"
+    value = "SingleBinary"
+  }
 
   set {
     name  = "singleBinary.replicas"
@@ -103,7 +125,7 @@ resource "helm_release" "loki" {
   }
 
   set {
-    name  = "monitoring.lokiCanary.enabled"
+    name  = "lokiCanary.enabled"
     value = false
   }
 
@@ -120,6 +142,25 @@ resource "helm_release" "loki" {
   set {
     name  = "monitoring.selfMonitoring.grafanaAgent.installOperator"
     value = false
+  }
+
+  set {
+    name  = "resultsCache.enabled"
+    value = false
+  }
+
+  set {
+    name  = "chunksCache.enabled"
+    value = false
+  }
+
+  dynamic "set" {
+    for_each = toset(["backend", "read", "write"])
+
+    content {
+      name  = "${set.key}.replicas"
+      value = 0
+    }
   }
 }
 
