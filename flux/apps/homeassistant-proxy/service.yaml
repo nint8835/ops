@@ -4,3 +4,7 @@ metadata:
   name: homeassistant
 spec:
   clusterIP: None
+  ports:
+    - name: http
+      port: 8123
+      protocol: TCP
