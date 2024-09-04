@@ -4,3 +4,5 @@ namespace: homeassistant-proxy
 
 resources:
   - namespace.yaml
+  - service.yaml
+  - endpoints.yaml
