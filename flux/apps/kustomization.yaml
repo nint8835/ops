@@ -9,3 +9,4 @@ resources:
   - pkg-nit-so.yaml
   - scribe.yaml
   - shopkeeper.yaml
+  - homeassistant-proxy.yaml
