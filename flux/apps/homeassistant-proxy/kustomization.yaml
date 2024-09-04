@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - service.yaml
   - endpoints.yaml
+  - ingress.yaml
