@@ -26,3 +26,10 @@ resource "cloudflare_record" "shopkeeper" {
   value   = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "homeassistant" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "homeassistant"
+  value   = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}
