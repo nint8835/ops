@@ -13,3 +13,4 @@ data:
   CLIENT_ID: "1228108502833303552"
   BEHIND_REVERSE_PROXY: "true"
   IMAGE_PATH: "/data/images"
+  INIT_ON_STARTUP: "false"
