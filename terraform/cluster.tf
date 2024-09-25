@@ -1,15 +1,17 @@
 locals {
   control_plane_nodes = {
-    k8s-control-plane-1 = "10.8.1.1",
-    k8s-control-plane-2 = "10.8.1.2",
-    k8s-control-plane-3 = "10.8.1.3",
-    k8s-control-plane-4 = "10.8.1.4",
-    k8s-control-plane-5 = "10.8.1.5",
+    k8s-control-plane-1 = "10.8.1.1"
+    k8s-control-plane-2 = "10.8.1.2"
+    k8s-control-plane-3 = "10.8.1.3"
+    k8s-control-plane-4 = "10.8.1.4"
+    k8s-control-plane-5 = "10.8.1.5"
   }
   worker_nodes = {
-    k8s-worker-1 = "10.8.2.1",
-    k8s-worker-2 = "10.8.2.2",
-    k8s-worker-3 = "10.8.2.3",
+    k8s-worker-1 = "10.8.2.1"
+    k8s-worker-2 = "10.8.2.2"
+    k8s-worker-3 = "10.8.2.3"
+    k8s-worker-4 = "10.8.2.4"
+    k8s-worker-5 = "10.8.2.5"
   }
 }
 
