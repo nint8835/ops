@@ -3,8 +3,6 @@ locals {
     k8s-control-plane-1 = "10.8.1.1"
     k8s-control-plane-2 = "10.8.1.2"
     k8s-control-plane-3 = "10.8.1.3"
-    k8s-control-plane-4 = "10.8.1.4"
-    k8s-control-plane-5 = "10.8.1.5"
   }
   worker_nodes = {
     k8s-worker-1 = "10.8.2.1"
