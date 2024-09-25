@@ -1,16 +1,16 @@
 provider "kubernetes" {
-  host                   = data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
-  cluster_ca_certificate = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
-  client_certificate     = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
-  client_key             = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
+  host                   = talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
+  cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
+  client_certificate     = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
+  client_key             = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
 }
 
 provider "helm" {
   kubernetes {
-    host                   = data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
-    cluster_ca_certificate = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
-    client_certificate     = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
-    client_key             = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
+    host                   = talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
+    cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
+    client_certificate     = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
+    client_key             = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
   }
 }
 
@@ -38,10 +38,10 @@ provider "github" {
 
 provider "flux" {
   kubernetes = {
-    host                   = data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
-    cluster_ca_certificate = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
-    client_certificate     = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
-    client_key             = base64decode(data.talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
+    host                   = talos_cluster_kubeconfig.config.kubernetes_client_configuration.host
+    cluster_ca_certificate = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.ca_certificate)
+    client_certificate     = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_certificate)
+    client_key             = base64decode(talos_cluster_kubeconfig.config.kubernetes_client_configuration.client_key)
   }
 
   git = {
