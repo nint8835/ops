@@ -10,3 +10,4 @@ resources:
   - scribe.yaml
   - shopkeeper.yaml
   - homeassistant-proxy.yaml
+  - skyline.yaml

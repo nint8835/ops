@@ -33,3 +33,10 @@ resource "cloudflare_record" "homeassistant" {
   value   = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "skyline" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "skyline"
+  value   = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}
