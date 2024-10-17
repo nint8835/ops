@@ -4,3 +4,4 @@ namespace: skyline
 
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
