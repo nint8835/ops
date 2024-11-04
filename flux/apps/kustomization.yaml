@@ -11,3 +11,4 @@ resources:
   - shopkeeper.yaml
   - homeassistant-proxy.yaml
   - skyline.yaml
+  - elf.yaml
