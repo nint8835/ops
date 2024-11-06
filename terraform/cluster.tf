@@ -61,7 +61,7 @@ resource "cloudflare_record" "cluster" {
 
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "cluster.ops"
-  value   = each.value
+  content = each.value
   type    = "A"
 }
 

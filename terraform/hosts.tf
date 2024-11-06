@@ -24,13 +24,13 @@ module "proxmox_hosts" {
 resource "cloudflare_record" "proxmox_proxy_internal" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "proxy.hosts"
-  value   = "192.168.1.181"
+  content = "192.168.1.181"
   type    = "A"
 }
 
 resource "cloudflare_record" "proxmox_proxy_tailscale" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "proxy-tailscale.hosts"
-  value   = "100.91.221.13"
+  content = "100.91.221.13"
   type    = "A"
 }
