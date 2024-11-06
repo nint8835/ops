@@ -170,7 +170,7 @@ resource "helm_release" "promtail" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "promtail"
-  version    = "6.16.2"
+  version    = "6.16.6"
 }
 
 resource "helm_release" "prometheus_operator" {
