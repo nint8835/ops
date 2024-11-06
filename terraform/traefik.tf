@@ -10,12 +10,7 @@ resource "helm_release" "traefik" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "28.3.0"
-
-  set {
-    name  = "ingressRoute.dashboard.enabled"
-    value = false
-  }
+  version    = "33.0.0"
 
   set {
     name  = "logs.access.enabled"
