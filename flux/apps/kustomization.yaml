@@ -12,3 +12,4 @@ resources:
   - homeassistant-proxy.yaml
   - skyline.yaml
   - elf.yaml
+  - ntv-webcam-scraper.yaml
