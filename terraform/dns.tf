@@ -40,3 +40,10 @@ resource "cloudflare_record" "skyline" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "manyfold" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "manyfold"
+  content = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}

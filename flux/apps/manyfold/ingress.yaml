@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: manyfold
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+
+spec:
+  tls:
+    - hosts:
+        - manyfold.bootleg.technology
+      secretName: manyfold-bootleg-technology
+  rules:
+    - host: manyfold.bootleg.technology
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: manyfold
+                port:
+                  name: http
