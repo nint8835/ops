@@ -11,5 +11,4 @@ resources:
   - shopkeeper.yaml
   - homeassistant-proxy.yaml
   - skyline.yaml
-  - elf.yaml
   - ntv-webcam-scraper.yaml
