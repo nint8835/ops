@@ -40,3 +40,10 @@ resource "cloudflare_record" "skyline" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "scribe" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "scribe"
+  content = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}

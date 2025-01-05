@@ -27,6 +27,11 @@ spec:
           image: ghcr.io/nint8835/scribe:latest
           imagePullPolicy: Always
 
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+
           env:
             - name: SCRIBE_DB_PATH
               value: /data/quotes.sqlite
