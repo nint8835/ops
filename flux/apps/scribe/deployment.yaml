@@ -28,13 +28,17 @@ spec:
           imagePullPolicy: Always
 
           env:
-            - name: SCRIBE_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: discord-token
-                  key: token
             - name: SCRIBE_DB_PATH
               value: /data/quotes.sqlite
+            - name: SCRIBE_CALLBACK_URL
+              value: https://scribe.bootleg.technology/auth/callback
+            - name: SCRIBE_MENTION_CACHE_PATH
+              value: /data/mentions.json
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: SCRIBE_
 
           volumeMounts:
             - mountPath: /data
