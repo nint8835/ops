@@ -47,10 +47,3 @@ resource "cloudflare_record" "scribe" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
-
-resource "cloudflare_record" "home" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
-  name    = "home"
-  content = cloudflare_record.bastion.hostname
-  type    = "CNAME"
-}
