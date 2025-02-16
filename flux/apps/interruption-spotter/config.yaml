@@ -5,4 +5,4 @@ metadata:
   name: config
 
 data:
-  DATABASE_PATH: "/data/interruptions.db"
+  DATABASE_PATH: "/data/interruptions.db?_pragma=journal_mode(WAL)"
