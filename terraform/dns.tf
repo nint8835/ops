@@ -47,3 +47,10 @@ resource "cloudflare_record" "scribe" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "interruption_spotter" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "interruption-spotter"
+  content = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}

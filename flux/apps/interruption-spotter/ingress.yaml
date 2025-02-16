@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: interruption-spotter
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+
+spec:
+  tls:
+    - hosts:
+        - interruption-spotter.bootleg.technology
+      secretName: interruption-spotter-bootleg-technology
+  rules:
+    - host: interruption-spotter.bootleg.technology
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: interruption-spotter
+                port:
+                  name: http
