@@ -6,3 +6,4 @@ metadata:
 
 data:
   DATABASE_PATH: "/data/interruptions.db?_pragma=journal_mode(WAL)"
+  POLL_INTERVAL: "1h"
