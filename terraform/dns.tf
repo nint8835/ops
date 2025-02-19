@@ -55,13 +55,6 @@ resource "cloudflare_record" "interruption_spotter" {
   type    = "CNAME"
 }
 
-resource "cloudflare_record" "kavita" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
-  name    = "kavita"
-  content = cloudflare_record.bastion.hostname
-  type    = "CNAME"
-}
-
 resource "cloudflare_record" "calibre" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "calibre"

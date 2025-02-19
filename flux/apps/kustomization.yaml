@@ -13,5 +13,4 @@ resources:
   - skyline.yaml
   - ntv-webcam-scraper.yaml
   - interruption-spotter.yaml
-  - kavita.yaml
   - calibre.yaml
