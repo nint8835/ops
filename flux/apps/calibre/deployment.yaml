@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: calibre
+
+spec:
+  selector:
+    matchLabels:
+      app: calibre
+
+  template:
+    metadata:
+      labels:
+        app: calibre
+
+    spec:
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+        - name: ingest
+          persistentVolumeClaim:
+            claimName: ingest
+        - name: library
+          persistentVolumeClaim:
+            claimName: library
+
+      containers:
+        - name: calibre
+          image: crocodilestick/calibre-web-automated:V3.0.4
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: America/St_Johns
+
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /cwa-book-ingest
+              name: ingest
+            - mountPath: /calibre-library
+              name: library
+
+          ports:
+            - containerPort: 8083
+              name: http
+              protocol: TCP
+
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
