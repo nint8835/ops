@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: kavita
+
+spec:
+  selector:
+    matchLabels:
+      app: kavita
+
+  template:
+    metadata:
+      labels:
+        app: kavita
+
+    spec:
+      volumes:
+        - name: books
+          persistentVolumeClaim:
+            claimName: books
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+
+      containers:
+        - name: kavita
+          image: ghcr.io/kareadita/kavita:0.8.4
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: TZ
+              value: America/St_Johns
+            - name: DOTNET_SYSTEM_GLOBALIZATION_INVARIANT
+              value: "true"
+
+          volumeMounts:
+            - mountPath: /books
+              name: books
+            - mountPath: /kavita/config
+              name: config
+
+          ports:
+            - containerPort: 5000
+              name: http
+              protocol: TCP

@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: kavita
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+
+spec:
+  tls:
+    - hosts:
+        - kavita.bootleg.technology
+      secretName: kavita-bootleg-technology
+  rules:
+    - host: kavita.bootleg.technology
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kavita
+                port:
+                  name: http
