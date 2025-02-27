@@ -5,7 +5,7 @@ metadata:
   name: calibre
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd, add-calibre-headers@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd, calibre-add-calibre-headers@kubernetescrd
 
 spec:
   tls:
