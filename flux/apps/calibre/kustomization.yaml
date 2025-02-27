@@ -7,4 +7,5 @@ resources:
   - persistent_volume_claim.yaml
   - deployment.yaml
   - service.yaml
+  - middleware.yaml
   - ingress.yaml
