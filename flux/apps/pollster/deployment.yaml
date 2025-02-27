@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pollster
+
+spec:
+  selector:
+    matchLabels:
+      app: pollster
+
+  template:
+    metadata:
+      labels:
+        app: pollster
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: pollster
+          image: ghcr.io/nint8835/pollster:latest
+          imagePullPolicy: Always
+          args: [ "start" ]
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: POLLSTER_
+            - configMapRef:
+                name: config
+              prefix: POLLSTER_
+          volumeMounts:
+            - mountPath: /data
+              name: database
+
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+
+      initContainers:
+        - name: upgrade-db
+          image: ghcr.io/nint8835/pollster:latest
+          imagePullPolicy: Always
+          args: [ "upgrade" ]
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: POLLSTER_
+            - configMapRef:
+                name: config
+              prefix: POLLSTER_
+          volumeMounts:
+            - mountPath: /data
+              name: database

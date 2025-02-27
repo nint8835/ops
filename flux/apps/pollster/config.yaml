@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: config
+
+data:
+  DB_PATH: "/data/pollster.sqlite"
+  BEHIND_REVERSE_PROXY: "true"
+  GUILD_ID: "497544520695808000"
+  OWNER_ID: "106162668032802816"

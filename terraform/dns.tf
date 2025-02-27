@@ -61,3 +61,10 @@ resource "cloudflare_record" "calibre" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "pollster" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "pollster"
+  content = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}
