@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: miniflux
-          image: ghcr.io/miniflux/miniflux:nightly-distroless
+          image: ghcr.io/miniflux/miniflux:2.2.6-distroless
           imagePullPolicy: Always
 
           env:
