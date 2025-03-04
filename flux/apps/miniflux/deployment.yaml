@@ -19,7 +19,7 @@ spec:
       containers:
         - name: miniflux
           image: ghcr.io/miniflux/miniflux:2.2.6-distroless
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
 
           env:
             - name: DATABASE_URL
