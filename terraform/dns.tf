@@ -68,3 +68,10 @@ resource "cloudflare_record" "pollster" {
   content = cloudflare_record.bastion.hostname
   type    = "CNAME"
 }
+
+resource "cloudflare_record" "plex" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "plex"
+  content = cloudflare_record.bastion.hostname
+  type    = "CNAME"
+}

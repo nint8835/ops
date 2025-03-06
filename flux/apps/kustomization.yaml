@@ -15,3 +15,4 @@ resources:
   - interruption-spotter.yaml
   - calibre.yaml
   - pollster.yaml
+  - plex-proxy.yaml
