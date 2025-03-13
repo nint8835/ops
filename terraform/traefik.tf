@@ -21,6 +21,11 @@ resource "helm_release" "traefik" {
     name  = "providers.kubernetesCRD.allowCrossNamespace"
     value = true
   }
+
+  set {
+    name  = "deployment.kind"
+    value = "DaemonSet"
+  }
 }
 
 resource "kubernetes_manifest" "traefik_https_redirect" {
