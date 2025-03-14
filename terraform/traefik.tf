@@ -26,6 +26,17 @@ resource "helm_release" "traefik" {
     name  = "deployment.kind"
     value = "DaemonSet"
   }
+
+  # TODO: See if there's a way to not need insecure
+  # My Rube Goldberg-esque networking solution leaves me with unpredictable source IPs
+  set {
+    name  = "ports.web.proxyProtocol.insecure"
+    value = true
+  }
+  set {
+    name  = "ports.websecure.proxyProtocol.insecure"
+    value = true
+  }
 }
 
 resource "kubernetes_manifest" "traefik_https_redirect" {

@@ -35,7 +35,8 @@ module "bastion_host" {
               listen = [":${v.source_port}"]
               routes = [{
                 handle = [{
-                  handler = "proxy"
+                  handler        = "proxy"
+                  proxy_protocol = "v2"
                   upstreams = [{
                     dial = [v.dest_addr]
                   }]
