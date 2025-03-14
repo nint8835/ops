@@ -21,7 +21,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "8.5.12"
+  version    = "8.10.3"
 
   set {
     name  = "persistence.enabled"
@@ -76,7 +76,7 @@ resource "helm_release" "loki" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "loki"
-  version    = "6.18.0"
+  version    = "6.28.0"
 
   values = [
     <<EOF
@@ -180,7 +180,7 @@ resource "helm_release" "prometheus_operator" {
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
-  version    = "65.8.1"
+  version    = "69.8.2"
 
   values = [
     yamlencode({
