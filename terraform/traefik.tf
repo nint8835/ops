@@ -18,6 +18,16 @@ resource "helm_release" "traefik" {
   }
 
   set {
+    name  = "logs.access.format"
+    value = "json"
+  }
+
+  set {
+    name  = "logs.general.format"
+    value = "json"
+  }
+
+  set {
     name  = "providers.kubernetesCRD.allowCrossNamespace"
     value = true
   }
