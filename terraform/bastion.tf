@@ -69,9 +69,14 @@ module "bastion_host" {
   ]
 }
 
-resource "cloudflare_record" "bastion" {
+resource "cloudflare_dns_record" "bastion" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "ingress"
   content = module.bastion_host.public_ip
   type    = "A"
+  ttl     = 1
+}
+
+locals {
+  bastion_hostname = "${cloudflare_dns_record.bastion.name}.${data.cloudflare_zone.bootleg_technology.name}"
 }

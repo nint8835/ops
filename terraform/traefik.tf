@@ -76,11 +76,12 @@ resource "kubernetes_manifest" "traefik_dashboard_auth" {
   }
 }
 
-resource "cloudflare_record" "traefik_dashboard" {
+resource "cloudflare_dns_record" "traefik_dashboard" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "traefik.ops"
-  content = cloudflare_record.bastion.hostname
+  content = local.bastion_hostname
   type    = "CNAME"
+  ttl     = 1
 }
 
 resource "kubernetes_manifest" "traefik_dashboard" {

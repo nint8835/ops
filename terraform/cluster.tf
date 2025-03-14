@@ -56,13 +56,14 @@ data "talos_client_configuration" "config" {
   endpoints            = [for k, v in local.control_plane_nodes : v]
 }
 
-resource "cloudflare_record" "cluster" {
+resource "cloudflare_dns_record" "cluster" {
   for_each = local.control_plane_nodes
 
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "cluster.ops"
   content = each.value
   type    = "A"
+  ttl     = 1
 }
 
 resource "talos_cluster_kubeconfig" "config" {

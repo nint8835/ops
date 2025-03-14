@@ -7,11 +7,12 @@ resource "kubernetes_namespace" "lgtm" {
   }
 }
 
-resource "cloudflare_record" "grafana" {
+resource "cloudflare_dns_record" "grafana" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "grafana.ops"
-  content = cloudflare_record.bastion.hostname
+  content = local.bastion_hostname
   type    = "CNAME"
+  ttl     = 1
 }
 
 resource "helm_release" "grafana" {

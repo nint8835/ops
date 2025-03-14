@@ -21,16 +21,18 @@ module "proxmox_hosts" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
 }
 
-resource "cloudflare_record" "proxmox_proxy_internal" {
+resource "cloudflare_dns_record" "proxmox_proxy_internal" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "proxy.hosts"
   content = "192.168.1.181"
   type    = "A"
+  ttl     = 1
 }
 
-resource "cloudflare_record" "proxmox_proxy_tailscale" {
+resource "cloudflare_dns_record" "proxmox_proxy_tailscale" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "proxy-tailscale.hosts"
   content = "100.91.221.13"
   type    = "A"
+  ttl     = 1
 }
