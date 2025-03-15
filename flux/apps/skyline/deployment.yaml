@@ -51,6 +51,12 @@ spec:
               path: /
               port: http
 
+          resources:
+            requests:
+              memory: "768Mi"
+            limits:
+              memory: "768Mi"
+
       initContainers:
         - name: upgrade-db
           image: ghcr.io/nint8835/skyline:latest
@@ -66,3 +72,9 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: database
+
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
