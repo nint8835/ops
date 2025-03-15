@@ -63,6 +63,12 @@ spec:
               drop:
                 - ALL
 
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
+
       initContainers:
         - name: upgrade-db
           image: ghcr.io/nint8835/shopkeeper:latest
@@ -84,6 +90,13 @@ spec:
               drop:
                 - ALL
 
+          # TODO: Same resources as the main container granted here - can this be reduced?
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
+
         - name: sync-commands
           image: ghcr.io/nint8835/shopkeeper:latest
           imagePullPolicy: Always
@@ -100,3 +113,10 @@ spec:
             capabilities:
               drop:
                 - ALL
+
+          # TODO: Same resources as the main container granted here - can this be reduced?
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
