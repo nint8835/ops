@@ -51,6 +51,12 @@ spec:
               path: /
               port: http
 
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              memory: "192Mi"
+
       initContainers:
         - name: upgrade-db
           image: ghcr.io/nint8835/pollster:latest
@@ -66,3 +72,10 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: database
+
+          # TODO: Same resources as the main container granted here - can this be reduced?
+          resources:
+            requests:
+              memory: "128Mi"
+            limits:
+              memory: "192Mi"
