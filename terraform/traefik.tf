@@ -37,6 +37,16 @@ resource "helm_release" "traefik" {
     value = "DaemonSet"
   }
 
+  set {
+    name  = "resources.requests.memory"
+    value = "64Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "64Mi"
+  }
+
   # TODO: See if there's a way to not need insecure
   # My Rube Goldberg-esque networking solution leaves me with unpredictable source IPs
   set {
