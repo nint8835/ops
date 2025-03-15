@@ -7,6 +7,16 @@ spec:
   primaryUpdateStrategy: unsupervised
   enableSuperuserAccess: true
 
+  postgresql:
+    parameters:
+      shared_buffers: "49MB"
+
   storage:
     size: 1Gi
     storageClass: nfs-csi
+
+  resources:
+    requests:
+      memory: "196Mi"
+    limits:
+      memory: "196Mi"
