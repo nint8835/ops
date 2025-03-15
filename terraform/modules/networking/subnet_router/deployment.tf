@@ -60,6 +60,15 @@ resource "kubernetes_deployment" "router" {
             name  = "TS_HOSTNAME"
             value = var.router_name
           }
+
+          resources {
+            requests = {
+              memory = "40Mi"
+            }
+            limits = {
+              memory = "40Mi"
+            }
+          }
         }
 
         security_context {
