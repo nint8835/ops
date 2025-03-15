@@ -51,3 +51,9 @@ spec:
             runAsNonRoot: true
             seccompProfile:
               type: RuntimeDefault
+
+          resources:
+            requests:
+              memory: "20Mi"
+            limits:
+              memory: "20Mi"
