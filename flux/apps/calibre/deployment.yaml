@@ -51,3 +51,9 @@ spec:
             - containerPort: 8083
               name: http
               protocol: TCP
+
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "512Mi"
