@@ -54,6 +54,6 @@ spec:
 
           resources:
             requests:
-              memory: "384Mi"
+              memory: "256Mi"
             limits:
               memory: "512Mi"
