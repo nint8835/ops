@@ -21,5 +21,4 @@ resource "talos_machine_configuration_apply" "node" {
       file("${path.module}/files/controlplane-scheduling.yaml")
     ] : []
   )
-
 }
