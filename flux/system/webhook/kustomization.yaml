@@ -4,3 +4,5 @@ namespace: flux-system
 
 resources:
   - ingress.yaml
+  - secret.yaml
+  - receiver.yaml
