@@ -16,6 +16,36 @@ resource "helm_release" "cert_manager" {
     name  = "installCRDs"
     value = true
   }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "32Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "64Mi"
+  }
+
+  set {
+    name  = "cainjector.resources.requests.memory"
+    value = "64Mi"
+  }
+
+  set {
+    name  = "cainjector.resources.limits.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "webhook.resources.requests.memory"
+    value = "16Mi"
+  }
+
+  set {
+    name  = "webhook.resources.limits.memory"
+    value = "64Mi"
+  }
 }
 
 resource "kubernetes_manifest" "letsencrypt_staging_issuer" {
