@@ -67,6 +67,16 @@ resource "helm_release" "grafana" {
     name  = "grafana\\.ini.server.root_url"
     value = "https://grafana.ops.bootleg.technology"
   }
+
+  set {
+    name  = "resources.requests.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "256Mi"
+  }
 }
 
 
@@ -155,6 +165,26 @@ EOF
     value = false
   }
 
+  set {
+    name  = "singleBinary.resources.requests.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "singleBinary.resources.limits.memory"
+    value = "256Mi"
+  }
+
+  set {
+    name  = "gateway.resources.requests.memory"
+    value = "16Mi"
+  }
+
+  set {
+    name  = "gateway.resources.limits.memory"
+    value = "32Mi"
+  }
+
   dynamic "set" {
     for_each = toset(["backend", "read", "write"])
 
@@ -172,6 +202,16 @@ resource "helm_release" "promtail" {
   repository = "https://grafana.github.io/helm-charts"
   chart      = "promtail"
   version    = "6.16.6"
+
+  set {
+    name  = "resources.requests.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "128Mi"
+  }
 }
 
 resource "helm_release" "prometheus_operator" {
@@ -207,6 +247,56 @@ resource "helm_release" "prometheus_operator" {
   set {
     name  = "grafana.enabled"
     value = false
+  }
+
+  set {
+    name  = "prometheusOperator.resources.requests.memory"
+    value = "48Mi"
+  }
+
+  set {
+    name  = "prometheusOperator.resources.limits.memory"
+    value = "48Mi"
+  }
+
+  set {
+    name  = "prometheus-node-exporter.resources.requests.memory"
+    value = "32Mi"
+  }
+
+  set {
+    name  = "prometheus-node-exporter.resources.limits.memory"
+    value = "32Mi"
+  }
+
+  set {
+    name  = "kube-state-metrics.resources.requests.memory"
+    value = "32Mi"
+  }
+
+  set {
+    name  = "kube-state-metrics.resources.limits.memory"
+    value = "128Mi"
+  }
+
+  set {
+    name  = "prometheus.prometheusSpec.resources.requests.memory"
+    value = "1Gi"
+  }
+
+  set {
+    name  = "prometheus.prometheusSpec.resources.limits.memory"
+    value = "1Gi"
+  }
+
+  set {
+    name  = "alertmanager.alertmanagerSpec.resources.requests.memory"
+    value = "40Mi"
+  }
+
+  set {
+    name  = "alertmanager.alertmanagerSpec.resources.limits.memory"
+    value = "40Mi"
   }
 }
 
