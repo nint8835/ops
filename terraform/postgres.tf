@@ -11,4 +11,14 @@ resource "helm_release" "cloudnativepg" {
   repository = "https://cloudnative-pg.github.io/charts"
   chart      = "cloudnative-pg"
   version    = "0.23.2"
+
+  set {
+    name  = "resources.requests.memory"
+    value = "64Mi"
+  }
+
+  set {
+    name  = "resources.limits.memory"
+    value = "128Mi"
+  }
 }
