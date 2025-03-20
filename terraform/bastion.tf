@@ -55,7 +55,7 @@ module "bastion_host" {
     {
       protocol         = "tcp"
       port_range       = "22",
-      source_addresses = ["${chomp(data.http.ip_resp.body)}/32"]
+      source_addresses = ["${chomp(data.http.ip_resp.response_body)}/32"]
     },
     {
       protocol         = "tcp"

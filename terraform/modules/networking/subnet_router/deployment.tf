@@ -63,10 +63,10 @@ resource "kubernetes_deployment" "router" {
 
           resources {
             requests = {
-              memory = "40Mi"
+              memory = "64Mi"
             }
             limits = {
-              memory = "64Mi"
+              memory = "128Mi"
             }
           }
         }
