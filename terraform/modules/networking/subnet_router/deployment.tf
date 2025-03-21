@@ -37,7 +37,12 @@ resource "kubernetes_deployment" "router" {
 
           env {
             name  = "TS_USERSPACE"
-            value = "true"
+            value = "false"
+          }
+
+          env {
+            name  = "TS_DEBUG_FIREWALL_MODE"
+            value = "auto"
           }
 
           env {
@@ -57,8 +62,21 @@ resource "kubernetes_deployment" "router" {
           }
 
           env {
-            name  = "TS_HOSTNAME"
-            value = var.router_name
+            name = "POD_NAME"
+            value_from {
+              field_ref {
+                field_path = "metadata.name"
+              }
+            }
+          }
+
+          env {
+            name = "POD_UID"
+            value_from {
+              field_ref {
+                field_path = "metadata.uid"
+              }
+            }
           }
 
           resources {
@@ -69,11 +87,10 @@ resource "kubernetes_deployment" "router" {
               memory = "128Mi"
             }
           }
-        }
 
-        security_context {
-          run_as_user  = 1000
-          run_as_group = 1000
+          security_context {
+            privileged = true
+          }
         }
       }
     }

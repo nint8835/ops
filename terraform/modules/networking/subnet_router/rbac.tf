@@ -10,6 +10,12 @@ resource "kubernetes_role" "role" {
     resources      = ["secrets"]
     verbs          = ["get", "update", "patch"]
   }
+
+  rule {
+    api_groups = [""]
+    resources  = ["events"]
+    verbs      = ["get", "create", "patch"]
+  }
 }
 
 resource "kubernetes_service_account" "service_account" {
