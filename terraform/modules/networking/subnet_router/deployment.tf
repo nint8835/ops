@@ -17,8 +17,9 @@ resource "kubernetes_deployment" "router" {
     template {
       metadata {
         labels = {
-          app   = "tailscale"
-          route = var.router_name
+          app          = "tailscale"
+          route        = var.router_name
+          router-group = var.router_group
         }
       }
 
@@ -90,6 +91,22 @@ resource "kubernetes_deployment" "router" {
 
           security_context {
             privileged = true
+          }
+        }
+
+        affinity {
+          pod_anti_affinity {
+            preferred_during_scheduling_ignored_during_execution {
+              weight = 100
+              pod_affinity_term {
+                topology_key = "topology.kubernetes.io/zone"
+                label_selector {
+                  match_labels = {
+                    router-group = var.router_group
+                  }
+                }
+              }
+            }
           }
         }
       }

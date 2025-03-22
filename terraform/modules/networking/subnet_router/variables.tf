@@ -1,4 +1,3 @@
-
 variable "namespace" {
   description = "Kubernetes namespace to run in"
   type        = string
@@ -16,5 +15,10 @@ variable "routes" {
 
 variable "ts_auth_key_secret" {
   description = "Name of the Kubernetes secret containing the Tailscale auth key."
+  type        = string
+}
+
+variable "router_group" {
+  description = "A unique label to group multiple instances of this same router. Used for scheduling."
   type        = string
 }
