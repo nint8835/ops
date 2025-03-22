@@ -15,7 +15,13 @@ resource "talos_machine_configuration_apply" "node" {
       templatefile(
         "${path.module}/templates/install-hostname.yaml.tmpl", {
           hostname = var.name
-      })
+      }),
+      templatefile(
+        "${path.module}/templates/topology-labels.yaml.tmpl", {
+          region = var.region
+          zone   = var.zone
+        }
+      )
     ],
     var.role == "controlplane" ? [
       file("${path.module}/files/controlplane-scheduling.yaml")

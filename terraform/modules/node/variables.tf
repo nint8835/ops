@@ -32,3 +32,13 @@ variable "client_configuration" {
   description = "Talos client configuration to use to join."
   type        = any
 }
+
+variable "region" {
+  description = "Value for the topology.kubernetes.io/region label."
+  type        = string
+}
+
+variable "zone" {
+  description = "Value for the topology.kubernetes.io/zone label."
+  type        = string
+}
