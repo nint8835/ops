@@ -35,8 +35,8 @@ spec:
           env:
             - name: SCRIBE_DB_PATH
               value: /data/quotes.sqlite
-            - name: SCRIBE_CALLBACK_URL
-              value: https://scribe.bootleg.technology/auth/callback
+            - name: SCRIBE_BASE_URL
+              value: https://scribe.bootleg.technology
             - name: SCRIBE_MENTION_CACHE_PATH
               value: /data/mentions.json
 
