@@ -67,4 +67,4 @@ spec:
             requests:
               memory: "48Mi"
             limits:
-              memory: "128Mi"
+              memory: "256Mi"
