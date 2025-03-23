@@ -19,6 +19,6 @@ resource "helm_release" "cloudnativepg" {
 
   set {
     name  = "resources.limits.memory"
-    value = "128Mi"
+    value = "192Mi"
   }
 }
