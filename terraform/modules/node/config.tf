@@ -3,6 +3,9 @@ data "talos_machine_configuration" "config" {
   cluster_endpoint = var.cluster_endpoint
   machine_type     = var.role
   machine_secrets  = var.machine_secrets
+
+  talos_version      = var.talos_version
+  kubernetes_version = var.kubernetes_version
 }
 
 resource "talos_machine_configuration_apply" "node" {

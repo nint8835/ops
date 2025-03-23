@@ -43,6 +43,9 @@ locals {
     }
   }
 
+  talos_version      = "1.9.5"
+  kubernetes_version = "1.32.0"
+
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
   worker_nodes        = { for k, v in local.cluster_nodes : k => v if v.role == "worker" }
 }
@@ -62,6 +65,9 @@ module "control_plane_node" {
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
+
+  talos_version      = local.talos_version
+  kubernetes_version = local.kubernetes_version
 }
 
 module "worker_node" {
@@ -77,6 +83,9 @@ module "worker_node" {
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
+
+  talos_version      = local.talos_version
+  kubernetes_version = local.kubernetes_version
 }
 
 resource "talos_machine_bootstrap" "cluster" {

@@ -42,3 +42,13 @@ variable "zone" {
   description = "Value for the topology.kubernetes.io/zone label."
   type        = string
 }
+
+variable "talos_version" {
+  description = "Version of Talos to install."
+  type        = string
+}
+
+variable "kubernetes_version" {
+  description = "Version of Kubernetes to install."
+  type        = string
+}
