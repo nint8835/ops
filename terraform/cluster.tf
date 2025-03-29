@@ -107,7 +107,7 @@ resource "cloudflare_dns_record" "cluster" {
   for_each = local.control_plane_nodes
 
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
-  name    = "cluster.ops"
+  name    = "cluster.ops.bootleg.technology"
   content = each.value.ip
   type    = "A"
   ttl     = 1

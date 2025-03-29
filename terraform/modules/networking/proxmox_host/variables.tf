@@ -11,11 +11,10 @@ variable "ip" {
 variable "subdomain" {
   description = "Subdomain of zone_domain to use for this host's DNS record"
   type        = string
-  default     = "hosts"
+  default     = "hosts.bootleg.technology"
 }
 
 variable "zone_id" {
   description = "Zone ID to use for this host's DNS record"
   type        = string
 }
-

@@ -109,7 +109,7 @@ resource "kubernetes_manifest" "traefik_dashboard_auth" {
 
 resource "cloudflare_dns_record" "traefik_dashboard" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
-  name    = "traefik.ops"
+  name    = "traefik.ops.bootleg.technology"
   content = local.bastion_hostname
   type    = "CNAME"
   ttl     = 1
