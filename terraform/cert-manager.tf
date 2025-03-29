@@ -4,6 +4,17 @@ resource "kubernetes_namespace" "cert_manager" {
   }
 }
 
+resource "kubernetes_secret" "certmanager_cloudflare_token" {
+  metadata {
+    name      = "cloudflare-api-token"
+    namespace = kubernetes_namespace.cert_manager.id
+  }
+
+  data = {
+    api-token = var.cert_manager_cloudflare_api_token
+  }
+}
+
 resource "helm_release" "cert_manager" {
   name      = "cert-manager"
   namespace = kubernetes_namespace.cert_manager.id
@@ -65,6 +76,21 @@ resource "kubernetes_manifest" "letsencrypt_staging_issuer" {
         }
         solvers = [
           {
+            dns01 = {
+              cloudflare = {
+                apiTokenSecretRef = {
+                  name = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
+                  key  = "api-token"
+                }
+              }
+            }
+            selector = {
+              dnsZones = [
+                "internal.bootleg.technology",
+              ]
+            }
+          },
+          {
             http01 = {
               ingress = {
                 ingressClassName = "traefik"
@@ -93,6 +119,21 @@ resource "kubernetes_manifest" "letsencrypt_issuer" {
           name = "letsencrypt-account-key"
         }
         solvers = [
+          {
+            dns01 = {
+              cloudflare = {
+                apiTokenSecretRef = {
+                  name = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
+                  key  = "api-token"
+                }
+              }
+            }
+            selector = {
+              dnsZones = [
+                "internal.bootleg.technology",
+              ]
+            }
+          },
           {
             http01 = {
               ingress = {

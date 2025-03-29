@@ -49,3 +49,8 @@ variable "traefik_basic_auth_entry" {
   description = "Output of htpasswd for the credentials to use for the Traefik dashboard"
   type        = string
 }
+
+variable "cert_manager_cloudflare_api_token" {
+  description = "Cloudflare API token for cert-manager"
+  type        = string
+}
