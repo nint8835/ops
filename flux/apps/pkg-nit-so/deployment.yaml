@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: dieppe
-          image: ghcr.io/nint8835/dieppe:latest
+          image: registry.internal.bootleg.technology/ghcr/nint8835/dieppe:latest
           imagePullPolicy: Always
 
           volumeMounts:
