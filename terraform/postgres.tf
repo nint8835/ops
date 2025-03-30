@@ -21,4 +21,29 @@ resource "helm_release" "cloudnativepg" {
     name  = "resources.limits.memory"
     value = "192Mi"
   }
+
+  set {
+    name  = "image.repository"
+    value = "registry.internal.bootleg.technology/ghcr/cloudnative-pg/cloudnative-pg"
+  }
+}
+
+resource "kubernetes_manifest" "cloudnativepg_imagecatalog" {
+  manifest = {
+    apiVersion = "postgresql.cnpg.io/v1"
+    kind       = "ClusterImageCatalog"
+
+    metadata = {
+      name = "postgresql"
+    }
+
+    spec = {
+      images = [
+        {
+          major = 16
+          image = "registry.internal.bootleg.technology/ghcr/cloudnative-pg/postgresql:16.1"
+        }
+      ]
+    }
+  }
 }
