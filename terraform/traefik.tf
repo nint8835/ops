@@ -57,6 +57,16 @@ resource "helm_release" "traefik" {
     name  = "ports.websecure.proxyProtocol.insecure"
     value = true
   }
+
+  set {
+    name  = "image.registry"
+    value = "ghcr.io"
+  }
+
+  set {
+    name  = "image.repository"
+    value = "traefik/traefik"
+  }
 }
 
 resource "kubernetes_manifest" "traefik_https_redirect" {

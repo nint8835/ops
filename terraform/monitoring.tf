@@ -77,6 +77,11 @@ resource "helm_release" "grafana" {
     name  = "resources.limits.memory"
     value = "256Mi"
   }
+
+  set {
+    name  = "global.imageRegistry"
+    value = "registry.internal.bootleg.technology/docker-hub"
+  }
 }
 
 
@@ -193,6 +198,16 @@ EOF
       value = 0
     }
   }
+
+  set {
+    name  = "global.image.registry"
+    value = "registry.internal.bootleg.technology/docker-hub"
+  }
+
+  set {
+    name  = "sidecar.image.repository"
+    value = "registry.internal.bootleg.technology/docker-hub/kiwigrid/k8s-sidecar"
+  }
 }
 
 resource "helm_release" "promtail" {
@@ -211,6 +226,11 @@ resource "helm_release" "promtail" {
   set {
     name  = "resources.limits.memory"
     value = "128Mi"
+  }
+
+  set {
+    name  = "global.imageRegistry"
+    value = "registry.internal.bootleg.technology/docker-hub"
   }
 }
 
