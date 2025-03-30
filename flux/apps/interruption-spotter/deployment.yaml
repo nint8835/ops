@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: interruption-spotter
-          image: ghcr.io/nint8835/interruption-spotter:latest
+          image: registry.internal.bootleg.technology/ghcr/nint8835/interruption-spotter:latest
           imagePullPolicy: Always
 
           envFrom:
