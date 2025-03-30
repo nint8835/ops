@@ -19,6 +19,7 @@ resource "flux_bootstrap_git" "bootstrap" {
     "image-reflector-controller",
     "image-automation-controller",
   ]
+  registry = "registry.internal.bootleg.technology/ghcr/fluxcd"
 
   kustomization_override = file("${path.module}/files/flux-kustomization.yaml")
 }
