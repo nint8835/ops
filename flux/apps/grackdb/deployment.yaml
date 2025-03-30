@@ -24,7 +24,7 @@ spec:
 
       containers:
         - name: grackdb
-          image: ghcr.io/fogo-sh/grackdb:latest
+          image: registry.internal.bootleg.technology/ghcr/fogo-sh/grackdb:latest
           imagePullPolicy: Always
 
           envFrom:
