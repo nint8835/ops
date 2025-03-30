@@ -4043,7 +4043,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/helm-controller:v1.2.0
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/helm-controller:v1.2.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -5925,7 +5925,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/kustomize-controller:v1.5.1
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/kustomize-controller:v1.5.1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -7877,7 +7877,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/notification-controller:v1.5.0
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/notification-controller:v1.5.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -12528,7 +12528,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/source-controller:v1.5.0
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/source-controller:v1.5.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -13364,7 +13364,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/image-automation-controller:v0.40.0
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/image-automation-controller:v0.40.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
@@ -14394,7 +14394,7 @@ spec:
             resourceFieldRef:
               containerName: manager
               resource: limits.memory
-        image: ghcr.io/fluxcd/image-reflector-controller:v0.34.0
+        image: registry.internal.bootleg.technology/ghcr/fluxcd/image-reflector-controller:v0.34.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
