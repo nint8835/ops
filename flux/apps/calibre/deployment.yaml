@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: calibre
-          image: crocodilestick/calibre-web-automated:V3.0.4
+          image: registry.internal.bootleg.technology/docker-hub/crocodilestick/calibre-web-automated:V3.0.4
           imagePullPolicy: IfNotPresent
 
           env:
