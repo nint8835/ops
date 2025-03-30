@@ -84,6 +84,52 @@ resource "helm_release" "harbor" {
     name  = "database.internal.password"
     value = random_password.harbor_postgres_password.result
   }
+
+  set {
+    name  = "portal.image.repository"
+    value = "ghcr.io/goharbor/harbor-portal"
+  }
+
+  set {
+    name  = "core.image.repository"
+    value = "ghcr.io/goharbor/harbor-core"
+  }
+
+  set {
+    name  = "jobservice.image.repository"
+    value = "ghcr.io/goharbor/harbor-jobservice"
+  }
+
+  set {
+    name  = "registry.registry.image.repository"
+    value = "ghcr.io/goharbor/registry-photon"
+  }
+
+  set {
+    name  = "registry.controller.image.repository"
+    value = "ghcr.io/goharbor/harbor-registryctl"
+  }
+
+  set {
+    name  = "trivy.image.repository"
+    value = "ghcr.io/goharbor/trivy-adapter-photon"
+  }
+
+  # TODO: These two don't seem to be published to GHCR
+  # set {
+  #   name = "database.internal.image.repository"
+  #   value = ""
+  # }
+  #
+  # set {
+  #   name = "redis.internal.image.repository"
+  #   value = ""
+  # }
+
+  set {
+    name  = "exporter.image.repository"
+    value = "ghcr.io/goharbor/harbor-exporter"
+  }
 }
 
 resource "cloudflare_dns_record" "registry" {
