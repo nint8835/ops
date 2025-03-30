@@ -40,5 +40,9 @@ terraform {
       source  = "fluxcd/flux"
       version = "1.5.1"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.7.1"
+    }
   }
 }
