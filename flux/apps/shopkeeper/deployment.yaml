@@ -27,7 +27,7 @@ spec:
 
       containers:
         - name: shopkeeper
-          image: ghcr.io/nint8835/shopkeeper:latest
+          image: registry.internal.bootleg.technology/ghcr/nint8835/shopkeeper:latest
           imagePullPolicy: Always
           args: [ "start" ]
 
@@ -71,7 +71,7 @@ spec:
 
       initContainers:
         - name: upgrade-db
-          image: ghcr.io/nint8835/shopkeeper:latest
+          image: registry.internal.bootleg.technology/ghcr/nint8835/shopkeeper:latest
           imagePullPolicy: Always
           args: [ "upgrade" ]
           envFrom:
@@ -98,7 +98,7 @@ spec:
               memory: "256Mi"
 
         - name: sync-commands
-          image: ghcr.io/nint8835/shopkeeper:latest
+          image: registry.internal.bootleg.technology/ghcr/nint8835/shopkeeper:latest
           imagePullPolicy: Always
           args: [ "sync" ]
           envFrom:
