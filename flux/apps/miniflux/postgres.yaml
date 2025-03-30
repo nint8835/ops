@@ -7,7 +7,6 @@ spec:
   primaryUpdateStrategy: unsupervised
   enableSuperuserAccess: true
 
-  imageName: null
   imageCatalogRef:
     apiGroup: postgresql.cnpg.io
     kind: ClusterImageCatalog
