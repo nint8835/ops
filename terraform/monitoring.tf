@@ -318,6 +318,34 @@ resource "helm_release" "prometheus_operator" {
     name  = "alertmanager.alertmanagerSpec.resources.limits.memory"
     value = "40Mi"
   }
+
+  dynamic "set" {
+    for_each = toset([
+      "alertmanager.alertmanagerSpec.image.registry",
+      "prometheusOperator.admissionWebhooks.deployment.image.registry",
+      "prometheusOperator.image.registry",
+      "prometheusOperator.prometheusConfigReloader.image.registry",
+      "prometheusOperator.thanosImage.registry",
+      "prometheus.prometheusSpec.image.registry",
+      "thanosRuler.thanosRulerSpec.image.registry",
+      "prometheus-node-exporter.image.registry",
+    ])
+
+    content {
+      name  = set.key
+      value = "registry.internal.bootleg.technology/quay"
+    }
+  }
+
+  set {
+    name  = "prometheusOperator.admissionWebhooks.patch.image.registry"
+    value = "registry.internal.bootleg.technology/registry-k8s-io"
+  }
+
+  set {
+    name  = "kube-state-metrics.image.registry"
+    value = "registry.internal.bootleg.technology/registry-k8s-io"
+  }
 }
 
 resource "helm_release" "metrics_server" {
@@ -331,5 +359,10 @@ resource "helm_release" "metrics_server" {
   set {
     name  = "args[0]"
     value = "--kubelet-insecure-tls"
+  }
+
+  set {
+    name  = "image.repository"
+    value = "registry.internal.bootleg.technology/registry-k8s-io/metrics-server/metrics-server"
   }
 }
