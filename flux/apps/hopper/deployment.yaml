@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hopper
+
+spec:
+  selector:
+    matchLabels:
+      app: hopper
+
+  replicas: 1
+
+  template:
+    metadata:
+      labels:
+        app: hopper
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: hopper
+          image: registry.internal.bootleg.technology/ghcr/nint8835/hopper:latest
+          imagePullPolicy: Always
+
+          env:
+            - name: HOPPER_DATABASE_PATH
+              value: /data/hopper.db
+            - name: HOPPER_DISCORD_APP_ID
+              value: "1358577343446253618"
+            - name: HOPPER_DISCORD_GUILD_ID
+              value: "497544520695808000"
+            - name: HOPPER_DISCORD_CHANNEL_ID
+              value: "1358579259958104226"
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: HOPPER_
+
+          volumeMounts:
+            - mountPath: /data
+              name: database

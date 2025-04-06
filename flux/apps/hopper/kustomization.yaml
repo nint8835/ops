@@ -4,3 +4,6 @@ namespace: hopper
 
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
+  - secrets.yaml
+  - deployment.yaml
