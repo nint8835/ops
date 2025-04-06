@@ -16,3 +16,4 @@ resources:
   - calibre.yaml
   - pollster.yaml
   - plex-proxy.yaml
+  - hopper.yaml
