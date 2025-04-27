@@ -10,7 +10,7 @@ resource "helm_release" "traefik" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "34.4.1"
+  version    = "35.1.0"
 
   set {
     name  = "logs.access.enabled"
