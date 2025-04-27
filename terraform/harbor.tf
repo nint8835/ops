@@ -25,7 +25,7 @@ resource "helm_release" "harbor" {
 
   repository = "https://helm.goharbor.io"
   chart      = "harbor"
-  version    = "1.16.2"
+  version    = "1.17.0"
 
   set {
     name  = "externalURL"
