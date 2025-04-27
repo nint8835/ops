@@ -14,19 +14,19 @@ terraform {
     }
     tailscale = {
       source  = "tailscale/tailscale"
-      version = "0.18.0"
+      version = "0.19.0"
     }
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.49.1"
+      version = "2.51.0"
     }
     http = {
       source  = "hashicorp/http"
-      version = "3.4.5"
+      version = "3.5.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "5.2.0"
+      version = "5.3.0"
     }
     github = {
       source  = "integrations/github"
@@ -34,7 +34,7 @@ terraform {
     }
     tls = {
       source  = "hashicorp/tls"
-      version = "4.0.6"
+      version = "4.1.0"
     }
     flux = {
       source  = "fluxcd/flux"
@@ -42,7 +42,7 @@ terraform {
     }
     random = {
       source  = "hashicorp/random"
-      version = "3.7.1"
+      version = "3.7.2"
     }
     harbor = {
       source  = "goharbor/harbor"
