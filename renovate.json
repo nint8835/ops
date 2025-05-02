@@ -9,5 +9,11 @@
     "registry.internal.bootleg.technology/quay": "quay.io",
     "registry.internal.bootleg.technology/chainguard": "cgr.dev",
     "registry.internal.bootleg.technology/registry-k8s-io": "registry.k8s.io"
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["terraform-provider", "terraform-module"],
+      "registryUrls": ["https://registry.opentofu.org"]
+    }
+  ]
 }
