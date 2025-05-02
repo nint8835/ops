@@ -2,5 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ]
+  ],
+  "registryAliases": {
+    "registry.internal.bootleg.technology/ghcr": "ghcr.io",
+    "registry.internal.bootleg.technology/docker-hub": "docker.io",
+    "registry.internal.bootleg.technology/quay": "quay.io",
+    "registry.internal.bootleg.technology/chainguard": "cgr.dev",
+    "registry.internal.bootleg.technology/registry-k8s-io": "registry.k8s.io"
+  }
 }
