@@ -40,13 +40,5 @@ terraform {
       source  = "fluxcd/flux"
       version = "1.5.1"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.7.2"
-    }
-    harbor = {
-      source  = "goharbor/harbor"
-      version = "3.10.21"
-    }
   }
 }
