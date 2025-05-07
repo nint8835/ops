@@ -22,7 +22,7 @@ spec:
 
       containers:
         - name: scraper
-          image: registry.internal.bootleg.technology/ghcr/nint8835/ntv-webcam-scraper:latest
+          image: ghcr.io/nint8835/ntv-webcam-scraper:latest
           imagePullPolicy: Always
 
           volumeMounts:
