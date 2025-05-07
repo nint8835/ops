@@ -54,8 +54,3 @@ variable "cert_manager_cloudflare_api_token" {
   description = "Cloudflare API token for cert-manager"
   type        = string
 }
-
-variable "harbor_robot_secret" {
-  description = "Robot account secret for Harbor"
-  type        = string
-}

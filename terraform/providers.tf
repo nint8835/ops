@@ -52,9 +52,3 @@ provider "flux" {
     }
   }
 }
-
-provider "harbor" {
-  url      = "https://registry.internal.bootleg.technology"
-  username = "robot$terraform"
-  password = var.harbor_robot_secret
-}
