@@ -24,7 +24,7 @@ spec:
 
       containers:
         - name: hopper
-          image: registry.internal.bootleg.technology/ghcr/nint8835/hopper:latest
+          image: ghcr.io/nint8835/hopper:latest
           imagePullPolicy: Always
 
           env:
