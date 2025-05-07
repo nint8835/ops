@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: pollster
-          image: registry.internal.bootleg.technology/ghcr/nint8835/pollster:latest
+          image: ghcr.io/nint8835/pollster:latest
           imagePullPolicy: Always
           args: [ "start" ]
 
@@ -59,7 +59,7 @@ spec:
 
       initContainers:
         - name: upgrade-db
-          image: registry.internal.bootleg.technology/ghcr/nint8835/pollster:latest
+          image: ghcr.io/nint8835/pollster:latest
           imagePullPolicy: Always
           args: [ "upgrade" ]
           envFrom:

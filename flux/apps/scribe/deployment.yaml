@@ -24,7 +24,7 @@ spec:
 
       containers:
         - name: scribe
-          image: registry.internal.bootleg.technology/ghcr/nint8835/scribe:latest
+          image: ghcr.io/nint8835/scribe:latest
           imagePullPolicy: Always
 
           ports:
