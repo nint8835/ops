@@ -90,7 +90,7 @@ resource "cloudflare_dns_record" "plex" {
   ttl     = 1
 }
 
-resource "cloudflare_dns_record" "flux-webhook-receiver" {
+resource "cloudflare_dns_record" "flux_webhook_receiver" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "flux-webhook-receiver.ops.bootleg.technology"
   content = local.bastion_hostname
