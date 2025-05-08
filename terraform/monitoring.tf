@@ -220,7 +220,7 @@ resource "helm_release" "prometheus_operator" {
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-prometheus-stack"
-  version    = "72.0.1"
+  version    = "72.2.0"
 
   values = [
     yamlencode({
