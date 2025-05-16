@@ -276,7 +276,7 @@ resource "helm_release" "prometheus_operator" {
 
   set {
     name  = "kube-state-metrics.resources.limits.memory"
-    value = "128Mi"
+    value = "196Mi"
   }
 
   set {
