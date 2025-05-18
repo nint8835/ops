@@ -19,6 +19,11 @@ resource "helm_release" "metallb" {
   version    = "0.14.9"
 
   set {
+    name  = "speaker.frr.enabled"
+    value = false
+  }
+
+  set {
     name  = "speaker.resources.requests.memory"
     value = "64Mi"
   }
@@ -26,36 +31,6 @@ resource "helm_release" "metallb" {
   set {
     name  = "speaker.resources.limits.memory"
     value = "128Mi"
-  }
-
-  set {
-    name  = "speaker.frr.resources.requests.memory"
-    value = "64Mi"
-  }
-
-  set {
-    name  = "speaker.frr.resources.limits.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "speaker.frrSpeaker.resources.requests.memory"
-    value = "8Mi"
-  }
-
-  set {
-    name  = "speaker.frrSpeaker.resources.limits.memory"
-    value = "16Mi"
-  }
-
-  set {
-    name  = "speaker.reloader.resources.requests.memory"
-    value = "16Mi"
-  }
-
-  set {
-    name  = "speaker.reloader.resources.limits.memory"
-    value = "32Mi"
   }
 
   set {
