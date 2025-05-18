@@ -3,43 +3,43 @@ locals {
     k8s-control-plane-1 = {
       ip   = "10.8.1.1"
       role = "controlplane"
-      zone = "aphrodite"
+      host = "aphrodite"
     }
     k8s-control-plane-2 = {
       ip   = "10.8.1.2"
       role = "controlplane"
-      zone = "apollo"
+      host = "apollo"
     }
     k8s-control-plane-3 = {
       ip   = "10.8.1.3"
       role = "controlplane"
-      zone = "zeus"
+      host = "zeus"
     }
 
     k8s-worker-1 = {
       ip   = "10.8.2.1"
       role = "worker"
-      zone = "aphrodite"
+      host = "aphrodite"
     }
     k8s-worker-2 = {
       ip   = "10.8.2.2"
       role = "worker"
-      zone = "apollo"
+      host = "apollo"
     }
     k8s-worker-3 = {
       ip   = "10.8.2.3"
       role = "worker"
-      zone = "zeus"
+      host = "zeus"
     }
     k8s-worker-4 = {
       ip   = "10.8.2.4"
       role = "worker"
-      zone = "helios"
+      host = "helios"
     }
     k8s-worker-5 = {
       ip   = "10.8.2.5"
       role = "worker"
-      zone = "eos"
+      host = "eos"
     }
   }
 
@@ -50,7 +50,52 @@ locals {
   worker_nodes        = { for k, v in local.cluster_nodes : k => v if v.role == "worker" }
 }
 
+resource "proxmox_virtual_environment_pool" "kubernetes" {
+  pool_id = "Kubernetes"
+}
+
 resource "talos_machine_secrets" "secrets" {}
+
+resource "proxmox_virtual_environment_vm" "k8s_control_plane_node" {
+  for_each = local.control_plane_nodes
+
+  name      = each.key
+  node_name = each.value.host
+  pool_id   = proxmox_virtual_environment_pool.kubernetes.pool_id
+
+  reboot_after_update = false
+
+  scsi_hardware = "virtio-scsi-single"
+
+  agent {
+    enabled = false
+  }
+
+  cpu {
+    cores   = 2
+    sockets = 1
+    type    = "x86-64-v2-AES"
+  }
+
+  memory {
+    dedicated = 4096
+  }
+
+  disk {
+    interface = "scsi0"
+    size      = 80
+    iothread  = true
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  network_device {
+    vlan_id  = 8
+    firewall = true
+  }
+}
 
 module "control_plane_node" {
   source   = "./modules/node"
@@ -59,7 +104,7 @@ module "control_plane_node" {
   name                 = each.key
   ip                   = each.value.ip
   region               = try(each.value.region, "hera")
-  zone                 = each.value.zone
+  zone                 = each.value.host
   role                 = "controlplane"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
@@ -70,6 +115,47 @@ module "control_plane_node" {
   kubernetes_version = local.kubernetes_version
 }
 
+resource "proxmox_virtual_environment_vm" "k8s_worker_node" {
+  for_each = local.worker_nodes
+
+  name      = each.key
+  node_name = each.value.host
+  pool_id   = proxmox_virtual_environment_pool.kubernetes.pool_id
+
+  reboot_after_update = false
+
+  scsi_hardware = "virtio-scsi-single"
+
+  agent {
+    enabled = false
+  }
+
+  cpu {
+    cores   = 2
+    sockets = 1
+    type    = "x86-64-v2-AES"
+  }
+
+  memory {
+    dedicated = 8192
+  }
+
+  disk {
+    interface = "scsi0"
+    size      = 80
+    iothread  = true
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  network_device {
+    vlan_id  = 8
+    firewall = true
+  }
+}
+
 module "worker_node" {
   source   = "./modules/node"
   for_each = local.worker_nodes
@@ -77,7 +163,7 @@ module "worker_node" {
   name                 = each.key
   ip                   = each.value.ip
   region               = try(each.value.region, "hera")
-  zone                 = each.value.zone
+  zone                 = each.value.host
   role                 = "worker"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"

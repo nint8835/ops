@@ -54,3 +54,13 @@ variable "cert_manager_cloudflare_api_token" {
   description = "Cloudflare API token for cert-manager"
   type        = string
 }
+
+variable "proxmox_username" {
+  description = "Proxmox username"
+  type        = string
+}
+
+variable "proxmox_password" {
+  description = "Proxmox password"
+  type        = string
+}

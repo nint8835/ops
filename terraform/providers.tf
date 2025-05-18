@@ -52,3 +52,10 @@ provider "flux" {
     }
   }
 }
+
+provider "proxmox" {
+  username = var.proxmox_username
+  password = var.proxmox_password
+  endpoint = "https://proxy.hosts.bootleg.technology"
+  insecure = true
+}
