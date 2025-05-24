@@ -8,5 +8,8 @@
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "registryUrls": ["https://registry.opentofu.org"]
     }
-  ]
+  ],
+  "kubernetes": {
+    "managerFilePatterns": ["/flux/.+\\.ya?ml$/"]
+  }
 }
