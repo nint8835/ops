@@ -16,7 +16,7 @@ resource "helm_release" "metallb" {
 
   repository = "https://metallb.github.io/metallb"
   chart      = "metallb"
-  version    = "0.15.0"
+  version    = "0.15.2"
 
   set {
     name  = "speaker.frr.enabled"
