@@ -1,0 +1,40 @@
+- name: Fix networking
+  hosts: proxmox_hosts
+
+  tasks:
+    - name: Identify network driver
+      ansible.builtin.stat:
+        path: "/sys/class/net/{{ item }}/device/driver"
+      loop: "{{ ansible_interfaces }}"
+      register: network_drivers
+
+    - name: Check for interface using e1000e driver
+      ansible.builtin.set_fact:
+        e1000e_interface: "{{ item.item }}"
+      when: item.stat.exists and 'e1000e' in item.stat.lnk_target
+      loop: "{{ network_drivers.results }}"
+
+    - name: Exit if no e1000e interface present
+      meta: end_host
+      when: e1000e_interface is not defined
+
+    - name: Print e1000e interface
+      ansible.builtin.debug:
+        msg: "e1000e interface found: {{ e1000e_interface }}"
+
+    - name: Clear existing post-up commands
+      community.general.interfaces_file:
+        iface: "{{ e1000e_interface }}"
+        option: post-up
+        state: absent
+
+    - name: Disable hardware offloading
+      ansible.builtin.command:
+        cmd: "ethtool -K {{ e1000e_interface }} gso off gro off tso off tx off rx off rxvlan off txvlan off"
+
+    - name: Make offloading disable automatic
+      community.general.interfaces_file:
+        iface: "{{ e1000e_interface }}"
+        option: post-up
+        value: "ethtool -K {{ e1000e_interface }} gso off gro off tso off tx off rx off rxvlan off txvlan off"
+        state: present
