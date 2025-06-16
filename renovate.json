@@ -4,6 +4,8 @@
     "config:recommended"
   ],
   "rebaseWhen": "behind-base-branch",
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
   "packageRules": [
     {
       "matchDatasources": ["terraform-provider", "terraform-module"],
