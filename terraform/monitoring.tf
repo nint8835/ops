@@ -21,7 +21,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "9.2.4"
+  version    = "9.2.6"
 
   set {
     name  = "persistence.enabled"
