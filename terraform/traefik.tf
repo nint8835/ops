@@ -12,51 +12,46 @@ resource "helm_release" "traefik" {
   chart      = "traefik"
   version    = "36.1.0"
 
-  set {
-    name  = "logs.access.enabled"
-    value = true
-  }
-
-  set {
-    name  = "logs.access.format"
-    value = "json"
-  }
-
-  set {
-    name  = "logs.general.format"
-    value = "json"
-  }
-
-  set {
-    name  = "providers.kubernetesCRD.allowCrossNamespace"
-    value = true
-  }
-
-  set {
-    name  = "deployment.kind"
-    value = "DaemonSet"
-  }
-
-  set {
-    name  = "resources.requests.memory"
-    value = "64Mi"
-  }
-
-  set {
-    name  = "resources.limits.memory"
-    value = "64Mi"
-  }
-
-  # TODO: See if there's a way to not need insecure
-  # My Rube Goldberg-esque networking solution leaves me with unpredictable source IPs
-  set {
-    name  = "ports.web.proxyProtocol.insecure"
-    value = true
-  }
-  set {
-    name  = "ports.websecure.proxyProtocol.insecure"
-    value = true
-  }
+  set = [
+    {
+      name  = "logs.access.enabled"
+      value = true
+    },
+    {
+      name  = "logs.access.format"
+      value = "json"
+    },
+    {
+      name  = "logs.general.format"
+      value = "json"
+    },
+    {
+      name  = "providers.kubernetesCRD.allowCrossNamespace"
+      value = true
+    },
+    {
+      name  = "deployment.kind"
+      value = "DaemonSet"
+    },
+    {
+      name  = "resources.requests.memory"
+      value = "64Mi"
+    },
+    {
+      name  = "resources.limits.memory"
+      value = "64Mi"
+    },
+    # TODO: See if there's a way to not need insecure
+    # My Rube Goldberg-esque networking solution leaves me with unpredictable source IPs
+    {
+      name  = "ports.web.proxyProtocol.insecure"
+      value = true
+    },
+    {
+      name  = "ports.websecure.proxyProtocol.insecure"
+      value = true
+    },
+  ]
 }
 
 resource "kubernetes_manifest" "traefik_https_redirect" {

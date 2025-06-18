@@ -18,30 +18,28 @@ resource "helm_release" "metallb" {
   chart      = "metallb"
   version    = "0.15.2"
 
-  set {
-    name  = "speaker.frr.enabled"
-    value = false
-  }
-
-  set {
-    name  = "speaker.resources.requests.memory"
-    value = "64Mi"
-  }
-
-  set {
-    name  = "speaker.resources.limits.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "controller.resources.requests.memory"
-    value = "48Mi"
-  }
-
-  set {
-    name  = "controller.resources.limits.memory"
-    value = "96Mi"
-  }
+  set = [
+    {
+      name  = "speaker.frr.enabled"
+      value = false
+    },
+    {
+      name  = "speaker.resources.requests.memory"
+      value = "64Mi"
+    },
+    {
+      name  = "speaker.resources.limits.memory"
+      value = "128Mi"
+    },
+    {
+      name  = "controller.resources.requests.memory"
+      value = "48Mi"
+    },
+    {
+      name  = "controller.resources.limits.memory"
+      value = "96Mi"
+    },
+  ]
 }
 
 resource "kubernetes_manifest" "metallb_ip_pool" {
