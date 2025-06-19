@@ -23,60 +23,52 @@ resource "helm_release" "grafana" {
   chart      = "grafana"
   version    = "9.2.7"
 
-  set {
-    name  = "persistence.enabled"
-    value = true
-  }
-
-  set {
-    name  = "persistence.storageClassName"
-    value = "nfs-csi"
-  }
-
-  set {
-    name  = "ingress.enabled"
-    value = true
-  }
-
-  set {
-    name  = "ingress.annotations.cert-manager\\.io/cluster-issuer"
-    value = "letsencrypt"
-  }
-
-  set {
-    name  = "ingress.annotations.traefik\\.ingress\\.kubernetes\\.io/router\\.middlewares"
-    value = "traefik-https-redirect@kubernetescrd"
-  }
-
-  set {
-    name  = "ingress.hosts[0]"
-    value = "grafana.ops.bootleg.technology"
-  }
-
-  set {
-    name  = "ingress.tls[0].hosts[0]"
-    value = "grafana.ops.bootleg.technology"
-  }
-
-  set {
-    name  = "ingress.tls[0].secretName"
-    value = "grafana-tls"
-  }
-
-  set {
-    name  = "grafana\\.ini.server.root_url"
-    value = "https://grafana.ops.bootleg.technology"
-  }
-
-  set {
-    name  = "resources.requests.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "resources.limits.memory"
-    value = "256Mi"
-  }
+  set = [
+    {
+      name  = "persistence.enabled"
+      value = true
+    },
+    {
+      name  = "persistence.storageClassName"
+      value = "nfs-csi"
+    },
+    {
+      name  = "ingress.enabled"
+      value = true
+    },
+    {
+      name  = "ingress.annotations.cert-manager\\.io/cluster-issuer"
+      value = "letsencrypt"
+    },
+    {
+      name  = "ingress.annotations.traefik\\.ingress\\.kubernetes\\.io/router\\.middlewares"
+      value = "traefik-https-redirect@kubernetescrd"
+    },
+    {
+      name  = "ingress.hosts[0]"
+      value = "grafana.ops.bootleg.technology"
+    },
+    {
+      name  = "ingress.tls[0].hosts[0]"
+      value = "grafana.ops.bootleg.technology"
+    },
+    {
+      name  = "ingress.tls[0].secretName"
+      value = "grafana-tls"
+    },
+    {
+      name  = "grafana\\.ini.server.root_url"
+      value = "https://grafana.ops.bootleg.technology"
+    },
+    {
+      name  = "resources.requests.memory"
+      value = "128Mi"
+    },
+    {
+      name  = "resources.limits.memory"
+      value = "256Mi"
+    },
+  ]
 }
 
 
@@ -105,94 +97,84 @@ loki:
 EOF
   ]
 
-  set {
-    name  = "deploymentMode"
-    value = "SingleBinary"
-  }
-
-  set {
-    name  = "singleBinary.replicas"
-    value = 1
-  }
-
-  set {
-    name  = "singleBinary.persistence.storageClass"
-    value = "nfs-csi"
-  }
-
-  set {
-    name  = "loki.commonConfig.replication_factor"
-    value = 1
-  }
-
-  set {
-    name  = "loki.storage.type"
-    value = "filesystem"
-  }
-
-  set {
-    name  = "loki.auth_enabled"
-    value = false
-  }
-
-  set {
-    name  = "lokiCanary.enabled"
-    value = false
-  }
-
-  set {
-    name  = "test.enabled"
-    value = false
-  }
-
-  set {
-    name  = "monitoring.selfMonitoring.enabled"
-    value = false
-  }
-
-  set {
-    name  = "monitoring.selfMonitoring.grafanaAgent.installOperator"
-    value = false
-  }
-
-  set {
-    name  = "resultsCache.enabled"
-    value = false
-  }
-
-  set {
-    name  = "chunksCache.enabled"
-    value = false
-  }
-
-  set {
-    name  = "singleBinary.resources.requests.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "singleBinary.resources.limits.memory"
-    value = "256Mi"
-  }
-
-  set {
-    name  = "gateway.resources.requests.memory"
-    value = "16Mi"
-  }
-
-  set {
-    name  = "gateway.resources.limits.memory"
-    value = "32Mi"
-  }
-
-  dynamic "set" {
-    for_each = toset(["backend", "read", "write"])
-
-    content {
-      name  = "${set.key}.replicas"
+  set = [
+    {
+      name  = "deploymentMode"
+      value = "SingleBinary"
+    },
+    {
+      name  = "singleBinary.replicas"
+      value = 1
+    },
+    {
+      name  = "singleBinary.persistence.storageClass"
+      value = "nfs-csi"
+    },
+    {
+      name  = "loki.commonConfig.replication_factor"
+      value = 1
+    },
+    {
+      name  = "loki.storage.type"
+      value = "filesystem"
+    },
+    {
+      name  = "loki.auth_enabled"
+      value = false
+    },
+    {
+      name  = "lokiCanary.enabled"
+      value = false
+    },
+    {
+      name  = "test.enabled"
+      value = false
+    },
+    {
+      name  = "monitoring.selfMonitoring.enabled"
+      value = false
+    },
+    {
+      name  = "monitoring.selfMonitoring.grafanaAgent.installOperator"
+      value = false
+    },
+    {
+      name  = "resultsCache.enabled"
+      value = false
+    },
+    {
+      name  = "chunksCache.enabled"
+      value = false
+    },
+    {
+      name  = "singleBinary.resources.requests.memory"
+      value = "128Mi"
+    },
+    {
+      name  = "singleBinary.resources.limits.memory"
+      value = "256Mi"
+    },
+    {
+      name  = "gateway.resources.requests.memory"
+      value = "16Mi"
+    },
+    {
+      name  = "gateway.resources.limits.memory"
+      value = "32Mi"
+    },
+    {
+      name  = "backend.replicas"
       value = 0
-    }
-  }
+    },
+    {
+      name  = "read.replicas"
+      value = 0
+    },
+    {
+      name  = "write.replicas"
+      value = 0
+    },
+  ]
 }
 
 resource "helm_release" "promtail" {
@@ -203,15 +185,16 @@ resource "helm_release" "promtail" {
   chart      = "promtail"
   version    = "6.17.0"
 
-  set {
-    name  = "resources.requests.memory"
-    value = "128Mi"
-  }
-
-  set {
-    name  = "resources.limits.memory"
-    value = "128Mi"
-  }
+  set = [
+    {
+      name  = "resources.requests.memory"
+      value = "128Mi"
+    },
+    {
+      name  = "resources.limits.memory"
+      value = "128Mi"
+    },
+  ]
 }
 
 resource "helm_release" "prometheus_operator" {
@@ -244,60 +227,52 @@ resource "helm_release" "prometheus_operator" {
     }),
   ]
 
-  set {
-    name  = "grafana.enabled"
-    value = false
-  }
-
-  set {
-    name  = "prometheusOperator.resources.requests.memory"
-    value = "48Mi"
-  }
-
-  set {
-    name  = "prometheusOperator.resources.limits.memory"
-    value = "48Mi"
-  }
-
-  set {
-    name  = "prometheus-node-exporter.resources.requests.memory"
-    value = "32Mi"
-  }
-
-  set {
-    name  = "prometheus-node-exporter.resources.limits.memory"
-    value = "32Mi"
-  }
-
-  set {
-    name  = "kube-state-metrics.resources.requests.memory"
-    value = "32Mi"
-  }
-
-  set {
-    name  = "kube-state-metrics.resources.limits.memory"
-    value = "196Mi"
-  }
-
-  set {
-    name  = "prometheus.prometheusSpec.resources.requests.memory"
-    value = "1Gi"
-  }
-
-  set {
-    name  = "prometheus.prometheusSpec.resources.limits.memory"
-    value = "1Gi"
-  }
-
-  set {
-    name  = "alertmanager.alertmanagerSpec.resources.requests.memory"
-    value = "40Mi"
-  }
-
-  set {
-    name  = "alertmanager.alertmanagerSpec.resources.limits.memory"
-    value = "40Mi"
-  }
+  set = [
+    {
+      name  = "grafana.enabled"
+      value = false
+    },
+    {
+      name  = "prometheusOperator.resources.requests.memory"
+      value = "48Mi"
+    },
+    {
+      name  = "prometheusOperator.resources.limits.memory"
+      value = "48Mi"
+    },
+    {
+      name  = "prometheus-node-exporter.resources.requests.memory"
+      value = "32Mi"
+    },
+    {
+      name  = "prometheus-node-exporter.resources.limits.memory"
+      value = "32Mi"
+    },
+    {
+      name  = "kube-state-metrics.resources.requests.memory"
+      value = "32Mi"
+    },
+    {
+      name  = "kube-state-metrics.resources.limits.memory"
+      value = "196Mi"
+    },
+    {
+      name  = "prometheus.prometheusSpec.resources.requests.memory"
+      value = "1Gi"
+    },
+    {
+      name  = "prometheus.prometheusSpec.resources.limits.memory"
+      value = "1Gi"
+    },
+    {
+      name  = "alertmanager.alertmanagerSpec.resources.requests.memory"
+      value = "40Mi"
+    },
+    {
+      name  = "alertmanager.alertmanagerSpec.resources.limits.memory"
+      value = "40Mi"
+    },
+  ]
 }
 
 resource "helm_release" "metrics_server" {
@@ -308,8 +283,10 @@ resource "helm_release" "metrics_server" {
   chart      = "metrics-server"
   version    = "3.12.2"
 
-  set {
-    name  = "args[0]"
-    value = "--kubelet-insecure-tls"
-  }
+  set = [
+    {
+      name  = "args[0]"
+      value = "--kubelet-insecure-tls"
+    },
+  ]
 }

@@ -12,13 +12,14 @@ resource "helm_release" "cloudnativepg" {
   chart      = "cloudnative-pg"
   version    = "0.24.0"
 
-  set {
-    name  = "resources.requests.memory"
-    value = "64Mi"
-  }
-
-  set {
-    name  = "resources.limits.memory"
-    value = "192Mi"
-  }
+  set = [
+    {
+      name  = "resources.requests.memory"
+      value = "64Mi"
+    },
+    {
+      name  = "resources.limits.memory"
+      value = "192Mi"
+    },
+  ]
 }
