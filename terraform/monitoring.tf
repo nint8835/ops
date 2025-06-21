@@ -71,132 +71,6 @@ resource "helm_release" "grafana" {
   ]
 }
 
-
-resource "helm_release" "loki" {
-  name      = "loki"
-  namespace = kubernetes_namespace.lgtm.id
-
-  repository = "https://grafana.github.io/helm-charts"
-  chart      = "loki"
-  version    = "6.30.1"
-
-  values = [
-    <<EOF
-loki:
-  commonConfig:
-    replication_factor: 1
-  schemaConfig:
-    configs:
-      - from: 2024-04-01
-        store: tsdb
-        object_store: filesystem
-        schema: v13
-        index:
-          prefix: loki_index_
-          period: 24h
-EOF
-  ]
-
-  set = [
-    {
-      name  = "deploymentMode"
-      value = "SingleBinary"
-    },
-    {
-      name  = "singleBinary.replicas"
-      value = 1
-    },
-    {
-      name  = "singleBinary.persistence.storageClass"
-      value = "nfs-csi"
-    },
-    {
-      name  = "loki.commonConfig.replication_factor"
-      value = 1
-    },
-    {
-      name  = "loki.storage.type"
-      value = "filesystem"
-    },
-    {
-      name  = "loki.auth_enabled"
-      value = false
-    },
-    {
-      name  = "lokiCanary.enabled"
-      value = false
-    },
-    {
-      name  = "test.enabled"
-      value = false
-    },
-    {
-      name  = "monitoring.selfMonitoring.enabled"
-      value = false
-    },
-    {
-      name  = "monitoring.selfMonitoring.grafanaAgent.installOperator"
-      value = false
-    },
-    {
-      name  = "resultsCache.enabled"
-      value = false
-    },
-    {
-      name  = "chunksCache.enabled"
-      value = false
-    },
-    {
-      name  = "singleBinary.resources.requests.memory"
-      value = "128Mi"
-    },
-    {
-      name  = "singleBinary.resources.limits.memory"
-      value = "256Mi"
-    },
-    {
-      name  = "gateway.resources.requests.memory"
-      value = "16Mi"
-    },
-    {
-      name  = "gateway.resources.limits.memory"
-      value = "32Mi"
-    },
-    {
-      name  = "backend.replicas"
-      value = 0
-    },
-    {
-      name  = "read.replicas"
-      value = 0
-    },
-    {
-      name  = "write.replicas"
-      value = 0
-    },
-  ]
-}
-
-resource "helm_release" "promtail" {
-  name      = "promtail"
-  namespace = kubernetes_namespace.lgtm.id
-
-  repository = "https://grafana.github.io/helm-charts"
-  chart      = "promtail"
-  version    = "6.17.0"
-
-  set = [
-    {
-      name  = "resources.requests.memory"
-      value = "128Mi"
-    },
-    {
-      name  = "resources.limits.memory"
-      value = "128Mi"
-    },
-  ]
-}
-
 resource "helm_release" "prometheus_operator" {
   name      = "prometheus-operator"
   namespace = kubernetes_namespace.lgtm.id
@@ -288,5 +162,25 @@ resource "helm_release" "metrics_server" {
       name  = "args[0]"
       value = "--kubelet-insecure-tls"
     },
+  ]
+}
+
+resource "helm_release" "victoria_logs" {
+  name      = "victoria-logs"
+  namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://victoriametrics.github.io/helm-charts"
+  chart      = "victoria-logs-single"
+  version    = "0.11.2"
+
+  set = [
+    {
+      name  = "vector.enabled"
+      value = true
+    },
+    {
+      name  = "server.persistentVolume.storageClassName"
+      value = "nfs-csi"
+    }
   ]
 }
