@@ -181,6 +181,18 @@ resource "helm_release" "victoria_logs" {
     {
       name  = "server.persistentVolume.storageClassName"
       value = "nfs-csi"
+    },
+    {
+      name  = "vector.tolerations[0].key"
+      value = "node-role.kubernetes.io/control-plane"
+    },
+    {
+      name  = "vector.tolerations[0].operator"
+      value = "Exists"
+    },
+    {
+      name  = "vector.tolerations[0].effect"
+      value = "NoSchedule"
     }
   ]
 }
