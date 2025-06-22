@@ -71,84 +71,6 @@ resource "helm_release" "grafana" {
   ]
 }
 
-resource "helm_release" "prometheus_operator" {
-  name      = "prometheus-operator"
-  namespace = kubernetes_namespace.lgtm.id
-
-  repository = "https://prometheus-community.github.io/helm-charts"
-  chart      = "kube-prometheus-stack"
-  version    = "75.4.0"
-
-  values = [
-    yamlencode({
-      prometheus = {
-        prometheusSpec = {
-          storageSpec = {
-            volumeClaimTemplate = {
-              spec = {
-                storageClassName = "nfs-csi"
-                accessModes      = ["ReadWriteOnce"]
-                resources = {
-                  requests = {
-                    storage = "1Gi"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }),
-  ]
-
-  set = [
-    {
-      name  = "grafana.enabled"
-      value = false
-    },
-    {
-      name  = "prometheusOperator.resources.requests.memory"
-      value = "48Mi"
-    },
-    {
-      name  = "prometheusOperator.resources.limits.memory"
-      value = "48Mi"
-    },
-    {
-      name  = "prometheus-node-exporter.resources.requests.memory"
-      value = "32Mi"
-    },
-    {
-      name  = "prometheus-node-exporter.resources.limits.memory"
-      value = "32Mi"
-    },
-    {
-      name  = "kube-state-metrics.resources.requests.memory"
-      value = "32Mi"
-    },
-    {
-      name  = "kube-state-metrics.resources.limits.memory"
-      value = "196Mi"
-    },
-    {
-      name  = "prometheus.prometheusSpec.resources.requests.memory"
-      value = "1Gi"
-    },
-    {
-      name  = "prometheus.prometheusSpec.resources.limits.memory"
-      value = "1Gi"
-    },
-    {
-      name  = "alertmanager.alertmanagerSpec.resources.requests.memory"
-      value = "40Mi"
-    },
-    {
-      name  = "alertmanager.alertmanagerSpec.resources.limits.memory"
-      value = "40Mi"
-    },
-  ]
-}
-
 resource "helm_release" "metrics_server" {
   name      = "metrics-server"
   namespace = "kube-system"
@@ -194,5 +116,30 @@ resource "helm_release" "victoria_logs" {
       name  = "vector.tolerations[0].effect"
       value = "NoSchedule"
     }
+  ]
+}
+
+resource "helm_release" "prometheus_operator_crds" {
+  name      = "prometheus-operator-crds"
+  namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://prometheus-community.github.io/helm-charts"
+  chart      = "prometheus-operator-crds"
+  version    = "21.0.0"
+}
+
+resource "helm_release" "victoria_metrics_operator" {
+  name      = "victoria-metrics-operator"
+  namespace = kubernetes_namespace.lgtm.id
+
+  repository = "https://victoriametrics.github.io/helm-charts"
+  chart      = "victoria-metrics-operator"
+  version    = "0.49.2"
+
+  set = [
+    {
+      name  = "serviceMonitor.enabled"
+      value = true
+    },
   ]
 }
