@@ -10,7 +10,7 @@ terraform {
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "3.0.1"
+      version = "3.0.2"
     }
     tailscale = {
       source  = "tailscale/tailscale"
