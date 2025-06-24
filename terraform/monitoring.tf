@@ -134,7 +134,7 @@ resource "helm_release" "victoria_metrics_operator" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-operator"
-  version    = "0.49.2"
+  version    = "0.50.0"
 
   set = [
     {
