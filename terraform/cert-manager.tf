@@ -55,90 +55,19 @@ resource "helm_release" "cert_manager" {
   ]
 }
 
-resource "kubernetes_manifest" "letsencrypt_staging_issuer" {
-  manifest = {
-    apiVersion = "cert-manager.io/v1"
-    kind       = "ClusterIssuer"
-    metadata = {
-      name = "letsencrypt-staging"
-    }
+resource "helm_release" "cert_manager_configs" {
+  name      = "cert-manager-configs"
+  namespace = kubernetes_namespace.cert_manager.id
+  chart     = "${path.module}/charts/cert-manager-configs"
 
-    spec = {
-      acme = {
-        email  = "riley@rileyflynn.me"
-        server = "https://acme-staging-v02.api.letsencrypt.org/directory"
-        privateKeySecretRef = {
-          name = "letsencrypt-staging-account-key"
-        }
-        solvers = [
-          {
-            dns01 = {
-              cloudflare = {
-                apiTokenSecretRef = {
-                  name = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
-                  key  = "api-token"
-                }
-              }
-            }
-            selector = {
-              dnsZones = [
-                "internal.bootleg.technology",
-              ]
-            }
-          },
-          {
-            http01 = {
-              ingress = {
-                ingressClassName = "traefik"
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
-}
+  set = [
+    {
+      name  = "cloudflareSecretName"
+      value = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
+    },
+  ]
 
-resource "kubernetes_manifest" "letsencrypt_issuer" {
-  manifest = {
-    apiVersion = "cert-manager.io/v1"
-    kind       = "ClusterIssuer"
-    metadata = {
-      name = "letsencrypt"
-    }
-
-    spec = {
-      acme = {
-        email  = "riley@rileyflynn.me"
-        server = "https://acme-v02.api.letsencrypt.org/directory"
-        privateKeySecretRef = {
-          name = "letsencrypt-account-key"
-        }
-        solvers = [
-          {
-            dns01 = {
-              cloudflare = {
-                apiTokenSecretRef = {
-                  name = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
-                  key  = "api-token"
-                }
-              }
-            }
-            selector = {
-              dnsZones = [
-                "internal.bootleg.technology",
-              ]
-            }
-          },
-          {
-            http01 = {
-              ingress = {
-                ingressClassName = "traefik"
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
+  depends_on = [
+    helm_release.cert_manager,
+  ]
 }

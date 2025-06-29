@@ -13,3 +13,19 @@ removed {
     destroy = false
   }
 }
+
+removed {
+  from = kubernetes_manifest.letsencrypt_staging_issuer
+
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = kubernetes_manifest.letsencrypt_issuer
+
+  lifecycle {
+    destroy = false
+  }
+}
