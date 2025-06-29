@@ -42,33 +42,19 @@ resource "helm_release" "metallb" {
   ]
 }
 
-resource "kubernetes_manifest" "metallb_ip_pool" {
-  depends_on = [helm_release.metallb]
+resource "helm_release" "metallb_configs" {
+  name      = "metallb-configs"
+  namespace = kubernetes_namespace.metallb_system.id
+  chart     = "${path.module}/charts/metallb-configs"
 
-  manifest = {
-    apiVersion = "metallb.io/v1beta1"
-    kind       = "IPAddressPool"
-    metadata = {
-      name      = "default"
-      namespace = kubernetes_namespace.metallb_system.id
-    }
-    spec = {
-      addresses = [
-        var.lb_ip_range
-      ]
-    }
-  }
-}
+  set = [
+    {
+      name  = "ipRange"
+      value = var.lb_ip_range
+    },
+  ]
 
-resource "kubernetes_manifest" "metallb_announcement" {
-  depends_on = [helm_release.metallb]
-
-  manifest = {
-    apiVersion = "metallb.io/v1beta1"
-    kind       = "L2Advertisement"
-    metadata = {
-      name      = "default"
-      namespace = kubernetes_namespace.metallb_system.id
-    }
-  }
+  depends_on = [
+    helm_release.metallb,
+  ]
 }

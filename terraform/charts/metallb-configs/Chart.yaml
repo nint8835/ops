@@ -1,0 +1,6 @@
+apiVersion: v2
+name: metallb-configs
+description: Configurations for MetalLB
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

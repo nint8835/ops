@@ -1,0 +1,11 @@
+{
+    "[yaml]": {
+        "editor.indentSize": 2
+    },
+    "[helm]": {
+        "editor.indentSize": 2
+    },
+    "[opentofu]": {
+        "editor.formatOnSave": true
+    }
+}
