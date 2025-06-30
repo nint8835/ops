@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+
+metadata:
+  name: traefik-dashboard
+
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`traefik.ops.bootleg.technology`)
+      middlewares:
+        - name: traefik-dashboard-auth
+          namespace: {{ .Release.Namespace }}
+      services:
+        - kind: TraefikService
+          name: api@internal

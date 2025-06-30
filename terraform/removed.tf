@@ -29,3 +29,27 @@ removed {
     destroy = false
   }
 }
+
+removed {
+  from = kubernetes_manifest.traefik_https_redirect
+
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = kubernetes_manifest.traefik_dashboard_auth
+
+  lifecycle {
+    destroy = false
+  }
+}
+
+removed {
+  from = kubernetes_manifest.traefik_dashboard
+
+  lifecycle {
+    destroy = false
+  }
+}
