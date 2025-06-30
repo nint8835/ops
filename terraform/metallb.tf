@@ -42,12 +42,21 @@ resource "helm_release" "metallb" {
   ]
 }
 
+module "metallb_configs_hash" {
+  source    = "./modules/utils/hash_directory"
+  directory = "${path.module}/charts/metallb-configs"
+}
+
 resource "helm_release" "metallb_configs" {
   name      = "metallb-configs"
   namespace = kubernetes_namespace.metallb_system.id
   chart     = "${path.module}/charts/metallb-configs"
 
   set = [
+    {
+      name  = "_hash"
+      value = module.metallb_configs_hash.hash
+    },
     {
       name  = "ipRange"
       value = var.lb_ip_range

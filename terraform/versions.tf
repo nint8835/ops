@@ -44,5 +44,9 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.78.2"
     }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "2.7.1"
+    }
   }
 }

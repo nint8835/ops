@@ -73,12 +73,21 @@ resource "cloudflare_dns_record" "traefik_dashboard" {
   ttl     = 1
 }
 
+module "traefik_configs_hash" {
+  source    = "./modules/utils/hash_directory"
+  directory = "${path.module}/charts/traefik-configs"
+}
+
 resource "helm_release" "traefik_configs" {
   name      = "traefik-configs"
   namespace = kubernetes_namespace.traefik.id
   chart     = "${path.module}/charts/traefik-configs"
 
   set = [
+    {
+      name  = "_hash"
+      value = module.traefik_configs_hash.hash
+    },
     {
       name  = "traefikDashboardAuthSecret"
       value = kubernetes_secret.traefik_dashboard_auth.metadata[0].name

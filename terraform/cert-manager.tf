@@ -55,12 +55,21 @@ resource "helm_release" "cert_manager" {
   ]
 }
 
+module "cert_manager_configs_hash" {
+  source    = "./modules/utils/hash_directory"
+  directory = "${path.module}/charts/cert-manager-configs"
+}
+
 resource "helm_release" "cert_manager_configs" {
   name      = "cert-manager-configs"
   namespace = kubernetes_namespace.cert_manager.id
   chart     = "${path.module}/charts/cert-manager-configs"
 
   set = [
+    {
+      name  = "_hash"
+      value = module.cert_manager_configs_hash.hash
+    },
     {
       name  = "cloudflareSecretName"
       value = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
