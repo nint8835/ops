@@ -18,7 +18,7 @@ terraform {
     }
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.57.0"
+      version = "2.58.0"
     }
     http = {
       source  = "hashicorp/http"
