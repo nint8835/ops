@@ -1,0 +1,6 @@
+apiVersion: v2
+name: traefik-configs
+description: Configurations for VictoriaMetrics
+type: application
+version: 1.0.0
+appVersion: "1.0.0"

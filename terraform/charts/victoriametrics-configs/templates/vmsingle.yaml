@@ -1,0 +1,12 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMSingle
+
+metadata:
+  name: victoriametrics
+
+spec:
+  storage:
+    storageClassName: nfs-csi
+    resources:
+      requests:
+        storage: 10Gi

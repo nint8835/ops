@@ -143,3 +143,25 @@ resource "helm_release" "victoria_metrics_operator" {
     },
   ]
 }
+
+module "victoriametrics_configs_hash" {
+  source    = "./modules/utils/hash_directory"
+  directory = "${path.module}/charts/victoriametrics-configs"
+}
+
+resource "helm_release" "victoriametrics_configs" {
+  name      = "victoriametrics-configs"
+  namespace = kubernetes_namespace.lgtm.id
+  chart     = "${path.module}/charts/victoriametrics-configs"
+
+  set = [
+    {
+      name  = "_hash"
+      value = module.victoriametrics_configs_hash.hash
+    },
+  ]
+
+  depends_on = [
+    helm_release.victoria_metrics_operator,
+  ]
+}
