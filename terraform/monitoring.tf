@@ -97,6 +97,10 @@ resource "helm_release" "victoria_logs" {
 
   set = [
     {
+      name  = "server.extraArgs.defaultMsgValue"
+      value = "No log message"
+    },
+    {
       name  = "vector.enabled"
       value = true
     },
