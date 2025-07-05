@@ -132,40 +132,22 @@ resource "helm_release" "prometheus_operator_crds" {
   version    = "21.0.0"
 }
 
-resource "helm_release" "victoria_metrics_operator" {
-  name      = "victoria-metrics-operator"
+resource "helm_release" "victoria_metrics_k8s_stack" {
+  name      = "victoria-metrics-k8s-stack"
   namespace = kubernetes_namespace.lgtm.id
 
   repository = "https://victoriametrics.github.io/helm-charts"
-  chart      = "victoria-metrics-operator"
-  version    = "0.50.3"
+  chart      = "victoria-metrics-k8s-stack"
+  version    = "0.55.2"
 
   set = [
     {
-      name  = "serviceMonitor.enabled"
-      value = true
+      name  = "grafana.enabled"
+      value = false
     },
-  ]
-}
-
-module "victoriametrics_configs_hash" {
-  source    = "./modules/utils/hash_directory"
-  directory = "${path.module}/charts/victoriametrics-configs"
-}
-
-resource "helm_release" "victoriametrics_configs" {
-  name      = "victoriametrics-configs"
-  namespace = kubernetes_namespace.lgtm.id
-  chart     = "${path.module}/charts/victoriametrics-configs"
-
-  set = [
     {
-      name  = "_hash"
-      value = module.victoriametrics_configs_hash.hash
+      name  = "vmsingle.spec.storage.storageClassName"
+      value = "nfs-csi"
     },
-  ]
-
-  depends_on = [
-    helm_release.victoria_metrics_operator,
   ]
 }
