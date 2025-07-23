@@ -21,8 +21,9 @@ module "bastion_host" {
   name   = "bastion"
   vcpus  = 1
   memory = 1024
-  # TODO: Upgrade to Debian 12
-  distribution_version = "11 x64"
+  # Set to 12, but actually running 11
+  # Done due to DigitalOcean removing the images for 11. Remove lifecycle ignore within module when ready to upgrade
+  distribution_version = "12 x64"
 
   userdata = templatefile(
     "${path.module}/templates/bastion_userdata.sh.tmpl",
