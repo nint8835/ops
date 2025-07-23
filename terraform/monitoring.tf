@@ -149,5 +149,9 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
       name  = "vmsingle.spec.storage.storageClassName"
       value = "nfs-csi"
     },
+    {
+      name  = "victoria-metrics-operator.crds.plain"
+      value = false
+    }
   ]
 }
