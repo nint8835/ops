@@ -1,3 +1,4 @@
 output "hash" {
-  value = local.directory_hash
+  description = "Hash of the directory contents"
+  value       = local.directory_hash
 }
