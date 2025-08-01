@@ -39,6 +39,10 @@ spec:
             - name: TZ
               value: America/St_Johns
 
+          envFrom:
+            - secretRef:
+                name: secrets
+
           volumeMounts:
             - mountPath: /config
               name: config
