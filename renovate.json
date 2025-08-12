@@ -10,6 +10,11 @@
     {
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "registryUrls": ["https://registry.opentofu.org"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/crocodilestick/calibre-web-automated"],
+      "versioning": "regex:^V?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
     }
   ],
   "kubernetes": {
