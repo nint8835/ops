@@ -5,10 +5,7 @@ wget -qO- https://repos-droplet.digitalocean.com/install.sh | bash
 curl -sSL https://repos.insights.digitalocean.com/install.sh | bash
 
 # Install & start Tailscale
-curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
-curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.tailscale-keyring.list | tee /etc/apt/sources.list.d/tailscale.list
-apt-get update
-apt-get install -y tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
 
 tailscale up -authkey "${tailscale_token}" --accept-routes
 
@@ -16,7 +13,7 @@ tailscale up -authkey "${tailscale_token}" --accept-routes
 mkdir /opt/caddy
 pushd /opt/caddy
 
-wget "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fmholt%2Fcaddy-l4" -O caddy
+wget "https://i.bootleg.technology/caddy" -O caddy
 chmod +x ./caddy
 
 groupadd --system caddy

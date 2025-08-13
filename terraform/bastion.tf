@@ -18,11 +18,9 @@ data "http" "ip_resp" {
 module "bastion_host" {
   source = "./modules/droplet"
 
-  name   = "bastion"
-  vcpus  = 1
-  memory = 1024
-  # Set to 12, but actually running 11
-  # Done due to DigitalOcean removing the images for 11. Remove lifecycle ignore within module when ready to upgrade
+  name                 = "bastion"
+  vcpus                = 1
+  memory               = 1024
   distribution_version = "12 x64"
 
   userdata = templatefile(

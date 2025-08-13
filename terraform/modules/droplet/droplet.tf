@@ -47,13 +47,6 @@ resource "digitalocean_droplet" "droplet" {
   user_data = var.userdata != "" ? var.userdata : null
 
   lifecycle {
-    ignore_changes = [
-      # TODO: remove once the caddy install works properly
-      user_data,
-      # TODO: remove once ready to upgrade to Debian 12
-      image,
-    ]
-
     create_before_destroy = true
   }
 }
