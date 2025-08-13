@@ -53,6 +53,8 @@ resource "digitalocean_droplet" "droplet" {
       # TODO: remove once ready to upgrade to Debian 12
       image,
     ]
+
+    create_before_destroy = true
   }
 }
 

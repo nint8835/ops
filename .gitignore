@@ -17,3 +17,7 @@ github.pem
 # gokrazy build files
 gokrazy/**/*.img
 gokrazy/**/builddir
+
+# Caddy build files
+scripts/buildenv_*
+scripts/caddy
