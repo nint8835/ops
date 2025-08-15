@@ -26,7 +26,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "5.8.3"
+      version = "5.8.4"
     }
     github = {
       source  = "integrations/github"
