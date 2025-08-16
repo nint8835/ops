@@ -2,6 +2,7 @@ proxmox_hosts:
   vars:
     ansible_user: root
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    ansible_python_interpreter: /usr/bin/python3
   hosts:
     aphrodite:
       ansible_host: aphrodite.hosts.bootleg.technology
