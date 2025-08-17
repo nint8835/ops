@@ -10,6 +10,12 @@ data "cloudflare_zone" "nit_so" {
   }
 }
 
+data "cloudflare_zone" "rileyflynn_me" {
+  filter = {
+    name = "rileyflynn.me"
+  }
+}
+
 resource "cloudflare_dns_record" "pkg_nit_so" {
   zone_id = data.cloudflare_zone.nit_so.zone_id
   name    = "pkg.nit.so"
@@ -93,6 +99,14 @@ resource "cloudflare_dns_record" "plex" {
 resource "cloudflare_dns_record" "flux_webhook_receiver" {
   zone_id = data.cloudflare_zone.bootleg_technology.zone_id
   name    = "flux-webhook-receiver.ops.bootleg.technology"
+  content = local.bastion_hostname
+  type    = "CNAME"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "photos" {
+  zone_id = data.cloudflare_zone.rileyflynn_me.zone_id
+  name    = "photos.rileyflynn.me"
   content = local.bastion_hostname
   type    = "CNAME"
   ttl     = 1

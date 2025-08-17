@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: immich
+
+resources:
+  - namespace.yaml
+  - persistent_volume_claim.yaml
+  - database_cluster.yaml
+  - database.yaml
+  - redis.yaml
+  - service_redis.yaml
+  - immich_server.yaml
+  - service_immich_server.yaml
+  - ingress.yaml
+  - immich_ml.yaml
+  - service_immich_ml.yaml

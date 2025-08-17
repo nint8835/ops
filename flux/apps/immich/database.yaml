@@ -1,0 +1,22 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+
+metadata:
+  name: app
+
+spec:
+  name: app
+  owner: app
+
+  cluster:
+    name: db
+  
+  extensions:
+    - name: vector
+      ensure: present
+    - name: vchord
+      ensure: present
+    - name: cube
+      ensure: present
+    - name: earthdistance
+      ensure: present

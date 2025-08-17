@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: immich
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+
+spec:
+  tls:
+    - hosts:
+        - photos.rileyflynn.me
+      secretName: photos-rileyflynn-me
+  rules:
+    - host: photos.rileyflynn.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: immich-server
+                port:
+                  name: http

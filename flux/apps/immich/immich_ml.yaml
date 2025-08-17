@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: immich-machine-learning
+
+spec:
+  selector:
+    matchLabels:
+      app: immich-machine-learning
+
+  template:
+    metadata:
+      labels:
+        app: immich-machine-learning
+
+    spec:
+      containers:
+        - name: immich-machine-learning
+          image: ghcr.io/immich-app/immich-machine-learning:v1.138.0
+
+          ports:
+            - name: http
+              containerPort: 3301
+
+          env:
+            - name: DB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: uri
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_HOSTNAME
+              value: redis.immich.svc.cluster.local
+            - name: IMMICH_PORT
+              value: "3301"

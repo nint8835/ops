@@ -17,3 +17,4 @@ resources:
   - pollster.yaml
   - plex-proxy.yaml
   - hopper.yaml
+  - immich.yaml
