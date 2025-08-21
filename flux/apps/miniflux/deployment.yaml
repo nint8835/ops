@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: miniflux
-          image: ghcr.io/miniflux/miniflux:2.2.11-distroless
+          image: ghcr.io/miniflux/miniflux:2.2.12-distroless
           imagePullPolicy: IfNotPresent
 
           env:
