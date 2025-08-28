@@ -15,42 +15,6 @@ data "http" "ip_resp" {
   url = "https://ipv4.icanhazip.com"
 }
 
-data "cloudinit_config" "bastion_userdata" {
-  base64_encode = false
-  gzip          = false
-
-  part {
-    filename     = "bastion_userdata.sh"
-    content_type = "text/x-shellscript"
-
-    content = templatefile(
-      "${path.module}/templates/bastion_userdata.sh.tmpl",
-      {
-        tailscale_token = tailscale_tailnet_key.droplet.key
-        caddy_config = jsonencode({
-          apps = {
-            layer4 = {
-              servers = { for k, v in local.proxied_ports : k => {
-                listen = [":${v.source_port}"]
-                routes = [{
-                  handle = [{
-                    handler        = "proxy"
-                    proxy_protocol = "v2"
-                    upstreams = [{
-                      dial = [v.dest_addr]
-                    }]
-                  }]
-                }]
-                }
-              }
-            }
-          }
-        })
-      }
-    )
-  }
-}
-
 module "bastion_host" {
   source = "./modules/droplet"
 
@@ -59,7 +23,31 @@ module "bastion_host" {
   memory               = 1024
   distribution_version = "12 x64"
 
-  userdata = data.cloudinit_config.bastion_userdata.rendered
+  userdata = templatefile(
+    "${path.module}/templates/bastion_userdata.sh.tmpl",
+    {
+      tailscale_token = tailscale_tailnet_key.droplet.key
+      caddy_config = jsonencode({
+        apps = {
+          layer4 = {
+            servers = { for k, v in local.proxied_ports : k => {
+              listen = [":${v.source_port}"]
+              routes = [{
+                handle = [{
+                  handler        = "proxy"
+                  proxy_protocol = "v2"
+                  upstreams = [{
+                    dial = [v.dest_addr]
+                  }]
+                }]
+              }]
+              }
+            }
+          }
+        }
+      })
+    }
+  )
 
   use_static_ip = true
   ingress_rules = [
