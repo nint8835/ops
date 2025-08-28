@@ -48,10 +48,6 @@ resource "digitalocean_droplet" "droplet" {
 
   lifecycle {
     create_before_destroy = true
-
-    # Tailscale API key rotation requires auth keys to be rotated as well, triggering a change in user_data
-    # See if there's a good way to move auth keys out of user_data
-    ignore_changes = [user_data]
   }
 }
 
