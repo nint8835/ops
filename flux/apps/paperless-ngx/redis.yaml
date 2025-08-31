@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: redis
+
+spec:
+  selector:
+    matchLabels:
+      app: redis
+
+  template:
+    metadata:
+      labels:
+        app: redis
+  
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: redis-data
+
+      securityContext:
+        fsGroup: 1000
+
+      containers:
+        - name: redis
+          image: ghcr.io/valkey-io/valkey:8.1.3-alpine
+
+          ports:
+            - name: redis
+              containerPort: 6379
+
+          volumeMounts:
+            - mountPath: /data
+              name: data

@@ -18,3 +18,4 @@ resources:
   - plex-proxy.yaml
   - hopper.yaml
   - immich.yaml
+  - paperless-ngx.yaml

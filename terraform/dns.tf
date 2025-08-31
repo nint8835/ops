@@ -111,3 +111,11 @@ resource "cloudflare_dns_record" "photos" {
   type    = "CNAME"
   ttl     = 1
 }
+
+resource "cloudflare_dns_record" "paperless" {
+  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  name    = "paperless.bootleg.technology"
+  content = local.bastion_hostname
+  type    = "CNAME"
+  ttl     = 1
+}
