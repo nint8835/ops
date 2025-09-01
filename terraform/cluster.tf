@@ -43,8 +43,8 @@ locals {
     }
   }
 
-  talos_version      = "1.10.4"
-  kubernetes_version = "1.33.0"
+  talos_version      = "1.11.0"
+  kubernetes_version = "1.34.0"
 
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
   worker_nodes        = { for k, v in local.cluster_nodes : k => v if v.role == "worker" }
