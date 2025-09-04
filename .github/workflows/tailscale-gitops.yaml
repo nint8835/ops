@@ -21,6 +21,7 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tailnet: ${{ secrets.TS_TAILNET }}
+          policy-file: './tailscale-policy.hujson'
           action: apply
 
       - name: Test ACL
@@ -31,4 +32,5 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tailnet: ${{ secrets.TS_TAILNET }}
+          policy-file: './tailscale-policy.hujson'
           action: test
