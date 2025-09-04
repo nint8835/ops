@@ -1,0 +1,14 @@
+name: Lint Actions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-actions:
+    uses: nint8835/workflows/.github/workflows/lint-actions.yaml@main
