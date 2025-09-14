@@ -62,6 +62,8 @@ spec:
               value: America/St_Johns
             - name: PAPERLESS_OCR_LANGUAGE
               value: eng
+            - name: PAPERLESS_CONSUMER_POLLING
+              value: "30"
 
           envFrom:
             - secretRef:
