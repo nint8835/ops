@@ -21,7 +21,7 @@ module "bastion_host" {
   name                 = "bastion"
   vcpus                = 1
   memory               = 1024
-  distribution_version = "12 x64"
+  distribution_version = "13 x64"
 
   userdata = templatefile(
     "${path.module}/templates/bastion_userdata.sh.tmpl",
