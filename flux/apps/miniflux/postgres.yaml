@@ -7,6 +7,8 @@ spec:
   primaryUpdateStrategy: unsupervised
   enableSuperuserAccess: true
 
+  smartShutdownTimeout: 30
+
   postgresql:
     parameters:
       shared_buffers: "49MB"
