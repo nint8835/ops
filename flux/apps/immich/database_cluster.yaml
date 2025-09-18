@@ -6,6 +6,8 @@ spec:
   instances: 1
   primaryUpdateStrategy: unsupervised
 
+  smartShutdownTimeout: 30
+
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
