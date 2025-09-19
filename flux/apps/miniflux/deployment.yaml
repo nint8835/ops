@@ -32,7 +32,7 @@ spec:
             - name: BASE_URL
               value: https://miniflux.bootleg.technology
             - name: FORCE_REFRESH_INTERVAL
-              value: "0"
+              value: "0.1"
 
           # Uncomment the below lines to create the initial user
           # envFrom:
