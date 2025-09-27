@@ -65,14 +65,6 @@ resource "kubernetes_secret" "traefik_dashboard_auth" {
   }
 }
 
-resource "cloudflare_dns_record" "traefik_dashboard" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
-  name    = "traefik.ops.bootleg.technology"
-  content = local.bastion_hostname
-  type    = "CNAME"
-  ttl     = 1
-}
-
 module "traefik_configs_hash" {
   source    = "./modules/utils/hash_directory"
   directory = "${path.module}/charts/traefik-configs"

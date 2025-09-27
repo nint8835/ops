@@ -70,7 +70,7 @@ module "bastion_host" {
 }
 
 resource "cloudflare_dns_record" "bastion" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  zone_id = local.zone_ids["bootleg.technology"]
   name    = "ingress.bootleg.technology"
   content = module.bastion_host.public_ip
   type    = "A"

@@ -19,11 +19,11 @@ module "proxmox_hosts" {
 
   name    = each.key
   ip      = each.value
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  zone_id = local.zone_ids["bootleg.technology"]
 }
 
 resource "cloudflare_dns_record" "proxmox_proxy_internal" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  zone_id = local.zone_ids["bootleg.technology"]
   name    = "proxy.hosts.bootleg.technology"
   content = "192.168.1.181"
   type    = "A"
@@ -31,7 +31,7 @@ resource "cloudflare_dns_record" "proxmox_proxy_internal" {
 }
 
 resource "cloudflare_dns_record" "proxmox_proxy_tailscale" {
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  zone_id = local.zone_ids["bootleg.technology"]
   name    = "proxy-tailscale.hosts.bootleg.technology"
   content = "100.91.221.13"
   type    = "A"

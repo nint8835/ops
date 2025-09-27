@@ -192,7 +192,7 @@ data "talos_client_configuration" "config" {
 resource "cloudflare_dns_record" "cluster" {
   for_each = local.control_plane_nodes
 
-  zone_id = data.cloudflare_zone.bootleg_technology.zone_id
+  zone_id = local.zone_ids["bootleg.technology"]
   name    = "cluster.ops.bootleg.technology"
   content = each.value.ip
   type    = "A"
