@@ -1,0 +1,2 @@
+*.yaml linguist-detectable
+flux/flux-system/* linguist-generated
