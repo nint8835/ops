@@ -30,12 +30,46 @@ locals {
   }
 }
 
+resource "cloudflare_dns_record" "bastion" {
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "ingress.bootleg.technology"
+  content = module.bastion_host.public_ip
+  type    = "A"
+  ttl     = 1
+}
+
 resource "cloudflare_dns_record" "ingress" {
   for_each = local.ingress_entries
 
   zone_id = each.value.zone_id
   name    = each.value.name
-  content = local.bastion_hostname
+  content = cloudflare_dns_record.bastion.name
   type    = "CNAME"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "cluster" {
+  for_each = local.control_plane_nodes
+
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "cluster.ops.bootleg.technology"
+  content = each.value.ip
+  type    = "A"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "proxmox_proxy_internal" {
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "proxy.hosts.bootleg.technology"
+  content = "192.168.1.181"
+  type    = "A"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "proxmox_proxy_tailscale" {
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "proxy-tailscale.hosts.bootleg.technology"
+  content = "100.91.221.13"
+  type    = "A"
   ttl     = 1
 }
