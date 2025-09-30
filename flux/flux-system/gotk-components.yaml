@@ -4026,6 +4026,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: helm-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
@@ -5920,6 +5923,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: kustomize-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
@@ -7894,6 +7900,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: notification-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
@@ -12949,6 +12958,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: source-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
@@ -13792,6 +13804,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: image-automation-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
@@ -14900,6 +14915,9 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: image-reflector-controller
+        app.kubernetes.io/instance: flux-system
+        app.kubernetes.io/part-of: flux
+        app.kubernetes.io/version: v2.6.4
     spec:
       containers:
       - args:
