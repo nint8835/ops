@@ -10,7 +10,7 @@ resource "helm_release" "traefik" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "37.1.1"
+  version    = "37.1.2"
 
   set = [
     {
