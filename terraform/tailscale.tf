@@ -49,29 +49,36 @@ module "cluster_router" {
   router_group       = "k8s-cluster-router"
 }
 
-resource "tailscale_oauth_client" "policy_gitops" {
-  description = "Policy GitOps GitHub Action"
-  scopes = [
-    "devices:core:read",
-    "devices:posture_attributes",
-    "policy_file",
-  ]
-}
+resource "tailscale_acl" "acls" {
+  acl = jsonencode({
+    tagOwners = {
+      "tag:k8s"     = ["autogroup:admin"]
+      "tag:droplet" = ["autogroup:admin"]
+    }
 
-resource "github_actions_secret" "tailnet" {
-  repository      = "ops"
-  secret_name     = "TS_TAILNET"
-  plaintext_value = var.tailscale_tailnet_name
-}
+    autoApprovers = {
+      routes = {
+        "10.0.0.0/8"     = ["tag:k8s"]
+        "192.168.1.0/24" = ["tag:k8s"]
+      }
+      exitNode = ["tag:droplet"]
+    }
 
-resource "github_actions_secret" "policy_gitops_client_id" {
-  repository      = "ops"
-  secret_name     = "TS_OAUTH_ID"
-  plaintext_value = tailscale_oauth_client.policy_gitops.id
-}
+    ssh = [
+      {
+        action = "check"
+        src    = ["autogroup:members"]
+        dst    = ["autogroup:self"]
+        users  = ["autogroup:nonroot", "root"]
+      }
+    ]
 
-resource "github_actions_secret" "policy_gitops_client_secret" {
-  repository      = "ops"
-  secret_name     = "TS_OAUTH_SECRET"
-  plaintext_value = tailscale_oauth_client.policy_gitops.key
+    grants = [
+      {
+        src = ["*"]
+        dst = ["*"]
+        ip  = ["*"]
+      }
+    ]
+  })
 }
