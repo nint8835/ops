@@ -21,7 +21,7 @@ resource "helm_release" "cert_manager" {
 
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "v1.18.2"
+  version    = "v1.19.0"
 
   set = [
     {
