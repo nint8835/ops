@@ -1,6 +1,7 @@
 variable "digitalocean_token" {
   type        = string
   description = "Token to use to authenticate with DigitalOcean."
+  sensitive   = true
 }
 
 variable "cluster_name" {
@@ -18,6 +19,7 @@ variable "lb_ip_range" {
 variable "tailscale_api_key" {
   description = "Tailscale API key"
   type        = string
+  sensitive   = true
 }
 
 variable "tailscale_tailnet_name" {
@@ -28,6 +30,7 @@ variable "tailscale_tailnet_name" {
 variable "cloudflare_api_token" {
   description = "Cloudflare API token"
   type        = string
+  sensitive   = true
 }
 
 variable "github_app_id" {
@@ -43,16 +46,19 @@ variable "github_app_installation_id" {
 variable "age_secret_key" {
   description = "Secret key to use for Age encryption"
   type        = string
+  sensitive   = true
 }
 
 variable "traefik_basic_auth_entry" {
   description = "Output of htpasswd for the credentials to use for the Traefik dashboard"
   type        = string
+  sensitive   = true
 }
 
 variable "cert_manager_cloudflare_api_token" {
   description = "Cloudflare API token for cert-manager"
   type        = string
+  sensitive   = true
 }
 
 variable "proxmox_username" {
@@ -63,4 +69,5 @@ variable "proxmox_username" {
 variable "proxmox_password" {
   description = "Proxmox password"
   type        = string
+  sensitive   = true
 }
