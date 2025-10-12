@@ -75,3 +75,13 @@ spec:
                 name: secrets
             - configMapRef:
                 name: config
+          
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: http
+          
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: http
