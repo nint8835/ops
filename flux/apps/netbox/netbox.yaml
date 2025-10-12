@@ -78,10 +78,10 @@ spec:
           
           readinessProbe:
             httpGet:
-              path: /login
+              path: /login/
               port: http
           
           livenessProbe:
             httpGet:
-              path: /login
+              path: /login/
               port: http
