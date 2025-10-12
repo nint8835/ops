@@ -31,9 +31,3 @@ resource "talos_machine_configuration_apply" "node" {
     ] : []
   )
 }
-
-resource "netbox_ip_address" "ip" {
-  ip_address  = "${var.ip}/32"
-  description = var.name
-  status      = "active"
-}

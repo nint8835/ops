@@ -56,47 +56,6 @@ resource "proxmox_virtual_environment_pool" "kubernetes" {
 
 resource "talos_machine_secrets" "secrets" {}
 
-resource "proxmox_virtual_environment_vm" "k8s_control_plane_node" {
-  for_each = local.control_plane_nodes
-
-  name      = each.key
-  node_name = each.value.host
-  pool_id   = proxmox_virtual_environment_pool.kubernetes.pool_id
-
-  reboot_after_update = false
-
-  scsi_hardware = "virtio-scsi-single"
-
-  agent {
-    enabled = false
-  }
-
-  cpu {
-    cores   = 2
-    sockets = 1
-    type    = "x86-64-v2-AES"
-  }
-
-  memory {
-    dedicated = 4096
-  }
-
-  disk {
-    interface = "scsi0"
-    size      = 80
-    iothread  = true
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  network_device {
-    vlan_id  = 8
-    firewall = true
-  }
-}
-
 module "control_plane_node" {
   source   = "./modules/node"
   for_each = local.control_plane_nodes
@@ -105,6 +64,11 @@ module "control_plane_node" {
   ip                   = each.value.ip
   region               = try(each.value.region, "hera")
   zone                 = each.value.host
+  host_name            = each.value.host
+  host_device_id       = module.proxmox_hosts[each.value.host].netbox_device.id
+  proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
+  netbox_cluster_id    = netbox_cluster.hera.id
+  netbox_site_id       = netbox_site.home.id
   role                 = "controlplane"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
@@ -115,47 +79,6 @@ module "control_plane_node" {
   kubernetes_version = local.kubernetes_version
 }
 
-resource "proxmox_virtual_environment_vm" "k8s_worker_node" {
-  for_each = local.worker_nodes
-
-  name      = each.key
-  node_name = each.value.host
-  pool_id   = proxmox_virtual_environment_pool.kubernetes.pool_id
-
-  reboot_after_update = false
-
-  scsi_hardware = "virtio-scsi-single"
-
-  agent {
-    enabled = false
-  }
-
-  cpu {
-    cores   = 2
-    sockets = 1
-    type    = "x86-64-v2-AES"
-  }
-
-  memory {
-    dedicated = 8192
-  }
-
-  disk {
-    interface = "scsi0"
-    size      = 80
-    iothread  = true
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  network_device {
-    vlan_id  = 8
-    firewall = true
-  }
-}
-
 module "worker_node" {
   source   = "./modules/node"
   for_each = local.worker_nodes
@@ -164,6 +87,11 @@ module "worker_node" {
   ip                   = each.value.ip
   region               = try(each.value.region, "hera")
   zone                 = each.value.host
+  host_name            = each.value.host
+  host_device_id       = module.proxmox_hosts[each.value.host].netbox_device.id
+  proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
+  netbox_cluster_id    = netbox_cluster.hera.id
+  netbox_site_id       = netbox_site.home.id
   role                 = "worker"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"

@@ -52,3 +52,28 @@ variable "kubernetes_version" {
   description = "Version of Kubernetes to install."
   type        = string
 }
+
+variable "host_name" {
+  description = "Name of the Proxmox host to run this node on."
+  type        = string
+}
+
+variable "proxmox_pool_id" {
+  description = "ID of the Proxmox pool to add this VM to."
+  type        = string
+}
+
+variable "host_device_id" {
+  description = "ID of the Netbox device representing the Proxmox host to run this node on."
+  type        = number
+}
+
+variable "netbox_cluster_id" {
+  description = "ID of the Netbox cluster that this node's VM will run in."
+  type        = number
+}
+
+variable "netbox_site_id" {
+  description = "ID of the Netbox site that this node's VM will be located in."
+  type        = number
+}

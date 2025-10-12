@@ -336,6 +336,6 @@ resource "netbox_device" "home_assistant_green" {
 }
 
 # TODO:
-#  - VMs
+#  - Non-terraformed VMs
 #  - Locate colour scheme for device roles that isn't eye-searing (thanks Copilot)
 #  - Identify any other fields on objects that need to be populated

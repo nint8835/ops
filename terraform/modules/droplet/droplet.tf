@@ -69,7 +69,7 @@ resource "digitalocean_reserved_ip" "ip" {
 resource "netbox_virtual_machine" "droplet" {
   name         = var.name
   site_id      = data.netbox_site.site.id
-  memory_mb    = var.memory
+  memory_mb    = var.memory / 1024 * 1000
   vcpus        = var.vcpus
   disk_size_mb = data.digitalocean_sizes.droplet_sizes.sizes[0].disk * 1000
 }
