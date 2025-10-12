@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: netbox-worker
+
+spec:
+  selector:
+    matchLabels:
+      app: netbox-worker
+  
+  template:
+    metadata:
+      labels:
+        app: netbox-worker
+    
+    spec:
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
+        - name: reports
+          persistentVolumeClaim:
+            claimName: reports
+        - name: scripts
+          persistentVolumeClaim:
+            claimName: scripts
+        - name: config-dir
+          configMap:
+            name: config-dir
+      
+      containers:
+        - name: netbox-worker
+          image: ghcr.io/netbox-community/netbox:v4.4-3.4.1
+          imagePullPolicy: IfNotPresent
+
+          command:
+            - /opt/netbox/venv/bin/python
+            - /opt/netbox/netbox/manage.py
+            - rqworker
+
+          volumes:
+            - name: media
+              mountPath: /opt/netbox/netbox/media
+            - name: reports
+              mountPath: /opt/netbox/netbox/reports
+            - name: scripts
+              mountPath: /opt/netbox/netbox/scripts
+            - name: config-dir
+              mountPath: /etc/netbox/config
+        
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: host
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: dbname
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: password
+            
+          envFrom:
+            - secretRef:
+                name: secrets
+            - configMapRef:
+                name: config

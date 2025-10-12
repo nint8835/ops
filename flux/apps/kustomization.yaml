@@ -19,3 +19,4 @@ resources:
   - hopper.yaml
   - immich.yaml
   - paperless-ngx.yaml
+  - netbox.yaml

@@ -1,2 +1,3 @@
 *.yaml linguist-detectable
 flux/flux-system/* linguist-generated
+flux/apps/netbox/config/* linguist-vendored

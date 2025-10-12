@@ -11,6 +11,7 @@ locals {
     "homeassistant.bootleg.technology",
     "interruption-spotter.bootleg.technology",
     "miniflux.bootleg.technology",
+    "netbox.ops.bootleg.technology",
     "paperless.bootleg.technology",
     "photos.rileyflynn.me",
     "pkg.nit.so",

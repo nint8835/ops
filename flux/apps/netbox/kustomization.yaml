@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: netbox
+
+resources:
+  - namespace.yaml
+  - postgres.yaml
+  - persistent_volume_claim.yaml
+  - redis.yaml
+  - service_redis.yaml
+  - config.yaml
+  - secrets.yaml
+  - netbox.yaml
+  - service_netbox.yaml
+  - netbox_worker.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: config-dir
+    files:
+      - config/configuration.py
+      - config/extra.py
+      - config/logging.py
+      - config/plugins.py

@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: db
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+
+  smartShutdownTimeout: 30
+
+  storage:
+    size: 1Gi
+    storageClass: nfs-csi
