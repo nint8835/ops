@@ -21,3 +21,14 @@ module "proxmox_hosts" {
   ip      = each.value
   zone_id = local.zone_ids["bootleg.technology"]
 }
+
+resource "netbox_cluster_type" "proxmox" {
+  name = "Proxmox VE"
+  slug = "proxmox-ve"
+}
+
+resource "netbox_cluster" "hera" {
+  name            = "Hera"
+  cluster_type_id = netbox_cluster_type.proxmox.id
+  site_id         = netbox_site.home.id
+}
