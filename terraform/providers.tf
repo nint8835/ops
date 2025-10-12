@@ -59,3 +59,8 @@ provider "proxmox" {
   endpoint = "https://proxy.hosts.bootleg.technology"
   insecure = true
 }
+
+provider "netbox" {
+  server_url = "https://netbox.ops.bootleg.technology"
+  api_token  = var.netbox_token
+}

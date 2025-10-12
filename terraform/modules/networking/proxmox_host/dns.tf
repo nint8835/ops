@@ -15,3 +15,10 @@ resource "cloudflare_dns_record" "host_lb" {
   content = var.ip
   ttl     = 1
 }
+
+resource "netbox_ip_address" "ip" {
+  ip_address  = "${var.ip}/32"
+  description = var.name
+  status      = "active"
+  dns_name    = "${var.name}.${var.subdomain}"
+}

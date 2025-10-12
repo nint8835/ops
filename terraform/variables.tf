@@ -71,3 +71,9 @@ variable "proxmox_password" {
   type        = string
   sensitive   = true
 }
+
+variable "netbox_token" {
+  description = "Netbox API token"
+  type        = string
+  sensitive   = true
+}
