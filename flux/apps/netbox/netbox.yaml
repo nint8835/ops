@@ -81,11 +81,11 @@ spec:
               path: /login/
               port: http
             initialDelaySeconds: 20
-            timeoutSeconds: 5
+            timeoutSeconds: 10
           
           livenessProbe:
             httpGet:
               path: /login/
               port: http
             initialDelaySeconds: 20
-            timeoutSeconds: 5
+            timeoutSeconds: 10
