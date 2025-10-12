@@ -33,6 +33,11 @@ resource "netbox_manufacturer" "lenovo" {
   slug = "lenovo"
 }
 
+resource "netbox_manufacturer" "nabu_casa" {
+  name = "Nabu Casa"
+  slug = "nabu-casa"
+}
+
 resource "netbox_device_role" "router" {
   name = "Router"
   slug = "router"
@@ -204,10 +209,95 @@ resource "netbox_device" "nano_hd" {
   rack_position  = 0
 }
 
+resource "netbox_device_type" "hue_bridge" {
+  manufacturer_id = netbox_manufacturer.philips.id
+  model           = "Hue Bridge"
+  slug            = "hue-bridge"
+  part_number     = "3241312018A"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device_role" "misc" {
+  name = "Miscellaneous"
+  slug = "misc"
+  # TODO: Less eye-searing colour
+  color_hex = "808080"
+}
+
+resource "netbox_device" "hue_bridge" {
+  name           = "Hue Bridge"
+  site_id        = netbox_site.home.id
+  location_id    = netbox_location.living_room.id
+  device_type_id = netbox_device_type.hue_bridge.id
+  rack_id        = netbox_rack.living_room.id
+  role_id        = netbox_device_role.misc.id
+  rack_position  = 0
+}
+
+resource "netbox_device_type" "pi_b" {
+  manufacturer_id = netbox_manufacturer.raspberry_pi.id
+  model           = "Raspberry Pi Model B"
+  slug            = "raspberry-pi-b"
+  part_number     = "Raspberry Pi Model B"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device" "proxmox_proxy" {
+  name           = "proxmox-proxy"
+  site_id        = netbox_site.home.id
+  location_id    = netbox_location.living_room.id
+  device_type_id = netbox_device_type.pi_b.id
+  rack_id        = netbox_rack.living_room.id
+  role_id        = netbox_device_role.server.id
+  rack_position  = 0
+}
+
+resource "netbox_device_type" "thinkcentre_m715_tiny" {
+  manufacturer_id = netbox_manufacturer.lenovo.id
+  model           = "ThinkCentre M715 Tiny"
+  slug            = "thinkcentre-m715-tiny"
+  part_number     = "10VHA00500"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device_type" "thinkstation_p330_tiny" {
+  manufacturer_id = netbox_manufacturer.lenovo.id
+  model           = "ThinkStation P330 Tiny"
+  slug            = "thinkstation-p330-tiny"
+  part_number     = "30CF000KUS"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device_type" "thinkcentre_m93p_tiny" {
+  manufacturer_id = netbox_manufacturer.lenovo.id
+  model           = "ThinkCentre M93p Tiny"
+  slug            = "thinkcentre-m93p-tiny"
+  part_number     = "3238AJ8"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device_type" "optiplex_3040_micro" {
+  manufacturer_id = netbox_manufacturer.dell.id
+  model           = "OptiPlex 3040 Micro"
+  slug            = "optiplex-3040-micro"
+  part_number     = "7R7H1"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
 locals {
   shelved_devices = [
     netbox_device.nas,
     netbox_device.nano_hd,
+    netbox_device.hue_bridge,
+    netbox_device.proxmox_proxy,
+    module.proxmox_hosts["asteria"].netbox_device,
+    module.proxmox_hosts["zeus"].netbox_device,
   ]
   shelved_entries = {
     for idx, device in local.shelved_devices :
@@ -226,12 +316,26 @@ resource "netbox_device_bay" "shelved_devices" {
   name                = "Shelved device ${each.value.index}"
 }
 
+resource "netbox_device_type" "home_assistant_green" {
+  manufacturer_id = netbox_manufacturer.nabu_casa.id
+  model           = "Home Assistant Green"
+  slug            = "home-assistant-green"
+  part_number     = "NC-GREEN-1175"
+  subdevice_role  = "child"
+  u_height        = 0
+}
+
+resource "netbox_device" "home_assistant_green" {
+  name           = "Home Assistant Green"
+  site_id        = netbox_site.home.id
+  location_id    = netbox_location.living_room.id
+  device_type_id = netbox_device_type.home_assistant_green.id
+  rack_id        = netbox_rack.living_room.id
+  role_id        = netbox_device_role.server.id
+  rack_position  = 0
+}
 
 # TODO:
-# - Hardware:
-#   - Proxmox proxy Pi
-#   - Proxmox nodes
-#   - Philips Hue Bridge
 #  - VMs
 #  - Locate colour scheme for device roles that isn't eye-searing (thanks Copilot)
 #  - Identify any other fields on objects that need to be populated
