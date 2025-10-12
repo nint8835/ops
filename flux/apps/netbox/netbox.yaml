@@ -80,8 +80,10 @@ spec:
             httpGet:
               path: /login/
               port: http
+            initialDelaySeconds: 15
           
           livenessProbe:
             httpGet:
               path: /login/
               port: http
+            initialDelaySeconds: 15
