@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: config
+
+data:
+  DB_PATH: "/data/shopkeeper.sqlite"
+  GUILD_ID: "1258063531904077875"
+  CHANNEL_ID: "1427756439073718344"
+  EVENTS_CHANNEL_ID: "1427756523701928049"
+  OWNER_ID: "106162668032802816"
+  CLIENT_ID: "1427756035455586376"
+  BEHIND_REVERSE_PROXY: "true"
+  IMAGE_PATH: "/data/images"
+  INIT_ON_STARTUP: "false"

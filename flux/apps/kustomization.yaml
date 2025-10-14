@@ -9,6 +9,7 @@ resources:
   - pkg-nit-so.yaml
   - scribe.yaml
   - shopkeeper.yaml
+  - shopkeeper-cts.yaml
   - homeassistant-proxy.yaml
   - skyline.yaml
   - ntv-webcam-scraper.yaml

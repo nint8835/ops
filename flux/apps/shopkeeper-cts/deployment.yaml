@@ -1,0 +1,122 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopkeeper
+
+spec:
+  selector:
+    matchLabels:
+      app: shopkeeper
+
+  template:
+    metadata:
+      labels:
+        app: shopkeeper
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      securityContext:
+        fsGroup: 65532
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+
+      containers:
+        - name: shopkeeper
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          args: [ "start" ]
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
+                name: config
+              prefix: SHOPKEEPER_
+          volumeMounts:
+            - mountPath: /data
+              name: database
+
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
+
+      initContainers:
+        - name: upgrade-db
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          args: [ "upgrade" ]
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
+                name: config
+              prefix: SHOPKEEPER_
+          volumeMounts:
+            - mountPath: /data
+              name: database
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
+          # TODO: Same resources as the main container granted here - can this be reduced?
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
+
+        - name: sync-commands
+          image: ghcr.io/nint8835/shopkeeper:latest
+          imagePullPolicy: Always
+          args: [ "sync" ]
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: SHOPKEEPER_
+            - configMapRef:
+                name: config
+              prefix: SHOPKEEPER_
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+
+          # TODO: Same resources as the main container granted here - can this be reduced?
+          resources:
+            requests:
+              memory: "256Mi"
+            limits:
+              memory: "256Mi"
