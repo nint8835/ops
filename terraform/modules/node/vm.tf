@@ -50,7 +50,6 @@ resource "netbox_virtual_machine" "vm" {
 resource "netbox_interface" "net0" {
   name               = "net0"
   virtual_machine_id = netbox_virtual_machine.vm.id
-  mac_address        = proxmox_virtual_environment_vm.vm.network_device[0].mac_address
 }
 
 resource "netbox_ip_address" "ip" {
