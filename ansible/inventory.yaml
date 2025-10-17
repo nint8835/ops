@@ -1,24 +1,16 @@
 proxmox_hosts:
   vars:
+    ansible_host: "{{ inventory_hostname }}.hosts.bootleg.technology"
     ansible_user: root
     ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     ansible_python_interpreter: /usr/bin/python3
   hosts:
     aphrodite:
-      ansible_host: aphrodite.hosts.bootleg.technology
     apollo:
-      ansible_host: apollo.hosts.bootleg.technology
     asteria:
-      ansible_host: asteria.hosts.bootleg.technology
     astraeus:
-      ansible_host: astraeus.hosts.bootleg.technology
     eos:
-      ansible_host: eos.hosts.bootleg.technology
     helios:
-      ansible_host: helios.hosts.bootleg.technology
     selene:
-      ansible_host: selene.hosts.bootleg.technology
     titan:
-      ansible_host: titan.hosts.bootleg.technology
     zeus:
-      ansible_host: zeus.hosts.bootleg.technology
