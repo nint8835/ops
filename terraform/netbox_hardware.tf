@@ -190,6 +190,37 @@ resource "netbox_device" "nas" {
   rack_position  = 0
 }
 
+resource "netbox_device_interface" "nas_lan_1" {
+  name      = "LAN 1"
+  device_id = netbox_device.nas.id
+  type      = "1000base-t"
+}
+
+resource "netbox_ip_address" "nas_lan_1" {
+  description         = "Mnemosyne LAN 1"
+  status              = "active"
+  device_interface_id = netbox_device_interface.nas_lan_1.id
+  ip_address          = "192.168.1.210/32"
+}
+
+resource "netbox_device_primary_ip" "nas_lan_1" {
+  device_id     = netbox_device.nas.id
+  ip_address_id = netbox_ip_address.nas_lan_1.id
+}
+
+resource "netbox_device_interface" "nas_lan_2" {
+  name      = "LAN 2"
+  device_id = netbox_device.nas.id
+  type      = "1000base-t"
+}
+
+resource "netbox_ip_address" "nas_lan_2" {
+  description         = "Mnemosyne LAN 2"
+  status              = "active"
+  device_interface_id = netbox_device_interface.nas_lan_2.id
+  ip_address          = "192.168.1.213/32"
+}
+
 resource "netbox_device_type" "nano_hd" {
   manufacturer_id = netbox_manufacturer.ubiquiti.id
   model           = "nanoHD"
@@ -333,6 +364,24 @@ resource "netbox_device" "home_assistant_green" {
   rack_id        = netbox_rack.living_room.id
   role_id        = netbox_device_role.server.id
   rack_position  = 0
+}
+
+resource "netbox_device_interface" "home_assistant_green" {
+  name      = "Ethernet"
+  device_id = netbox_device.home_assistant_green.id
+  type      = "1000base-t"
+}
+
+resource "netbox_ip_address" "home_assistant_green" {
+  description         = "Home Assistant Green"
+  status              = "active"
+  device_interface_id = netbox_device_interface.home_assistant_green.id
+  ip_address          = "192.168.1.194/32"
+}
+
+resource "netbox_device_primary_ip" "home_assistant_green" {
+  device_id     = netbox_device.home_assistant_green.id
+  ip_address_id = netbox_ip_address.home_assistant_green.id
 }
 
 # TODO:
