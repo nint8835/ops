@@ -6,6 +6,10 @@ This repo contains the code and configuration for my homelab and associated infr
 
 Ansible inventories and playbooks for handling management of my Proxmox nodes.
 
+## `ares`
+
+Docker Compose configuration for my Framework Desktop used for AI workloads.
+
 ## `gokrazy`
 
 Configuration for dedicated Gokrazy-based appliance images, currently used to deploy a proxy for Proxmox.
