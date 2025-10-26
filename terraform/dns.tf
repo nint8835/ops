@@ -74,3 +74,21 @@ resource "cloudflare_dns_record" "proxmox_proxy_tailscale" {
   type    = "A"
   ttl     = 1
 }
+
+resource "cloudflare_dns_record" "mnemosyne" {
+  for_each = toset(["192.168.1.210", "192.168.1.213"])
+
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "mnemosyne.internal.bootleg.technology"
+  content = each.value
+  type    = "A"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "ares" {
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "ares.internal.bootleg.technology"
+  content = "192.168.1.177"
+  type    = "A"
+  ttl     = 1
+}
