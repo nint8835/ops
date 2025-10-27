@@ -1,0 +1,20 @@
+macros:
+  llama-server: >
+    /usr/bin/llama-server
+    --port ${PORT}
+    --no-mmap
+    -ngl 999
+    --flash-attn on
+
+models:
+  gpt-oss-120b:
+    cmd: >
+      ${llama-server}
+      -m /models/gpt-oss-120b/gpt-oss-120b-F16.gguf
+      --reasoning-format auto
+      --jinja
+
+  Qwen3-Coder-30B:
+    cmd: >
+      ${llama-server}
+      -m /models/Qwen3-Coder-30B/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf

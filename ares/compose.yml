@@ -32,21 +32,11 @@ services:
       - open-webui-data:/app/backend/data
   
   llama:
-    image: "docker.io/kyuz0/amd-strix-halo-toolboxes:vulkan-radv"
+    build: ./llama-swap-strix-halo
     restart: unless-stopped
-    entrypoint: ["/usr/bin/llama-server"]
-    command: [
-      "--host", "0.0.0.0",
-      "--no-mmap",
-      "-ngl", "999",
-      "--flash-attn", "on",
-      "--alias", "gpt-oss-120b",
-      "-m", "/models/gpt-oss-120b/gpt-oss-120b-F16.gguf",
-      "--reasoning-format", "auto",
-      "--jinja",
-    ]
     volumes:
       - /home/nint8835/models:/models:ro
+      - ./llama-swap-config.yaml:/app/config.yaml:ro
     networks:
       - inference
     devices:
