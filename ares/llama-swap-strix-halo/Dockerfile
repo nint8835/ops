@@ -1,4 +1,4 @@
-FROM busybox:1.36.1 AS llama-swap-download
+FROM busybox:1.37.0 AS llama-swap-download
 
 ARG LLAMA_SWAP_VERSION=170
 
