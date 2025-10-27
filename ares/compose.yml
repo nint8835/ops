@@ -9,7 +9,7 @@ services:
     command:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--providers.docker.network=ingress"
+      - "--providers.docker.network=ares_ingress"
       - "--entryPoints.web.address=:80"
     ports:
       # TODO: Set up HTTPS
@@ -22,13 +22,18 @@ services:
     restart: unless-stopped
     networks:
       - ingress
+      - inference
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.open-webui.rule=Host(`ares.internal.bootleg.technology`)"
       - "traefik.http.routers.open-webui.entrypoints=web"
+      - "traefik.docker.network=ares_ingress"
+    volumes:
+      - open-webui-data:/app/backend/data
 
 networks:
   ingress:
+  inference:
 
 volumes:
   open-webui-data:
