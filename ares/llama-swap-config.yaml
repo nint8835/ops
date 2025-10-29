@@ -5,6 +5,7 @@ macros:
     --no-mmap
     -ngl 999
     --flash-attn on
+    --log-disable
 
 models:
   gpt-oss-120b:
