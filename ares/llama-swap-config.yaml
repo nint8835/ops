@@ -1,3 +1,5 @@
+sendLoadingState: true
+
 macros:
   llama-server: >
     /usr/bin/llama-server
