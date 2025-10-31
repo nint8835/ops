@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "router" {
         container {
           name              = "tailscale"
           image_pull_policy = "IfNotPresent"
-          image             = "ghcr.io/tailscale/tailscale:v1.88.4"
+          image             = "ghcr.io/tailscale/tailscale:v1.90.6"
 
           env {
             name  = "TS_KUBE_SECRET"
