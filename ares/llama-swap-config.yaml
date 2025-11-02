@@ -13,6 +13,7 @@ macros:
 
 models:
   gpt-oss-120b:
+    name: gpt-oss (120B)
     cmd: >
       ${llama-server}
       -m /models/gpt-oss-120b-F16.gguf
@@ -20,6 +21,7 @@ models:
       --jinja
 
   Qwen3-Coder-30B:
+    name: Qwen3 Coder (30B)
     cmd: >
       ${llama-server}
       -m /models/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
