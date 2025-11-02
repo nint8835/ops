@@ -35,8 +35,8 @@ services:
     build: ./llama-swap-strix-halo
     restart: unless-stopped
     volumes:
-      - /home/nint8835/models:/models:ro
-      - ./llama-swap-config.yaml:/app/config.yaml:ro
+      - /data/models:/models:ro,Z
+      - ./llama-swap-config.yaml:/app/config.yaml:ro,Z
     networks:
       - inference
     devices:
