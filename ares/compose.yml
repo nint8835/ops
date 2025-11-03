@@ -38,7 +38,14 @@ services:
       - /data/models:/models:ro,Z
       - ./llama-swap-config.yaml:/app/config.yaml:ro,Z
     networks:
+      - ingress
       - inference
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.llama.rule=Host(`llama.internal.bootleg.technology`)"
+      - "traefik.http.routers.llama.entrypoints=web"
+      - "traefik.http.services.llama.loadbalancer.server.port=8080"
+      - "traefik.docker.network=ares_ingress"
     devices:
       - /dev/dri:/dev/dri
     group_add:
