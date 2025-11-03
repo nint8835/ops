@@ -19,6 +19,12 @@ models:
       -m /models/gpt-oss-120b-F16.gguf
       --reasoning-format auto
       --jinja
+  
+  Qwen3-30B:
+    name: Qwen3 (30B)
+    cmd: >
+      ${llama-server}
+      -m /models/Qwen3-30B-A3B-Q4_K_M.gguf
 
   Qwen3-Coder-30B:
     name: Qwen3 Coder (30B)
