@@ -92,3 +92,15 @@ resource "cloudflare_dns_record" "ares" {
   type    = "A"
   ttl     = 1
 }
+
+resource "cloudflare_dns_record" "ares_cname" {
+  for_each = toset([
+    "llama.internal.bootleg.technology",
+  ])
+
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = each.value
+  content = cloudflare_dns_record.ares.name
+  type    = "CNAME"
+  ttl     = 1
+}
