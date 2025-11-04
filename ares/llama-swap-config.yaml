@@ -17,6 +17,7 @@ models:
     cmd: >
       ${llama-server}
       -m /models/gpt-oss-120b-F16.gguf
+      -c 262144
       --reasoning-format auto
       --jinja
   
@@ -31,4 +32,5 @@ models:
     cmd: >
       ${llama-server}
       -m /models/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
+      -c 262144
       --jinja
