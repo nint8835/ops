@@ -12,6 +12,15 @@ macros:
     --log-disable
 
 models:
+  gpt-oss-20b:
+    name: gpt-oss (20B)
+    cmd: >
+      ${llama-server}
+      -m /models/gpt-oss-20b-F16.gguf
+      -c 262144
+      --reasoning-format auto
+      --jinja
+
   gpt-oss-120b:
     name: gpt-oss (120B)
     cmd: >
