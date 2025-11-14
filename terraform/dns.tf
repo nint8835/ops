@@ -10,6 +10,7 @@ locals {
     "grafana.ops.bootleg.technology",
     "homeassistant.bootleg.technology",
     "interruption-spotter.bootleg.technology",
+    "llm.ops.bootleg.technology",
     "miniflux.bootleg.technology",
     "netbox.ops.bootleg.technology",
     "paperless.bootleg.technology",
@@ -96,6 +97,7 @@ resource "cloudflare_dns_record" "ares" {
 resource "cloudflare_dns_record" "ares_cname" {
   for_each = toset([
     "llama.internal.bootleg.technology",
+    "llm.internal.bootleg.technology",
   ])
 
   zone_id = local.zone_ids["bootleg.technology"]
