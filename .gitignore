@@ -21,3 +21,6 @@ gokrazy/**/builddir
 # Caddy build files
 scripts/buildenv_*
 scripts/caddy
+
+# Environment variable files
+ares/*.env

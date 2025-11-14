@@ -52,6 +52,43 @@ services:
       - video
     security_opt:
       - "seccomp=unconfined"
+  
+  litellm-db:
+    image: postgres:18.1
+    restart: unless-stopped
+    volumes:
+      - litellm-db-data:/var/lib/postgresql
+    networks:
+      - inference
+    env_file:
+      - ./litellm-db.env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d litellm -U llmproxy"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+  
+  litellm:
+    image: ghcr.io/berriai/litellm:v1.79.1-stable
+    restart: unless-stopped
+    depends_on:
+      litellm-db:
+        condition: service_healthy
+    volumes:
+      - ./litellm-config.yaml:/app/config.yaml:ro,Z
+    command:
+      - "--config=/app/config.yaml"
+    networks:
+      - ingress
+      - inference
+    env_file:
+      - ./litellm.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.litellm.rule=Host(`llm.internal.bootleg.technology`)"
+      - "traefik.http.routers.litellm.entrypoints=web"
+      - "traefik.http.services.litellm.loadbalancer.server.port=4000"
+      - "traefik.docker.network=ares_ingress"
 
 networks:
   ingress:
@@ -59,3 +96,4 @@ networks:
 
 volumes:
   open-webui-data:
+  litellm-db-data:

@@ -30,6 +30,7 @@ models:
       --reasoning-format auto
       --jinja
   
+  # TODO: Make casing consistent across all model names
   Qwen3-30B:
     name: Qwen3 (30B)
     cmd: >

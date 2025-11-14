@@ -10,5 +10,6 @@
     },
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "enabled"
-    }
+    },
+    "files.insertFinalNewline": true
 }
