@@ -3,18 +3,22 @@ model_list:
     litellm_params:
       model: openai/gpt-oss-20b
       api_base: http://llama:8080/v1
+      api_key: placeholder
   
   - model_name: gpt-oss-120b
     litellm_params:
       model: openai/gpt-oss-120b
       api_base: http://llama:8080/v1
+      api_key: placeholder
   
   - model_name: Qwen3-30B
     litellm_params:
       model: openai/Qwen3-30B
       api_base: http://llama:8080/v1
+      api_key: placeholder
   
   - model_name: Qwen3-Coder-30B
     litellm_params:
       model: openai/Qwen3-Coder-30B
       api_base: http://llama:8080/v1
+      api_key: placeholder
