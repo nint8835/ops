@@ -21,3 +21,4 @@ resources:
   - immich.yaml
   - paperless-ngx.yaml
   - netbox.yaml
+  - litellm.yaml
