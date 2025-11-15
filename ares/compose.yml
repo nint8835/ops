@@ -85,7 +85,7 @@ services:
       - ./litellm.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.litellm.rule=Host(`llm.internal.bootleg.technology`)"
+      - "traefik.http.routers.litellm.rule=Host(`llm.internal.bootleg.technology`) || Host(`llm.ops.bootleg.technology`)"
       - "traefik.http.routers.litellm.entrypoints=web"
       - "traefik.http.services.litellm.loadbalancer.server.port=4000"
       - "traefik.docker.network=ares_ingress"
