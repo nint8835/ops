@@ -8,18 +8,29 @@
   "prHourlyLimit": 0,
   "packageRules": [
     {
+      "description": "Use the OpenTofu registry for Terraform providers and modules",
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "registryUrls": ["https://registry.opentofu.org"]
     },
     {
+      "description": "Configure versioning for Calibre Web Automated Docker image",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/crocodilestick/calibre-web-automated"],
       "versioning": "regex:^V?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
     },
     {
+      "description": "Group Immich Docker images",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/immich-app/**"],
       "groupName": "immich"
+    },
+    {
+      "description": "Enforce minimum age for certain Terraform providers",
+      "matchDatasources": ["terraform-provider"],
+      "matchPackageNames": [
+        "github"
+      ],
+      "minimumReleaseAge": "7 days"
     }
   ],
   "kubernetes": {
