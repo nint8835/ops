@@ -6,6 +6,8 @@
   "rebaseWhen": "behind-base-branch",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
+  "prCreation": "not-pending",
+  "internalChecksAsSuccess": true,
   "packageRules": [
     {
       "description": "Use the OpenTofu registry for Terraform providers and modules",
