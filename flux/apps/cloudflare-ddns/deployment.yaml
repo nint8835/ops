@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cloudflare-ddns
+
+spec:
+  selector:
+    matchLabels:
+      app: cloudflare-ddns
+  
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns
+    
+    spec:
+      containers:
+        - name: cloudflare-ddns
+          image: favonia/cloudflare-ddns:1.15.1
+
+          env:
+            - name: DOMAINS
+              value: ingress.bootleg.technology
+            - name: PROXIED
+              value: "false"
+            - name: CLOUDFLARE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  value: cloudflare-api-token
+      
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+        
