@@ -9,7 +9,10 @@
         "editor.formatOnSave": true
     },
     "vs-kubernetes": {
-        "vs-kubernetes.crd-code-completion": "enabled"
+        "vs-kubernetes.crd-code-completion": "enabled",
+        "disable-linters": [
+            "resource-limits"
+        ]
     },
     "files.insertFinalNewline": true
 }

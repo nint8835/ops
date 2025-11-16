@@ -28,7 +28,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: secrets
-                  value: cloudflare-api-token
+                  key: cloudflare-api-token
       
           securityContext:
             runAsNonRoot: true
@@ -38,4 +38,3 @@ spec:
             capabilities:
               drop:
                 - ALL
-        
