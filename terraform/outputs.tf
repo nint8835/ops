@@ -9,8 +9,3 @@ output "talosconfig" {
   sensitive   = true
   description = "Talosconfig for the cluster"
 }
-
-output "bastion_ip" {
-  value       = module.bastion_host.public_ip
-  description = "Public IP of the bastion host"
-}

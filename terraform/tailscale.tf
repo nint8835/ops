@@ -18,14 +18,6 @@ resource "tailscale_tailnet_key" "k8s" {
   tags          = ["tag:k8s"]
 }
 
-resource "tailscale_tailnet_key" "droplet" {
-  reusable      = true
-  ephemeral     = true
-  preauthorized = true
-  expiry        = 90 * 24 * 60 * 60
-  tags          = ["tag:droplet"]
-}
-
 resource "kubernetes_secret" "tailscale_auth" {
   metadata {
     name      = "tailscale-auth"
@@ -52,8 +44,7 @@ module "cluster_router" {
 resource "tailscale_acl" "acls" {
   acl = jsonencode({
     tagOwners = {
-      "tag:k8s"     = ["autogroup:admin"]
-      "tag:droplet" = ["autogroup:admin"]
+      "tag:k8s" = ["autogroup:admin"]
     }
 
     autoApprovers = {
@@ -61,7 +52,6 @@ resource "tailscale_acl" "acls" {
         "10.0.0.0/8"     = ["tag:k8s"]
         "192.168.1.0/24" = ["tag:k8s"]
       }
-      exitNode = ["tag:droplet"]
     }
 
     ssh = [

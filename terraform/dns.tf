@@ -35,9 +35,15 @@ locals {
 resource "cloudflare_dns_record" "bastion" {
   zone_id = local.zone_ids["bootleg.technology"]
   name    = "ingress.bootleg.technology"
-  content = module.bastion_host.public_ip
   type    = "A"
   ttl     = 1
+
+  lifecycle {
+    ignore_changes = [
+      # Managed by cloudflare-ddns
+      content
+    ]
+  }
 }
 
 resource "cloudflare_dns_record" "ingress" {

@@ -20,10 +20,6 @@ terraform {
       source  = "digitalocean/digitalocean"
       version = "2.69.0"
     }
-    http = {
-      source  = "hashicorp/http"
-      version = "3.5.0"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "5.12.0"
