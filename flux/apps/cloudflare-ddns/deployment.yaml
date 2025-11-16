@@ -24,6 +24,8 @@ spec:
               value: ingress.bootleg.technology
             - name: PROXIED
               value: "false"
+            - name: IP6_PROVIDER
+              value: none
             - name: CLOUDFLARE_API_TOKEN
               valueFrom:
                 secretKeyRef:
