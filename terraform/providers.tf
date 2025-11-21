@@ -61,6 +61,7 @@ provider "proxmox" {
 }
 
 provider "netbox" {
-  server_url = "https://netbox.ops.bootleg.technology"
-  api_token  = var.netbox_token
+  server_url         = "https://netbox.ops.bootleg.technology"
+  api_token          = var.netbox_token
+  skip_version_check = true
 }
