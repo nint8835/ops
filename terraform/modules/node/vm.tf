@@ -1,7 +1,6 @@
 resource "proxmox_virtual_environment_vm" "vm" {
   name      = var.name
   node_name = var.host_name
-  pool_id   = var.proxmox_pool_id
 
   reboot_after_update = false
 
@@ -35,6 +34,11 @@ resource "proxmox_virtual_environment_vm" "vm" {
     vlan_id  = 8
     firewall = true
   }
+}
+
+resource "proxmox_virtual_environment_pool_membership" "pool" {
+  vm_id   = proxmox_virtual_environment_vm.vm.id
+  pool_id = var.proxmox_pool_id
 }
 
 resource "netbox_virtual_machine" "vm" {
