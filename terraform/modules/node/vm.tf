@@ -34,6 +34,10 @@ resource "proxmox_virtual_environment_vm" "vm" {
     vlan_id  = 8
     firewall = true
   }
+
+  lifecycle {
+    ignore_changes = [pool_id]
+  }
 }
 
 resource "proxmox_virtual_environment_pool_membership" "pool" {
