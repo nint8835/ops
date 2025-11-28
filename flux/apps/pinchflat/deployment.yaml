@@ -45,6 +45,8 @@ spec:
               value: America/St_Johns
             - name: JOURNAL_MODE
               value: delete
+            - name: LOG_LEVEL
+              value: info
           
           envFrom:
             - secretRef:
