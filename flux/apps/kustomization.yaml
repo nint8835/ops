@@ -24,3 +24,4 @@ resources:
   - litellm.yaml
   - cloudflare-ddns.yaml
   - cheesetown.yaml
+  - pinchflat.yaml
