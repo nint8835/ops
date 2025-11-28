@@ -15,6 +15,7 @@ locals {
     "netbox.ops.bootleg.technology",
     "paperless.bootleg.technology",
     "photos.rileyflynn.me",
+    "pinchflat.bootleg.technology",
     "pkg.nit.so",
     "plex.bootleg.technology",
     "pollster.bootleg.technology",
