@@ -4,3 +4,4 @@ namespace: pinchflat
 
 resources:
   - namespace.yaml
+  - secrets.yaml
