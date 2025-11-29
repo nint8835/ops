@@ -3,24 +3,24 @@ kind: Kustomization
 
 resources:
   - borik.yaml
-  - grackdb.yaml
-  - miniflux.yaml
-  - pkg-fogo-sh
-  - pkg-nit-so.yaml
-  - scribe.yaml
-  - shopkeeper.yaml
-  - shopkeeper-cts.yaml
-  - homeassistant-proxy.yaml
-  - skyline.yaml
-  - ntv-webcam-scraper.yaml
-  - interruption-spotter.yaml
   - calibre.yaml
-  - pollster.yaml
-  - plex-proxy.yaml
+  - cheesetown.yaml
+  - cloudflare-ddns.yaml
+  - grackdb.yaml
+  - homeassistant-proxy.yaml
   - hopper.yaml
   - immich.yaml
-  - paperless-ngx.yaml
-  - netbox.yaml
+  - interruption-spotter.yaml
   - litellm.yaml
-  - cloudflare-ddns.yaml
-  - cheesetown.yaml
+  - miniflux.yaml
+  - netbox.yaml
+  - ntv-webcam-scraper.yaml
+  - paperless-ngx.yaml
+  - pkg-fogo-sh
+  - pkg-nit-so.yaml
+  - plex-proxy.yaml
+  - pollster.yaml
+  - scribe.yaml
+  - shopkeeper-cts.yaml
+  - shopkeeper.yaml
+  - skyline.yaml
