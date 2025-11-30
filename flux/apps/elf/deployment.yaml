@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: elf
+
+spec:
+  selector:
+    matchLabels:
+      app: elf
+
+  template:
+    metadata:
+      labels:
+        app: elf
+
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+
+      containers:
+        - name: elf
+          image: ghcr.io/nint8835/elf:latest
+          imagePullPolicy: Always
+
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: ELF_
+
+          env:
+            - name: ELF_DATABASE_PATH
+              value: /data/elf.sqlite
+
+          volumeMounts:
+            - name: database
+              mountPath: /data

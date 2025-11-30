@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: elf
+
+resources:
+  - namespace.yaml
+  - secrets.yaml
+  - persistent_volume_claim.yaml
+  - deployment.yaml

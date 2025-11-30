@@ -6,6 +6,7 @@ resources:
   - calibre.yaml
   - cheesetown.yaml
   - cloudflare-ddns.yaml
+  - elf.yaml
   - grackdb.yaml
   - homeassistant-proxy.yaml
   - hopper.yaml
