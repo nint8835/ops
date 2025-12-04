@@ -1,6 +1,6 @@
 FROM busybox:1.37.0 AS llama-swap-download
 
-ARG LLAMA_SWAP_VERSION=172
+ARG LLAMA_SWAP_VERSION=176
 
 RUN wget https://github.com/mostlygeek/llama-swap/releases/download/v"${LLAMA_SWAP_VERSION}"/llama-swap_"${LLAMA_SWAP_VERSION}"_linux_amd64.tar.gz && \
     tar -zxf llama-swap_"${LLAMA_SWAP_VERSION}"_linux_amd64.tar.gz && \
