@@ -33,7 +33,7 @@ resource "kubernetes_deployment_v1" "router" {
 
           env {
             name  = "TS_KUBE_SECRET"
-            value = kubernetes_secret.state.metadata[0].name
+            value = kubernetes_secret_v1.state.metadata[0].name
           }
 
           env {

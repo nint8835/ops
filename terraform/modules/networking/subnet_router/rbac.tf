@@ -6,7 +6,7 @@ resource "kubernetes_role_v1" "role" {
 
   rule {
     api_groups     = [""]
-    resource_names = [kubernetes_secret.state.metadata[0].name]
+    resource_names = [kubernetes_secret_v1.state.metadata[0].name]
     resources      = ["secrets"]
     verbs          = ["get", "update", "patch"]
   }
