@@ -1,4 +1,4 @@
-resource "kubernetes_role" "role" {
+resource "kubernetes_role_v1" "role" {
   metadata {
     name      = var.router_name
     namespace = var.namespace
@@ -18,14 +18,14 @@ resource "kubernetes_role" "role" {
   }
 }
 
-resource "kubernetes_service_account" "service_account" {
+resource "kubernetes_service_account_v1" "service_account" {
   metadata {
     name      = var.router_name
     namespace = var.namespace
   }
 }
 
-resource "kubernetes_role_binding" "binding" {
+resource "kubernetes_role_binding_v1" "binding" {
   metadata {
     name      = var.router_name
     namespace = var.namespace
@@ -33,13 +33,13 @@ resource "kubernetes_role_binding" "binding" {
 
   subject {
     kind      = "ServiceAccount"
-    name      = kubernetes_service_account.service_account.metadata[0].name
+    name      = kubernetes_service_account_v1.service_account.metadata[0].name
     namespace = var.namespace
   }
 
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "Role"
-    name      = kubernetes_role.role.metadata[0].name
+    name      = kubernetes_role_v1.role.metadata[0].name
   }
 }
