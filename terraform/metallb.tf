@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "metallb_system" {
+resource "kubernetes_namespace_v1" "metallb_system" {
   metadata {
     name = "metallb-system"
 
@@ -12,7 +12,7 @@ resource "kubernetes_namespace" "metallb_system" {
 
 resource "helm_release" "metallb" {
   name      = "metallb"
-  namespace = kubernetes_namespace.metallb_system.id
+  namespace = kubernetes_namespace_v1.metallb_system.id
 
   repository = "https://metallb.github.io/metallb"
   chart      = "metallb"
@@ -49,7 +49,7 @@ module "metallb_configs_hash" {
 
 resource "helm_release" "metallb_configs" {
   name      = "metallb-configs"
-  namespace = kubernetes_namespace.metallb_system.id
+  namespace = kubernetes_namespace_v1.metallb_system.id
   chart     = "${path.module}/charts/metallb-configs"
 
   set = [

@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "traefik" {
+resource "kubernetes_namespace_v1" "traefik" {
   metadata {
     name = "traefik"
   }
@@ -6,7 +6,7 @@ resource "kubernetes_namespace" "traefik" {
 
 resource "helm_release" "traefik" {
   name      = "traefik"
-  namespace = kubernetes_namespace.traefik.id
+  namespace = kubernetes_namespace_v1.traefik.id
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
@@ -51,7 +51,7 @@ resource "helm_release" "traefik" {
 resource "kubernetes_secret" "traefik_dashboard_auth" {
   metadata {
     name      = "traefik-dashboard-auth"
-    namespace = kubernetes_namespace.traefik.id
+    namespace = kubernetes_namespace_v1.traefik.id
   }
 
   data = {
@@ -66,7 +66,7 @@ module "traefik_configs_hash" {
 
 resource "helm_release" "traefik_configs" {
   name      = "traefik-configs"
-  namespace = kubernetes_namespace.traefik.id
+  namespace = kubernetes_namespace_v1.traefik.id
   chart     = "${path.module}/charts/traefik-configs"
 
   set = [
