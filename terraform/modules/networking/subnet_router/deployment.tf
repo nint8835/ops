@@ -1,4 +1,4 @@
-resource "kubernetes_deployment" "router" {
+resource "kubernetes_deployment_v1" "router" {
   metadata {
     name      = var.router_name
     namespace = var.namespace
