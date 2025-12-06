@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "lgtm" {
+resource "kubernetes_namespace_v1" "lgtm" {
   metadata {
     name = "lgtm"
     labels = {
@@ -9,7 +9,7 @@ resource "kubernetes_namespace" "lgtm" {
 
 resource "helm_release" "grafana" {
   name      = "grafana"
-  namespace = kubernetes_namespace.lgtm.id
+  namespace = kubernetes_namespace_v1.lgtm.id
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
@@ -81,7 +81,7 @@ resource "helm_release" "metrics_server" {
 
 resource "helm_release" "victoria_logs" {
   name      = "victoria-logs"
-  namespace = kubernetes_namespace.lgtm.id
+  namespace = kubernetes_namespace_v1.lgtm.id
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-logs-single"
@@ -117,7 +117,7 @@ resource "helm_release" "victoria_logs" {
 
 resource "helm_release" "prometheus_operator_crds" {
   name      = "prometheus-operator-crds"
-  namespace = kubernetes_namespace.lgtm.id
+  namespace = kubernetes_namespace_v1.lgtm.id
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-operator-crds"
@@ -126,7 +126,7 @@ resource "helm_release" "prometheus_operator_crds" {
 
 resource "helm_release" "victoria_metrics_k8s_stack" {
   name      = "victoria-metrics-k8s-stack"
-  namespace = kubernetes_namespace.lgtm.id
+  namespace = kubernetes_namespace_v1.lgtm.id
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"

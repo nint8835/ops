@@ -1,4 +1,4 @@
-resource "kubernetes_deployment" "router" {
+resource "kubernetes_deployment_v1" "router" {
   metadata {
     name      = var.router_name
     namespace = var.namespace
@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "router" {
       }
 
       spec {
-        service_account_name = kubernetes_service_account.service_account.metadata[0].name
+        service_account_name = kubernetes_service_account_v1.service_account.metadata[0].name
 
         container {
           name              = "tailscale"
@@ -33,7 +33,7 @@ resource "kubernetes_deployment" "router" {
 
           env {
             name  = "TS_KUBE_SECRET"
-            value = kubernetes_secret.state.metadata[0].name
+            value = kubernetes_secret_v1.state.metadata[0].name
           }
 
           env {

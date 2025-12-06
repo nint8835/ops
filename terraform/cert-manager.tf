@@ -1,13 +1,13 @@
-resource "kubernetes_namespace" "cert_manager" {
+resource "kubernetes_namespace_v1" "cert_manager" {
   metadata {
     name = "cert-manager"
   }
 }
 
-resource "kubernetes_secret" "certmanager_cloudflare_token" {
+resource "kubernetes_secret_v1" "certmanager_cloudflare_token" {
   metadata {
     name      = "cloudflare-api-token"
-    namespace = kubernetes_namespace.cert_manager.id
+    namespace = kubernetes_namespace_v1.cert_manager.id
   }
 
   data = {
@@ -17,7 +17,7 @@ resource "kubernetes_secret" "certmanager_cloudflare_token" {
 
 resource "helm_release" "cert_manager" {
   name      = "cert-manager"
-  namespace = kubernetes_namespace.cert_manager.id
+  namespace = kubernetes_namespace_v1.cert_manager.id
 
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
@@ -62,7 +62,7 @@ module "cert_manager_configs_hash" {
 
 resource "helm_release" "cert_manager_configs" {
   name      = "cert-manager-configs"
-  namespace = kubernetes_namespace.cert_manager.id
+  namespace = kubernetes_namespace_v1.cert_manager.id
   chart     = "${path.module}/charts/cert-manager-configs"
 
   set = [
@@ -72,7 +72,7 @@ resource "helm_release" "cert_manager_configs" {
     },
     {
       name  = "cloudflareSecretName"
-      value = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
+      value = kubernetes_secret_v1.certmanager_cloudflare_token.metadata[0].name
     },
   ]
 
