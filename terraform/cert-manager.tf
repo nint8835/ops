@@ -4,7 +4,7 @@ resource "kubernetes_namespace_v1" "cert_manager" {
   }
 }
 
-resource "kubernetes_secret" "certmanager_cloudflare_token" {
+resource "kubernetes_secret_v1" "certmanager_cloudflare_token" {
   metadata {
     name      = "cloudflare-api-token"
     namespace = kubernetes_namespace_v1.cert_manager.id
@@ -72,7 +72,7 @@ resource "helm_release" "cert_manager_configs" {
     },
     {
       name  = "cloudflareSecretName"
-      value = kubernetes_secret.certmanager_cloudflare_token.metadata[0].name
+      value = kubernetes_secret_v1.certmanager_cloudflare_token.metadata[0].name
     },
   ]
 

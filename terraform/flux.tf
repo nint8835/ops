@@ -23,7 +23,7 @@ resource "flux_bootstrap_git" "bootstrap" {
   kustomization_override = file("${path.module}/files/flux-kustomization.yaml")
 }
 
-resource "kubernetes_secret" "sops_age" {
+resource "kubernetes_secret_v1" "sops_age" {
   depends_on = [flux_bootstrap_git.bootstrap]
 
   metadata {

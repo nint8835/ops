@@ -48,7 +48,7 @@ resource "helm_release" "traefik" {
   ]
 }
 
-resource "kubernetes_secret" "traefik_dashboard_auth" {
+resource "kubernetes_secret_v1" "traefik_dashboard_auth" {
   metadata {
     name      = "traefik-dashboard-auth"
     namespace = kubernetes_namespace_v1.traefik.id
@@ -76,7 +76,7 @@ resource "helm_release" "traefik_configs" {
     },
     {
       name  = "traefikDashboardAuthSecret"
-      value = kubernetes_secret.traefik_dashboard_auth.metadata[0].name
+      value = kubernetes_secret_v1.traefik_dashboard_auth.metadata[0].name
     },
   ]
 

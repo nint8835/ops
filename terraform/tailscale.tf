@@ -18,7 +18,7 @@ resource "tailscale_tailnet_key" "k8s" {
   tags          = ["tag:k8s"]
 }
 
-resource "kubernetes_secret" "tailscale_auth" {
+resource "kubernetes_secret_v1" "tailscale_auth" {
   metadata {
     name      = "tailscale-auth"
     namespace = kubernetes_namespace_v1.tailscale.metadata[0].name
@@ -36,7 +36,7 @@ module "cluster_router" {
 
   router_name        = "k8s-cluster-router-${count.index}"
   namespace          = kubernetes_namespace_v1.tailscale.id
-  ts_auth_key_secret = kubernetes_secret.tailscale_auth.metadata[0].name
+  ts_auth_key_secret = kubernetes_secret_v1.tailscale_auth.metadata[0].name
   routes             = ["10.0.0.0/8", "192.168.1.0/24"]
   router_group       = "k8s-cluster-router"
 }

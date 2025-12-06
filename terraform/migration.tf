@@ -1,71 +1,47 @@
 removed {
-  from = kubernetes_namespace.traefik
+  from = kubernetes_secret.certmanager_cloudflare_token
   lifecycle {
     destroy = false
   }
 }
 
 import {
-  to = kubernetes_namespace_v1.traefik
-  id = "traefik"
+  to = kubernetes_secret_v1.certmanager_cloudflare_token
+  id = "cert-manager/cloudflare-api-token"
 }
 
 removed {
-  from = kubernetes_namespace.cert_manager
+  from = kubernetes_secret.traefik_dashboard_auth
   lifecycle {
     destroy = false
   }
 }
 
 import {
-  to = kubernetes_namespace_v1.cert_manager
-  id = "cert-manager"
+  to = kubernetes_secret_v1.traefik_dashboard_auth
+  id = "traefik/traefik-dashboard-auth"
 }
 
 removed {
-  from = kubernetes_namespace.tailscale
+  from = kubernetes_secret.sops_age
   lifecycle {
     destroy = false
   }
 }
 
 import {
-  to = kubernetes_namespace_v1.tailscale
-  id = "tailscale"
+  to = kubernetes_secret_v1.sops_age
+  id = "flux-system/sops-age"
 }
 
 removed {
-  from = kubernetes_namespace.cnpg_system
+  from = kubernetes_secret.tailscale_auth
   lifecycle {
     destroy = false
   }
 }
 
 import {
-  to = kubernetes_namespace_v1.cnpg_system
-  id = "cnpg-system"
-}
-
-removed {
-  from = kubernetes_namespace.metallb_system
-  lifecycle {
-    destroy = false
-  }
-}
-
-import {
-  to = kubernetes_namespace_v1.metallb_system
-  id = "metallb-system"
-}
-
-removed {
-  from = kubernetes_namespace.lgtm
-  lifecycle {
-    destroy = false
-  }
-}
-
-import {
-  to = kubernetes_namespace_v1.lgtm
-  id = "lgtm"
+  to = kubernetes_secret_v1.tailscale_auth
+  id = "tailscale/tailscale-auth"
 }
