@@ -7,7 +7,7 @@ resource "helm_release" "csi_nfs" {
   version    = "4.12.1"
 }
 
-resource "kubernetes_storage_class" "nfs" {
+resource "kubernetes_storage_class_v1" "nfs" {
   metadata {
     name = "nfs-csi"
   }
