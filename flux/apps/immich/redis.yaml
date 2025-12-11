@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: ghcr.io/valkey-io/valkey:9.0.0-alpine
+          image: ghcr.io/valkey-io/valkey:9.0.1-alpine
 
           ports:
             - name: redis
