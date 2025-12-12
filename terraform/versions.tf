@@ -38,7 +38,7 @@ terraform {
     }
     proxmox = {
       source  = "bpg/proxmox"
-      version = "0.88.0"
+      version = "0.89.1"
     }
     netbox = {
       source  = "e-breuninger/netbox"
