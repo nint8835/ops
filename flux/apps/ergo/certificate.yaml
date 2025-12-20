@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+
+metadata:
+  name: irc-certs
+
+spec:
+  secretName: irc-certs
+  dnsNames:
+    - irc.bootleg.technology
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

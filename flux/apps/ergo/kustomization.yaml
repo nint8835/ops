@@ -4,3 +4,4 @@ namespace: ergo
 
 resources:
   - namespace.yaml
+  - certificate.yaml
