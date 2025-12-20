@@ -5,3 +5,10 @@ namespace: ergo
 resources:
   - namespace.yaml
   - certificate.yaml
+  - persistent_volume_claim.yaml
+
+configMapGenerator:
+  - name: config
+    files:
+      - config/config.yaml
+      - config/config.motd
