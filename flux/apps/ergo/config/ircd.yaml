@@ -284,6 +284,7 @@ server:
         # IPs/networks which are exempted from connection limits
         exempted:
             - "localhost"
+            - "10.244.0.0/16"
             # - "192.168.1.1"
             # - "2001:0db8::/32"
 
