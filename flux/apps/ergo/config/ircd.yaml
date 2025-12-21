@@ -844,7 +844,7 @@ debug:
 # started at once. comment out or set to the empty string ("") to disable.
 # this path is relative to the working directory; if your datastore.path
 # is absolute, you should use an absolute path here as well.
-lock-file: "ircd.lock"
+# lock-file: "ircd.lock"
 
 # datastore configuration
 datastore:
