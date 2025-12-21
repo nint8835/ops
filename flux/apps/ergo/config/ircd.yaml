@@ -510,7 +510,7 @@ accounts:
         # IPs/CIDRs which are exempted from the account requirement
         exempted:
             - "localhost"
-            - "192.168.1.0/24"
+            # - "192.168.1.0/24"
             # - '10.10.0.0/16'
 
     # nick-reservation controls how, and whether, nicknames are linked to accounts
