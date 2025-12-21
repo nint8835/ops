@@ -52,8 +52,8 @@ server:
             # this is a standard TLS configuration with a single certificate;
             # see the manual for instructions on how to configure SNI
             tls:
-                cert: /tls/tls.crt
-                key: /tls/tls.key
+                key: /ircd/tls/tls.key
+                cert: /ircd/tls/tls.crt
             # 'proxy' should typically be false. It's for cloud load balancers that
             # always send a PROXY protocol header ahead of the connection. See the
             # manual ("Reverse proxies") for more details.
@@ -849,7 +849,7 @@ lock-file: "ircd.lock"
 # datastore configuration
 datastore:
     # path to the database file (used to store account and channel registrations):
-    path: ircd.db
+    path: /ircd/db/ircd.db
 
     # if the database schema requires an upgrade, `autoupgrade` will attempt to
     # perform it automatically on startup. the database will be backed

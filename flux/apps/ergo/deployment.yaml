@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ergo
+
+spec:
+  selector:
+    matchLabels:
+      app: ergo
+  
+  template:
+    metadata:
+      labels:
+        app: ergo
+    
+    spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: database
+        - name: config
+          configMap:
+            name: config
+        - name: irc-certs
+          secret:
+            secretName: irc-certs
+
+      containers:
+        - name: ergo
+          image: ghcr.io/ergochat/ergo:v2.16.0
+
+          ports:
+            - containerPort: 6697
+              name: irc
+          
+          readinessProbe:
+            tcpSocket:
+              port: 6697
+          
+          livenessProbe:
+            tcpSocket:
+              port: 6697
+          
+          volumeMounts:
+            - name: database
+              mountPath: /ircd/db
+            - name: config
+              mountPath: /ircd/
+            - name: irc-certs
+              mountPath: /ircd/tls
+              readOnly: true
