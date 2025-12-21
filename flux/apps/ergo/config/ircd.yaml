@@ -767,15 +767,15 @@ opers:
         # or by certificate fingerprint, or both. if a password hash is set, then a
         # password is required to oper up (e.g., /OPER dan mypassword). to generate
         # the hash, use `ergo genpasswd`.
-        password: "$2a$04$pN5i1y4lAymhSX/aTreCgewDOnYXa2Zl5GOGun/tCCP/S1hJzpHZm"
+        # password: "$2a$04$pN5i1y4lAymhSX/aTreCgewDOnYXa2Zl5GOGun/tCCP/S1hJzpHZm"
 
         # if a SHA-256 certificate fingerprint is configured here, then it will be
         # required to /OPER. if you comment out the password hash above, then you can
         # /OPER without a password.
-        #certfp: "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"
+        certfp: "a8b6debf19d8c0918a1960c9768e0d54ae4b9da3da9942fc7030de651c37818f"
         # if 'auto' is set (and no password hash is set), operator permissions will be
         # granted automatically as soon as you connect with the right fingerprint.
-        #auto: true
+        auto: true
 
     # example of a moderator named 'alice'
     # (log in with /OPER alice <password>):
