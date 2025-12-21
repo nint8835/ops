@@ -152,7 +152,7 @@ server:
     # 1. lookup-hostnames enabled, IP cloaking disabled; users will see each other's hostnames
     # 2. lookup-hostnames disabled, IP cloaking disabled; users will see each other's numeric IPs
     # 3. [the default] IP cloaking enabled; users will see cloaked hostnames
-    lookup-hostnames: false
+    lookup-hostnames: true
     # whether to confirm hostname lookups using "forward-confirmed reverse DNS", i.e., for
     # any hostname returned from reverse DNS, resolve it back to an IP address and reject it
     # unless it matches the connecting IP
@@ -334,13 +334,13 @@ server:
     # If you disable this, you should probably enable lookup-hostnames in its place.
     ip-cloaking:
         # whether to enable IP cloaking
-        enabled: true
+        enabled: false
 
         # whether to use these cloak settings (specifically, `netname` and `num-bits`)
         # to produce unique hostnames for always-on clients. you can enable this even if
         # you disabled IP cloaking for normal clients above. if this is disabled,
         # always-on clients will all have an identical hostname (the server name).
-        enabled-for-always-on: true
+        enabled-for-always-on: false
 
         # fake TLD at the end of the hostname, e.g., pwbs2ui4377257x8.irc
         # you may want to use your network name here
