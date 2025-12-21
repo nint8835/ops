@@ -10,5 +10,5 @@ resources:
 configMapGenerator:
   - name: config
     files:
-      - config/config.yaml
-      - config/config.motd
+      - config/ircd.yaml
+      - config/ircd.motd
