@@ -5,6 +5,7 @@ metadata:
   name: irc
 
 spec:
+  externalTrafficPolicy: Local
   type: LoadBalancer
   ports:
     - port: 6697
