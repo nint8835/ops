@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: ergo
-          image: ghcr.io/ergochat/ergo:v2.16.0
+          image: ghcr.io/ergochat/ergo:v2.17.0
 
           ports:
             - containerPort: 6697
