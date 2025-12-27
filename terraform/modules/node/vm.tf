@@ -4,6 +4,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
   pool_id   = var.proxmox_pool_id
 
   reboot_after_update = false
+  on_boot             = true
 
   scsi_hardware = "virtio-scsi-single"
 
