@@ -10,6 +10,10 @@ macros:
     -ngl 999
     --flash-attn on
     --log-disable
+  
+  sd-server: >
+    /usr/local/bin/sd-server
+    --listen-port ${PORT}
 
 models:
   gpt-oss-20b:
@@ -44,3 +48,10 @@ models:
       -m /models/Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf
       -c 262144
       --jinja
+  
+  stable-diffusion-v1-5:
+    name: Stable Diffusion v1.5
+    checkEndpoint: "/"
+    cmd: >
+      ${sd-server}
+      -m /models/stable-diffusion/v1-5-pruned-emaonly.safetensors
