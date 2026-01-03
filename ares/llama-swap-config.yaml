@@ -14,6 +14,7 @@ macros:
   sd-server: >
     /usr/local/bin/sd-server
     --listen-port ${PORT}
+    --diffusion-fa
 
 models:
   gpt-oss-20b:
@@ -55,3 +56,13 @@ models:
     cmd: >
       ${sd-server}
       -m /models/stable-diffusion/v1-5-pruned-emaonly.safetensors
+  
+  z-image-turbo:
+    name: Z-Image Turbo
+    checkEndpoint: "/"
+    cmd: >
+      ${sd-server}
+      --diffusion-model /models/stable-diffusion/z_image_turbo-Q8_0.gguf
+      --vae /models/stable-diffusion/ae.safetensors
+      --llm /models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+      --cfg-scale 1.0
