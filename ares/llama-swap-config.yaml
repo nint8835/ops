@@ -66,3 +66,17 @@ models:
       --vae /models/stable-diffusion/ae.safetensors
       --llm /models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
       --cfg-scale 1.0
+      --steps 12
+  
+  qwen-image-edit:
+    name: Qwen Image Edit
+    checkEndpoint: "/"
+    cmd: >
+      ${sd-server}
+      --diffusion-model /models/stable-diffusion/qwen-image-edit-2511-Q5_K_M.gguf
+      --vae /models/stable-diffusion/qwen_image_vae.safetensors
+      --llm /models/Qwen2.5-VL-7B-Instruct.f16.gguf
+      --cfg-scale 2.5
+      --sampling-method euler
+      --flow-shift 3
+      --qwen-image-zero-cond-t
