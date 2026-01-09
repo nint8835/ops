@@ -13,7 +13,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana.github.io/helm-charts"
   chart      = "grafana"
-  version    = "10.5.4"
+  version    = "10.5.5"
 
   set = [
     {
