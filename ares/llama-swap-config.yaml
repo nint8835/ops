@@ -80,3 +80,15 @@ models:
       --sampling-method euler
       --flow-shift 3
       --qwen-image-zero-cond-t
+  
+  flux-2-klein-4b:
+    name: FLUX.2 [klein] (4B)
+    checkEndpoint: "/"
+    cmd: >
+      ${sd-server}
+      --diffusion-model /models/stable-diffusion/flux-2-klein-4b-BF16.gguf
+      --vae /models/stable-diffusion/flux-2-klein-vae.safetensors
+      --llm /models/Qwen3-4B-BF16.gguf
+      --cfg-scale 1.0
+      --steps 4
+      --diffusion-fa
