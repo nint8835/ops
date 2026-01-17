@@ -18,7 +18,7 @@ terraform {
     }
     digitalocean = {
       source  = "digitalocean/digitalocean"
-      version = "2.72.0"
+      version = "2.73.0"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
