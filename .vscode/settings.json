@@ -8,22 +8,11 @@
     "[opentofu]": {
         "editor.formatOnSave": true
     },
-    "[python]": {
-        "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-            "source.fixAll": "always",
-            "source.unusedImports": "always"
-        }
-    },
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "enabled",
         "disable-linters": [
             "resource-limits"
         ]
     },
-    "files.insertFinalNewline": true,
-    "python.analysis.diagnosticSeverityOverrides": {
-        "reportInvalidTypeForm": "none"
-    }
+    "files.insertFinalNewline": true
 }
