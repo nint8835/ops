@@ -91,4 +91,3 @@ models:
       --llm /models/Qwen3-4B-BF16.gguf
       --cfg-scale 1.0
       --steps 4
-      --diffusion-fa
