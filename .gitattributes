@@ -1,5 +1,6 @@
 *.yaml linguist-detectable
 ares/llama-swap-config-schema.json linguist-generated
+ares/llm-config-generator/llm_config_generator/config_models/* linguist-generated
 flux/apps/ergo/config/ircd.yaml linguist-vendored
 flux/apps/netbox/config/* linguist-vendored
 flux/flux-system/* linguist-generated
