@@ -22,3 +22,11 @@ model_list:
       model: openai/Qwen3-Coder-30B
       api_base: http://llama:8080/v1
       api_key: placeholder
+  
+  - model_name: flux-2-klein-4b
+    litellm_params:
+      model: openai/flux-2-klein-4b
+      api_base: http://llama:8080/v1
+      api_key: placeholder
+    model_info:
+      mode: image_generation
