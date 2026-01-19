@@ -49,3 +49,9 @@ spec:
           enable: true
           secretName: coder-tls
           wildcardSecretName: coder-wildcard-tls
+      
+      # Coder by default asks for 2 CPUs and 4GB of RAM, which I have no nodes capable of providing at the moment
+      # Therefore, unset these resource requests/limits to allow k8s to schedule the pods on available nodes
+      resources:
+        requests: {}
+        limits: {}
