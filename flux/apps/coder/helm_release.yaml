@@ -26,6 +26,8 @@ spec:
               key: uri
         - name: CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE
           value: "false"
+        - name: CODER_OAUTH2_GITHUB_ALLOWED_ORGS
+          value: bootleg-technology
         - name: CODER_ACCESS_URL
           value: "https://workspaces.bootleg.technology"
         - name: CODER_WILDCARD_ACCESS_URL
