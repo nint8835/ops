@@ -5,3 +5,4 @@ namespace: coder
 resources:
   - namespace.yaml
   - database.yaml
+  - helm_repo.yaml
