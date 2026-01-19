@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+
+metadata:
+  name: coder
+
+spec:
+  interval: 1h0m0s
+
+  chart:
+    spec:
+      chart: coder
+      version: '2.29.1'
+      sourceRef:
+        kind: HelmRepository
+        name: coder
+      interval: 1h0m0s
+
+  values:
+    coder:
+      env:
+        - name: CODER_PG_CONNECTION_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-app
+              key: uri
+        - name: CODER_OAUTH2_GITHUB_DEFAULT_PROVIDER_ENABLE
+          value: "false"
+        - name: CODER_OAUTH2_GITHUB_ALLOWED_ORGS
+          value: bootleg-technology
+        - name: CODER_ACCESS_URL
+          value: "https://workspaces.bootleg.technology"
+        - name: CODER_WILDCARD_ACCESS_URL
+          value: "*.workspaces.bootleg.technology"
+      envFrom:
+        - secretRef:
+            name: secrets
+
+      service:
+        type: ClusterIP
+      ingress:
+        enable: true
+        host: workspaces.bootleg.technology
+        wildcardHost: '*.workspaces.bootleg.technology'
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+        tls:
+          enable: true
+          secretName: coder-tls
+          wildcardSecretName: coder-wildcard-tls
