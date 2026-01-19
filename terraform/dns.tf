@@ -23,6 +23,7 @@ locals {
     "shopkeeper.bootleg.technology",
     "skyline.bootleg.technology",
     "traefik.ops.bootleg.technology",
+    "workspaces.bootleg.technology",
   ]
 
   ingress_entries = {
@@ -53,6 +54,14 @@ resource "cloudflare_dns_record" "ingress" {
   zone_id = each.value.zone_id
   name    = each.value.name
   content = cloudflare_dns_record.bastion.name
+  type    = "CNAME"
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "workspaces_wildcard" {
+  zone_id = local.zone_ids["bootleg.technology"]
+  name    = "*.workspaces.bootleg.technology"
+  content = cloudflare_dns_record.ingress["workspaces.bootleg.technology"].name
   type    = "CNAME"
   ttl     = 1
 }
