@@ -4,3 +4,4 @@ namespace: coder
 
 resources:
   - namespace.yaml
+  - database.yaml
