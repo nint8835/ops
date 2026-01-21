@@ -32,6 +32,8 @@ spec:
           value: "https://workspaces.bootleg.technology"
         - name: CODER_WILDCARD_ACCESS_URL
           value: "*.workspaces.bootleg.technology"
+        - name: CODER_MAX_ADMIN_TOKEN_LIFETIME
+          value: 8766h0m0s # 1 year
       envFrom:
         - secretRef:
             name: secrets
