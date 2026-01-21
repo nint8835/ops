@@ -65,3 +65,8 @@ provider "netbox" {
   api_token          = var.netbox_token
   skip_version_check = true
 }
+
+provider "coderd" {
+  url   = "https://workspaces.bootleg.technology"
+  token = var.coder_token
+}

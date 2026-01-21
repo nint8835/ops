@@ -77,3 +77,9 @@ variable "netbox_token" {
   type        = string
   sensitive   = true
 }
+
+variable "coder_token" {
+  description = "Coder API token"
+  type        = string
+  sensitive   = true
+}
