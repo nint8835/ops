@@ -15,3 +15,6 @@ secretGenerator:
       - docker-creds/ca.pem
       - docker-creds/cert.pem
       - docker-creds/key.pem
+    options:
+      # TODO: Find how to make Flux HelmRelease work with hashed secret names
+      disableNameSuffixHash: true
