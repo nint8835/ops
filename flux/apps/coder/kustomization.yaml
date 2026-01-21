@@ -8,3 +8,10 @@ resources:
   - helm_repo.yaml
   - secrets.yaml
   - helm_release.yaml
+
+secretGenerator:
+  - name: ares-docker-creds
+    files:
+      - docker-creds/ca.pem
+      - docker-creds/cert.pem
+      - docker-creds/key.pem
