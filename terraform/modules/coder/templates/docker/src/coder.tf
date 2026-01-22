@@ -3,7 +3,7 @@ resource "coder_agent" "agent" {
   os   = "linux"
 }
 
-module "git-config" {
+module "git_config" {
   count = data.coder_workspace.me.start_count
 
   source  = "registry.coder.com/coder/git-config/coder"
