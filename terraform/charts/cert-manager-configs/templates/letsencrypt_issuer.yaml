@@ -14,11 +14,12 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
-              name: {{ required .Values.cloudflareSecretName "Value for 'cloudflareSecretName' is required" }}
+              name: {{ .Values.cloudflareSecretName }}
               key: api-token
         selector:
           dnsZones:
             - internal.bootleg.technology
+            - workspaces.bootleg.technology
       - http01:
           ingress:
             ingressClassName: traefik
