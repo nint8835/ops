@@ -1,11 +1,14 @@
 resource "coder_agent" "agent" {
   arch = data.coder_provisioner.me.arch
   os   = "linux"
+}
 
-  env = {
-    GIT_AUTHOR_NAME     = coalesce(data.coder_workspace_owner.me.full_name, data.coder_workspace_owner.me.name)
-    GIT_AUTHOR_EMAIL    = data.coder_workspace_owner.me.email
-    GIT_COMMITTER_NAME  = coalesce(data.coder_workspace_owner.me.full_name, data.coder_workspace_owner.me.name)
-    GIT_COMMITTER_EMAIL = data.coder_workspace_owner.me.email
-  }
+module "git-config" {
+  count = data.coder_workspace.me.start_count
+
+  source  = "registry.coder.com/coder/git-config/coder"
+  version = "1.0.32"
+
+  agent_id              = coder_agent.agent.id
+  allow_username_change = false
 }
