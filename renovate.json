@@ -12,6 +12,11 @@
       "registryUrls": ["https://registry.opentofu.org"]
     },
     {
+      "matchDatasources": ["terraform-provider", "terraform-module"],
+      "matchFileNames": ["terraform/modules/coder/templates/**/src/*.tf"],
+      "registryUrls": ["https://registry.hashicorp.io"]
+    },
+    {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/crocodilestick/calibre-web-automated"],
       "versioning": "regex:^V?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
