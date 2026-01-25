@@ -10,6 +10,9 @@ model_list:
       model: openai/gpt-oss-120b
       api_base: http://llama:8080/v1
       api_key: placeholder
+      # Added because Claude Code sends reasoning_effort which isn't marked as supported
+      # Should probably look into fixing that or at least explicitly permitting that param so that this won't silently drop other params
+      drop_params: true
   
   - model_name: Qwen3-30B
     litellm_params:
