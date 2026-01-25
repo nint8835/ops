@@ -50,6 +50,18 @@ models:
       -c 262144
       --jinja
   
+  GLM-4.7-Flash:
+    name: GLM-4.7 Flash
+    cmd: >
+      ${llama-server}
+      -m /models/GLM-4.7-Flash-UD-Q8_K_XL.gguf
+      -c 202752
+      --min-p 0.01
+      --repeat-penalty 1.0
+      --temp 1.0
+      --top-p 0.95
+      --jinja
+  
   stable-diffusion-v1-5:
     name: Stable Diffusion v1.5
     checkEndpoint: "/"
