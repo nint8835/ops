@@ -9,7 +9,7 @@ RUN wget https://github.com/mostlygeek/llama-swap/releases/download/v"${LLAMA_SW
     tar -zxf llama-swap_"${LLAMA_SWAP_VERSION}"_linux_amd64.tar.gz && \
     rm llama-swap_"${LLAMA_SWAP_VERSION}"_linux_amd64.tar.gz
 
-FROM registry.fedoraproject.org/fedora:43 AS stable-diffusion-builder
+FROM registry.fedoraproject.org/fedora:44 AS stable-diffusion-builder
 
 ARG STABLE_DIFFUSION_CPP_VERSION
 
