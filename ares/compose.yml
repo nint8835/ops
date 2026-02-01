@@ -32,7 +32,7 @@ services:
       - open-webui-data:/app/backend/data
   
   llama:
-    build: ./llama-swap-strix-halo
+    build: ./inference-service
     restart: unless-stopped
     volumes:
       - /data/models:/models:ro,Z
