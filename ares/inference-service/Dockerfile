@@ -8,6 +8,7 @@ ARG STABLE_DIFFUSION_CPP_VERSION=master-484-fa61ea7
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
 RUN dnf install -y --nodocs --setopt=install_weak_deps=False \
+        ccache \
         clang \
         cmake \
         gcc \
@@ -19,13 +20,18 @@ RUN dnf install -y --nodocs --setopt=install_weak_deps=False \
         wget \
     && dnf clean all && rm -rf /var/cache/dnf/*
 
+ENV CMAKE_C_COMPILER_LAUNCHER=ccache
+ENV CMAKE_CXX_COMPILER_LAUNCHER=ccache
+ENV CCACHE_DIR=/ccache
+
 FROM build-deps AS stable-diffusion-builder
 
 ARG STABLE_DIFFUSION_CPP_VERSION
 
 WORKDIR /build
 
-RUN git clone --recursive --depth 1 --branch "${STABLE_DIFFUSION_CPP_VERSION}" https://github.com/leejet/stable-diffusion.cpp.git && \
+RUN --mount=type=cache,target=/ccache/ \
+    git clone --recursive --depth 1 --branch "${STABLE_DIFFUSION_CPP_VERSION}" https://github.com/leejet/stable-diffusion.cpp.git && \
     mkdir -p stable-diffusion.cpp/build && \
     cd stable-diffusion.cpp/build && \
     cmake .. -G Ninja -DSD_VULKAN=ON && \
@@ -38,7 +44,8 @@ ARG LLAMA_CPP_VERSION
 WORKDIR /build
 
 # TODO: This is compiling ggml as well - can I make only one of these handle compiling it?
-RUN git clone --recursive --depth 1 --branch "${LLAMA_CPP_VERSION}" https://github.com/ggml-org/llama.cpp.git && \
+RUN --mount=type=cache,target=/ccache/ \
+    git clone --recursive --depth 1 --branch "${LLAMA_CPP_VERSION}" https://github.com/ggml-org/llama.cpp.git && \
     cd llama.cpp && \
     cmake \
         -B build \
