@@ -4,7 +4,7 @@ sendLoadingState: true
 
 macros:
   llama-server: >
-    /usr/bin/llama-server
+    /usr/local/bin/llama-server
     --port ${PORT}
     --no-mmap
     -ngl 999
