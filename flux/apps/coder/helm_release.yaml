@@ -3,6 +3,7 @@ kind: HelmRelease
 
 metadata:
   name: coder
+  namespace: coder
 
 spec:
   interval: 1h0m0s
@@ -14,6 +15,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: coder
+        namespace: coder
       interval: 1h0m0s
 
   values:
