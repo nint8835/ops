@@ -14,7 +14,7 @@
     {
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "matchFileNames": ["terraform/modules/coder/templates/**/src/*.tf"],
-      "registryUrls": ["https://registry.hashicorp.io"]
+      "registryUrls": ["https://registry.terraform.io"]
     },
     {
       "matchDatasources": ["docker"],
