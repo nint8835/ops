@@ -30,6 +30,9 @@
   "kubernetes": {
     "managerFilePatterns": ["/flux/.+\\.ya?ml$/"]
   },
+  "flux": {
+    "managerFilePatterns": ["/flux/.+\\.ya?ml$/"]
+  },
   "ignoreDeps": [
     "ghcr.io/fluxcd/helm-controller",
     "ghcr.io/fluxcd/image-automation-controller",
