@@ -31,5 +31,7 @@ model_list:
       model: openai/flux-2-klein-4b
       api_base: http://llama:8080/v1
       api_key: placeholder
+      # Added because LiteLLM claims this doesn't support response_format even though it actually does
+      drop_params: true
     model_info:
       mode: image_generation
