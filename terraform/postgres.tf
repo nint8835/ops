@@ -10,7 +10,7 @@ resource "helm_release" "cloudnativepg" {
 
   repository = "https://cloudnative-pg.github.io/charts"
   chart      = "cloudnative-pg"
-  version    = "0.27.0"
+  version    = "0.27.1"
 
   set = [
     {
