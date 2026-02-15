@@ -21,12 +21,10 @@ spec:
           image: ghcr.io/fogo-sh/borik:latest
           imagePullPolicy: Always
 
-          env:
-            - name: BORIK_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: discord-token
-                  key: token
+          envFrom:
+            - secretRef:
+                name: secrets
+              prefix: BORIK_
 
           resources:
             requests:

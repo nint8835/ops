@@ -4,9 +4,5 @@ namespace: borik
 
 resources:
   - namespace.yaml
+  - secrets.yaml
   - deployment.yaml
-
-secretGenerator:
-  - name: discord-token
-    files:
-      - token=token.encrypted
