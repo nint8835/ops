@@ -6,7 +6,7 @@
 [<Measure>] type Tokens
 
 let powerCost = 0.15213<CAD/(kW * h)>
-let inferencePowerConsumption = 100.0<W> * 0.1<kW/W>
+let inferencePowerConsumption = 100.0<W> / 1000.0<W/kW>
 
 let promptProcessingTokensPerSecond = 149.64<Tokens/s>
 let generationTokensPerSecond = 48.13<Tokens/s>
