@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: calibre
-          image: ghcr.io/crocodilestick/calibre-web-automated:V3.1.4
+          image: ghcr.io/crocodilestick/calibre-web-automated:v4.0.6
           imagePullPolicy: IfNotPresent
 
           env:
