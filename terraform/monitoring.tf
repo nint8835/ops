@@ -130,7 +130,7 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
-  version    = "0.70.0"
+  version    = "0.71.1"
 
   set = [
     {
