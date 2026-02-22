@@ -73,6 +73,7 @@ COPY --from=llama-swap-download /llama-swap /usr/local/bin/llama-swap
 COPY --from=stable-diffusion-builder /build/stable-diffusion.cpp/build/bin/sd-server /usr/local/bin/sd-server
 
 COPY --from=llama-cpp-builder /usr/local/bin/llama-server /usr/local/bin/llama-server
+COPY --from=llama-cpp-builder /usr/local/bin/llama-bench /usr/local/bin/llama-bench
 COPY --from=llama-cpp-builder /usr/local/lib64/ /usr/local/lib64/
 
 RUN ldconfig

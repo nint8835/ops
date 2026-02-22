@@ -4,6 +4,9 @@ model_list:
       model: openai/gpt-oss-20b
       api_base: http://llama:8080/v1
       api_key: placeholder
+    model_info:
+      input_cost_per_token: 0.0000000034368663
+      output_cost_per_token: 0.000000087928284
   
   - model_name: gpt-oss-120b
     litellm_params:
@@ -13,18 +16,27 @@ model_list:
       # Added because Claude Code sends reasoning_effort which isn't marked as supported
       # Should probably look into fixing that or at least explicitly permitting that param so that this won't silently drop other params
       drop_params: true
+    model_info:
+      input_cost_per_token: 0.0000000078763762
+      output_cost_per_token: 0.00000011807302
   
   - model_name: Qwen3-30B
     litellm_params:
       model: openai/Qwen3-30B
       api_base: http://llama:8080/v1
       api_key: placeholder
+    model_info:
+      input_cost_per_token: 0.0000000044235205
+      output_cost_per_token: 0.000000053525438
   
   - model_name: Qwen3-Coder-30B
     litellm_params:
       model: openai/Qwen3-Coder-30B
       api_base: http://llama:8080/v1
       api_key: placeholder
+    model_info:
+      input_cost_per_token: 0.0000000042968167
+      output_cost_per_token: 0.000000052501346
   
   - model_name: flux-2-klein-4b
     litellm_params:
@@ -35,3 +47,5 @@ model_list:
       drop_params: true
     model_info:
       mode: image_generation
+      # On average, 100W for 16 seconds at NL Power rates
+      input_cost_per_image: 0.00676128
