@@ -11,6 +11,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=ares_ingress"
       - "--entryPoints.web.address=:80"
+      - "--entryPoints.web.forwardedHeaders.insecure=true"
     ports:
       # TODO: Set up HTTPS
       - "80:80"
