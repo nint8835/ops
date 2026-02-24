@@ -19,7 +19,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro,Z
   
   open-webui:
-    image: "ghcr.io/open-webui/open-webui:v0.8.3"
+    image: "ghcr.io/open-webui/open-webui:v0.8.5"
     restart: unless-stopped
     networks:
       - ingress
