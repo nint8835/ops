@@ -16,10 +16,6 @@ terraform {
       source  = "tailscale/tailscale"
       version = "0.28.0"
     }
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "2.76.0"
-    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "5.17.0"
