@@ -7,6 +7,7 @@
 
 let powerCost = 0.15213<CAD/(kW * h)>
 let inferencePowerConsumption = 100.0<W> / 1000.0<W/kW>
+let taxRate = 1.15
 
 let promptProcessingTokensPerSecond = 1229.56<Tokens/s>
 let generationTokensPerSecond = 48.06<Tokens/s>
@@ -16,24 +17,28 @@ let inputCostPerToken =
     / 3600.0<s/h>
     * inferencePowerConsumption
     * powerCost
+    * taxRate
 
 let inputCostPerMillionTokens = 
     1000000.0<Tokens> / promptProcessingTokensPerSecond
     / 3600.0<s/h>
     * inferencePowerConsumption
     * powerCost
+    * taxRate
 
 let outputCostPerToken =
     1.0<Tokens> / generationTokensPerSecond
     / 3600.0<s/h>
     * inferencePowerConsumption
     * powerCost
+    * taxRate
 
 let outputCostPerMillionTokens = 
     1000000.0<Tokens> / generationTokensPerSecond
     / 3600.0<s/h>
     * inferencePowerConsumption
     * powerCost
+    * taxRate
 
 printfn "Input cost per token: %A CAD" inputCostPerToken
 printfn "Output cost per token: %A CAD" outputCostPerToken
