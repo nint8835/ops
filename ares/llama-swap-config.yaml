@@ -73,7 +73,7 @@ models:
       --temp 0.7
       --min-p 0.0
       --presence-penalty 1.5
-      --ctx-size 8192
+      -c 262144
   
   stable-diffusion-v1-5:
     name: Stable Diffusion v1.5
