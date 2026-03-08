@@ -31,7 +31,7 @@ spec:
       
       containers:
         - name: netbox
-          image: ghcr.io/netbox-community/netbox:v4.4-3.4.1
+          image: ghcr.io/netbox-community/netbox:v4.5.4
           imagePullPolicy: IfNotPresent
 
           ports:
