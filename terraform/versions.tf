@@ -42,7 +42,7 @@ terraform {
     }
     coderd = {
       source  = "coder/coderd"
-      version = "0.0.13"
+      version = "0.0.15"
     }
   }
 }
