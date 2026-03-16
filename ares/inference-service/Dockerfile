@@ -1,9 +1,9 @@
 # This dockerfile is _heavily_ based on the fantastic work done by kyuz0 on the amd-strix-halo-toolboxes project
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
-ARG LLAMA_CPP_VERSION=b8370
-ARG LLAMA_SWAP_VERSION=198
-ARG STABLE_DIFFUSION_CPP_VERSION=master-533-862a658
+ARG LLAMA_CPP_VERSION=b8209
+ARG LLAMA_SWAP_VERSION=197
+ARG STABLE_DIFFUSION_CPP_VERSION=master-520-d950627
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
