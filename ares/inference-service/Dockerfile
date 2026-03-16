@@ -3,7 +3,7 @@
 
 ARG LLAMA_CPP_VERSION=b8370
 ARG LLAMA_SWAP_VERSION=198
-ARG STABLE_DIFFUSION_CPP_VERSION=master-533-862a658
+ARG STABLE_DIFFUSION_CPP_VERSION=master
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
@@ -15,6 +15,7 @@ RUN dnf install -y --nodocs --setopt=install_weak_deps=False \
         glslc \
         mesa-vulkan-drivers \
         ninja-build \
+        pnpm \
         vulkan-loader-devel \
         wget \
     && dnf clean all && rm -rf /var/cache/dnf/*
@@ -28,7 +29,11 @@ WORKDIR /build
 RUN git clone --recursive --depth 1 --branch "${STABLE_DIFFUSION_CPP_VERSION}" https://github.com/leejet/stable-diffusion.cpp.git && \
     mkdir -p stable-diffusion.cpp/build && \
     cd stable-diffusion.cpp/build && \
-    cmake .. -G Ninja -DSD_VULKAN=ON && \
+    cmake \
+        .. \
+        -G Ninja \
+        -DSD_VULKAN=ON \
+        -DSD_SERVER_BUILD_FRONTEND=ON && \
     cmake --build . --config Release --parallel
 
 FROM build-deps AS llama-cpp-builder
