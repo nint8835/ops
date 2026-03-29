@@ -10,19 +10,14 @@ Ansible inventories and playbooks for handling management of my Proxmox nodes.
 
 Docker Compose configuration for my Framework Desktop used for AI workloads.
 
-## `gokrazy`
-
-Configuration for dedicated Gokrazy-based appliance images, currently used to deploy a proxy for Proxmox.
-
 ## `flux`
 
 Flux-based GitOps configs for the majority of my workloads.
 
-## `scripts`
+## `gokrazy`
 
-Misc. scripts used to handle various tasks.
+Configuration for dedicated Gokrazy-based appliance images, currently used to deploy a proxy for Proxmox.
 
 ## `terraform`
 
 Infrastructre-as-code management for the majority of my infrastructure.
-
