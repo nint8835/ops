@@ -10,7 +10,6 @@ locals {
     "grafana.ops.bootleg.technology",
     "homeassistant.bootleg.technology",
     "interruption-spotter.bootleg.technology",
-    "irc.bootleg.technology",
     "llm.ops.bootleg.technology",
     "miniflux.bootleg.technology",
     "netbox.ops.bootleg.technology",

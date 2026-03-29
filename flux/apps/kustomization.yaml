@@ -7,7 +7,6 @@ resources:
   - cheesetown.yaml
   - cloudflare-ddns.yaml
   - coder.yaml
-  - ergo.yaml
   - grackdb.yaml
   - homeassistant-proxy.yaml
   - hopper.yaml
