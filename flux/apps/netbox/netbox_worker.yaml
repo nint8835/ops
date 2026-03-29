@@ -31,7 +31,7 @@ spec:
       
       containers:
         - name: netbox-worker
-          image: ghcr.io/netbox-community/netbox:v4.5.4
+          image: ghcr.io/netbox-community/netbox:v4.5.5
           imagePullPolicy: IfNotPresent
 
           command:
