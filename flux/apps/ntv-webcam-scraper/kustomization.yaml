@@ -6,3 +6,7 @@ resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
   - deployment.yaml
+
+images:
+  - name: ghcr.io/nint8835/ntv-webcam-scraper
+    newTag: main-67050b7-20260301-205741@sha256:2712ce6dc4c2fba01cb0371940d766ba65669b6f16339f8abc59198c266645eb

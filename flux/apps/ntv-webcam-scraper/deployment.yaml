@@ -22,8 +22,7 @@ spec:
 
       containers:
         - name: scraper
-          image: ghcr.io/nint8835/ntv-webcam-scraper:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/ntv-webcam-scraper
 
           volumeMounts:
             - mountPath: /images

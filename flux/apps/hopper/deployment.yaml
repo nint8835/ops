@@ -24,8 +24,7 @@ spec:
 
       containers:
         - name: hopper
-          image: ghcr.io/nint8835/hopper:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/hopper
 
           env:
             - name: HOPPER_DATABASE_PATH

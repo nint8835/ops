@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
         - name: borik
-          image: ghcr.io/fogo-sh/borik:latest
-          imagePullPolicy: Always
+          image: ghcr.io/fogo-sh/borik
 
           envFrom:
             - secretRef:
