@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: grackdb
 
 resources:
   - namespace.yaml
@@ -9,3 +8,19 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+
+images:
+  - name: ghcr.io/fogo-sh/grackdb
+    newTag: main-b9a78ea-20260401-140736  # {"$imagepolicy": "flux-system:grackdb:tag"}
+    digest: sha256:5ae04dc84d7f8b761930c5fc98eedd6bec1da2bfabad5b1912c57ee6e43ca97b # {"$imagepolicy": "flux-system:grackdb:digest"}
+
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: grackdb
+    unsetOnly: true
