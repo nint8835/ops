@@ -38,6 +38,11 @@ resource "netbox_manufacturer" "nabu_casa" {
   slug = "nabu-casa"
 }
 
+resource "netbox_manufacturer" "framework" {
+  name = "Framework"
+  slug = "framework"
+}
+
 resource "netbox_device_role" "router" {
   name = "Router"
   slug = "router"
@@ -382,6 +387,46 @@ resource "netbox_ip_address" "home_assistant_green" {
 resource "netbox_device_primary_ip" "home_assistant_green" {
   device_id     = netbox_device.home_assistant_green.id
   ip_address_id = netbox_ip_address.home_assistant_green.id
+}
+
+resource "netbox_device_type" "framework_desktop" {
+  manufacturer_id = netbox_manufacturer.framework.id
+  model           = "Framework Desktop"
+  slug            = "framework-desktop"
+  # TODO: Is this correct?
+  part_number    = "A6"
+  subdevice_role = "child"
+  u_height       = 0
+}
+
+resource "netbox_device" "framework_desktop" {
+  name           = "ares"
+  site_id        = netbox_site.home.id
+  location_id    = netbox_location.living_room.id
+  device_type_id = netbox_device_type.framework_desktop.id
+  rack_id        = netbox_rack.living_room.id
+  rack_position  = 0
+  role_id        = netbox_device_role.server.id
+}
+
+resource "netbox_device_interface" "framework_desktop" {
+  device_id = netbox_device.framework_desktop.id
+  name      = "Ethernet"
+  enabled   = true
+  type      = "1000base-t"
+}
+
+resource "netbox_ip_address" "framework_desktop" {
+  ip_address          = "192.168.1.177/32"
+  description         = "ares"
+  status              = "active"
+  dns_name            = "ares.internal.bootleg.technology"
+  device_interface_id = netbox_device_interface.framework_desktop.id
+}
+
+resource "netbox_device_primary_ip" "framework_desktop" {
+  device_id     = netbox_device.framework_desktop.id
+  ip_address_id = netbox_ip_address.framework_desktop.id
 }
 
 # TODO:
