@@ -13,4 +13,4 @@ spec:
   policy:
     alphabetical:
       order: asc
-  digestReflectionPolicy: Always
+  digestReflectionPolicy: IfNotPresent
