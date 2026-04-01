@@ -206,6 +206,7 @@ resource "netbox_ip_address" "nas_lan_1" {
   status              = "active"
   device_interface_id = netbox_device_interface.nas_lan_1.id
   ip_address          = "192.168.1.210/32"
+  dns_name            = "mnemosyne.internal.bootleg.technology"
 }
 
 resource "netbox_device_primary_ip" "nas_lan_1" {
@@ -224,6 +225,7 @@ resource "netbox_ip_address" "nas_lan_2" {
   status              = "active"
   device_interface_id = netbox_device_interface.nas_lan_2.id
   ip_address          = "192.168.1.213/32"
+  dns_name            = "mnemosyne.internal.bootleg.technology"
 }
 
 resource "netbox_device_type" "nano_hd" {
