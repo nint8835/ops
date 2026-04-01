@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: dieppe
+
+spec:
+  selector:
+    matchLabels:
+      app: dieppe
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dieppe
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: config
+
+      containers:
+        - name: dieppe
+          image: ghcr.io/nint8835/dieppe
+
+          volumeMounts:
+            - mountPath: /config
+              name: config
+
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+
+          resources:
+            requests:
+              memory: "20Mi"
+            limits:
+              memory: "20Mi"

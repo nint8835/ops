@@ -3,5 +3,24 @@ kind: Kustomization
 
 resources:
   - namespace.yaml
-  - flux-kustomization.yaml
-  - source.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: config
+    files:
+      - config.hcl
+
+images:
+  - name: ghcr.io/nint8835/dieppe
+    newTag: main-b2585b7-20260401-143122 # {"$imagepolicy": "flux-system:dieppe:tag"}
+    digest: sha256:8ec7b1463ad11e73884479a52dc9aaed9fa9770346fd65075c72fc6c610af69d # {"$imagepolicy": "flux-system:dieppe:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: pkg-fogo-sh
+    unsetOnly: true
