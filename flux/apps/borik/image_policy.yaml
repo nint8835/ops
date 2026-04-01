@@ -3,6 +3,7 @@ kind: ImagePolicy
 
 metadata:
   name: borik
+  namespace: flux-system
 
 spec:
   imageRepositoryRef:

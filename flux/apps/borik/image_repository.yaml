@@ -3,6 +3,7 @@ kind: ImageRepository
 
 metadata:
   name: borik
+  namespace: flux-system
 
 spec:
   image: ghcr.io/fogo-sh/borik

@@ -11,4 +11,4 @@ resources:
 
 images:
   - name: ghcr.io/fogo-sh/borik
-    newTag: main-3dc4b5d-20260316-095020@sha256:8b533ff73a0b9309dbd1e6e29f73ce275a8cd7ddc9461cab1f4d9b3eb6fa379f # {"$imagepolicy": "borik:borik:tag"}
+    newTag: main-3dc4b5d-20260316-095020@sha256:8b533ff73a0b9309dbd1e6e29f73ce275a8cd7ddc9461cab1f4d9b3eb6fa379f # {"$imagepolicy": "flux-system:borik:tag"}
