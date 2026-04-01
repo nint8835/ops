@@ -1,0 +1,15 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+
+metadata:
+  name: borik
+
+spec:
+  imageRepositoryRef:
+    name: borik
+  filterTags:
+    pattern: '^main-[[:xdigit:]]{7,}-(?P<ts>\d{8}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
