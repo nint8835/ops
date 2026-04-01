@@ -6,6 +6,7 @@ resources:
   - namespace.yaml
   - secrets.yaml
   - deployment.yaml
+  - image_repository.yaml
 
 images:
   - name: ghcr.io/fogo-sh/borik
