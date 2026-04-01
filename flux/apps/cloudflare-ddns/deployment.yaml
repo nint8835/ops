@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: cloudflare-ddns
-          image: favonia/cloudflare-ddns:1.16.1
+          image: favonia/cloudflare-ddns
 
           env:
             - name: DOMAINS
