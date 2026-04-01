@@ -17,7 +17,7 @@ resources:
   - netbox.yaml
   - ntv-webcam-scraper.yaml
   - paperless-ngx.yaml
-  - pkg-fogo-sh
+  - pkg-fogo-sh.yaml
   - pkg-nit-so.yaml
   - plex-proxy.yaml
   - pollster.yaml
