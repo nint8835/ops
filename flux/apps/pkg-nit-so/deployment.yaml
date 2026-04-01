@@ -21,8 +21,7 @@ spec:
 
       containers:
         - name: dieppe
-          image: ghcr.io/nint8835/dieppe:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/dieppe
 
           volumeMounts:
             - mountPath: /config
