@@ -16,7 +16,12 @@ spec:
       author:
         email: riley+flux@rileyflynn.me
         name: Flux Image Update Automation
-      messageTemplate: '{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}'
+      messageTemplate: |
+        Automated image update
+
+        {{ range $resource, $changes := .Changed.Objects -}}
+        {{ $resource.Name }}: {{ range $_, $change := $changes }}{{ $change.OldValue }} -> {{ $change.NewValue }}{{ end }}
+        {{ end }}
     push:
       branch: main
   update:
