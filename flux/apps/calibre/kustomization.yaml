@@ -13,4 +13,4 @@ resources:
 
 images:
   - name: ghcr.io/crocodilestick/calibre-web-automated
-    newTag: v4.0.6
+    newTag: v4.0.6@sha256:c31a738b6d5ec6982c050063dd3f063b6943eb1051fc81144789f840d9093a8d
