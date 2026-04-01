@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: ntv-webcam-scraper
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/ntv-webcam-scraper
+  interval: 1m

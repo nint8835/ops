@@ -9,7 +9,18 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - image_repository.yaml
+  - image_policy.yaml
 
 images:
   - name: ghcr.io/nint8835/scribe
-    newTag: main-78c752a-20260314-235907@sha256:aae3a79d64857608db868ef44ff209b1592a05d05aa0d59843d79704a238acf3
+    newTag: main-78c752a-20260314-235907 # {"$imagepolicy": "flux-system:scribe:tag"}
+    digest: sha256:aae3a79d64857608db868ef44ff209b1592a05d05aa0d59843d79704a238acf3 # {"$imagepolicy": "flux-system:scribe:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: scribe
+    unsetOnly: true

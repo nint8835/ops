@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: scribe
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/scribe
+  interval: 1m

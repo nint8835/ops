@@ -1,13 +1,23 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: hopper
 
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
   - secrets.yaml
   - deployment.yaml
+  - image_repository.yaml
+  - image_policy.yaml
 
 images:
   - name: ghcr.io/nint8835/hopper
-    newTag: main-caa4999-20251109-181555@sha256:e4d3231fcbe5028cc52a95dfbeca2fef9cbbf5b059c074e1499c559ce80ab4e4
+    newTag: main-caa4999-20251109-181555 # {"$imagepolicy": "flux-system:hopper:tag"}
+    digest: sha256:e4d3231fcbe5028cc52a95dfbeca2fef9cbbf5b059c074e1499c559ce80ab4e4 # {"$imagepolicy": "flux-system:hopper:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: hopper
+    unsetOnly: true
