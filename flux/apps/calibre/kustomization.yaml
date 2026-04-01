@@ -10,3 +10,7 @@ resources:
   - service.yaml
   - middleware.yaml
   - ingress.yaml
+
+images:
+  - name: ghcr.io/crocodilestick/calibre-web-automated
+    newTag: v4.0.6
