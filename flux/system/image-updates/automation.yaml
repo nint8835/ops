@@ -19,9 +19,13 @@ spec:
       messageTemplate: |
         Automated image update
 
-        {{ range $resource, $changes := .Changed.Objects -}}
-        {{ $resource.Name }}: {{ range $_, $change := $changes }}{{ $change.OldValue }} -> {{ $change.NewValue }}{{ end }}
-        {{ end }}
+        {{ range $filePath, $objectChanges := .Changed.FileChanges -}}
+        {{ range $objID, $changes := $objectChanges -}}
+        {{ range $change := $changes -}}
+        - {{ $change.Setter }}: {{ $change.OldValue }} -> {{ $change.NewValue }}
+        {{ end -}}
+        {{ end -}}
+        {{ end -}}
     push:
       branch: main
   update:
