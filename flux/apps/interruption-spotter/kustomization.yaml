@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: interruption-spotter
 
 resources:
   - namespace.yaml
@@ -9,3 +8,17 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+images:
+  - name: ghcr.io/nint8835/interruption-spotter
+    newTag: main-774a7d6-20260401-141916 # {"$imagepolicy": "flux-system:interruption-spotter:tag"}
+    digest: sha256:6454ddbdbeceb5be265e369fe8ed94f0fdcc83018b03c398b65a156e9ff36e58 # {"$imagepolicy": "flux-system:interruption-spotter:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: interruption-spotter
+    unsetOnly: true

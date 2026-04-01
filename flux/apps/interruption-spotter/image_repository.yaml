@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: interruption-spotter
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/interruption-spotter
+  interval: 1m
