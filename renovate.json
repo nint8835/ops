@@ -8,18 +8,28 @@
   "prHourlyLimit": 0,
   "packageRules": [
     {
+      "description": "Use the OpenTofu registry for Terraform by default",
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "registryUrls": ["https://registry.opentofu.org"]
     },
     {
+      "description": "Use the Terraform registry for Terraform modules in the coder directory, as that uses Terraform not OpenTofu",
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "matchFileNames": ["terraform/modules/coder/templates/**/src/*.tf"],
       "registryUrls": ["https://registry.terraform.io"]
     },
     {
+      "description": "Group all Immich updates together",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/immich-app/**"],
       "groupName": "immich"
+    },
+    {
+      "description": "Disable digest updates for Netbox, as they rebuild their image daily",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/netbox-community/netbox"],
+      "matchUpdateTypes": ["digest"],
+      "enabled": false
     }
   ],
   "kubernetes": {
