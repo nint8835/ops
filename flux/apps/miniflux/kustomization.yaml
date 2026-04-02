@@ -9,3 +9,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+images:
+  - name: ghcr.io/miniflux/miniflux
+    newTag: 2.2.18-distroless
