@@ -25,9 +25,9 @@
       "groupName": "immich"
     },
     {
-      "description": "Disable digest updates for Netbox, as they rebuild their image daily",
+      "description": "Disable digest updates for services that rebuild the image frequently",
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/netbox-community/netbox"],
+      "matchPackageNames": ["ghcr.io/netbox-community/netbox", "ghcr.io/valkey-io/valkey"],
       "matchUpdateTypes": ["digest"],
       "enabled": false
     }
