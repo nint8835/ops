@@ -27,4 +27,4 @@ images:
   - name: ghcr.io/netbox-community/netbox
     newTag: v4.5.6@sha256:192e688983b7ea656e61e05a5a46ac7e85df6e3e7987fa794018953333ea4881
   - name: ghcr.io/valkey-io/valkey
-    newTag: 9.0.3-alpine@sha256:84c96f47ebe197e635cd3ddbe3ab74e8bdf783cf3befbfb1c36387275c1cd5d5
+    newTag: 9.0.3-alpine@sha256:e1095c6c76ee982cb2d1e07edbb7fb2a53606630a1d810d5a47c9f646b708bf5
