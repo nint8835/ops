@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: shopkeeper-cts
 
 resources:
   - namespace.yaml
@@ -10,3 +9,16 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+images:
+  - name: ghcr.io/nint8835/shopkeeper
+    newTag: main-8d2ee6b-20260404-153750 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
+    digest: sha256:893aa8c989bd306597fe38e2e244291bfb990239ac45fe22048ad4dfe392623f # {"$imagepolicy": "flux-system:shopkeeper:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: shopkeeper-cts
+    unsetOnly: true

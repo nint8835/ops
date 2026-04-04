@@ -27,8 +27,7 @@ spec:
 
       containers:
         - name: shopkeeper
-          image: ghcr.io/nint8835/shopkeeper:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/shopkeeper
           args: [ "start" ]
 
           envFrom:
@@ -71,8 +70,7 @@ spec:
 
       initContainers:
         - name: upgrade-db
-          image: ghcr.io/nint8835/shopkeeper:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/shopkeeper
           args: [ "upgrade" ]
           envFrom:
             - secretRef:
@@ -98,8 +96,7 @@ spec:
               memory: "256Mi"
 
         - name: sync-commands
-          image: ghcr.io/nint8835/shopkeeper:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/shopkeeper
           args: [ "sync" ]
           envFrom:
             - secretRef:
