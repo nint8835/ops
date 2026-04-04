@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: skyline
 
 resources:
   - namespace.yaml
@@ -10,3 +9,18 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+
+images:
+  - name: ghcr.io/nint8835/skyline
+    newTag: main-b1f29c3-20260404-082822 # {"$imagepolicy": "flux-system:skyline:tag"}
+    digest: sha256:1c276636103fba23edebb403df4d4e75b519c2d751d9fdf9837b235767fdc850 # {"$imagepolicy": "flux-system:skyline:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: skyline
+    unsetOnly: true

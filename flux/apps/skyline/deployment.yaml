@@ -21,8 +21,7 @@ spec:
 
       containers:
         - name: skyline
-          image: ghcr.io/nint8835/skyline:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/skyline
           args: [ "start" ]
 
           envFrom:
@@ -59,8 +58,7 @@ spec:
 
       initContainers:
         - name: upgrade-db
-          image: ghcr.io/nint8835/skyline:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/skyline
           args: [ "upgrade" ]
           envFrom:
             - secretRef:
