@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: pollster
 
 resources:
   - namespace.yaml
@@ -10,3 +9,18 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+
+images:
+  - name: ghcr.io/nint8835/pollster
+    newTag: main-6356ce1-20260404-075904 # {"$imagepolicy": "flux-system:pollster:tag"}
+    digest: sha256:09ca626417005d82cbc29da9906685dfb45c91e0adcfbe6d20d5d5a543719b5b # {"$imagepolicy": "flux-system:pollster:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: pollster
+    unsetOnly: true

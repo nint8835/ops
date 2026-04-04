@@ -21,8 +21,7 @@ spec:
 
       containers:
         - name: pollster
-          image: ghcr.io/nint8835/pollster:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/pollster
           args: [ "start" ]
 
           envFrom:
@@ -59,8 +58,7 @@ spec:
 
       initContainers:
         - name: upgrade-db
-          image: ghcr.io/nint8835/pollster:latest
-          imagePullPolicy: Always
+          image: ghcr.io/nint8835/pollster
           args: [ "upgrade" ]
           envFrom:
             - secretRef:

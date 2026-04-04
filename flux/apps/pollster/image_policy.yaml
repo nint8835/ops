@@ -1,0 +1,17 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+
+metadata:
+  name: pollster
+  namespace: flux-system
+
+spec:
+  imageRepositoryRef:
+    name: pollster
+  filterTags:
+    pattern: '^main-[[:xdigit:]]{7,}-(?P<ts>\d{8}-\d{6})$'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc
+  digestReflectionPolicy: IfNotPresent

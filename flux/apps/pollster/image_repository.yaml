@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: pollster
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/pollster
+  interval: 1m
