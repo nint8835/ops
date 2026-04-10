@@ -1,6 +1,6 @@
 services:
   traefik:
-    image: "traefik:v3.6.12"
+    image: "traefik:v3.6.13"
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
