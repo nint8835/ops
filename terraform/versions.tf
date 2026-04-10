@@ -38,7 +38,7 @@ terraform {
     }
     netbox = {
       source  = "e-breuninger/netbox"
-      version = "5.2.1"
+      version = "5.3.0"
     }
     coderd = {
       source  = "coder/coderd"
