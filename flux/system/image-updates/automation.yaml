@@ -19,10 +19,15 @@ spec:
       messageTemplate: |
         Automated image update
 
+        {{ $seen := dict -}}
         {{ range $filePath, $objectChanges := .Changed.FileChanges -}}
         {{ range $objID, $changes := $objectChanges -}}
         {{ range $change := $changes -}}
-        - {{ $change.Setter }}: {{ $change.OldValue }} -> {{ $change.NewValue }}
+        {{ $key := printf "%s: %s -> %s" $change.Setter $change.OldValue $change.NewValue -}}
+        {{ if not (hasKey $seen $key) -}}
+        - {{ $key }}
+        {{ $seen = merge $seen (dict $key true) -}}
+        {{ end -}}
         {{ end -}}
         {{ end -}}
         {{ end -}}
