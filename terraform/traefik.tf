@@ -45,6 +45,14 @@ resource "helm_release" "traefik" {
       name  = "service.spec.externalTrafficPolicy"
       value = "Local"
     },
+    {
+      name  = "additionalArguments[0]"
+      value = "--entrypoints.web.transport.respondingTimeouts.readTimeout=300s"
+    },
+    {
+      name  = "additionalArguments[1]"
+      value = "--entrypoints.websecure.transport.respondingTimeouts.readTimeout=300s"
+    },
   ]
 }
 
