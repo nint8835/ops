@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+  - secrets.yaml
+  - job.yaml
+images:
+  - name: ghcr.io/nint8835/gramfel
+    newTag: main-f78ae5c-20260422-205854 # {"$imagepolicy": "flux-system:gramfel:tag"}
+    digest: sha256:96fed06fe436cfe26aebcffa674a3f3ea022fdcafe6afefe3bb6365ada701bca # {"$imagepolicy": "flux-system:gramfel:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: gramfel
+    unsetOnly: true

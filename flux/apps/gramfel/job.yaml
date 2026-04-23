@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+
+metadata:
+  name: gramfel
+
+spec:
+  schedule: "* * * * *"
+  successfulJobsHistoryLimit: 0
+  
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: gramfel
+              image: ghcr.io/nint8835/gramfel
+
+              envFrom:
+                - secretRef:
+                    name: secrets
+                  prefix: GRAMFEL_
+
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+        
+          restartPolicy: Never
+          
+          securityContext:
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault

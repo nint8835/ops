@@ -8,6 +8,7 @@ resources:
   - cloudflare-ddns.yaml
   - coder.yaml
   - grackdb.yaml
+  - gramfel.yaml
   - homeassistant-proxy.yaml
   - hopper.yaml
   - immich.yaml
