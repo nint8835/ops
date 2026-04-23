@@ -5,7 +5,8 @@ metadata:
   name: gramfel
 
 spec:
-  schedule: "* * * * *"
+  timeZone: America/St_Johns
+  schedule: "40 21 * * *"
   successfulJobsHistoryLimit: 0
   
   jobTemplate:
