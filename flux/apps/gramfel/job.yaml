@@ -6,7 +6,7 @@ metadata:
 
 spec:
   timeZone: America/St_Johns
-  schedule: "40 21 * * *"
+  schedule: "30 14 * * *"
   successfulJobsHistoryLimit: 0
   
   jobTemplate:
