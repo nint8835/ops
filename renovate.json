@@ -30,6 +30,12 @@
       "matchPackageNames": ["ghcr.io/netbox-community/netbox", "ghcr.io/valkey-io/valkey"],
       "matchUpdateTypes": ["digest"],
       "enabled": false
+    },
+    {
+      "description": "Handle versioning for the Ultrafeeder image",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
+      "versioning": "regex:^latest-build-(?<major>\\d+)$"
     }
   ],
   "kubernetes": {
