@@ -32,9 +32,12 @@
       "enabled": false
     },
     {
-      "description": "Handle versioning for the Ultrafeeder image",
+      "description": "Handle versioning for sdr-enthusiasts images",
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder"],
+      "matchPackageNames": [
+        "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder",
+        "ghcr.io/sdr-enthusiasts/docker-flightradar24"
+      ],
       "versioning": "regex:^latest-build-(?<major>\\d+)$"
     }
   ],
