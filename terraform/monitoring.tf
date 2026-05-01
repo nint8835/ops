@@ -85,7 +85,7 @@ resource "helm_release" "victoria_logs" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-logs-single"
-  version    = "0.12.2"
+  version    = "0.12.3"
 
   set = [
     {
