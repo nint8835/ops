@@ -92,7 +92,7 @@ services:
       - "traefik.docker.network=ares_ingress"
   
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-916
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-917
     container_name: ultrafeeder
     hostname: ultrafeeder
     restart: unless-stopped
