@@ -9,8 +9,8 @@ resources:
   - persistent_volume_claim.yaml
 images:
   - name: ghcr.io/nint8835/planespotter
-    newTag: main-4e067ff-20260502-224555  # {"$imagepolicy": "flux-system:planespotter:tag"}
-    digest: sha256:d5852b1d48c808b9024cffd91b7eb486dc46328e5613e416fcc285af0e7fd796 # {"$imagepolicy": "flux-system:planespotter:digest"}
+    newTag: main-f4c7988-20260502-231004 # {"$imagepolicy": "flux-system:planespotter:tag"}
+    digest: sha256:716302d6c4dfc4c825cb6056357d3d6308d5d594c1136c43b023b6d644d875ac # {"$imagepolicy": "flux-system:planespotter:digest"}
 transformers:
   - |-
     apiVersion: builtin
