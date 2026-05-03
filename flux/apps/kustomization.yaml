@@ -20,6 +20,7 @@ resources:
   - paperless-ngx.yaml
   - pkg-fogo-sh.yaml
   - pkg-nit-so.yaml
+  - planespotter.yaml
   - plex-proxy.yaml
   - pollster.yaml
   - scribe.yaml

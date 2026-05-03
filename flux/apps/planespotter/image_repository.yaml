@@ -1,0 +1,10 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: planespotter
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/planespotter
+  interval: 1m

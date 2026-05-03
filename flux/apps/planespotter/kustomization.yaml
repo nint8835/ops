@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - secrets.yaml
+  - deployment.yaml
+  - image_repository.yaml
+  - image_policy.yaml
+  - persistent_volume_claim.yaml
+images:
+  - name: ghcr.io/nint8835/planespotter
+    newTag: main-4e067ff-20260502-224555  # {"$imagepolicy": "flux-system:planespotter:tag"}
+    digest: sha256:d5852b1d48c808b9024cffd91b7eb486dc46328e5613e416fcc285af0e7fd796 # {"$imagepolicy": "flux-system:planespotter:digest"}
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: override-namespace
+      namespace: planespotter
+    unsetOnly: true
