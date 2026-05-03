@@ -30,8 +30,6 @@ spec:
               value: /data/seen.json
             - name: PLANESPOTTER_TAR1090_URL
               value: http://ares.internal.bootleg.technology:1090
-            - name: PLANESPOTTER_MAX_ALTITUDE
-              value: "0"
 
           envFrom:
             - secretRef:
