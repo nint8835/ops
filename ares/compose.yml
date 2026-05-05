@@ -157,6 +157,23 @@ services:
       - FR24KEY_UAT=${FR24_SHARING_KEY_UAT}
     tmpfs:
       - /var/log
+  piaware:
+    image: ghcr.io/sdr-enthusiasts/docker-piaware:latest-build-656
+    container_name: piaware
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+    networks:
+      - adsb
+    environment:
+      - BEASTHOST=ultrafeeder
+      - MLAT_RESULTS_BEASTHOST=ultrafeeder
+      - MLAT_RESULTS_BEASTPORT=31004
+      - TZ=${FEEDER_TZ}
+      - FEEDER_ID=${PIAWARE_FEEDER_ID}
+    tmpfs:
+      - /run:exec,size=64M
+      - /var/log
 
 networks:
   ingress:

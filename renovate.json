@@ -36,7 +36,8 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": [
         "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder",
-        "ghcr.io/sdr-enthusiasts/docker-flightradar24"
+        "ghcr.io/sdr-enthusiasts/docker-flightradar24",
+        "ghcr.io/sdr-enthusiasts/docker-piaware"
       ],
       "versioning": "regex:^latest-build-(?<major>\\d+)$"
     }
