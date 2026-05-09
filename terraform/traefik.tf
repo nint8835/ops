@@ -39,7 +39,7 @@ resource "helm_release" "traefik" {
     },
     {
       name  = "resources.limits.memory"
-      value = "64Mi"
+      value = "256Mi"
     },
     {
       name  = "service.spec.externalTrafficPolicy"
