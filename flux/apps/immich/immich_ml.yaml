@@ -35,3 +35,5 @@ spec:
               value: redis.immich.svc.cluster.local
             - name: IMMICH_PORT
               value: "3301"
+            - name: MACHINE_LEARNING_HTTP_KEEPALIVE_TIMEOUT_S
+              value: "0"
