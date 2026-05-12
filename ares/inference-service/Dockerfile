@@ -1,9 +1,9 @@
 # This dockerfile is _heavily_ based on the fantastic work done by kyuz0 on the amd-strix-halo-toolboxes project
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
-ARG LLAMA_CPP_VERSION=b8580
-ARG LLAMA_SWAP_VERSION=199
-ARG STABLE_DIFFUSION_CPP_VERSION=master-540-f16a110
+ARG LLAMA_CPP_VERSION=b9119
+ARG LLAMA_SWAP_VERSION=211
+ARG STABLE_DIFFUSION_CPP_VERSION=master-596-90e87bc
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
@@ -16,6 +16,7 @@ RUN dnf install -y --nodocs --setopt=install_weak_deps=False \
         mesa-vulkan-drivers \
         ninja-build \
         pnpm \
+        spirv-headers-devel \
         vulkan-loader-devel \
         wget \
     && dnf clean all && rm -rf /var/cache/dnf/*
