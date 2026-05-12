@@ -28,6 +28,8 @@ spec:
           env:
             - name: PLANESPOTTER_SEEN_AIRCRAFT_PATH
               value: /data/seen.json
+            - name: PLANESPOTTER_DATA_PATH
+              value: /data
             - name: PLANESPOTTER_TAR1090_URL
               value: http://ares.internal.bootleg.technology:1090
 
