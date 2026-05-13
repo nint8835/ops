@@ -93,3 +93,12 @@ resource "netbox_prefix" "proxmox_hosts" {
   description   = "Proxmox hosts"
   mark_utilized = false
 }
+
+module "guest_vlan" {
+  source = "./modules/networking/vlan"
+
+  name          = "Guest"
+  tag           = 60
+  cidr_block    = "10.60.0.0/16"
+  mark_utilized = true
+}
