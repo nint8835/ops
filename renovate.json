@@ -39,7 +39,8 @@
         "ghcr.io/sdr-enthusiasts/docker-flightradar24",
         "ghcr.io/sdr-enthusiasts/docker-piaware"
       ],
-      "versioning": "regex:^latest-build-(?<major>\\d+)$"
+      "versioning": "regex:^latest-build-(?<major>\\d+)$",
+      "groupName": "ultrafeeder"
     }
   ],
   "kubernetes": {
