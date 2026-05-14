@@ -41,7 +41,7 @@ services:
       - "seccomp=unconfined"
   
   litellm-db:
-    image: postgres:18.3
+    image: postgres:18.4
     restart: unless-stopped
     volumes:
       - litellm-db-data:/var/lib/postgresql
