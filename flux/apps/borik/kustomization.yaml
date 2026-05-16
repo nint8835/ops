@@ -8,8 +8,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/fogo-sh/borik
-    newTag: main-3b56f32-20260516-135544 # {"$imagepolicy": "flux-system:borik:tag"}
-    digest: sha256:2ccd1fc3fbf980766a166a6687a2e72b4e4cb41a10005f3639fd46018b7ac51d # {"$imagepolicy": "flux-system:borik:digest"}
+    newTag: main-9543753-20260516-151047 # {"$imagepolicy": "flux-system:borik:tag"}
+    digest: sha256:c128d35391384fd16284cad514ce9e66787f6f38f1417bbb94798f427fc9f0d4 # {"$imagepolicy": "flux-system:borik:digest"}
 transformers:
   - |-
     apiVersion: builtin
