@@ -30,7 +30,7 @@ terraform {
     }
     flux = {
       source  = "fluxcd/flux"
-      version = "1.8.6"
+      version = "1.8.7"
     }
     proxmox = {
       source  = "bpg/proxmox"
