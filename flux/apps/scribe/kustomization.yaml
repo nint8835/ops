@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
@@ -10,11 +9,10 @@ resources:
   - ingress.yaml
   - image_repository.yaml
   - image_policy.yaml
-
 images:
   - name: ghcr.io/nint8835/scribe
-    newTag: main-78c752a-20260314-235907 # {"$imagepolicy": "flux-system:scribe:tag"}
-    digest: sha256:aae3a79d64857608db868ef44ff209b1592a05d05aa0d59843d79704a238acf3 # {"$imagepolicy": "flux-system:scribe:digest"}
+    newTag: main-42847d0-20260525-201425 # {"$imagepolicy": "flux-system:scribe:tag"}
+    digest: sha256:24043189da2a81c55d998d2077daae08ae65beec073a8fa13853bab79cf0b018 # {"$imagepolicy": "flux-system:scribe:digest"}
 transformers:
   - |-
     apiVersion: builtin
