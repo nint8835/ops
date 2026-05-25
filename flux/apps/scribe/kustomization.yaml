@@ -11,8 +11,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/nint8835/scribe
-    newTag: main-5a4acb3-20260525-202303 # {"$imagepolicy": "flux-system:scribe:tag"}
-    digest: sha256:d209af69f790dfc934abf2b36b3e731f55e84804b7518beb13dc42b9c9642236 # {"$imagepolicy": "flux-system:scribe:digest"}
+    newTag: main-9c6db23-20260525-205316 # {"$imagepolicy": "flux-system:scribe:tag"}
+    digest: sha256:5a8fd999e7b52e826e474303343a400d30b5289e41283bb7bd99aeaae2a92315 # {"$imagepolicy": "flux-system:scribe:digest"}
 transformers:
   - |-
     apiVersion: builtin
