@@ -1,5 +1,6 @@
 general_settings:
   use_x_forwarded_for: true
+  store_model_in_db: true
 
 model_list:
   - model_name: gpt-oss-20b
@@ -16,9 +17,6 @@ model_list:
       model: openai/gpt-oss-120b
       api_base: http://llama:8080/v1
       api_key: placeholder
-      # Added because Claude Code sends reasoning_effort which isn't marked as supported
-      # Should probably look into fixing that or at least explicitly permitting that param so that this won't silently drop other params
-      drop_params: true
     model_info:
       input_cost_per_token: 0.0000000090578326
       output_cost_per_token: 0.00000013578397
