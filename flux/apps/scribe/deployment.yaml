@@ -38,6 +38,8 @@ spec:
               value: https://scribe.bootleg.technology
             - name: SCRIBE_MENTION_CACHE_PATH
               value: /data/mentions.json
+            - name: SCRIBE_ON_THIS_DAY_CHANNEL_ID
+              value: "497544520695808002"
 
           envFrom:
             - secretRef:
