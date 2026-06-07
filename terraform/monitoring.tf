@@ -11,9 +11,9 @@ resource "helm_release" "grafana" {
   name      = "grafana"
   namespace = kubernetes_namespace_v1.lgtm.id
 
-  repository = "https://grafana.github.io/helm-charts"
+  repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "10.5.15"
+  version    = "12.4.2"
 
   set = [
     {
