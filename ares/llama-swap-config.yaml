@@ -35,6 +35,13 @@ models:
       --reasoning-format auto
       --jinja
   
+  north-mini-code:
+    name: North Mini Code
+    cmd: >
+      ${llama-server}
+      -m /models/North-Mini-Code-1.0-UD-Q6_K.gguf
+      -c 262144
+  
   # TODO: Make casing consistent across all model names
   Qwen3-30B:
     name: Qwen3 (30B)
