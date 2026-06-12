@@ -24,6 +24,8 @@ services:
     volumes:
       - /data/models:/models:ro,Z
       - ./llama-swap-config.yaml:/app/config.yaml:ro,Z
+    command:
+      - "--config=/app/config.yaml"
     networks:
       - ingress
       - inference

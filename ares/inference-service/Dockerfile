@@ -1,8 +1,10 @@
 # This dockerfile is _heavily_ based on the fantastic work done by kyuz0 on the amd-strix-halo-toolboxes project
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
+ARG LLAMA_CPP_REPO=https://github.com/michaelw9999/llama.cpp.git
 ARG LLAMA_CPP_VERSION=cohere2-moe
-ARG LLAMA_SWAP_VERSION=211
+
+ARG LLAMA_SWAP_VERSION=224
 ARG STABLE_DIFFUSION_CPP_VERSION=master-596-90e87bc
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
@@ -39,12 +41,13 @@ RUN git clone --recursive --depth 1 --branch "${STABLE_DIFFUSION_CPP_VERSION}" h
 
 FROM build-deps AS llama-cpp-builder
 
+ARG LLAMA_CPP_REPO
 ARG LLAMA_CPP_VERSION
 
 WORKDIR /build
 
 # TODO: This is compiling ggml as well - can I make only one of these handle compiling it?
-RUN git clone --recursive --depth 1 --branch "${LLAMA_CPP_VERSION}" https://github.com/michaelw9999/llama.cpp.git && \
+RUN git clone --recursive --depth 1 --branch "${LLAMA_CPP_VERSION}" "${LLAMA_CPP_REPO}" && \
     cd llama.cpp && \
     cmake \
         -B build \
