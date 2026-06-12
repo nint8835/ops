@@ -27,3 +27,4 @@ resources:
   - shopkeeper-cts.yaml
   - shopkeeper.yaml
   - skyline.yaml
+  - stocky.yaml
