@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stocky
+  namespace: stocky
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stocky
+  template:
+    metadata:
+      labels:
+        app: stocky
+    spec:
+      containers:
+        - name: stocky
+          image: ghcr.io/alexgaudon/stocky:latest
+          imagePullPolicy: Always
+
+          env:
+            - name: DISCORD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: stocky-discord-token
+                  key: DISCORD_TOKEN
