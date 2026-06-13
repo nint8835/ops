@@ -20,6 +20,10 @@ resource "helm_release" "metallb" {
 
   set = [
     {
+      name = "frrk8s.enabled"
+      value = false
+    },
+    {
       name  = "speaker.frr.enabled"
       value = false
     },
