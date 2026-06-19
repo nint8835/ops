@@ -25,6 +25,17 @@
       "groupName": "immich"
     },
     {
+      "description": "Group monitoring Helm chart updates together",
+      "matchDatasources": ["helm"],
+      "matchPackageNames": [
+        "grafana",
+        "prometheus-operator-crds",
+        "victoria-logs-single",
+        "victoria-metrics-k8s-stack"
+      ],
+      "groupName": "monitoring"
+    },
+    {
       "description": "Disable digest updates for services that rebuild the image frequently",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/netbox-community/netbox", "ghcr.io/valkey-io/valkey"],
