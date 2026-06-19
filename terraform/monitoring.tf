@@ -13,7 +13,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "12.4.5"
+  version    = "12.4.8"
 
   set = [
     {
@@ -85,7 +85,7 @@ resource "helm_release" "victoria_logs" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-logs-single"
-  version    = "0.13.7"
+  version    = "0.13.8"
 
   set = [
     {
@@ -130,7 +130,7 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
-  version    = "0.83.0"
+  version    = "0.84.0"
 
   set = [
     {
