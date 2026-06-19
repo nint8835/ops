@@ -11,7 +11,7 @@ module "git_config" {
   count = data.coder_workspace.me.start_count
 
   source  = "registry.coder.com/coder/git-config/coder"
-  version = "1.0.33"
+  version = "1.0.34"
 
   agent_id              = coder_agent.agent.id
   allow_username_change = false
