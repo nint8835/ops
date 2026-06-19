@@ -80,7 +80,7 @@ services:
       - "traefik.docker.network=ares_ingress"
   
   ultrafeeder:
-    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-933
+    image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-935
     container_name: ultrafeeder
     hostname: ultrafeeder
     restart: unless-stopped
@@ -146,7 +146,7 @@ services:
     tmpfs:
       - /run:exec,size=256M
   fr24:
-    image: ghcr.io/sdr-enthusiasts/docker-flightradar24:latest-build-852
+    image: ghcr.io/sdr-enthusiasts/docker-flightradar24:latest-build-854
     container_name: fr24
     restart: unless-stopped
     ports:
