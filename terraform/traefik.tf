@@ -14,15 +14,15 @@ resource "helm_release" "traefik" {
 
   set = [
     {
-      name  = "logs.access.enabled"
+      name  = "accessLog.enabled"
       value = true
     },
     {
-      name  = "logs.access.format"
+      name  = "accessLog.format"
       value = "json"
     },
     {
-      name  = "logs.general.format"
+      name  = "log.format"
       value = "json"
     },
     {
