@@ -142,9 +142,8 @@ services:
     volumes:
       - ultrafeeder-globe-history:/var/globe_history
       - ultrafeeder-graphs1090:/var/lib/collectd
+      - ultrafeeder-receiver-json:/run/readsb
       - /proc/diskstats:/proc/diskstats:ro
-    tmpfs:
-      - /run:exec,size=256M
   fr24:
     image: ghcr.io/sdr-enthusiasts/docker-flightradar24:latest-build-854
     container_name: fr24
@@ -176,6 +175,19 @@ services:
     tmpfs:
       - /run:exec,size=64M
       - /var/log
+  ident:
+    image: ghcr.io/ident-1090/ident:v0.4.2
+    restart: unless-stopped
+    ports:
+      - "1091:8080"
+    networks:
+      - ingress
+    environment:
+      - IDENT_STATION_NAME=${FEEDER_NAME}
+      - IDENT_HEYWHATSTHAT_PANORAMA_ID=${FEEDER_HEYWHATSTHAT_ID}
+      - IDENT_HEYWHATSTHAT_ALTS=${FEEDER_HEYWHATSTHAT_ALTS}
+    volumes:
+      - ultrafeeder-receiver-json:/run/readsb:ro
 
 networks:
   ingress:
@@ -186,3 +198,8 @@ volumes:
   litellm-db-data:
   ultrafeeder-globe-history:
   ultrafeeder-graphs1090:
+  ultrafeeder-receiver-json:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+      o: "size=1G,context=\"system_u:object_r:container_file_t:s0\""
