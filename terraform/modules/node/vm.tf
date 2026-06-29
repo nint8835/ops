@@ -8,6 +8,10 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
   scsi_hardware = "virtio-scsi-single"
 
+  # Fix for PVE 9.2.3 breaking overlay networking
+  # https://forum.proxmox.com/threads/kubernetes-overlay-networking-breaks-when-upgrading-from-pve-9-1-to-pve-9-2-3.183963/
+  kvm_arguments = "-global virtio-net-pci.host_tunnel_csum=off -global virtio-net-pci.csum=off"
+
   agent {
     enabled = false
   }
