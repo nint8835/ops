@@ -12,6 +12,8 @@ resource "helm_release" "traefik" {
   chart      = "traefik"
   version    = "41.0.0"
 
+  max_history = 3
+
   set = [
     {
       name  = "accessLog.enabled"
@@ -76,6 +78,8 @@ resource "helm_release" "traefik_configs" {
   name      = "traefik-configs"
   namespace = kubernetes_namespace_v1.traefik.id
   chart     = "${path.module}/charts/traefik-configs"
+
+  max_history = 3
 
   set = [
     {

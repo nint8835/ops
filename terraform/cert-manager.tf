@@ -23,6 +23,8 @@ resource "helm_release" "cert_manager" {
   chart      = "cert-manager"
   version    = "v1.20.2"
 
+  max_history = 3
+
   set = [
     {
       name  = "installCRDs"
@@ -64,6 +66,8 @@ resource "helm_release" "cert_manager_configs" {
   name      = "cert-manager-configs"
   namespace = kubernetes_namespace_v1.cert_manager.id
   chart     = "${path.module}/charts/cert-manager-configs"
+
+  max_history = 3
 
   set = [
     {

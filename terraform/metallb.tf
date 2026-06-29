@@ -18,9 +18,11 @@ resource "helm_release" "metallb" {
   chart      = "metallb"
   version    = "0.16.1"
 
+  max_history = 3
+
   set = [
     {
-      name = "frrk8s.enabled"
+      name  = "frrk8s.enabled"
       value = false
     },
     {
@@ -55,6 +57,8 @@ resource "helm_release" "metallb_configs" {
   name      = "metallb-configs"
   namespace = kubernetes_namespace_v1.metallb_system.id
   chart     = "${path.module}/charts/metallb-configs"
+
+  max_history = 3
 
   set = [
     {

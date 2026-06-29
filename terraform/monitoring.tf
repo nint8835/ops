@@ -15,6 +15,8 @@ resource "helm_release" "grafana" {
   chart      = "grafana"
   version    = "12.4.8"
 
+  max_history = 3
+
   set = [
     {
       name  = "persistence.enabled"
@@ -71,6 +73,8 @@ resource "helm_release" "metrics_server" {
   chart      = "metrics-server"
   version    = "3.13.1"
 
+  max_history = 3
+
   set = [
     {
       name  = "args[0]"
@@ -86,6 +90,8 @@ resource "helm_release" "victoria_logs" {
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-logs-single"
   version    = "0.13.8"
+
+  max_history = 3
 
   set = [
     {
@@ -122,6 +128,8 @@ resource "helm_release" "prometheus_operator_crds" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-operator-crds"
   version    = "30.0.0"
+
+  max_history = 3
 }
 
 resource "helm_release" "victoria_metrics_k8s_stack" {
@@ -131,6 +139,8 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
   version    = "0.84.0"
+
+  max_history = 3
 
   set = [
     {

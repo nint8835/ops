@@ -12,6 +12,8 @@ resource "helm_release" "cloudnativepg" {
   chart      = "cloudnative-pg"
   version    = "0.28.3"
 
+  max_history = 3
+
   set = [
     {
       name  = "resources.requests.memory"
