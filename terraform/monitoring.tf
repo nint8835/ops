@@ -13,7 +13,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "12.7.1"
+  version    = "12.7.2"
 
   max_history = 3
 
@@ -127,7 +127,7 @@ resource "helm_release" "prometheus_operator_crds" {
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-operator-crds"
-  version    = "30.0.0"
+  version    = "30.0.1"
 
   max_history = 3
 }
@@ -138,7 +138,7 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
-  version    = "0.85.8"
+  version    = "0.85.9"
 
   max_history = 3
 
