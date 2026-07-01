@@ -25,6 +25,6 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/netbox-community/netbox
-    newTag: v4.6.3@sha256:f1c91ad06d3e5f0aadb9cf0b44f1a9dc83646f95afe9b79f78bde33dead728a3
+    newTag: v4.6.4@sha256:9758cdb571114659c9dbe14c5a51c7f003b4eb4a611152d28314afc569c320f7
   - name: ghcr.io/valkey-io/valkey
     newTag: 9.1.0-alpine@sha256:a35428eba9043cc0b79dbe54100f0c92784f2de00ad09b01182bfb1c5c83d1bd
