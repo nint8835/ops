@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: romm
+
+spec:
+  selector:
+    matchLabels:
+      app: romm
+
+  template:
+    metadata:
+      labels:
+        app: romm
+
+    spec:
+      securityContext:
+        fsGroup: 1000
+      
+      volumes:
+        - name: resources
+          persistentVolumeClaim:
+            claimName: resources
+        - name: library
+          persistentVolumeClaim:
+            claimName: library
+        - name: assets
+          persistentVolumeClaim:
+            claimName: assets
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+
+      containers:
+        - name: romm
+          image: ghcr.io/rommapp/romm:4.9.2-slim
+
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          
+          livenessProbe:
+            httpGet:
+              path: /api/heartbeat
+              port: http
+          
+          readinessProbe:
+            httpGet:
+              path: /api/heartbeat
+              port: http
+
+          volumeMounts:
+            - name: resources
+              mountPath: /romm/resources
+            - name: library
+              mountPath: /romm/library
+            - name: assets
+              mountPath: /romm/assets
+            - name: config
+              mountPath: /romm/config
+          
+          envFrom:
+            - secretRef:
+                name: secrets
+          
+          env:
+            - name: ROMM_DB_DRIVER
+              value: postgresql
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: port
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: dbname
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: user
+            - name: DB_PASSWD
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: password
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+            - name: HASHEOUS_API_ENABLED
+              value: "true"

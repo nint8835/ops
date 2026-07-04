@@ -8,7 +8,11 @@ resources:
   - redis.yaml
   - service_redis.yaml
   - postgres.yaml
+  - secrets.yaml
+  - deployment.yaml
 
 images:
+  - name: ghcr.io/rommapp/romm
+    newTag: 4.9.2-slim@sha256:c81778afcafe7c865bdf156d1c62349aec3dfca3aca5ec0d6c2c2e8bfa9fb071
   - name: ghcr.io/valkey-io/valkey
     newTag: 9.1.0-alpine@sha256:a35428eba9043cc0b79dbe54100f0c92784f2de00ad09b01182bfb1c5c83d1bd
