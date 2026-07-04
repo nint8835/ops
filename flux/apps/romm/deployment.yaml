@@ -15,6 +15,7 @@ spec:
         app: romm
 
     spec:
+      enableServiceLinks: false
       securityContext:
         fsGroup: 1000
       
