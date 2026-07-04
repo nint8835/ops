@@ -25,6 +25,21 @@ spec:
         - name: planespotter
           image: ghcr.io/nint8835/planespotter
 
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          
+          livenessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: http
+          
+          readinessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: http
+
           env:
             - name: PLANESPOTTER_SEEN_AIRCRAFT_PATH
               value: /data/seen.json
