@@ -10,3 +10,7 @@ spec:
     name: flux-system
   path: 'flux/apps/romm'
   prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
