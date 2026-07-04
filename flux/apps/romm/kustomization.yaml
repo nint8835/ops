@@ -7,6 +7,7 @@ resources:
   - persistent_volume_claim.yaml
   - redis.yaml
   - service_redis.yaml
+  - postgres.yaml
 
 images:
   - name: ghcr.io/valkey-io/valkey
