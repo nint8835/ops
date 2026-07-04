@@ -102,3 +102,5 @@ spec:
               value: "6379"
             - name: HASHEOUS_API_ENABLED
               value: "true"
+            - name: HLTB_API_ENABLED
+              value: "true"
