@@ -5,7 +5,7 @@ namespace: romm
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - redis.yaml
+  # - redis.yaml
   - service_redis.yaml
 
 images:
