@@ -23,6 +23,7 @@ resources:
   - planespotter.yaml
   - plex-proxy.yaml
   - pollster.yaml
+  - romm.yaml
   - scribe.yaml
   - shopkeeper-cts.yaml
   - shopkeeper.yaml

@@ -18,6 +18,7 @@ locals {
     "pkg.nit.so",
     "plex.bootleg.technology",
     "pollster.bootleg.technology",
+    "romm.bootleg.technology",
     "scribe.bootleg.technology",
     "shopkeeper.bootleg.technology",
     "skyline.bootleg.technology",
