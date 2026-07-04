@@ -20,6 +20,9 @@ spec:
           persistentVolumeClaim:
             claimName: redis
 
+      securityContext:
+        fsGroup: 1000
+
       containers:
         - name: redis
           image: ghcr.io/valkey-io/valkey
