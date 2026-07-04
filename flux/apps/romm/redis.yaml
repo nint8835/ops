@@ -13,13 +13,13 @@ spec:
     metadata:
       labels:
         app: redis
-      
-    volumes:
-      - name: redis-data
-        persistentVolumeClaim:
-          claimName: redis
   
     spec:
+      volumes:
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis
+
       containers:
         - name: redis
           image: ghcr.io/valkey-io/valkey
