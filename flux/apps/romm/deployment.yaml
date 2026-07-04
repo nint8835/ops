@@ -43,11 +43,13 @@ spec:
               protocol: TCP
           
           livenessProbe:
+            initialDelaySeconds: 40
             httpGet:
               path: /api/heartbeat
               port: http
           
           readinessProbe:
+            initialDelaySeconds: 40
             httpGet:
               path: /api/heartbeat
               port: http
