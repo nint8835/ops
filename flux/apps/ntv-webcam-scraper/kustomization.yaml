@@ -1,17 +1,15 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
   - deployment.yaml
   - image_repository.yaml
   - image_policy.yaml
-
 images:
   - name: ghcr.io/nint8835/ntv-webcam-scraper
-    newTag: main-67050b7-20260301-205741 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
-    digest: sha256:2712ce6dc4c2fba01cb0371940d766ba65669b6f16339f8abc59198c266645eb # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
+    newTag: main-2561062-20260711-202715 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
+    digest: sha256:9bd568399983f1c8fb0668a897058ccc2fd21cf7a918409e62e7dba814a1cbbd # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
 transformers:
   - |-
     apiVersion: builtin
