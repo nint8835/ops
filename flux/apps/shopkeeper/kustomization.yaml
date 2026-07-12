@@ -12,8 +12,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/nint8835/shopkeeper
-    newTag: main-b3ccfcf-20260412-165057 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
-    digest: sha256:24b464ab87385c1554fb7cc50afced5d22fc647b83277215934a8b5151aaeb71 # {"$imagepolicy": "flux-system:shopkeeper:digest"}
+    newTag: main-4ee9b71-20260712-212804 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
+    digest: sha256:04110bcbc172797b91fbe0199189ee7cf009d206d9f21059f02ba21fbfb3c7db # {"$imagepolicy": "flux-system:shopkeeper:digest"}
 transformers:
   - |-
     apiVersion: builtin
