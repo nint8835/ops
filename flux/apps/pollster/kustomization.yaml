@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
@@ -11,11 +10,10 @@ resources:
   - ingress.yaml
   - image_repository.yaml
   - image_policy.yaml
-
 images:
   - name: ghcr.io/nint8835/pollster
-    newTag: main-6356ce1-20260404-075904 # {"$imagepolicy": "flux-system:pollster:tag"}
-    digest: sha256:09ca626417005d82cbc29da9906685dfb45c91e0adcfbe6d20d5d5a543719b5b # {"$imagepolicy": "flux-system:pollster:digest"}
+    newTag: main-c9804dd-20260712-205400 # {"$imagepolicy": "flux-system:pollster:tag"}
+    digest: sha256:63312f6ef69813db84dc81dd7d20fd1359d8ce6618f7e354924743eaaf11b0b6 # {"$imagepolicy": "flux-system:pollster:digest"}
 transformers:
   - |-
     apiVersion: builtin
