@@ -1,6 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
@@ -11,11 +10,10 @@ resources:
   - ingress.yaml
   - image_repository.yaml
   - image_policy.yaml
-
 images:
   - name: ghcr.io/nint8835/skyline
-    newTag: main-b1f29c3-20260404-082822 # {"$imagepolicy": "flux-system:skyline:tag"}
-    digest: sha256:1c276636103fba23edebb403df4d4e75b519c2d751d9fdf9837b235767fdc850 # {"$imagepolicy": "flux-system:skyline:digest"}
+    newTag: main-c73e2a8-20260713-211644 # {"$imagepolicy": "flux-system:skyline:tag"}
+    digest: sha256:e51b76de17e1e25462d5bd1cdb72fe11c2f53bdea04a36d5a92bfefa191034f6 # {"$imagepolicy": "flux-system:skyline:digest"}
 transformers:
   - |-
     apiVersion: builtin
