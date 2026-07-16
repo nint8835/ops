@@ -89,7 +89,7 @@ resource "helm_release" "victoria_logs" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-logs-single"
-  version    = "0.13.8"
+  version    = "0.13.9"
 
   max_history = 3
 
@@ -138,7 +138,7 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
-  version    = "0.85.10"
+  version    = "0.86.1"
 
   max_history = 3
 
