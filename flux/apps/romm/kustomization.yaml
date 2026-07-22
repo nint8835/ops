@@ -17,4 +17,4 @@ images:
   - name: ghcr.io/rommapp/romm
     newTag: 5.0.0-slim@sha256:d457e469d51d2d92ed338d25f4c4e2c9f548c573795bb08aa595ab36a7a482c4
   - name: ghcr.io/valkey-io/valkey
-    newTag: 9.1.0-alpine@sha256:a35428eba9043cc0b79dbe54100f0c92784f2de00ad09b01182bfb1c5c83d1bd
+    newTag: 9.1.1-alpine@sha256:ee91f7a174ac4d6a6b0685b3a60e321f0a9dbbb691f9b0e285be2ba1d1be8328
