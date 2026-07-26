@@ -8,8 +8,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/nint8835/ntv-webcam-scraper
-    newTag: main-2561062-20260711-202715 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
-    digest: sha256:9bd568399983f1c8fb0668a897058ccc2fd21cf7a918409e62e7dba814a1cbbd # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
+    newTag: main-20d0208-20260726-112142 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
+    digest: sha256:432e94abeba323dbfd93e646a5242ef210b6ea23dde275e9aa9fbcfb7651a60f # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
 transformers:
   - |-
     apiVersion: builtin
