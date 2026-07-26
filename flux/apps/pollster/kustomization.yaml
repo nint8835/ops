@@ -12,8 +12,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/nint8835/pollster
-    newTag: main-c9804dd-20260712-205400 # {"$imagepolicy": "flux-system:pollster:tag"}
-    digest: sha256:63312f6ef69813db84dc81dd7d20fd1359d8ce6618f7e354924743eaaf11b0b6 # {"$imagepolicy": "flux-system:pollster:digest"}
+    newTag: main-5f79222-20260726-104658 # {"$imagepolicy": "flux-system:pollster:tag"}
+    digest: sha256:39cf6aaee13c93b59fc008d9786866374114e52317bb1e7ce8f2bda4f8f0b847 # {"$imagepolicy": "flux-system:pollster:digest"}
 transformers:
   - |-
     apiVersion: builtin
