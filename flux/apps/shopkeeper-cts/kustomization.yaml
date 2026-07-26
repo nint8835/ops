@@ -10,8 +10,8 @@ resources:
   - ingress.yaml
 images:
   - name: ghcr.io/nint8835/shopkeeper
-    newTag: main-4ee9b71-20260712-212804 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
-    digest: sha256:04110bcbc172797b91fbe0199189ee7cf009d206d9f21059f02ba21fbfb3c7db # {"$imagepolicy": "flux-system:shopkeeper:digest"}
+    newTag: main-395de69-20260726-105343 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
+    digest: sha256:7eef3fffcc1c69614cc114ecb2a5b543a1d67546525f155a48bd99c90c16ff0b # {"$imagepolicy": "flux-system:shopkeeper:digest"}
 transformers:
   - |-
     apiVersion: builtin
