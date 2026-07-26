@@ -12,8 +12,8 @@ resources:
   - image_policy.yaml
 images:
   - name: ghcr.io/nint8835/skyline
-    newTag: main-c73e2a8-20260713-211644 # {"$imagepolicy": "flux-system:skyline:tag"}
-    digest: sha256:e51b76de17e1e25462d5bd1cdb72fe11c2f53bdea04a36d5a92bfefa191034f6 # {"$imagepolicy": "flux-system:skyline:digest"}
+    newTag: main-2c5442f-20260726-110637 # {"$imagepolicy": "flux-system:skyline:tag"}
+    digest: sha256:7d66e202fda33ce8c1b24a71cb54899f54776f7d78fee0fa821a77ce401cdf75 # {"$imagepolicy": "flux-system:skyline:digest"}
 transformers:
   - |-
     apiVersion: builtin
