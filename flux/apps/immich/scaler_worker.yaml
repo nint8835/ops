@@ -15,5 +15,90 @@ spec:
     - type: redis
       metadata:
         address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:backgroundTask:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:backupDatabase:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:duplicateDetection:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:editor:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:faceDetection:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:facialRecognition:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:integrityCheck:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:library:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
         listName: immich_bull:metadataExtraction:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:notifications:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:ocr:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:search:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:sidecar:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:smartSearch:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:storageTemplateMigration:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:thumbnailGeneration:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:videoConversion:wait
+        listLength: "1"
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:workflow:wait
         listLength: "1"
