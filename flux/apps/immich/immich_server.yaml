@@ -53,3 +53,5 @@ spec:
               value: "2283"
             - name: MACHINE_LEARNING_HTTP_KEEPALIVE_TIMEOUT_S
               value: "0"
+            - name: IMMICH_WORKERS_INCLUDE
+              value: "api"
