@@ -36,6 +36,15 @@
       "groupName": "monitoring"
     },
     {
+      "description": "Group keda Helm chart updates together",
+      "matchDatasources": ["helm"],
+      "matchPackageNames": [
+        "keda",
+        "keda-add-ons-http"
+      ],
+      "groupName": "keda"
+    },
+    {
       "description": "Disable digest updates for services that rebuild the image frequently",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/netbox-community/netbox", "ghcr.io/valkey-io/valkey"],
