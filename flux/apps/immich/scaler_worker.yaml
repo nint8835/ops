@@ -1,0 +1,19 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+
+metadata:
+  name: immich-worker
+
+spec:
+  minReplicaCount: 0
+  maxReplicaCount: 1
+
+  scaleTargetRef:
+    name: immich-worker
+  
+  triggers:
+    - type: redis
+      metadata:
+        address: redis.immich.svc.cluster.local:6379
+        listName: immich_bull:metadataExtraction:wait
+        listLength: "1"

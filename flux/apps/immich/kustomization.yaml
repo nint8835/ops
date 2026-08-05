@@ -12,6 +12,7 @@ resources:
   - immich_server.yaml
   - service_immich_server.yaml
   - immich_worker.yaml
+  - scaler_worker.yaml
   - ingress.yaml
   - immich_ml.yaml
   - service_immich_ml.yaml
