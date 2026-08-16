@@ -127,7 +127,7 @@ resource "helm_release" "prometheus_operator_crds" {
 
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "prometheus-operator-crds"
-  version    = "31.0.0"
+  version    = "31.0.1"
 
   max_history = 3
 }
