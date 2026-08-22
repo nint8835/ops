@@ -13,7 +13,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "12.10.4"
+  version    = "12.11.1"
 
   max_history = 3
 
@@ -138,7 +138,7 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   repository = "https://victoriametrics.github.io/helm-charts"
   chart      = "victoria-metrics-k8s-stack"
-  version    = "0.90.2"
+  version    = "0.91.2"
 
   max_history = 3
 
