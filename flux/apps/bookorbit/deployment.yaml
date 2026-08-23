@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: bookorbit
+
+spec:
+  selector:
+    matchLabels:
+      app: bookorbit
+  
+  template:
+    metadata:
+      labels:
+        app: bookorbit
+    
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      
+      volumes:
+        - name: tmpfs
+          emptyDir:
+            medium: Memory
+        - name: data
+          persistentVolumeClaim:
+            claimName: data
+        - name: books
+          persistentVolumeClaim:
+            claimName: books
+
+      containers:
+        - name: bookorbit
+          image: ghcr.io/bookorbit/bookorbit
+        
+          envFrom:
+            - secretRef:
+                name: secrets
+          
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+            - name: APP_URL
+              value: https://books.bootleg.technology
+            - name: CLIENT_URL
+              value: https://books.bootleg.technology
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: BOOKORBIT_FIX_PERMISSIONS
+              value: "false"
+            - name: LIBRARY_BROWSE_ROOT
+              value: /books
+            - name: NODE_MAX_OLD_SPACE_SIZE
+              value: auto
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-app
+                  key: uri
+          
+          volumeMounts:
+            - name: tmpfs
+              mountPath: /tmp
+            - name: data
+              mountPath: /data
+            - name: books
+              mountPath: /books
+          
+          ports:
+            - containerPort: 3000
+              name: http
+          
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeout: 5
+            failureThreshold: 3
+          
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeout: 5
+            failureThreshold: 3
+          
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+              add:
+                - CHOWN
+                - DAC_OVERRIDE
+                - FOWNER
+                - SETGID
+                - SETUID
+            
