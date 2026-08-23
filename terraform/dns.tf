@@ -5,6 +5,7 @@ locals {
   zone_ids = { for z in data.cloudflare_zones.zones.result : z.name => z.id }
 
   ingress_domains = [
+    "books.bootleg.technology",
     "calibre.bootleg.technology",
     "flux-webhook-receiver.ops.bootleg.technology",
     "grafana.ops.bootleg.technology",
