@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - database_cluster.yaml
   - database.yaml
+  - persistent_volume_claim.yaml
