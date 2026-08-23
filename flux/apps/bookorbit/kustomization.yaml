@@ -4,3 +4,5 @@ namespace: bookorbit
 
 resources:
   - namespace.yaml
+  - database_cluster.yaml
+  - database.yaml

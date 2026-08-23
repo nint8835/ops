@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+
+metadata:
+  name: db
+
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+
+  smartShutdownTimeout: 30
+
+  storage:
+    size: 1Gi
+    storageClass: nfs-csi
+  
+  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  postgresql:
+    extensions:
+      - name: pgvector
+        image:
+          # renovate: suite=trixie-pgdg depName=postgresql-18-pgvector
+          reference: ghcr.io/cloudnative-pg/pgvector:0.8.6-18-trixie
