@@ -13,7 +13,7 @@ resource "helm_release" "grafana" {
 
   repository = "https://grafana-community.github.io/helm-charts"
   chart      = "grafana"
-  version    = "12.11.1"
+  version    = "13.0.1"
 
   max_history = 3
 
