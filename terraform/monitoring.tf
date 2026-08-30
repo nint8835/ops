@@ -56,7 +56,7 @@ resource "helm_release" "grafana" {
     },
     {
       name  = "resources.requests.memory"
-      value = "128Mi"
+      value = "256Mi"
     },
     {
       name  = "resources.limits.memory"
