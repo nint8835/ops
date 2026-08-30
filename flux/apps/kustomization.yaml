@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - bookorbit.yaml
   - borik.yaml
-  - calibre.yaml
   - cloudflare-ddns.yaml
   - coder.yaml
   - grackdb.yaml

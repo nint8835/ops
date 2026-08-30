@@ -6,7 +6,6 @@ locals {
 
   ingress_domains = [
     "books.bootleg.technology",
-    "calibre.bootleg.technology",
     "flux-webhook-receiver.ops.bootleg.technology",
     "grafana.ops.bootleg.technology",
     "homeassistant.bootleg.technology",
