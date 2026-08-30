@@ -119,6 +119,8 @@ services:
         mlat,dati.flyitalyadsb.com,30100;
         adsb,feed1.adsbexchange.com,30004,beast_reduce_plus_out;
         mlat,feed.adsbexchange.com,31090;
+        adsb,feed.adsb.win,30004,beast_reduce_plus_out,uuid=${ADSBWIN_UUID};
+        mlat,mlat.adsb.win,31090,39013,uuid=${ADSBWIN_UUID};
       - UUID=${ULTRAFEEDER_UUID}
       - MLAT_USER=${FEEDER_NAME}
       - READSB_FORWARD_MLAT_SBS=true
