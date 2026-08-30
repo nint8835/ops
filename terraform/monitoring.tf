@@ -60,7 +60,7 @@ resource "helm_release" "grafana" {
     },
     {
       name  = "resources.limits.memory"
-      value = "384Mi"
+      value = "786Mi"
     },
   ]
 }
