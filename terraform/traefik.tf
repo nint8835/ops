@@ -10,7 +10,7 @@ resource "helm_release" "traefik" {
 
   repository = "https://traefik.github.io/charts"
   chart      = "traefik"
-  version    = "41.3.0"
+  version    = "41.4.0"
 
   max_history = 3
 
