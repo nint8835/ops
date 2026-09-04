@@ -36,10 +36,6 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.111.1"
     }
-    netbox = {
-      source  = "e-breuninger/netbox"
-      version = "5.7.0"
-    }
     coderd = {
       source  = "coder/coderd"
       version = "0.0.25"

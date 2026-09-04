@@ -47,7 +47,7 @@
     {
       "description": "Disable digest updates for services that rebuild the image frequently",
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["ghcr.io/netbox-community/netbox", "ghcr.io/valkey-io/valkey"],
+      "matchPackageNames": ["ghcr.io/valkey-io/valkey"],
       "matchUpdateTypes": ["digest"],
       "enabled": false
     },

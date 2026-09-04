@@ -65,10 +65,7 @@ module "control_plane_node" {
   region               = try(each.value.region, "hera")
   zone                 = each.value.host
   host_name            = each.value.host
-  host_device_id       = module.proxmox_hosts[each.value.host].netbox_device.id
   proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
-  netbox_cluster_id    = netbox_cluster.hera.id
-  netbox_site_id       = netbox_site.home.id
   role                 = "controlplane"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
@@ -88,10 +85,7 @@ module "worker_node" {
   region               = try(each.value.region, "hera")
   zone                 = each.value.host
   host_name            = each.value.host
-  host_device_id       = module.proxmox_hosts[each.value.host].netbox_device.id
   proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
-  netbox_cluster_id    = netbox_cluster.hera.id
-  netbox_site_id       = netbox_site.home.id
   role                 = "worker"
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"

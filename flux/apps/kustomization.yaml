@@ -14,7 +14,6 @@ resources:
   - interruption-spotter.yaml
   - litellm.yaml
   - miniflux.yaml
-  - netbox.yaml
   - ntv-webcam-scraper.yaml
   - paperless-ngx.yaml
   - pkg-fogo-sh.yaml

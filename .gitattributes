@@ -1,4 +1,2 @@
 *.yaml linguist-detectable
-ares/llama-swap-config-schema.json linguist-generated
-flux/apps/netbox/config/* linguist-vendored
 flux/flux-system/* linguist-generated

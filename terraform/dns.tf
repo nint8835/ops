@@ -12,7 +12,6 @@ locals {
     "interruption-spotter.bootleg.technology",
     "llm.ops.bootleg.technology",
     "miniflux.bootleg.technology",
-    "netbox.ops.bootleg.technology",
     "paperless.bootleg.technology",
     "photos.rileyflynn.me",
     "pkg.nit.so",
