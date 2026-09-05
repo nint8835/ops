@@ -8,8 +8,8 @@ resources:
   - job.yaml
 images:
   - name: ghcr.io/nint8835/gramfel
-    newTag: main-f78ae5c-20260422-205854 # {"$imagepolicy": "flux-system:gramfel:tag"}
-    digest: sha256:96fed06fe436cfe26aebcffa674a3f3ea022fdcafe6afefe3bb6365ada701bca # {"$imagepolicy": "flux-system:gramfel:digest"}
+    newTag: main-7de5725-20260905-010921 # {"$imagepolicy": "flux-system:gramfel:tag"}
+    digest: sha256:1fa742116f3e42bf0dd7a341e0dd591751c3a6289334f169cdb83a39b875ec8d # {"$imagepolicy": "flux-system:gramfel:digest"}
 transformers:
   - |-
     apiVersion: builtin
