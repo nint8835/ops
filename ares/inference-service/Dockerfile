@@ -1,11 +1,11 @@
 # This dockerfile is _heavily_ based on the fantastic work done by kyuz0 on the amd-strix-halo-toolboxes project
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
-ARG LLAMA_CPP_REPO=https://github.com/michaelw9999/llama.cpp.git
-ARG LLAMA_CPP_VERSION=cohere2-moe
+ARG LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp.git
+ARG LLAMA_CPP_VERSION=b10819
 
-ARG LLAMA_SWAP_VERSION=224
-ARG STABLE_DIFFUSION_CPP_VERSION=master-596-90e87bc
+ARG LLAMA_SWAP_VERSION=253
+ARG STABLE_DIFFUSION_CPP_VERSION=master-841-6b3edaa
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
