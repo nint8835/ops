@@ -1,0 +1,18 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: homeassistant
+  labels:
+    kubernetes.io/service-name: homeassistant
+    endpointslice.kubernetes.io/managed-by: fluxcd
+
+addressType: IPv4
+endpoints:
+  - addresses:
+      - 192.168.1.194
+    conditions:
+      ready: true
+ports:
+  - port: 8123
+    protocol: TCP
+    name: http

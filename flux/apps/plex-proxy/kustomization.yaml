@@ -5,5 +5,5 @@ namespace: plex-proxy
 resources:
   - namespace.yaml
   - service.yaml
-  - endpoints.yaml
+  - endpoint_slice.yaml
   - ingress.yaml
