@@ -9,12 +9,12 @@ resources:
   - secrets.yaml
   - helm_release.yaml
 
+components:
+  - ../../components/helmrelease-values-from-secret
+
 secretGenerator:
   - name: ares-docker-creds
     files:
       - docker-creds/ca.pem
       - docker-creds/cert.pem
       - docker-creds/key.pem
-    options:
-      # TODO: Find how to make Flux HelmRelease work with hashed secret names
-      disableNameSuffixHash: true

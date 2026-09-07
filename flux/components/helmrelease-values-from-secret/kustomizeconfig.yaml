@@ -1,0 +1,12 @@
+nameReference:
+  - kind: Secret
+    version: v1
+    fieldSpecs:
+      - group: helm.toolkit.fluxcd.io
+        version: v2
+        kind: HelmRelease
+        path: spec/valuesFrom/name
+      - group: helm.toolkit.fluxcd.io
+        version: v2
+        kind: HelmRelease
+        path: spec/values/coder/volumes/secret/secretName
