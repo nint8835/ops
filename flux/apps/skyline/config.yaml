@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-
-metadata:
-  name: config
-
-data:
-  DB_PATH: "/data/skyline.sqlite"
-  BEHIND_REVERSE_PROXY: "true"

@@ -3,13 +3,16 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - config.yaml
   - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
   - image_repository.yaml
   - image_policy.yaml
+configMapGenerator:
+  - name: config
+    envs:
+      - config.env
 images:
   - name: ghcr.io/nint8835/skyline
     newTag: main-2c5442f-20260726-110637 # {"$imagepolicy": "flux-system:skyline:tag"}

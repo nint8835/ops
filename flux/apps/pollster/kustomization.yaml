@@ -3,13 +3,16 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - config.yaml
   - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
   - image_repository.yaml
   - image_policy.yaml
+configMapGenerator:
+  - name: config
+    envs:
+      - config.env
 images:
   - name: ghcr.io/nint8835/pollster
     newTag: main-5f79222-20260726-104658 # {"$imagepolicy": "flux-system:pollster:tag"}

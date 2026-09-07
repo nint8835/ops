@@ -24,10 +24,11 @@ spec:
         - name: interruption-spotter
           image: ghcr.io/nint8835/interruption-spotter
 
-          envFrom:
-            - configMapRef:
-                name: config
-              prefix: INTERRUPTION_SPOTTER_
+          env:
+            - name: INTERRUPTION_SPOTTER_DATABASE_PATH
+              value: "/data/interruptions.db?_pragma=journal_mode(WAL)"
+            - name: INTERRUPTION_SPOTTER_POLL_INTERVAL
+              value: "1h"
 
           volumeMounts:
             - mountPath: /data

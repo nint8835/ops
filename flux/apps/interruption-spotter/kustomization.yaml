@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - config.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
