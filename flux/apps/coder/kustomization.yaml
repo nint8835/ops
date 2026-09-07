@@ -6,7 +6,6 @@ resources:
   - namespace.yaml
   - database.yaml
   - helm_repo.yaml
-  - secrets.yaml
   - helm_release.yaml
 
 configurations:
@@ -21,3 +20,6 @@ secretGenerator:
     options:
       # These files are loaded at terraform apply time, so we don't need to redeploy Coder any time they change
       disableNameSuffixHash: true
+  - name: secrets
+    envs:
+      - secrets.env
