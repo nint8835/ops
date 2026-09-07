@@ -4,7 +4,6 @@ namespace: skyline
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
@@ -12,6 +11,10 @@ configMapGenerator:
   - name: config
     envs:
       - config.env
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/skyline
     newTag: main-2c5442f-20260726-110637 # {"$imagepolicy": "flux-system:skyline:tag"}
