@@ -26,11 +26,10 @@ spec:
               value: "false"
             - name: IP6_PROVIDER
               value: none
-            - name: CLOUDFLARE_API_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: secrets
-                  key: cloudflare-api-token
+          
+          envFrom:
+            - secretRef:
+                name: secrets
       
           securityContext:
             runAsNonRoot: true
