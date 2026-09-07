@@ -4,7 +4,6 @@ namespace: pollster
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
@@ -12,6 +11,10 @@ configMapGenerator:
   - name: config
     envs:
       - config.env
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/pollster
     newTag: main-5f79222-20260726-104658 # {"$imagepolicy": "flux-system:pollster:tag"}
