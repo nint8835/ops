@@ -7,10 +7,14 @@ resources:
   - database_cluster.yaml
   - database.yaml
   - persistent_volume_claim.yaml
-  - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 
 images:
   - name: ghcr.io/bookorbit/bookorbit
