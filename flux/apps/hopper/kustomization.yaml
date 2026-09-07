@@ -4,8 +4,11 @@ namespace: hopper
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - secrets.yaml
   - deployment.yaml
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/hopper
     newTag: main-6233b25-20260620-175906 # {"$imagepolicy": "flux-system:hopper:tag"}
