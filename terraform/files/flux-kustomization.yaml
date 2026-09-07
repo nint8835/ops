@@ -19,3 +19,11 @@ patches:
       kind: Kustomization
       name: flux-system
       namespace: flux-system
+  - patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --sops-age-secret=sops-age
+    target:
+      kind: Deployment
+      name: kustomize-controller
+      namespace: flux-system
