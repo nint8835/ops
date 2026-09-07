@@ -18,6 +18,7 @@ spec:
       enableServiceLinks: false
       securityContext:
         fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
       
       volumes:
         - name: resources

@@ -68,6 +68,7 @@ spec:
     
       securityContext:
         fsGroup: 65532
+        fsGroupChangePolicy: "OnRootMismatch"
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
