@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: shopkeeper
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
@@ -7,8 +8,6 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
-  - image_repository.yaml
-  - image_policy.yaml
 configMapGenerator:
   - name: config
     envs:
@@ -17,11 +16,3 @@ images:
   - name: ghcr.io/nint8835/shopkeeper
     newTag: main-395de69-20260726-105343 # {"$imagepolicy": "flux-system:shopkeeper:tag"}
     digest: sha256:7eef3fffcc1c69614cc114ecb2a5b543a1d67546525f155a48bd99c90c16ff0b # {"$imagepolicy": "flux-system:shopkeeper:digest"}
-transformers:
-  - |-
-    apiVersion: builtin
-    kind: NamespaceTransformer
-    metadata:
-      name: override-namespace
-      namespace: shopkeeper
-    unsetOnly: true

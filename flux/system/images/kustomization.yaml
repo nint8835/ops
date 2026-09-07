@@ -4,3 +4,14 @@ namespace: flux-system
 
 resources:
   - borik.yaml
+  - dieppe.yaml
+  - grackdb.yaml
+  - gramfel.yaml
+  - hopper.yaml
+  - interruption-spotter.yaml
+  - ntv-webcam-scraper.yaml
+  - planespotter.yaml
+  - pollster.yaml
+  - scribe.yaml
+  - shopkeeper.yaml
+  - skyline.yaml

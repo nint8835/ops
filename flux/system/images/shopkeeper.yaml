@@ -1,13 +1,24 @@
 apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: shopkeeper
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/shopkeeper
+  interval: 1m
+---
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 
 metadata:
-  name: pollster
+  name: shopkeeper
   namespace: flux-system
 
 spec:
   imageRepositoryRef:
-    name: pollster
+    name: shopkeeper
   filterTags:
     pattern: '^main-[[:xdigit:]]{7,}-(?P<ts>\d{8}-\d{6})$'
     extract: '$ts'

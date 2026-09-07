@@ -1,13 +1,24 @@
 apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: hopper
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/nint8835/hopper
+  interval: 1m
+---
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 
 metadata:
-  name: planespotter
+  name: hopper
   namespace: flux-system
 
 spec:
   imageRepositoryRef:
-    name: planespotter
+    name: hopper
   filterTags:
     pattern: '^main-[[:xdigit:]]{7,}-(?P<ts>\d{8}-\d{6})$'
     extract: '$ts'
