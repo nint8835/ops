@@ -9,8 +9,8 @@ resources:
   - secrets.yaml
   - helm_release.yaml
 
-components:
-  - ../../components/helmrelease-values-from-secret
+configurations:
+  - kustomizeconfig.yaml
 
 secretGenerator:
   - name: ares-docker-creds
@@ -18,3 +18,6 @@ secretGenerator:
       - docker-creds/ca.pem
       - docker-creds/cert.pem
       - docker-creds/key.pem
+    options:
+      # These files are loaded at terraform apply time, so we don't need to redeploy Coder any time they change
+      disableNameSuffixHash: true
