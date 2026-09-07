@@ -7,10 +7,14 @@ resources:
   - persistent_volume_claim.yaml
   - redis.yaml
   - service_redis.yaml
-  - secrets.yaml
   - paperless-ngx.yaml
   - service.yaml
   - ingress.yaml
+
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 
 images:
   - name: ghcr.io/paperless-ngx/paperless-ngx
