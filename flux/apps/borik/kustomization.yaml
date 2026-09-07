@@ -1,10 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: borik
 resources:
   - namespace.yaml
   - deployment.yaml
-  - image_repository.yaml
-  - image_policy.yaml
 secretGenerator:
   - name: secrets
     envs:
@@ -13,11 +12,3 @@ images:
   - name: ghcr.io/fogo-sh/borik
     newTag: main-9412943-20260616-213734 # {"$imagepolicy": "flux-system:borik:tag"}
     digest: sha256:5e96a8a0c63d9752c83a0b9d3ab4aad939123d714446cf3cc3125b9046f54112 # {"$imagepolicy": "flux-system:borik:digest"}
-transformers:
-  - |-
-    apiVersion: builtin
-    kind: NamespaceTransformer
-    metadata:
-      name: override-namespace
-      namespace: borik
-    unsetOnly: true

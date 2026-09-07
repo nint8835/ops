@@ -1,4 +1,15 @@
 apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+
+metadata:
+  name: borik
+  namespace: flux-system
+
+spec:
+  image: ghcr.io/fogo-sh/borik
+  interval: 1m
+---
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 
 metadata:
