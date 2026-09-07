@@ -3,8 +3,11 @@ kind: Kustomization
 namespace: gramfel
 resources:
   - namespace.yaml
-  - secrets.yaml
   - job.yaml
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/gramfel
     newTag: main-7de5725-20260905-010921 # {"$imagepolicy": "flux-system:gramfel:tag"}
