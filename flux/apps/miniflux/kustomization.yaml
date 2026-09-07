@@ -5,10 +5,14 @@ namespace: miniflux
 resources:
   - namespace.yaml
   - postgres.yaml
-  - admin_creds.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+secretGenerator:
+  - name: admin-user
+    envs:
+      - admin-creds.env
 
 images:
   - name: ghcr.io/miniflux/miniflux
