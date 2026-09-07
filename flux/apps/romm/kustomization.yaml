@@ -8,10 +8,14 @@ resources:
   - redis.yaml
   - service_redis.yaml
   - postgres.yaml
-  - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 
 images:
   - name: ghcr.io/rommapp/romm
