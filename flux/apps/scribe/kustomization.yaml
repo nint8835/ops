@@ -4,10 +4,13 @@ namespace: scribe
 resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
-  - secrets.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/scribe
     newTag: main-f27dbbd-20260719-193426 # {"$imagepolicy": "flux-system:scribe:tag"}
