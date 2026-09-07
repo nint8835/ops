@@ -3,9 +3,12 @@ kind: Kustomization
 namespace: planespotter
 resources:
   - namespace.yaml
-  - secrets.yaml
   - deployment.yaml
   - persistent_volume_claim.yaml
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 images:
   - name: ghcr.io/nint8835/planespotter
     newTag: main-8b41cec-20260704-192654 # {"$imagepolicy": "flux-system:planespotter:tag"}
