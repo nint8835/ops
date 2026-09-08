@@ -21,11 +21,11 @@ spec:
           image: ghcr.io/fogo-sh/borik
 
           env:
-            - name: APP_ID
+            - name: BORIK_APP_ID
               value: "774024240767696897"
-            - name: REGISTER_SLASH_COMMANDS_GLOBALLY
+            - name: BORIK_REGISTER_SLASH_COMMANDS_GLOBALLY
               value: "true"
-            - name: PREFIXES
+            - name: BORIK_PREFIXES
               value: "borik!|,"
 
           envFrom:
