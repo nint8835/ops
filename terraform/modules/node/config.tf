@@ -30,4 +30,6 @@ resource "talos_machine_configuration_apply" "node" {
       file("${path.module}/files/controlplane-scheduling.yaml")
     ] : []
   )
+
+  depends_on = [proxmox_virtual_environment_vm.vm]
 }

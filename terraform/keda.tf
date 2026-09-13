@@ -24,4 +24,6 @@ resource "helm_release" "keda_http_addon" {
   version    = "0.15.0"
 
   max_history = 3
+
+  depends_on = [helm_release.keda]
 }
