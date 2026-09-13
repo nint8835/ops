@@ -20,7 +20,7 @@ rule "terraform_naming_convention" {
 }
 
 rule "terraform_required_version" {
-  enabled = false
+  enabled = true
 }
 
 rule "terraform_unused_required_providers" {
