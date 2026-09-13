@@ -47,6 +47,7 @@ locals {
   kubernetes_version = "1.37.0"
 
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
+  bootstrap_node      = local.control_plane_nodes[sort(keys(local.control_plane_nodes))[0]]
 }
 
 check "cluster_inventory" {
@@ -95,7 +96,7 @@ module "node" {
 resource "talos_machine_bootstrap" "cluster" {
   depends_on = [module.node]
 
-  node                 = local.control_plane_nodes.k8s-control-plane-1.ip
+  node                 = local.bootstrap_node.ip
   client_configuration = talos_machine_secrets.secrets.client_configuration
 }
 
@@ -109,7 +110,7 @@ data "talos_client_configuration" "config" {
 
 resource "talos_cluster_kubeconfig" "config" {
   client_configuration = talos_machine_secrets.secrets.client_configuration
-  node                 = local.control_plane_nodes.k8s-control-plane-1.ip
+  node                 = local.bootstrap_node.ip
 
   depends_on = [talos_machine_bootstrap.cluster]
 }
