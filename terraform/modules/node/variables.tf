@@ -1,6 +1,11 @@
 variable "ip" {
   description = "IP address of the cluster node."
   type        = string
+
+  validation {
+    condition     = can(cidrnetmask("${var.ip}/32"))
+    error_message = "IP must be a valid IPv4 address without a prefix length."
+  }
 }
 
 variable "name" {
@@ -11,6 +16,11 @@ variable "name" {
 variable "role" {
   description = "Role of the cluster node. Must be one of worker or controlplane."
   type        = string
+
+  validation {
+    condition     = contains(["controlplane", "worker"], var.role)
+    error_message = "Role must be either controlplane or worker."
+  }
 }
 
 variable "cluster_name" {
@@ -21,6 +31,11 @@ variable "cluster_name" {
 variable "cluster_endpoint" {
   description = "Endpoint of the Talos cluster to join."
   type        = string
+
+  validation {
+    condition     = can(regex("^https://[^/[:space:]]+:[0-9]+$", var.cluster_endpoint))
+    error_message = "Cluster endpoint must be an HTTPS URL containing a host and port, without a path."
+  }
 }
 
 variable "machine_secrets" {

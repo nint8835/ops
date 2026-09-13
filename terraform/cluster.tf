@@ -49,6 +49,23 @@ locals {
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
 }
 
+check "cluster_inventory" {
+  assert {
+    condition     = length(local.control_plane_nodes) > 0
+    error_message = "The cluster inventory must contain at least one control-plane node."
+  }
+
+  assert {
+    condition     = length(distinct([for node in values(local.cluster_nodes) : node.ip])) == length(local.cluster_nodes)
+    error_message = "Every cluster node must have a unique IP address."
+  }
+
+  assert {
+    condition     = alltrue([for node in values(local.cluster_nodes) : contains(keys(local.proxmox_hosts), node.host)])
+    error_message = "Every cluster node must reference a host defined in local.proxmox_hosts."
+  }
+}
+
 resource "proxmox_virtual_environment_pool" "kubernetes" {
   pool_id = "Kubernetes"
 }

@@ -11,6 +11,11 @@ variable "router_name" {
 variable "routes" {
   description = "Routes to handle routing from."
   type        = list(string)
+
+  validation {
+    condition     = length(var.routes) > 0 && alltrue([for route in var.routes : can(cidrnetmask(route))])
+    error_message = "Routes must contain at least one valid IPv4 CIDR range."
+  }
 }
 
 variable "ts_auth_key_secret" {

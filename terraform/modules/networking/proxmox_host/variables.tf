@@ -6,6 +6,11 @@ variable "name" {
 variable "ip" {
   description = "IP address of this host"
   type        = string
+
+  validation {
+    condition     = can(cidrnetmask("${var.ip}/32"))
+    error_message = "IP must be a valid IPv4 address without a prefix length."
+  }
 }
 
 variable "subdomain" {
