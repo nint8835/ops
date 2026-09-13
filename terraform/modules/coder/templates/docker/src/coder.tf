@@ -17,7 +17,7 @@ module "git_config" {
   allow_username_change = false
 }
 
-module "vscode-web" {
+module "vscode_web" {
   count = data.coder_workspace.me.start_count
 
   source  = "registry.coder.com/coder/vscode-web/coder"
