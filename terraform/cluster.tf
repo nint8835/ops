@@ -47,7 +47,6 @@ locals {
   kubernetes_version = "1.37.0"
 
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
-  worker_nodes        = { for k, v in local.cluster_nodes : k => v if v.role == "worker" }
 }
 
 resource "proxmox_virtual_environment_pool" "kubernetes" {
@@ -56,9 +55,9 @@ resource "proxmox_virtual_environment_pool" "kubernetes" {
 
 resource "talos_machine_secrets" "secrets" {}
 
-module "control_plane_node" {
+module "node" {
   source   = "./modules/node"
-  for_each = local.control_plane_nodes
+  for_each = local.cluster_nodes
 
   name                 = each.key
   ip                   = each.value.ip
@@ -66,27 +65,7 @@ module "control_plane_node" {
   zone                 = each.value.host
   host_name            = each.value.host
   proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
-  role                 = "controlplane"
-  cluster_name         = var.cluster_name
-  cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
-  machine_secrets      = talos_machine_secrets.secrets.machine_secrets
-  client_configuration = talos_machine_secrets.secrets.client_configuration
-
-  talos_version      = local.talos_version
-  kubernetes_version = local.kubernetes_version
-}
-
-module "worker_node" {
-  source   = "./modules/node"
-  for_each = local.worker_nodes
-
-  name                 = each.key
-  ip                   = each.value.ip
-  region               = try(each.value.region, "hera")
-  zone                 = each.value.host
-  host_name            = each.value.host
-  proxmox_pool_id      = proxmox_virtual_environment_pool.kubernetes.pool_id
-  role                 = "worker"
+  role                 = each.value.role
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
@@ -97,14 +76,14 @@ module "worker_node" {
 }
 
 resource "talos_machine_bootstrap" "cluster" {
-  depends_on = [module.control_plane_node]
+  depends_on = [module.node]
 
   node                 = local.control_plane_nodes.k8s-control-plane-1.ip
   client_configuration = talos_machine_secrets.secrets.client_configuration
 }
 
 data "talos_client_configuration" "config" {
-  depends_on = [module.control_plane_node]
+  depends_on = [module.node]
 
   cluster_name         = var.cluster_name
   client_configuration = talos_machine_secrets.secrets.client_configuration
