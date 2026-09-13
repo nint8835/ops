@@ -8,12 +8,9 @@ metadata:
 
 spec:
   tls:
-    - hosts:
-        - pkg.nit.so
-      secretName: pkg-nit-so
+    - {}
   rules:
-    - host: pkg.nit.so
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix

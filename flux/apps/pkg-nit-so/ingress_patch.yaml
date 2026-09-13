@@ -1,0 +1,10 @@
+- op: add
+  path: /spec/tls/0/hosts
+  value:
+    - pkg.nit.so
+- op: add
+  path: /spec/tls/0/secretName
+  value: pkg-nit-so
+- op: add
+  path: /spec/rules/0/host
+  value: pkg.nit.so
