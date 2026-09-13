@@ -20,31 +20,23 @@ resource "helm_release" "metallb" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "frrk8s.enabled"
-      value = false
-    },
-    {
-      name  = "speaker.frr.enabled"
-      value = false
-    },
-    {
-      name  = "speaker.resources.requests.memory"
-      value = "64Mi"
-    },
-    {
-      name  = "speaker.resources.limits.memory"
-      value = "128Mi"
-    },
-    {
-      name  = "controller.resources.requests.memory"
-      value = "48Mi"
-    },
-    {
-      name  = "controller.resources.limits.memory"
-      value = "96Mi"
-    },
+  values = [
+    yamlencode({
+      frrk8s = { enabled = false }
+      speaker = {
+        frr = { enabled = false }
+        resources = {
+          requests = { memory = "64Mi" }
+          limits   = { memory = "128Mi" }
+        }
+      }
+      controller = {
+        resources = {
+          requests = { memory = "48Mi" }
+          limits   = { memory = "96Mi" }
+        }
+      }
+    })
   ]
 }
 

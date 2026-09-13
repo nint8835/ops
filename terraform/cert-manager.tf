@@ -25,35 +25,26 @@ resource "helm_release" "cert_manager" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "installCRDs"
-      value = true
-    },
-    {
-      name  = "resources.requests.memory"
-      value = "32Mi"
-    },
-    {
-      name  = "resources.limits.memory"
-      value = "96Mi"
-    },
-    {
-      name  = "cainjector.resources.requests.memory"
-      value = "64Mi"
-    },
-    {
-      name  = "cainjector.resources.limits.memory"
-      value = "128Mi"
-    },
-    {
-      name  = "webhook.resources.requests.memory"
-      value = "16Mi"
-    },
-    {
-      name  = "webhook.resources.limits.memory"
-      value = "64Mi"
-    },
+  values = [
+    yamlencode({
+      installCRDs = true
+      resources = {
+        requests = { memory = "32Mi" }
+        limits   = { memory = "96Mi" }
+      }
+      cainjector = {
+        resources = {
+          requests = { memory = "64Mi" }
+          limits   = { memory = "128Mi" }
+        }
+      }
+      webhook = {
+        resources = {
+          requests = { memory = "16Mi" }
+          limits   = { memory = "64Mi" }
+        }
+      }
+    })
   ]
 }
 

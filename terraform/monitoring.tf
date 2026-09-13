@@ -17,51 +17,32 @@ resource "helm_release" "grafana" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "persistence.enabled"
-      value = true
-    },
-    {
-      name  = "persistence.storageClassName"
-      value = "nfs-csi"
-    },
-    {
-      name  = "ingress.enabled"
-      value = true
-    },
-    {
-      name  = "ingress.annotations.cert-manager\\.io/cluster-issuer"
-      value = "letsencrypt"
-    },
-    {
-      name  = "ingress.annotations.traefik\\.ingress\\.kubernetes\\.io/router\\.middlewares"
-      value = "traefik-https-redirect@kubernetescrd"
-    },
-    {
-      name  = "ingress.hosts[0]"
-      value = "grafana.ops.bootleg.technology"
-    },
-    {
-      name  = "ingress.tls[0].hosts[0]"
-      value = "grafana.ops.bootleg.technology"
-    },
-    {
-      name  = "ingress.tls[0].secretName"
-      value = "grafana-tls"
-    },
-    {
-      name  = "grafana\\.ini.server.root_url"
-      value = "https://grafana.ops.bootleg.technology"
-    },
-    {
-      name  = "resources.requests.memory"
-      value = "256Mi"
-    },
-    {
-      name  = "resources.limits.memory"
-      value = "786Mi"
-    },
+  values = [
+    yamlencode({
+      persistence = {
+        enabled          = true
+        storageClassName = "nfs-csi"
+      }
+      ingress = {
+        enabled = true
+        annotations = {
+          "cert-manager.io/cluster-issuer"                   = "letsencrypt"
+          "traefik.ingress.kubernetes.io/router.middlewares" = "traefik-https-redirect@kubernetescrd"
+        }
+        hosts = ["grafana.ops.bootleg.technology"]
+        tls = [{
+          hosts      = ["grafana.ops.bootleg.technology"]
+          secretName = "grafana-tls"
+        }]
+      }
+      "grafana.ini" = {
+        server = { root_url = "https://grafana.ops.bootleg.technology" }
+      }
+      resources = {
+        requests = { memory = "256Mi" }
+        limits   = { memory = "786Mi" }
+      }
+    })
   ]
 }
 
@@ -93,31 +74,21 @@ resource "helm_release" "victoria_logs" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "server.extraArgs.defaultMsgValue"
-      value = "No log message"
-    },
-    {
-      name  = "vector.enabled"
-      value = true
-    },
-    {
-      name  = "server.persistentVolume.storageClassName"
-      value = "nfs-csi"
-    },
-    {
-      name  = "vector.tolerations[0].key"
-      value = "node-role.kubernetes.io/control-plane"
-    },
-    {
-      name  = "vector.tolerations[0].operator"
-      value = "Exists"
-    },
-    {
-      name  = "vector.tolerations[0].effect"
-      value = "NoSchedule"
-    }
+  values = [
+    yamlencode({
+      server = {
+        extraArgs        = { defaultMsgValue = "No log message" }
+        persistentVolume = { storageClassName = "nfs-csi" }
+      }
+      vector = {
+        enabled = true
+        tolerations = [{
+          key      = "node-role.kubernetes.io/control-plane"
+          operator = "Exists"
+          effect   = "NoSchedule"
+        }]
+      }
+    })
   ]
 }
 
@@ -142,18 +113,17 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "grafana.enabled"
-      value = false
-    },
-    {
-      name  = "vmsingle.spec.storage.storageClassName"
-      value = "nfs-csi"
-    },
-    {
-      name  = "victoria-metrics-operator.crds.plain"
-      value = false
-    }
+  values = [
+    yamlencode({
+      grafana = { enabled = false }
+      vmsingle = {
+        spec = {
+          storage = { storageClassName = "nfs-csi" }
+        }
+      }
+      "victoria-metrics-operator" = {
+        crds = { plain = false }
+      }
+    })
   ]
 }

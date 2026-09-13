@@ -14,47 +14,29 @@ resource "helm_release" "traefik" {
 
   max_history = 3
 
-  set = [
-    {
-      name  = "accessLog.enabled"
-      value = true
-    },
-    {
-      name  = "accessLog.format"
-      value = "json"
-    },
-    {
-      name  = "log.format"
-      value = "json"
-    },
-    {
-      name  = "providers.kubernetesCRD.allowCrossNamespace"
-      value = true
-    },
-    {
-      name  = "deployment.kind"
-      value = "DaemonSet"
-    },
-    {
-      name  = "resources.requests.memory"
-      value = "64Mi"
-    },
-    {
-      name  = "resources.limits.memory"
-      value = "256Mi"
-    },
-    {
-      name  = "service.spec.externalTrafficPolicy"
-      value = "Local"
-    },
-    {
-      name  = "additionalArguments[0]"
-      value = "--entrypoints.web.transport.respondingTimeouts.readTimeout=300s"
-    },
-    {
-      name  = "additionalArguments[1]"
-      value = "--entrypoints.websecure.transport.respondingTimeouts.readTimeout=300s"
-    },
+  values = [
+    yamlencode({
+      accessLog = {
+        enabled = true
+        format  = "json"
+      }
+      log = { format = "json" }
+      providers = {
+        kubernetesCRD = { allowCrossNamespace = true }
+      }
+      deployment = { kind = "DaemonSet" }
+      resources = {
+        requests = { memory = "64Mi" }
+        limits   = { memory = "256Mi" }
+      }
+      service = {
+        spec = { externalTrafficPolicy = "Local" }
+      }
+      additionalArguments = [
+        "--entrypoints.web.transport.respondingTimeouts.readTimeout=300s",
+        "--entrypoints.websecure.transport.respondingTimeouts.readTimeout=300s",
+      ]
+    })
   ]
 }
 
