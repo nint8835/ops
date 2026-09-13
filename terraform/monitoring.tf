@@ -126,4 +126,6 @@ resource "helm_release" "victoria_metrics_k8s_stack" {
       }
     })
   ]
+
+  depends_on = [helm_release.prometheus_operator_crds]
 }

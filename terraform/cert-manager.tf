@@ -27,7 +27,10 @@ resource "helm_release" "cert_manager" {
 
   values = [
     yamlencode({
-      installCRDs = true
+      crds = {
+        enabled = true
+        keep    = true
+      }
       resources = {
         requests = { memory = "32Mi" }
         limits   = { memory = "96Mi" }
