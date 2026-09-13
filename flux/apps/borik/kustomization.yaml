@@ -10,5 +10,5 @@ secretGenerator:
       - secrets.env
 images:
   - name: ghcr.io/fogo-sh/borik
-    newTag: main-9412943-20260616-213734 # {"$imagepolicy": "flux-system:borik:tag"}
-    digest: sha256:5e96a8a0c63d9752c83a0b9d3ab4aad939123d714446cf3cc3125b9046f54112 # {"$imagepolicy": "flux-system:borik:digest"}
+    newTag: main-8e4b9df-20260913-131441 # {"$imagepolicy": "flux-system:borik:tag"}
+    digest: sha256:0b18d0672b6f3d8d8e75c47a78753aa53b9f6fbe71892ab4009320fa0b9124fa # {"$imagepolicy": "flux-system:borik:digest"}
