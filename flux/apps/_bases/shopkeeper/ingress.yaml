@@ -8,12 +8,9 @@ metadata:
 
 spec:
   tls:
-    - hosts:
-        - shopkeeper.bootleg.technology
-      secretName: shopkeeper-bootleg-technology
+    - {}
   rules:
-    - host: shopkeeper.bootleg.technology
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix

@@ -1,0 +1,10 @@
+- op: add
+  path: /spec/tls/0/hosts
+  value:
+    - shopkeeper.bootleg.technology
+- op: add
+  path: /spec/tls/0/secretName
+  value: shopkeeper-bootleg-technology
+- op: add
+  path: /spec/rules/0/host
+  value: shopkeeper.bootleg.technology
