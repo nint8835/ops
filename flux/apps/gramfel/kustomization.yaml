@@ -10,5 +10,5 @@ secretGenerator:
       - secrets.env
 images:
   - name: ghcr.io/nint8835/gramfel
-    newTag: main-7de5725-20260905-010921 # {"$imagepolicy": "flux-system:gramfel:tag"}
-    digest: sha256:1fa742116f3e42bf0dd7a341e0dd591751c3a6289334f169cdb83a39b875ec8d # {"$imagepolicy": "flux-system:gramfel:digest"}
+    newTag: main-d161ad7-20260917-144404 # {"$imagepolicy": "flux-system:gramfel:tag"}
+    digest: sha256:dc16add30d058c590ec48872cfea5cddf94f4db367be414ab404280caaf2e809 # {"$imagepolicy": "flux-system:gramfel:digest"}
