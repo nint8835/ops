@@ -8,6 +8,8 @@ secretGenerator:
   - name: secrets
     envs:
       - secrets.env
+    files:
+      - MESSAGE_EXPRESSION=message.expr
 images:
   - name: ghcr.io/nint8835/gramfel
     newTag: main-d161ad7-20260917-144404 # {"$imagepolicy": "flux-system:gramfel:tag"}
