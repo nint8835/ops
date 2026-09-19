@@ -7,7 +7,6 @@ resources:
   - dieppe.yaml
   - grackdb.yaml
   - gramfel.yaml
-  - hopper.yaml
   - interruption-spotter.yaml
   - ntv-webcam-scraper.yaml
   - planespotter.yaml

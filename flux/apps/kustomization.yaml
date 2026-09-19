@@ -9,7 +9,6 @@ resources:
   - grackdb.yaml
   - gramfel.yaml
   - homeassistant-proxy.yaml
-  - hopper.yaml
   - immich.yaml
   - interruption-spotter.yaml
   - litellm.yaml
