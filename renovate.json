@@ -6,6 +6,36 @@
   "rebaseWhen": "behind-base-branch",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update llama.cpp compiled by the inference service",
+      "managerFilePatterns": ["/ares/inference-service/Dockerfile$/"],
+      "matchStrings": ["ARG LLAMA_CPP_VERSION=(?<currentValue>\\S+)"],
+      "depNameTemplate": "ggml-org/llama.cpp",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "regex:^b(?<major>\\d+)$"
+    },
+    {
+      "customType": "regex",
+      "description": "Update llama-swap downloaded by the inference service",
+      "managerFilePatterns": ["/ares/inference-service/Dockerfile$/"],
+      "matchStrings": ["ARG LLAMA_SWAP_VERSION=(?<currentValue>\\S+)"],
+      "depNameTemplate": "mostlygeek/llama-swap",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^v(?<version>\\d+)$",
+      "versioningTemplate": "regex:^(?<major>\\d+)$"
+    },
+    {
+      "customType": "regex",
+      "description": "Update stable-diffusion.cpp compiled by the inference service",
+      "managerFilePatterns": ["/ares/inference-service/Dockerfile$/"],
+      "matchStrings": ["ARG STABLE_DIFFUSION_CPP_VERSION=(?<currentValue>\\S+)"],
+      "depNameTemplate": "leejet/stable-diffusion.cpp",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "regex:^master-(?<major>\\d+)-[a-f0-9]+$"
+    }
+  ],
   "packageRules": [
     {
       "description": "Use the OpenTofu registry for Terraform by default",
