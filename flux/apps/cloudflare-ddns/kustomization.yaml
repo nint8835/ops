@@ -12,5 +12,5 @@ secretGenerator:
       - secrets.env
 
 images:
-  - name: favonia/cloudflare-ddns
+  - name: ghcr.io/favonia/cloudflare-ddns
     newTag: 1.17.1@sha256:5e61736b982b87d84a1120b4767c4deff0f2cc55ca3ee9dcb1dc58623039b5cb
