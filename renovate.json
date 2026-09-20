@@ -43,6 +43,31 @@
       "depNameTemplate": "fluxcd/flux2",
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update CloudNativePG operand images",
+      "managerFilePatterns": ["/flux/apps/.+\\.ya?ml$/"],
+      "matchStrings": ["imageName:\\s*(?<depName>[^\\s:]+):(?<currentValue>[^\\s@]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"],
+      "datasourceTemplate": "docker",
+      "depTypeTemplate": "cloudnative-pg-image",
+      "autoReplaceStringTemplate": "imageName: {{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Update CloudNativePG extension images",
+      "managerFilePatterns": ["/flux/apps/.+\\.ya?ml$/"],
+      "matchStrings": ["reference:\\s*(?<depName>[^\\s:]+):(?<currentValue>[^\\s@]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"],
+      "datasourceTemplate": "docker",
+      "depTypeTemplate": "cloudnative-pg-extension-image",
+      "autoReplaceStringTemplate": "reference: {{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Update annotated versions in Flux manifests",
+      "managerFilePatterns": ["/flux/apps/.+\\.ya?ml$/"],
+      "matchStrings": ["# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: extractVersion=(?<extractVersion>\\S+))?(?: versioning=(?<versioning>\\S+))?\\s+version:\\s*['\\\"]?(?<currentValue>[^'\\\"\\s]+)"],
+      "depTypeTemplate": "annotated-version"
     }
   ],
   "packageRules": [
@@ -72,6 +97,45 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/immich-app/**"],
       "groupName": "immich"
+    },
+    {
+      "description": "Track the CloudNativePG PostgreSQL image version",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
+      "versioning": "regex:^(?<major>\\d+)-(?<compatibility>minimal-trixie)$"
+    },
+    {
+      "description": "Keep pgvector on PostgreSQL 18 and Debian Trixie",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/cloudnative-pg/pgvector"],
+      "matchDepTypes": ["cloudnative-pg-extension-image"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-(?<compatibility>18-trixie)$",
+      "groupName": "cloudnative-pg pgvector"
+    },
+    {
+      "description": "Group the pgvector SQL and image versions",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/cloudnative-pg/pgvector"],
+      "matchDepTypes": ["annotated-version"],
+      "groupName": "cloudnative-pg pgvector"
+    },
+    {
+      "description": "Keep VectorChord on PostgreSQL 17",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/tensorchord/cloudnative-vectorchord"],
+      "versioning": "regex:^(?<compatibility>\\d+)\\.(?<major>\\d+)-(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$",
+      "groupName": "immich"
+    },
+    {
+      "description": "Disable digest-only updates for CloudNativePG images",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/cloudnative-pg/postgresql",
+        "ghcr.io/cloudnative-pg/pgvector",
+        "ghcr.io/tensorchord/cloudnative-vectorchord"
+      ],
+      "matchUpdateTypes": ["digest"],
+      "enabled": false
     },
     {
       "description": "Group monitoring Helm chart updates together",
