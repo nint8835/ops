@@ -19,6 +19,6 @@ secretGenerator:
 
 images:
   - name: ghcr.io/rommapp/romm
-    newTag: 5.2.0-slim@sha256:fc90a3d4512cf01f6f2094529455a78d8ac021dc30dd41cf454d8faff4854d8b
+    newTag: 5.3.0-slim@sha256:35b2da1fbf8578221ed6fd6d388191b841513269007e50a49bf24c1da9efbd07
   - name: ghcr.io/valkey-io/valkey
     newTag: 9.1.2-alpine@sha256:a174b894902bd3367e330d47cc2054367dc4917701776aaf336f41d83b65ec7a
