@@ -13,5 +13,5 @@ secretGenerator:
       - secrets.env
 images:
   - name: ghcr.io/nint8835/scribe
-    newTag: main-f27dbbd-20260719-193426 # {"$imagepolicy": "flux-system:scribe:tag"}
-    digest: sha256:2a2f20f3d2cba677f1e0d818d25c27613678e18bce93c3aa3af5b98926d37528 # {"$imagepolicy": "flux-system:scribe:digest"}
+    newTag: main-5c2f3bb-20260925-092724 # {"$imagepolicy": "flux-system:scribe:tag"}
+    digest: sha256:570dcd1add756f6c54e95ddfab08a941bc9f10aeac9c5b01d9588eef92085fdc # {"$imagepolicy": "flux-system:scribe:digest"}
