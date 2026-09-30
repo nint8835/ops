@@ -10,7 +10,7 @@ resource "helm_release" "keda" {
 
   repository = "https://kedacore.github.io/charts"
   chart      = "keda"
-  version    = "2.20.2"
+  version    = "2.21.0"
 
   max_history = 3
 }
