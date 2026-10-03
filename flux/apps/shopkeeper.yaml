@@ -10,9 +10,9 @@ spec:
     - name: cert-manager-configs
     - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/shopkeeper'
+    kind: ExternalArtifact
+    name: shopkeeper
+  path: './shopkeeper'
   prune: true
   timeout: 5m
   healthChecks:

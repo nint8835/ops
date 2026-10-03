@@ -13,9 +13,9 @@ spec:
     - name: nfs-csi
     - name: cloudnativepg
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/coder'
+    kind: ExternalArtifact
+    name: coder
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

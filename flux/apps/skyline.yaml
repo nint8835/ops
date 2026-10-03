@@ -10,9 +10,9 @@ spec:
     - name: cert-manager-configs
     - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/skyline'
+    kind: ExternalArtifact
+    name: skyline
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

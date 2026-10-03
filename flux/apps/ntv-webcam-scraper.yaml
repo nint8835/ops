@@ -8,9 +8,9 @@ spec:
   dependsOn:
     - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/ntv-webcam-scraper'
+    kind: ExternalArtifact
+    name: ntv-webcam-scraper
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

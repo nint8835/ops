@@ -10,9 +10,9 @@ spec:
     - name: cert-manager-configs
     - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/grackdb'
+    kind: ExternalArtifact
+    name: grackdb
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

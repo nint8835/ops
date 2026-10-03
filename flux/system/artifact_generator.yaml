@@ -131,3 +131,67 @@ spec:
       copy:
         - from: '@repo/flux/apps/planespotter/**'
           to: '@artifact/'
+    - name: bookorbit
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/bookorbit/**'
+          to: '@artifact/'
+    - name: coder
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/coder/**'
+          to: '@artifact/'
+    - name: grackdb
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/grackdb/**'
+          to: '@artifact/'
+    - name: immich
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/immich/**'
+          to: '@artifact/'
+    - name: miniflux
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/miniflux/**'
+          to: '@artifact/'
+    - name: ntv-webcam-scraper
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/ntv-webcam-scraper/**'
+          to: '@artifact/'
+    - name: paperless-ngx
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/paperless-ngx/**'
+          to: '@artifact/'
+    - name: pollster
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/pollster/**'
+          to: '@artifact/'
+    - name: romm
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/romm/**'
+          to: '@artifact/'
+    - name: shopkeeper
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/shopkeeper/**'
+          to: '@artifact/shopkeeper/'
+        - from: '@repo/flux/apps/_bases/shopkeeper/**'
+          to: '@artifact/_bases/shopkeeper/'
+    - name: shopkeeper-cts
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/shopkeeper-cts/**'
+          to: '@artifact/shopkeeper-cts/'
+        - from: '@repo/flux/apps/_bases/shopkeeper/**'
+          to: '@artifact/_bases/shopkeeper/'
+    - name: skyline
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/skyline/**'
+          to: '@artifact/'

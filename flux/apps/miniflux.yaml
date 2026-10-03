@@ -11,9 +11,9 @@ spec:
     - name: nfs-csi
     - name: cloudnativepg
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/miniflux'
+    kind: ExternalArtifact
+    name: miniflux
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

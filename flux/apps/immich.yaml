@@ -12,9 +12,9 @@ spec:
     - name: keda
     - name: cloudnativepg
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/immich'
+    kind: ExternalArtifact
+    name: immich
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

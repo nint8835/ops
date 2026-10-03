@@ -11,9 +11,9 @@ spec:
     - name: nfs-csi
     - name: cloudnativepg
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/romm'
+    kind: ExternalArtifact
+    name: romm
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:
