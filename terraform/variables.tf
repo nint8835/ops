@@ -55,12 +55,6 @@ variable "traefik_basic_auth_entry" {
   sensitive   = true
 }
 
-variable "cert_manager_cloudflare_api_token" {
-  description = "Cloudflare API token for cert-manager"
-  type        = string
-  sensitive   = true
-}
-
 variable "proxmox_username" {
   description = "Proxmox username"
   type        = string
