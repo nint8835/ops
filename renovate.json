@@ -83,6 +83,7 @@
         "ghcr.io/berriai/litellm"
       ],
       "groupName": "inference",
+      "separateMajorMinor": false,
       "schedule": ["* * * * 6"],
       "updateNotScheduled": false
     },
