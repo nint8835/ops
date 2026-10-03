@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/paperless-ngx'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: paperless-ngx
+      namespace: paperless-ngx
   decryption:
     provider: sops

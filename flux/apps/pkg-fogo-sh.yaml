@@ -10,3 +10,9 @@ spec:
     name: flux-system
   path: 'flux/apps/pkg-fogo-sh'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: dieppe
+      namespace: pkg-fogo-sh

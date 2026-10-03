@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/skyline'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: skyline
+      namespace: skyline
   decryption:
     provider: sops

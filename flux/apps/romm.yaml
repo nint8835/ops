@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/romm'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: romm
+      namespace: romm
   decryption:
     provider: sops

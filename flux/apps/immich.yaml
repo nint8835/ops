@@ -10,3 +10,17 @@ spec:
     name: flux-system
   path: 'flux/apps/immich'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: immich-machine-learning
+      namespace: immich
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: immich-server
+      namespace: immich
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: immich-worker
+      namespace: immich

@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/scribe'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: scribe
+      namespace: scribe
   decryption:
     provider: sops

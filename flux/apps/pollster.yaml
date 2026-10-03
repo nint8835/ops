@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/pollster'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: pollster
+      namespace: pollster
   decryption:
     provider: sops

@@ -10,3 +10,9 @@ spec:
     name: flux-system
   path: 'flux/apps/ntv-webcam-scraper'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: ntv-webcam-scraper
+      namespace: ntv-webcam-scraper

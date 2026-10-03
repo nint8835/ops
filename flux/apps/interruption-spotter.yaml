@@ -10,3 +10,9 @@ spec:
     name: flux-system
   path: 'flux/apps/interruption-spotter'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: interruption-spotter
+      namespace: interruption-spotter

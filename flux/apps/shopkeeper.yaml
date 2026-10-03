@@ -10,5 +10,11 @@ spec:
     name: flux-system
   path: 'flux/apps/shopkeeper'
   prune: true
+  timeout: 5m
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: shopkeeper
+      namespace: shopkeeper
   decryption:
     provider: sops
