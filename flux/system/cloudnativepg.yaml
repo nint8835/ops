@@ -8,9 +8,9 @@ metadata:
 spec:
   interval: 1h0m0s
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/system/cloudnativepg'
+    kind: ExternalArtifact
+    name: cloudnativepg
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

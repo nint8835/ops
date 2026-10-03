@@ -1,0 +1,19 @@
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+
+metadata:
+  name: flux-services
+  namespace: flux-system
+
+spec:
+  sources:
+    - alias: repo
+      kind: GitRepository
+      name: flux-system
+  artifacts:
+    - name: cloudnativepg
+      originRevision: '@repo'
+      # Leave revision unset so only changes to the copied contents change it.
+      copy:
+        - from: '@repo/flux/system/cloudnativepg/**'
+          to: '@artifact/'
