@@ -10,10 +10,20 @@ spec:
     - alias: repo
       kind: GitRepository
       name: flux-system
+  # Leave revision unset so only changes to each artifact's contents change it.
   artifacts:
     - name: cloudnativepg
       originRevision: '@repo'
-      # Leave revision unset so only changes to the copied contents change it.
       copy:
         - from: '@repo/flux/system/cloudnativepg/**'
+          to: '@artifact/'
+    - name: metrics-server
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/metrics-server/**'
+          to: '@artifact/'
+    - name: keda
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/keda/**'
           to: '@artifact/'

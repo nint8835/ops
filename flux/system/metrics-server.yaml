@@ -8,9 +8,9 @@ metadata:
 spec:
   interval: 1h0m0s
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/system/metrics-server'
+    kind: ExternalArtifact
+    name: metrics-server
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:
