@@ -21,6 +21,9 @@ patches:
       - op: add
         path: /spec/template/spec/containers/0/args/-
         value: --sops-age-secret=sops-age
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --requeue-dependency=2s
     target:
       kind: Deployment
       name: kustomize-controller
