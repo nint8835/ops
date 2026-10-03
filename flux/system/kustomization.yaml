@@ -6,3 +6,4 @@ resources:
   - ./webhook
   - ./image-updates
   - ./images
+  - metrics-server.yaml
