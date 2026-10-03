@@ -87,3 +87,27 @@ spec:
       copy:
         - from: '@repo/flux/apps/cloudflare-ddns/**'
           to: '@artifact/'
+    - name: homeassistant-proxy
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/homeassistant-proxy/**'
+          to: '@artifact/'
+    - name: plex-proxy
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/plex-proxy/**'
+          to: '@artifact/'
+    - name: pkg-fogo-sh
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/pkg-fogo-sh/**'
+          to: '@artifact/pkg-fogo-sh/'
+        - from: '@repo/flux/apps/_bases/dieppe/**'
+          to: '@artifact/_bases/dieppe/'
+    - name: pkg-nit-so
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/pkg-nit-so/**'
+          to: '@artifact/pkg-nit-so/'
+        - from: '@repo/flux/apps/_bases/dieppe/**'
+          to: '@artifact/_bases/dieppe/'

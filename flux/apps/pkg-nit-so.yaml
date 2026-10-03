@@ -9,9 +9,9 @@ spec:
     - name: traefik-configs
     - name: cert-manager-configs
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/pkg-nit-so'
+    kind: ExternalArtifact
+    name: pkg-nit-so
+  path: './pkg-nit-so'
   prune: true
   timeout: 5m
   healthChecks:

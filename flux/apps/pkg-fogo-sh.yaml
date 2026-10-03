@@ -9,9 +9,9 @@ spec:
     - name: traefik-configs
     - name: cert-manager-configs
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/pkg-fogo-sh'
+    kind: ExternalArtifact
+    name: pkg-fogo-sh
+  path: './pkg-fogo-sh'
   prune: true
   timeout: 5m
   healthChecks:
