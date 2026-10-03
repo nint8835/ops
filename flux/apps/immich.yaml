@@ -7,6 +7,7 @@ spec:
   interval: 1h0m0s
   dependsOn:
     - name: keda
+    - name: cloudnativepg
   sourceRef:
     kind: GitRepository
     name: flux-system

@@ -8,3 +8,4 @@ resources:
   - ./images
   - metrics-server.yaml
   - keda.yaml
+  - cloudnativepg.yaml
