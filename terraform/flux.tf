@@ -16,8 +16,9 @@ resource "flux_bootstrap_git" "bootstrap" {
   path    = "flux"
   version = "v2.9.5"
   components_extra = [
-    "image-reflector-controller",
     "image-automation-controller",
+    "image-reflector-controller",
+    "source-watcher",
   ]
 
   kustomization_override = file("${path.module}/files/flux-kustomization.yaml")
