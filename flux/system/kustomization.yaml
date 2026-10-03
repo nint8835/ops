@@ -16,3 +16,5 @@ resources:
   - cert-manager-configs.yaml
   - traefik.yaml
   - traefik-configs.yaml
+  - metallb.yaml
+  - metallb-configs.yaml

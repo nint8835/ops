@@ -62,3 +62,13 @@ spec:
       copy:
         - from: '@repo/flux/system/traefik-configs/**'
           to: '@artifact/'
+    - name: metallb
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/metallb/**'
+          to: '@artifact/'
+    - name: metallb-configs
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/metallb-configs/**'
+          to: '@artifact/'

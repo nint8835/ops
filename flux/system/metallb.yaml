@@ -2,21 +2,19 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 
 metadata:
-  name: traefik
+  name: metallb
   namespace: flux-system
 
 spec:
   interval: 1h0m0s
-  dependsOn:
-    - name: metallb-configs
   sourceRef:
     kind: ExternalArtifact
-    name: traefik
+    name: metallb
   path: './'
   prune: true
   timeout: 5m
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
-      name: traefik
-      namespace: traefik
+      name: metallb
+      namespace: metallb-system
