@@ -11,3 +11,4 @@ resources:
   - keda.yaml
   - cloudnativepg.yaml
   - monitoring.yaml
+  - nfs-csi.yaml

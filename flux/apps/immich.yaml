@@ -6,6 +6,7 @@ metadata:
 spec:
   interval: 1h0m0s
   dependsOn:
+    - name: nfs-csi
     - name: keda
     - name: cloudnativepg
   sourceRef:

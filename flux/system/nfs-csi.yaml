@@ -2,24 +2,19 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 
 metadata:
-  name: coder
+  name: nfs-csi
   namespace: flux-system
 
 spec:
   interval: 1h0m0s
-  dependsOn:
-    - name: nfs-csi
-    - name: cloudnativepg
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/coder'
+    kind: ExternalArtifact
+    name: nfs-csi
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
-      name: coder
-      namespace: coder
-  decryption:
-    provider: sops
+      name: csi-driver-nfs
+      namespace: kube-system

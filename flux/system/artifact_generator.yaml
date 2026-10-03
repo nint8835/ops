@@ -32,3 +32,8 @@ spec:
       copy:
         - from: '@repo/flux/system/monitoring/**'
           to: '@artifact/'
+    - name: nfs-csi
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/nfs-csi/**'
+          to: '@artifact/'
