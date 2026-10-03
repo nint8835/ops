@@ -8,9 +8,9 @@ spec:
   dependsOn:
     - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/planespotter'
+    kind: ExternalArtifact
+    name: planespotter
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:

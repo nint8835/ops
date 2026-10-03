@@ -9,7 +9,7 @@ spec:
     - name: traefik-configs
     - name: cert-manager-configs
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/litellm'
+    kind: ExternalArtifact
+    name: litellm
+  path: './'
   prune: true

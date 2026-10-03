@@ -111,3 +111,23 @@ spec:
           to: '@artifact/pkg-nit-so/'
         - from: '@repo/flux/apps/_bases/dieppe/**'
           to: '@artifact/_bases/dieppe/'
+    - name: litellm
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/litellm/**'
+          to: '@artifact/'
+    - name: scribe
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/scribe/**'
+          to: '@artifact/'
+    - name: interruption-spotter
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/interruption-spotter/**'
+          to: '@artifact/'
+    - name: planespotter
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/planespotter/**'
+          to: '@artifact/'
