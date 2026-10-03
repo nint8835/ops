@@ -13,23 +13,18 @@ resource "talos_machine_configuration_apply" "node" {
 
   client_configuration        = var.client_configuration
   machine_configuration_input = data.talos_machine_configuration.config.machine_configuration
-  config_patches = concat(
-    [
-      templatefile(
-        "${path.module}/templates/install-hostname.yaml.tmpl", {
-          hostname = var.name
-      }),
-      templatefile(
-        "${path.module}/templates/topology-labels.yaml.tmpl", {
-          region = var.region
-          zone   = var.zone
-        }
-      )
-    ],
-    var.role == "controlplane" ? [
-      file("${path.module}/files/controlplane-scheduling.yaml")
-    ] : []
-  )
+  config_patches = [
+    templatefile(
+      "${path.module}/templates/install-hostname.yaml.tmpl", {
+        hostname = var.name
+    }),
+    templatefile(
+      "${path.module}/templates/topology-labels.yaml.tmpl", {
+        region = var.region
+        zone   = var.zone
+      }
+    )
+  ]
 
   depends_on = [proxmox_virtual_environment_vm.vm]
 }
