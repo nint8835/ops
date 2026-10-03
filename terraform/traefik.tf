@@ -51,11 +51,6 @@ resource "kubernetes_secret_v1" "traefik_dashboard_auth" {
   }
 }
 
-module "traefik_configs_hash" {
-  source    = "./modules/utils/hash_directory"
-  directory = "${path.module}/charts/traefik-configs"
-}
-
 resource "helm_release" "traefik_configs" {
   name      = "traefik-configs"
   namespace = kubernetes_namespace_v1.traefik.id
@@ -66,7 +61,7 @@ resource "helm_release" "traefik_configs" {
   set = [
     {
       name  = "_hash"
-      value = module.traefik_configs_hash.hash
+      value = symbols::utils::hash_directory("${path.module}/charts/traefik-configs")
     },
     {
       name  = "traefikDashboardAuthSecret"

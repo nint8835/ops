@@ -1,9 +1,3 @@
-module "hash" {
-  source = "../../../utils/hash_directory"
-
-  directory = "${path.module}/src"
-}
-
 resource "coderd_template" "template" {
   name         = "docker"
   display_name = "Docker"
@@ -12,7 +6,7 @@ resource "coderd_template" "template" {
 
   versions = [
     {
-      name      = "latest-${module.hash.short_hash}"
+      name      = "latest-${substr(symbols::utils::hash_directory("${path.module}/src"), 0, 8)}"
       directory = "${path.module}/src"
       active    = true
     },

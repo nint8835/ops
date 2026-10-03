@@ -13,7 +13,7 @@ fetch-configs: fetch-kubeconfig fetch-talosconfig
 lint:
 	tofu fmt -check -recursive
 	tflint --config "$(CURDIR)/.tflint.hcl" --recursive
-	tofu validate
+	tofu validate -lint=all
 
 fix:
 	tflint --config "$(CURDIR)/.tflint.hcl" --recursive --fix

@@ -51,11 +51,6 @@ resource "helm_release" "cert_manager" {
   ]
 }
 
-module "cert_manager_configs_hash" {
-  source    = "./modules/utils/hash_directory"
-  directory = "${path.module}/charts/cert-manager-configs"
-}
-
 resource "helm_release" "cert_manager_configs" {
   name      = "cert-manager-configs"
   namespace = kubernetes_namespace_v1.cert_manager.id
@@ -66,7 +61,7 @@ resource "helm_release" "cert_manager_configs" {
   set = [
     {
       name  = "_hash"
-      value = module.cert_manager_configs_hash.hash
+      value = symbols::utils::hash_directory("${path.module}/charts/cert-manager-configs")
     },
     {
       name  = "cloudflareSecretName"
