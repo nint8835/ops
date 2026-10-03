@@ -75,13 +75,16 @@
   "packageRules": [
     {
       "description": "Group inference service dependency updates together",
-      "matchDatasources": ["github-tags"],
+      "matchDatasources": ["github-tags", "docker"],
       "matchPackageNames": [
         "ggml-org/llama.cpp",
         "mostlygeek/llama-swap",
-        "leejet/stable-diffusion.cpp"
+        "leejet/stable-diffusion.cpp",
+        "ghcr.io/berriai/litellm"
       ],
-      "groupName": "inference"
+      "groupName": "inference",
+      "schedule": ["* * * * 6"],
+      "updateNotScheduled": false
     },
     {
       "description": "Use the OpenTofu registry for Terraform by default",
