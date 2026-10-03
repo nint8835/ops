@@ -49,12 +49,6 @@ variable "age_secret_key" {
   sensitive   = true
 }
 
-variable "traefik_basic_auth_entry" {
-  description = "Output of htpasswd for the credentials to use for the Traefik dashboard"
-  type        = string
-  sensitive   = true
-}
-
 variable "proxmox_username" {
   description = "Proxmox username"
   type        = string
