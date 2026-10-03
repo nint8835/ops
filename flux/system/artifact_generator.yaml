@@ -72,3 +72,18 @@ spec:
       copy:
         - from: '@repo/flux/system/metallb-configs/**'
           to: '@artifact/'
+    - name: borik
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/borik/**'
+          to: '@artifact/'
+    - name: gramfel
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/gramfel/**'
+          to: '@artifact/'
+    - name: cloudflare-ddns
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/cloudflare-ddns/**'
+          to: '@artifact/'

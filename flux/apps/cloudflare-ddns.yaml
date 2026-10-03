@@ -6,9 +6,9 @@ metadata:
 spec:
   interval: 1h0m0s
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/cloudflare-ddns'
+    kind: ExternalArtifact
+    name: cloudflare-ddns
+  path: './'
   prune: true
   timeout: 5m
   healthChecks:
