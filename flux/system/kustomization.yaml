@@ -7,3 +7,4 @@ resources:
   - ./image-updates
   - ./images
   - metrics-server.yaml
+  - keda.yaml
