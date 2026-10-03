@@ -1,4 +1,5 @@
-machine:
-  nodeLabels:
-    topology.kubernetes.io/region: ${region}
-    topology.kubernetes.io/zone: ${zone}
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+  topology.kubernetes.io/region: ${region}
+  topology.kubernetes.io/zone: ${zone}
