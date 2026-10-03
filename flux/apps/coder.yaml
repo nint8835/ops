@@ -8,6 +8,7 @@ metadata:
 spec:
   interval: 1h0m0s
   dependsOn:
+    - name: traefik-configs
     - name: cert-manager-configs
     - name: nfs-csi
     - name: cloudnativepg

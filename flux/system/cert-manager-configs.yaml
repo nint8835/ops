@@ -9,6 +9,7 @@ spec:
   interval: 1h0m0s
   dependsOn:
     - name: cert-manager
+    - name: traefik-configs
   sourceRef:
     kind: ExternalArtifact
     name: cert-manager-configs

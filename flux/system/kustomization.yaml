@@ -14,3 +14,5 @@ resources:
   - nfs-csi.yaml
   - cert-manager.yaml
   - cert-manager-configs.yaml
+  - traefik.yaml
+  - traefik-configs.yaml

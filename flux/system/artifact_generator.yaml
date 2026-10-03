@@ -52,3 +52,13 @@ spec:
       copy:
         - from: '@repo/flux/system/webhook/**'
           to: '@artifact/'
+    - name: traefik
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/traefik/**'
+          to: '@artifact/'
+    - name: traefik-configs
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/traefik-configs/**'
+          to: '@artifact/'
