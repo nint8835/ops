@@ -10,3 +10,4 @@ resources:
   - metrics-server.yaml
   - keda.yaml
   - cloudnativepg.yaml
+  - monitoring.yaml

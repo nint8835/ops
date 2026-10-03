@@ -27,3 +27,8 @@ spec:
       copy:
         - from: '@repo/flux/system/keda/**'
           to: '@artifact/'
+    - name: monitoring
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/monitoring/**'
+          to: '@artifact/'

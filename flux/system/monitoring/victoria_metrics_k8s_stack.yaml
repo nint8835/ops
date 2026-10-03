@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+
+metadata:
+  name: victoria-metrics-k8s-stack
+
+spec:
+  interval: 1h0m0s
+  releaseName: victoria-metrics-k8s-stack
+  maxHistory: 3
+  dependsOn:
+    - name: prometheus-operator-crds
+
+  chart:
+    spec:
+      chart: victoria-metrics-k8s-stack
+      version: '0.93.0'
+      sourceRef:
+        kind: HelmRepository
+        name: victoriametrics
+      interval: 1h0m0s
+
+  values:
+    grafana:
+      enabled: false
+    vmsingle:
+      spec:
+        storage:
+          storageClassName: nfs-csi
+    victoria-metrics-operator:
+      crds:
+        plain: false

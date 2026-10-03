@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+
+metadata:
+  name: grafana
+
+spec:
+  interval: 1h0m0s
+  releaseName: grafana
+  maxHistory: 3
+
+  chart:
+    spec:
+      chart: grafana
+      version: '13.2.5'
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+      interval: 1h0m0s
+
+  values:
+    persistence:
+      enabled: true
+      storageClassName: nfs-csi
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-https-redirect@kubernetescrd
+      hosts:
+        - grafana.ops.bootleg.technology
+      tls:
+        - hosts:
+            - grafana.ops.bootleg.technology
+          secretName: grafana-tls
+    grafana.ini:
+      server:
+        root_url: https://grafana.ops.bootleg.technology
+    resources:
+      requests:
+        memory: 256Mi
+      limits:
+        memory: 786Mi
