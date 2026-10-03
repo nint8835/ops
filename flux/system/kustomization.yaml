@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - artifact_generator.yaml
   - ./notifications
-  - ./webhook
+  - webhook.yaml
   - ./image-updates
   - ./images
   - metrics-server.yaml
@@ -12,3 +12,5 @@ resources:
   - cloudnativepg.yaml
   - monitoring.yaml
   - nfs-csi.yaml
+  - cert-manager.yaml
+  - cert-manager-configs.yaml

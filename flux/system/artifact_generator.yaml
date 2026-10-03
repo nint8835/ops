@@ -37,3 +37,18 @@ spec:
       copy:
         - from: '@repo/flux/system/nfs-csi/**'
           to: '@artifact/'
+    - name: cert-manager
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/cert-manager/**'
+          to: '@artifact/'
+    - name: cert-manager-configs
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/cert-manager-configs/**'
+          to: '@artifact/'
+    - name: webhook
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/webhook/**'
+          to: '@artifact/'

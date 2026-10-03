@@ -1,23 +1,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
+
 metadata:
-  name: pollster
+  name: webhook
   namespace: flux-system
+
 spec:
   interval: 1h0m0s
   dependsOn:
     - name: cert-manager-configs
-    - name: nfs-csi
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: 'flux/apps/pollster'
+    kind: ExternalArtifact
+    name: webhook
+  path: './'
   prune: true
   timeout: 5m
-  healthChecks:
-    - apiVersion: apps/v1
-      kind: Deployment
-      name: pollster
-      namespace: pollster
   decryption:
     provider: sops
