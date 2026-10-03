@@ -5,17 +5,6 @@ variable "cluster_name" {
   default     = "hera"
 }
 
-variable "lb_ip_range" {
-  description = "Range of IPs to use for the MetalLB load balancer"
-  type        = string
-  default     = "10.8.240.0/20"
-
-  validation {
-    condition     = can(cidrnetmask(var.lb_ip_range))
-    error_message = "Load balancer IP range must be a valid IPv4 CIDR range."
-  }
-}
-
 variable "tailscale_api_key" {
   description = "Tailscale API key"
   type        = string
