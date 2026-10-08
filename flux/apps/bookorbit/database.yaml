@@ -20,4 +20,4 @@ spec:
       ensure: present
     - name: vector
       # renovate: datasource=docker depName=ghcr.io/cloudnative-pg/pgvector extractVersion=^(?<version>\d+\.\d+\.\d+)-18-trixie$ versioning=semver
-      version: '0.8.6'
+      version: '0.8.7'
