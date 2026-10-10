@@ -161,7 +161,7 @@ services:
     tmpfs:
       - /var/log
   piaware:
-    image: ghcr.io/sdr-enthusiasts/docker-piaware:latest-build-669
+    image: ghcr.io/sdr-enthusiasts/docker-piaware:latest-build-670
     container_name: piaware
     restart: unless-stopped
     ports:
