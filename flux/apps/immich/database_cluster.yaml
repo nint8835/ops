@@ -4,9 +4,7 @@ metadata:
   name: db
 spec:
   instances: 1
-  primaryUpdateStrategy: unsupervised
-
-  smartShutdownTimeout: 30
+  enablePDB: false
 
   postgresql:
     shared_preload_libraries:

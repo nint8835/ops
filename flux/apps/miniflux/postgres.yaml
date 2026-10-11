@@ -4,10 +4,8 @@ metadata:
   name: db
 spec:
   instances: 1
-  primaryUpdateStrategy: unsupervised
   enableSuperuserAccess: true
-
-  smartShutdownTimeout: 30
+  enablePDB: false
 
   postgresql:
     parameters:

@@ -6,9 +6,7 @@ metadata:
 
 spec:
   instances: 1
-  primaryUpdateStrategy: unsupervised
-
-  smartShutdownTimeout: 30
+  enablePDB: false
 
   storage:
     size: 1Gi
