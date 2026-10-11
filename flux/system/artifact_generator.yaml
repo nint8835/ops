@@ -12,6 +12,11 @@ spec:
       name: flux-system
   # Leave revision unset so only changes to each artifact's contents change it.
   artifacts:
+    - name: tailscale
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/tailscale/**'
+          to: '@artifact/'
     - name: cloudnativepg
       originRevision: '@repo'
       copy:

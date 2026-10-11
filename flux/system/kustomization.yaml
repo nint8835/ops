@@ -8,6 +8,7 @@ resources:
   - ./image-updates
   - ./images
   - metrics-server.yaml
+  - tailscale.yaml
   - keda.yaml
   - cloudnativepg.yaml
   - monitoring.yaml
