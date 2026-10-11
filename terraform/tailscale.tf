@@ -1,6 +1,12 @@
 resource "kubernetes_namespace_v1" "tailscale" {
   metadata {
     name = "tailscale"
+
+    labels = {
+      "pod-security.kubernetes.io/enforce" = "privileged"
+      "pod-security.kubernetes.io/audit"   = "privileged"
+      "pod-security.kubernetes.io/warn"    = "privileged"
+    }
   }
 }
 
@@ -9,6 +15,11 @@ resource "tailscale_acl" "acls" {
     tagOwners = {
       "tag:k8s-operator" = []
       "tag:k8s"          = ["tag:k8s-operator"]
+    }
+
+    autoApprovers = {
+      "10.0.0.0/8"     = ["tag:k8s"]
+      "192.168.1.0/24" = ["tag:k8s"]
     }
 
     grants = [
