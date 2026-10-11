@@ -9,6 +9,7 @@ resources:
   - ./images
   - metrics-server.yaml
   - tailscale.yaml
+  - tailscale-configs.yaml
   - keda.yaml
   - cloudnativepg.yaml
   - monitoring.yaml

@@ -17,6 +17,11 @@ spec:
       copy:
         - from: '@repo/flux/system/tailscale/**'
           to: '@artifact/'
+    - name: tailscale-configs
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/system/tailscale-configs/**'
+          to: '@artifact/'
     - name: cloudnativepg
       originRevision: '@repo'
       copy:
