@@ -17,3 +17,12 @@ spec:
         kind: HelmRepository
         name: tailscale
       interval: 1h0m0s
+  
+  values:
+    operatorConfig:
+      image:
+        repository: ghcr.io/tailscale/k8s-operator
+    
+    proxyConfig:
+      image:
+        repository: ghcr.io/tailscale/tailscale
