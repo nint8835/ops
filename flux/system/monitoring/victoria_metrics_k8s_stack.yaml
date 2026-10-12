@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 1h0m0s
   releaseName: victoria-metrics-k8s-stack
-  maxHistory: 3
   dependsOn:
     - name: prometheus-operator-crds
 

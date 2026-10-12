@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 1h0m0s
   releaseName: prometheus-operator-crds
-  maxHistory: 3
 
   chart:
     spec:

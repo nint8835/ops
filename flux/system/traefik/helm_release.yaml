@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 1h0m0s
   releaseName: traefik
-  maxHistory: 3
 
   chart:
     spec:
