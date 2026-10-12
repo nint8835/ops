@@ -43,8 +43,9 @@ locals {
     }
   }
 
-  talos_version      = "1.14.0"
-  kubernetes_version = "1.37.0"
+  kubernetes_version   = "1.37.0"
+  talos_config_version = "1.14.0"
+  talos_version        = "1.14.2"
 
   control_plane_nodes = { for k, v in local.cluster_nodes : k => v if v.role == "controlplane" }
   bootstrap_node      = local.control_plane_nodes[sort(keys(local.control_plane_nodes))[0]]
@@ -73,6 +74,14 @@ resource "proxmox_virtual_environment_pool" "kubernetes" {
 
 resource "talos_machine_secrets" "secrets" {}
 
+resource "talos_image_factory_schematic" "schematic" {}
+
+data "talos_image_factory_urls" "urls" {
+  talos_version = local.talos_version
+  schematic_id  = talos_image_factory_schematic.schematic.id
+  platform      = "metal"
+}
+
 module "node" {
   source   = "./modules/node"
   for_each = local.cluster_nodes
@@ -89,8 +98,9 @@ module "node" {
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
 
-  talos_version      = local.talos_version
-  kubernetes_version = local.kubernetes_version
+  kubernetes_version    = local.kubernetes_version
+  talos_config_version  = local.talos_config_version
+  talos_installer_image = data.talos_image_factory_urls.urls.urls.installer
 }
 
 resource "talos_machine_bootstrap" "cluster" {

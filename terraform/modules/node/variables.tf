@@ -58,13 +58,18 @@ variable "zone" {
   type        = string
 }
 
-variable "talos_version" {
-  description = "Version of Talos to install."
+variable "talos_config_version" {
+  description = "Baseline Talos version to use for config generation."
   type        = string
 }
 
 variable "kubernetes_version" {
   description = "Version of Kubernetes to install."
+  type        = string
+}
+
+variable "talos_installer_image" {
+  description = "URL of the Talos installer image to use."
   type        = string
 }
 
