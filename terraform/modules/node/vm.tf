@@ -30,6 +30,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     interface = "scsi0"
     size      = 80
     iothread  = true
+    discard   = "on"
   }
 
   operating_system {
