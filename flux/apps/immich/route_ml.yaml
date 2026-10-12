@@ -18,7 +18,7 @@ spec:
 
   scalingMetric:
     concurrency:
-      targetValue: 1
+      targetValue: 3
 
   # Availability checks must not wake the ML pod or prevent scale-to-zero.
   staticRoutes:
