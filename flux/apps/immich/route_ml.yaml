@@ -1,0 +1,37 @@
+apiVersion: http.keda.sh/v1beta1
+kind: InterceptorRoute
+
+metadata:
+  name: immich-machine-learning
+
+spec:
+  target:
+    service: immich-machine-learning
+    port: 3003
+
+  rules:
+    - hosts:
+        - immich-machine-learning-proxy
+        - immich-machine-learning-proxy.immich
+        - immich-machine-learning-proxy.immich.svc
+        - immich-machine-learning-proxy.immich.svc.cluster.local
+
+  scalingMetric:
+    concurrency:
+      targetValue: 1
+
+  # Availability checks must not wake the ML pod or prevent scale-to-zero.
+  staticRoutes:
+    - rules:
+        - paths:
+            - value: /ping
+      response:
+        statusCode: 200
+        body: pong
+        headers:
+          Content-Type: text/plain
+
+  timeouts:
+    readiness: 300s
+    request: 600s
+    responseHeader: 300s

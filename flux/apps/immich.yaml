@@ -18,6 +18,14 @@ spec:
   prune: true
   timeout: 5m
   healthChecks:
+    - apiVersion: http.keda.sh/v1beta1
+      kind: InterceptorRoute
+      name: immich-machine-learning
+      namespace: immich
+    - apiVersion: keda.sh/v1alpha1
+      kind: ScaledObject
+      name: immich-machine-learning
+      namespace: immich
     - apiVersion: apps/v1
       kind: Deployment
       name: immich-machine-learning

@@ -16,6 +16,10 @@ resources:
   - ingress.yaml
   - immich_ml.yaml
   - service_immich_ml.yaml
+  - service_immich_ml_proxy.yaml
+  - persistent_volume_claim_ml_cache.yaml
+  - route_ml.yaml
+  - scaler_ml.yaml
 
 images:
   - name: ghcr.io/immich-app/immich-server

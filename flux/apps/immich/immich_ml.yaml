@@ -15,6 +15,11 @@ spec:
         app: immich-machine-learning
 
     spec:
+      volumes:
+        - name: cache
+          persistentVolumeClaim:
+            claimName: machine-learning-cache
+
       containers:
         - name: immich-machine-learning
           image: ghcr.io/immich-app/immich-machine-learning
@@ -22,6 +27,15 @@ spec:
           ports:
             - name: http
               containerPort: 3301
+
+          volumeMounts:
+            - name: cache
+              mountPath: /cache
+
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
 
           env:
             - name: DB_URL
