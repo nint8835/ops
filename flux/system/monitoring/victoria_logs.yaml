@@ -23,6 +23,8 @@ spec:
         defaultMsgValue: No log message
       persistentVolume:
         storageClassName: nfs-csi
+      podSecurityContext:
+        fsGroupChangePolicy: OnRootMismatch
     vector:
       enabled: true
       tolerations:
