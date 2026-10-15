@@ -178,7 +178,7 @@ services:
       - /run:exec,size=64M
       - /var/log
   ident:
-    image: ghcr.io/ident-1090/ident:v0.5.1
+    image: ghcr.io/ident-1090/ident:v0.5.3
     restart: unless-stopped
     ports:
       - "1091:8080"
