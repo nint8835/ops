@@ -8,7 +8,7 @@ spec:
   scaleTargetRef:
     name: immich-machine-learning
 
-  minReplicaCount: 0
+  minReplicaCount: 1
   maxReplicaCount: 5
   cooldownPeriod: 300
 
