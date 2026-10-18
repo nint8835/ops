@@ -71,3 +71,12 @@ model_list:
       mode: image_generation
       # On average, 100W for 32 seconds at NL Power rates
       input_cost_per_image: 0.01555094
+    
+  - model_name: Qwen3-VL-Instruct-4B
+    litellm_params:
+      model: openai/Qwen3-VL-Instruct-4B
+      api_base: http://llama:8080/v1
+      api_key: placeholder
+    model_info:
+      input_cost_per_token: 0.000000001876089
+      output_cost_per_token: 0.00000011483243
