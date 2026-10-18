@@ -6,7 +6,6 @@ macros:
   llama-server: >
     /usr/local/bin/llama-server
     --port ${PORT}
-    --no-mmap
     -ngl 999
     --flash-attn on
     --log-disable
@@ -135,3 +134,15 @@ models:
       --llm /models/Qwen3-4B-BF16.gguf
       --cfg-scale 1.0
       --steps 4
+  
+  flux-3-klein:
+    name: FLUX.3 [klein]
+    checkEndpoint: "/"
+    cmd: >
+      ${sd-server}
+      --diffusion-model /models/stable-diffusion/flux-3-image-klein-UD-Q4_K_XL.gguf
+      --vae /models/stable-diffusion/flux-2-klein-vae.safetensors
+      --llm /models/Qwen3-VL-4B-Instruct-UD-Q8_K_XL.gguf
+      --cfg-scale 3.5
+      --steps 20
+      --sampling-method euler
