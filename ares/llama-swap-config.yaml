@@ -146,3 +146,17 @@ models:
       --cfg-scale 3.5
       --steps 20
       --sampling-method euler
+
+routing:
+  router:
+    use: group
+
+    settings:
+      groups:
+        borik:
+          swap: false
+          exclusive: true
+          members:
+            - flux-2-klein-4b
+            - flux-3-klein
+            - Qwen3-VL-Instruct-4B
