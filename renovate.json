@@ -93,6 +93,12 @@
       "separateMajorMinor": false
     },
     {
+      "description": "Schedule Terraform provider updates on Saturdays",
+      "matchDatasources": ["terraform-provider"],
+      "schedule": ["* * * * 6"],
+      "updateNotScheduled": false
+    },
+    {
       "description": "Use the OpenTofu registry for Terraform by default",
       "matchDatasources": ["terraform-provider", "terraform-module"],
       "registryUrls": ["https://registry.opentofu.org"]
