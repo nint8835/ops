@@ -74,6 +74,13 @@
   ],
   "packageRules": [
     {
+      "description": "Schedule ares updates on Saturdays",
+      "matchDatasources": ["docker", "github-tags"],
+      "matchFileNames": ["ares/**"],
+      "schedule": ["* * * * 6"],
+      "updateNotScheduled": false
+    },
+    {
       "description": "Group inference service dependency updates together",
       "matchDatasources": ["github-tags", "docker"],
       "matchPackageNames": [
@@ -83,9 +90,7 @@
         "ghcr.io/berriai/litellm"
       ],
       "groupName": "inference",
-      "separateMajorMinor": false,
-      "schedule": ["* * * * 6"],
-      "updateNotScheduled": false
+      "separateMajorMinor": false
     },
     {
       "description": "Use the OpenTofu registry for Terraform by default",
