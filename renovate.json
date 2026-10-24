@@ -206,7 +206,8 @@
     "ghcr.io/fluxcd/kustomize-controller",
     "ghcr.io/fluxcd/notification-controller",
     "ghcr.io/fluxcd/source-controller",
-    "registry.fedoraproject.org/fedora",
-    "registry.fedoraproject.org/fedora-minimal"
+    "ghcr.io/fluxcd/source-watcher",
+    "registry.fedoraproject.org/fedora-minimal",
+    "registry.fedoraproject.org/fedora"
   ]
 }
