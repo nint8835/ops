@@ -2,6 +2,14 @@ terraform {
   required_version = ">= 1.13.0, < 2.0.0"
 
   required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.70.0"
+    }
+    http = {
+      source  = "hashicorp/http"
+      version = "3.6.2"
+    }
     talos = {
       source  = "siderolabs/talos"
       version = "0.12.0"

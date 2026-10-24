@@ -95,6 +95,7 @@ module "node" {
   role                 = each.value.role
   cluster_name         = var.cluster_name
   cluster_endpoint     = "https://cluster.ops.bootleg.technology:6443"
+  oidc_issuer_url      = "https://${local.oidc_domain}"
   machine_secrets      = talos_machine_secrets.secrets.machine_secrets
   client_configuration = talos_machine_secrets.secrets.client_configuration
 

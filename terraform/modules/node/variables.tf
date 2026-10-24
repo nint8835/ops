@@ -38,6 +38,11 @@ variable "cluster_endpoint" {
   }
 }
 
+variable "oidc_issuer_url" {
+  description = "Public issuer URL for cluster service-account tokens."
+  type        = string
+}
+
 variable "machine_secrets" {
   description = "Talos machine secrets to use to join."
   type        = any

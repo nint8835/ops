@@ -23,6 +23,43 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+data "http" "cloudflare_account_token" {
+  url = "https://api.cloudflare.com/client/v4/accounts/${var.cloudflare_account_id}/tokens/verify"
+
+  request_headers = {
+    Accept        = "application/json"
+    Authorization = "Bearer ${var.cloudflare_api_token}"
+  }
+  request_timeout_ms = 30000
+
+  lifecycle {
+    postcondition {
+      condition = self.status_code == 200 && try(
+        jsondecode(self.response_body).success && jsondecode(self.response_body).result.status == "active",
+        false
+      )
+      error_message = "Cloudflare must verify the configured account API token as active."
+    }
+  }
+}
+
+provider "aws" {
+  alias      = "r2"
+  region     = "auto"
+  access_key = jsondecode(data.http.cloudflare_account_token.response_body).result.id
+  secret_key = sha256(var.cloudflare_api_token)
+
+  skip_credentials_validation = true
+  skip_region_validation      = true
+  skip_requesting_account_id  = true
+  skip_metadata_api_check     = true
+  s3_use_path_style           = true
+
+  endpoints {
+    s3 = "https://${var.cloudflare_account_id}.r2.cloudflarestorage.com"
+  }
+}
+
 provider "github" {
   owner = "nint8835"
   app_auth {
