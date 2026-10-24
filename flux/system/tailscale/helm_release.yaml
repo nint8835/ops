@@ -17,6 +17,11 @@ spec:
         name: tailscale
       interval: 1h0m0s
   
+  valuesFrom:
+    - kind: ConfigMap
+      name: operator-federation
+      valuesKey: values.yaml
+
   values:
     operatorConfig:
       image:
