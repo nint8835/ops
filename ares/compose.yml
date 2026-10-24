@@ -58,7 +58,7 @@ services:
       retries: 10
   
   litellm:
-    image: ghcr.io/berriai/litellm:v1.106.2
+    image: ghcr.io/berriai/litellm:v1.106.3
     restart: unless-stopped
     depends_on:
       litellm-db:
