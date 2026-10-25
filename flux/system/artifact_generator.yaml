@@ -97,6 +97,11 @@ spec:
       copy:
         - from: '@repo/flux/apps/cloudflare-ddns/**'
           to: '@artifact/'
+    - name: happier
+      originRevision: '@repo'
+      copy:
+        - from: '@repo/flux/apps/happier/**'
+          to: '@artifact/'
     - name: homeassistant-proxy
       originRevision: '@repo'
       copy:

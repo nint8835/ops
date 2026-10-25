@@ -8,6 +8,7 @@ resources:
   - coder.yaml
   - grackdb.yaml
   - gramfel.yaml
+  - happier.yaml
   - homeassistant-proxy.yaml
   - immich.yaml
   - interruption-spotter.yaml
