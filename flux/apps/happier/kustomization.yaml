@@ -5,12 +5,18 @@ namespace: happier
 
 resources:
   - namespace.yaml
+  - persistent_volume_claim.yaml
   - deployment.yaml
 
 configMapGenerator:
   - name: config
     envs:
       - config.env
+
+secretGenerator:
+  - name: secrets
+    envs:
+      - secrets.env
 
 images:
   - name: ghcr.io/happier-dev/relay-server

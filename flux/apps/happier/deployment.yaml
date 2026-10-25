@@ -33,6 +33,9 @@ spec:
       volumes:
         - name: runtime-data
           emptyDir: {}
+        - name: light-data
+          persistentVolumeClaim:
+            claimName: light-data
       
       containers:
         - name: happier-server
@@ -52,7 +55,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: config
+            - secretRef:
+                name: secrets
 
           volumeMounts:
             - name: runtime-data
               mountPath: /var/lib/happier/data
+            - name: light-data
+              mountPath: /data/server-light
