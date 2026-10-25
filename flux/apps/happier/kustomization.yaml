@@ -7,6 +7,8 @@ resources:
   - namespace.yaml
   - persistent_volume_claim.yaml
   - deployment.yaml
+  - service.yaml
+  - ingress.yaml
 
 configMapGenerator:
   - name: config

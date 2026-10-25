@@ -31,8 +31,6 @@ spec:
           type: RuntimeDefault
       
       volumes:
-        - name: runtime-data
-          emptyDir: {}
         - name: light-data
           persistentVolumeClaim:
             claimName: light-data
@@ -59,7 +57,5 @@ spec:
                 name: secrets
 
           volumeMounts:
-            - name: runtime-data
-              mountPath: /var/lib/happier/data
             - name: light-data
               mountPath: /data/server-light
