@@ -5,3 +5,14 @@ namespace: happier
 
 resources:
   - namespace.yaml
+  - deployment.yaml
+
+configMapGenerator:
+  - name: config
+    envs:
+      - config.env
+
+images:
+  - name: ghcr.io/happier-dev/relay-server
+    # TODO: Renovate guaranteed isn't handling this out of the box. May need to switch to just the stable tag and using sha pinning?
+    newTag: stable-a2c45c86804b@sha256:f7f1301ad3b0b8f7ed91897ac320942584d09079055e1c9ab779afef0c9644a7

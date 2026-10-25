@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: happier-server
+
+spec:
+  strategy:
+    type: Recreate
+  
+  selector:
+    matchLabels:
+      app: happier-server
+  
+  template:
+    metadata:
+      labels:
+        app: happier-server
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: /metrics
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      
+      volumes:
+        - name: runtime-data
+          emptyDir: {}
+      
+      containers:
+        - name: happier-server
+          image: ghcr.io/happier-dev/relay-server
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+
+          ports:
+            - name: http
+              containerPort: 3005
+            - name: metrics
+              containerPort: 9090
+          
+          envFrom:
+            - configMapRef:
+                name: config
+
+          volumeMounts:
+            - name: runtime-data
+              mountPath: /var/lib/happier/data
