@@ -20,4 +20,4 @@ images:
   - name: ghcr.io/paperless-ngx/paperless-ngx
     newTag: 3.3.4@sha256:9bc6e8248891bcfa6f52fffe8b81e4ea8cae75790c3ec1b9906961a7ba55c969
   - name: ghcr.io/valkey-io/valkey
-    newTag: 9.1.2-alpine@sha256:a174b894902bd3367e330d47cc2054367dc4917701776aaf336f41d83b65ec7a
+    newTag: 9.1.3-alpine@sha256:bf09d58e96d6b4524a15396b65b242bbe18beebbcc15a04d8ee75ddac62fae0b
