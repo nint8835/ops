@@ -2,10 +2,10 @@
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
 ARG LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp.git
-ARG LLAMA_CPP_VERSION=b11691
+ARG LLAMA_CPP_VERSION=b11845
 
-ARG LLAMA_SWAP_VERSION=265
-ARG STABLE_DIFFUSION_CPP_VERSION=master-973-f0aac52
+ARG LLAMA_SWAP_VERSION=266
+ARG STABLE_DIFFUSION_CPP_VERSION=master-1000-95ff762
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
