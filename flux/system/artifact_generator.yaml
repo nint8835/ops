@@ -151,11 +151,6 @@ spec:
       copy:
         - from: '@repo/flux/apps/bookorbit/**'
           to: '@artifact/'
-    - name: coder
-      originRevision: '@repo'
-      copy:
-        - from: '@repo/flux/apps/coder/**'
-          to: '@artifact/'
     - name: grackdb
       originRevision: '@repo'
       copy:

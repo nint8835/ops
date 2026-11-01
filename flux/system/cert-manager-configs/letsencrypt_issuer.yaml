@@ -19,7 +19,6 @@ spec:
         selector:
           dnsZones:
             - internal.bootleg.technology
-            - workspaces.bootleg.technology
       - http01:
           ingress:
             ingressClassName: traefik

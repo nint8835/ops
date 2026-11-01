@@ -104,12 +104,6 @@
       "registryUrls": ["https://registry.opentofu.org"]
     },
     {
-      "description": "Use the Terraform registry for Terraform modules in the coder directory, as that uses Terraform not OpenTofu",
-      "matchDatasources": ["terraform-provider", "terraform-module"],
-      "matchFileNames": ["terraform/modules/coder/templates/**/src/*.tf"],
-      "registryUrls": ["https://registry.terraform.io"]
-    },
-    {
       "description": "Group all Immich updates together",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/immich-app/**"],
