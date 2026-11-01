@@ -92,8 +92,3 @@ provider "proxmox" {
   endpoint = "https://proxy.hosts.bootleg.technology"
   insecure = true
 }
-
-provider "coderd" {
-  url   = "https://workspaces.bootleg.technology"
-  token = var.coder_token
-}

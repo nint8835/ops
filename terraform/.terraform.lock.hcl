@@ -57,39 +57,6 @@ provider "registry.opentofu.org/cloudflare/cloudflare" {
   ]
 }
 
-provider "registry.opentofu.org/coder/coderd" {
-  version     = "0.0.30"
-  constraints = ">= 0.0.12, 0.0.30"
-  hashes = [
-    "h1:+nr+B3AM8MA3VjI4cEXvQxbc9O++pF6WSiNkGRPXtxs=",
-    "h1:0FAOk7sUVyNCRjVyMREuIYCH8Yu6MMqcx8CF+AjYcoI=",
-    "h1:2+oTuqFOqODZG5kJRD5iyIOEqxnQcaxO9EAn4Au8OdA=",
-    "h1:E1y2N5hrtty0cfxVEOa+bwsp32yDPo+lomLQxrgtPNU=",
-    "h1:EGchFzYUDerMzDzMVyLDRawkYawV0JzIqMRQyFGCOCU=",
-    "h1:Smo3ezFjg2F/Qt80Z62o6PKn+eioli0Wq1JYp0ZvUCc=",
-    "h1:i88JUPFhL033bflrXhVjnJed5QH9xmO2H+qfmjfyw38=",
-    "h1:im0uwrJ7butHBNcFmBCN+aHO30mDAgIpngw8IhOeyy4=",
-    "h1:mlBjDLbivlwhdZePNik6bh6woBXdCxPGb0EY7pLfhIQ=",
-    "h1:nD03v418gUOwThJS29vaBmgFplb3EfIB6PIRmn8SPeo=",
-    "h1:sotbIAecp2LC3/SgEbOZguSvLWbApOfSxQywXIx23GA=",
-    "h1:vqwJ0zN+coIVXt8srpFI8d01TjlisazonxNxLwhNK4c=",
-    "h1:wEvmKTFDPbX1BUjLFHkzdTkbJKVf89Hgw3Gks1Z6Xt8=",
-    "zh:095ebb65f7c5e4ebdef96c2691521d4186f36567ec5b1b289b0dad9bfb82a9a2",
-    "zh:0c829df1f25da293e5e1bc4e1c17cb7cd1623a853673c94848f56d565286d9d0",
-    "zh:1a39e1e76ac54077038b424e8e9b4c825eb1016c6fb324058ac992faf35ce5b2",
-    "zh:1bf7adae3d0aa6e2d38a17ffca8674e9aa9e1a760e325850e1dad556288448d6",
-    "zh:3ab504c44424322f555c699cdc9ce0f631f26396868bb94ec0baaeff0ed612e7",
-    "zh:5323b2fffc3f7b80c0491741de6663d6cfe2e05397ab1e88959f0f196accd099",
-    "zh:533b5bcdc42964bb396f76f1ef79cf2cf0d8450e9a7f97abef71485df368eac8",
-    "zh:57aeecd130a50b8ac6971e361bd104262c67ce656ab85f453b97bfb01036de4c",
-    "zh:79da2ba76db9fc1906f926370c2f8ca1f0e165ffde0d517573f5b95f5fd5dc53",
-    "zh:7e0b3c707a77545f3fdb2af684a8afc6ea9466e98057ab246281ef70ffe92700",
-    "zh:867da04a0b97c12cf8988c0e7c3b25336ffffbfb6da8d067419bfbc23adaf472",
-    "zh:a23837734ed9fd5a132e5f63fda5f62da80c76c33d839a4fba0386c1caaa24f8",
-    "zh:c7b9c347512d2830a3ae22b94e51cfabb968e13e79c2b33215074d88ff9db77f",
-  ]
-}
-
 provider "registry.opentofu.org/fluxcd/flux" {
   version     = "1.9.6"
   constraints = "1.9.6"
@@ -232,7 +199,7 @@ provider "registry.opentofu.org/hashicorp/http" {
 
 provider "registry.opentofu.org/hashicorp/kubernetes" {
   version     = "3.4.0"
-  constraints = ">= 2.20.0, 3.4.0"
+  constraints = "3.4.0"
   hashes = [
     "h1:/41mNXuj3FhFobjnLg1pkTnxAOwIomUYfXbj8p6hVj4=",
     "h1:08sn4YtRXJEJW8LXa95I8fLWU0Wkh0l1fqq+e/IbFaE=",

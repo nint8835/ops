@@ -46,9 +46,5 @@ terraform {
       source  = "bpg/proxmox"
       version = "0.118.0"
     }
-    coderd = {
-      source  = "coder/coderd"
-      version = "0.0.30"
-    }
   }
 }
