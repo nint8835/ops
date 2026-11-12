@@ -23,4 +23,4 @@ secretGenerator:
 images:
   - name: ghcr.io/happier-dev/relay-server
     # TODO: Renovate guaranteed isn't handling this out of the box. May need to switch to just the stable tag and using sha pinning?
-    newTag: stable-a2c45c86804b@sha256:f7f1301ad3b0b8f7ed91897ac320942584d09079055e1c9ab779afef0c9644a7
+    newTag: stable-282a8fc3f999@sha256:03d53e5574048863724483a0503b07435f21898f8f720f6c5a6f1c1a36b891b1
