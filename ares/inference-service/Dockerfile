@@ -2,7 +2,7 @@
 # https://github.com/kyuz0/amd-strix-halo-toolboxes
 
 ARG LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp.git
-ARG LLAMA_CPP_VERSION=b12352
+ARG LLAMA_BUILD_NUMBER=12606
 
 ARG LLAMA_SWAP_VERSION=272
 ARG STABLE_DIFFUSION_CPP_VERSION=master-1104-5dcfa79
@@ -42,18 +42,19 @@ RUN git clone --recursive --depth 1 --branch "${STABLE_DIFFUSION_CPP_VERSION}" h
 FROM build-deps AS llama-cpp-builder
 
 ARG LLAMA_CPP_REPO
-ARG LLAMA_CPP_VERSION
+ARG LLAMA_BUILD_NUMBER
 
 WORKDIR /build
 
 # TODO: This is compiling ggml as well - can I make only one of these handle compiling it?
-RUN git clone --recursive --depth 1 --branch "${LLAMA_CPP_VERSION}" "${LLAMA_CPP_REPO}" && \
+RUN git clone --recursive --depth 1 --branch "b${LLAMA_BUILD_NUMBER}" "${LLAMA_CPP_REPO}" && \
     cd llama.cpp && \
     cmake \
         -B build \
         -G Ninja \
         -DGGML_VULKAN=1 \
-        -DCMAKE_INSTALL_PREFIX=/usr/local && \
+        -DCMAKE_INSTALL_PREFIX=/usr/local \
+        -DLLAMA_BUILD_NUMBER=${LLAMA_BUILD_NUMBER} && \
     cmake --build build --config Release --parallel && \
     cmake --install build --config Release
 

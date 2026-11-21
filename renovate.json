@@ -13,10 +13,10 @@
       "customType": "regex",
       "description": "Update llama.cpp compiled by the inference service",
       "managerFilePatterns": ["/ares/inference-service/Dockerfile$/"],
-      "matchStrings": ["ARG LLAMA_CPP_VERSION=(?<currentValue>\\S+)"],
+      "matchStrings": ["ARG LLAMA_BUILD_NUMBER=(?<currentValue>\\S+)"],
       "depNameTemplate": "ggml-org/llama.cpp",
       "datasourceTemplate": "github-tags",
-      "versioningTemplate": "regex:^b(?<major>\\d+)$"
+      "versioningTemplate": "regex:^(?<major>\\d+)$"
     },
     {
       "customType": "regex",
