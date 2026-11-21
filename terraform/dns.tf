@@ -38,6 +38,8 @@ resource "cloudflare_dns_record" "bastion" {
   name    = "ingress.bootleg.technology"
   type    = "A"
   ttl     = 1
+  # Cloudflare provider now errors out if no content is provided, even if the lifecycle is ignored
+  content = "0.0.0.0"
 
   lifecycle {
     ignore_changes = [
