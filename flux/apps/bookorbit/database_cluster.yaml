@@ -12,7 +12,7 @@ spec:
     size: 1Gi
     storageClass: nfs-csi
   
-  imageName: ghcr.io/cloudnative-pg/postgresql:18-minimal-trixie
+  imageName: ghcr.io/cloudnative-pg/postgresql:19-minimal-trixie
   postgresql:
     extensions:
       - name: pgvector
