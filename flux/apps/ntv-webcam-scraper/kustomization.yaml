@@ -7,5 +7,5 @@ resources:
   - deployment.yaml
 images:
   - name: ghcr.io/nint8835/ntv-webcam-scraper
-    newTag: main-e21a6af-20261124-204233 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
-    digest: sha256:57e1eecd8ab496f6a9428531b7f75fb686c5a60382456b77c141d4ca3a5a8090 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
+    newTag: main-3982dde-20261124-205330 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:tag"}
+    digest: sha256:8e6b914a2dddec406ae043d5c0a3c9f67b7223ddc0a3eda90ddd711ad2100507 # {"$imagepolicy": "flux-system:ntv-webcam-scraper:digest"}
