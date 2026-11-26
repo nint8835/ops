@@ -27,4 +27,4 @@ images:
   - name: ghcr.io/immich-app/immich-machine-learning
     newTag: v3.4.2@sha256:739405742a79bd7447227c553bb62ed5491aa36acf00bc667af7f9c93b6fae91
   - name: ghcr.io/valkey-io/valkey
-    newTag: 9.2.0-alpine@sha256:4d67e1af80c653bd46c0bbe8de438c81a6535ab5a39b22f2100028f314005663
+    newTag: 9.2.1-alpine@sha256:3ad5a213cb1bc2fd4a113c89b6248a88655a6bf1dda69519d04e03cd3e3d2742
