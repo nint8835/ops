@@ -22,4 +22,4 @@ secretGenerator:
 
 images:
   - name: ghcr.io/happier-dev/relay-server
-    newTag: stable@sha256:7791e51ec6411dc81ebdf553a651313f56b52dc02259058cf52d038f3716e36f
+    newTag: stable@sha256:e869bacb874089e8cd2ca1be488551710994035ef7f9631f1876f0f33f5f8534
