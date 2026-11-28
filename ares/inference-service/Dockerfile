@@ -4,8 +4,8 @@
 ARG LLAMA_CPP_REPO=https://github.com/ggml-org/llama.cpp.git
 ARG LLAMA_BUILD_NUMBER=12606
 
-ARG LLAMA_SWAP_VERSION=272
-ARG STABLE_DIFFUSION_CPP_VERSION=master-1104-5dcfa79
+ARG LLAMA_SWAP_VERSION=275
+ARG STABLE_DIFFUSION_CPP_VERSION=master-1106-532d2c1
 
 FROM registry.fedoraproject.org/fedora:43 AS build-deps
 
