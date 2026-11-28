@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: gramfel
 resources:
   - namespace.yaml
+  - serviceaccount.yaml
   - job.yaml
 secretGenerator:
   - name: secrets
